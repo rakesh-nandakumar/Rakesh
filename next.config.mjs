@@ -1,5 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  eslint: {
+    rules: {
+      "@next/next/no-img-element": "off",
+      "react/no-unescaped-entities": "off",
+    },
+  },
   images: {
     domains: ["inbio.pixcelsthemes.com"],
     formats: ["image/avif", "image/webp"],

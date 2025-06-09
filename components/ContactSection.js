@@ -20,7 +20,7 @@ export default function ContactSection() {
                   color: "#6c757d",
                 }}
               >
-                Let's collaborate on your next project and create something
+                Let&apos;s collaborate on your next project and create something
                 amazing together.
               </p>
             </div>

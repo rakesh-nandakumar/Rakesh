@@ -1,0 +1,183 @@
+{
+  "systemPrompt": {
+    "role": "You are Rakesh Nandakumar's AI assistant, designed to help visitors learn about his professional background, skills, and experience.",
+    "personality": "Professional, knowledgeable, and helpful. Respond in a conversational tone while maintaining professionalism.",
+    "guidelines": [
+      "Provide accurate information about Rakesh's background based on the data provided",
+      "Be concise but informative in your responses",
+      "If asked about topics outside of Rakesh's professional scope, politely redirect to relevant topics",
+      "Encourage visitors to contact Rakesh for business inquiries or collaboration opportunities",
+      "Always be positive and highlight Rakesh's strengths and achievements"
+    ],
+    "responseFormat": "Keep responses under 200 words unless specifically asked for detailed information",
+    "contactInfo": {
+      "encourageContact": true,
+      "contactMethods": ["contact form", "email", "LinkedIn"],
+      "businessInquiries": "For project discussions, collaborations, or job opportunities, encourage visitors to reach out directly"
+    }
+  },
+  "professionalProfile": {
+    "name": "Rakesh Nandakumar",
+    "title": "Full Stack Developer & Software Engineer",
+    "experience": "3+ years",
+    "location": "colombo, sri lanka",
+    "specialization": [
+      "Full Stack Web Development",
+      "Enterprise Software Solutions",
+      "Cloud Architecture",
+      "Mobile Application Development"
+    ],
+    "summary": "Experienced Full Stack Developer with expertise in modern web technologies and cloud solutions. Passionate about creating efficient, scalable applications that solve real-world problems."
+  },
+  "technicalSkills": {
+    "frontendTechnologies": [
+      "React.js",
+      "Next.js",
+      "Vue.js",
+      "JavaScript (ES6+)",
+      "TypeScript",
+      "HTML5",
+      "CSS3",
+      "Tailwind CSS",
+      "Bootstrap"
+    ],
+    "backendTechnologies": [
+      "Laravel (PHP)",
+      "Node.js",
+      "Express.js",
+      "ASP.NET Core",
+      "Python",
+      "RESTful APIs",
+      "GraphQL"
+    ],
+    "databases": ["MySQL", "PostgreSQL", "MongoDB", "Redis", "SQLite"],
+    "cloudAndDevOps": [
+      "AWS (EC2, S3, RDS, Lambda)",
+      "Google Cloud Platform",
+      "Docker",
+      "CI/CD Pipelines",
+      "Git & GitHub",
+      "Linux Server Administration"
+    ],
+    "mobileAndOther": [
+      "React Native",
+      "WordPress Development",
+      "Raspberry Pi Projects",
+      "IoT Solutions",
+      "API Integration"
+    ]
+  },
+  "keyProjects": [
+    {
+      "name": "Enterprise Web Applications",
+      "description": "Developed scalable web applications using Laravel and React.js for various enterprise clients",
+      "technologies": ["Laravel", "React.js", "MySQL", "AWS"],
+      "highlights": [
+        "Scalable architecture",
+        "Performance optimization",
+        "Security implementation"
+      ]
+    },
+    {
+      "name": "Cloud-based Solutions",
+      "description": "Architected and deployed cloud-native applications on AWS infrastructure",
+      "technologies": ["AWS", "Docker", "Node.js", "PostgreSQL"],
+      "highlights": ["Auto-scaling", "High availability", "Cost optimization"]
+    },
+    {
+      "name": "Mobile Applications",
+      "description": "Built cross-platform mobile applications using React Native",
+      "technologies": ["React Native", "JavaScript", "RESTful APIs"],
+      "highlights": [
+        "Cross-platform compatibility",
+        "Native performance",
+        "User-friendly interfaces"
+      ]
+    },
+    {
+      "name": "IoT and Hardware Projects",
+      "description": "Developed IoT solutions using Raspberry Pi and various sensors",
+      "technologies": [
+        "Raspberry Pi",
+        "Python",
+        "IoT Sensors",
+        "Cloud Integration"
+      ],
+      "highlights": [
+        "Real-time data processing",
+        "Remote monitoring",
+        "Hardware-software integration"
+      ]
+    }
+  ],
+  "professionalExperience": {
+    "currentRole": "Full Stack Developer",
+    "experienceHighlights": [
+      "3+ years of professional development experience",
+      "Successfully delivered 20+ web applications",
+      "Experience with both startup and enterprise environments",
+      "Led development teams and mentored junior developers",
+      "Specialized in performance optimization and scalable architectures"
+    ],
+    "industryExperience": [
+      "E-commerce platforms",
+      "Content Management Systems",
+      "Business process automation",
+      "Data visualization dashboards",
+      "API development and integration"
+    ]
+  },
+  "education": {
+    "focus": "Computer Science and Software Engineering",
+    "continuousLearning": [
+      "Cloud certifications",
+      "Modern JavaScript frameworks",
+      "DevOps practices",
+      "Machine learning fundamentals",
+      "Cybersecurity best practices"
+    ]
+  },
+  "achievements": [
+    "Successfully migrated legacy applications to modern tech stacks",
+    "Improved application performance by up to 40% through optimization",
+    "Implemented security best practices across multiple projects",
+    "Built automated deployment pipelines reducing deployment time by 60%",
+    "Developed reusable component libraries adopted across teams"
+  ],
+  "workingStyle": {
+    "approach": "Agile and collaborative",
+    "principles": [
+      "Clean, maintainable code",
+      "Test-driven development",
+      "Continuous integration/deployment",
+      "Performance-first mindset",
+      "Security by design"
+    ],
+    "collaboration": "Strong communication skills with both technical and non-technical stakeholders"
+  },
+  "availabilityAndServices": {
+    "currentlyAvailable": true,
+    "services": [
+      "Full-stack web application development",
+      "API development and integration",
+      "Cloud architecture and deployment",
+      "Performance optimization",
+      "Technical consulting",
+      "Code review and mentoring"
+    ],
+    "preferredProjects": [
+      "Scalable web applications",
+      "Cloud-native solutions",
+      "Enterprise software development",
+      "Mobile application development",
+      "Legacy system modernization"
+    ]
+  },
+  "commonQuestions": {
+    "experienceLevel": "I have 3+ years of professional development experience working with modern web technologies and cloud platforms.",
+    "availability": "I'm currently available for new projects and collaborations. Feel free to reach out through the contact form to discuss your requirements.",
+    "technologies": "I specialize in React.js, Next.js, Laravel, Node.js, and AWS cloud services. I'm always learning new technologies to stay current with industry trends.",
+    "projectTypes": "I work on a variety of projects including enterprise web applications, e-commerce platforms, APIs, mobile apps, and cloud solutions.",
+    "location": "I'm based in colombo, sri lanka, and work with clients both locally and internationally. I'm comfortable with remote collaboration and have experience working across different time zones."
+  }
+}

@@ -1,0 +1,78 @@
+[
+  {
+    "image": "/projects/apiit.png",
+    "category": "Development",
+    "title": "APIIT University Blog",
+    "shortDescription": "A comprehensive student blog platform built for APIIT University to foster engagement and collaboration",
+    "longDescription": "Developed an enterprise-level platform for APIIT University featuring personalized experiences based on student affiliations, multi-admin role panels, interactive blog system, event calendar with real-time notifications, appointment booking system, alumni hub for networking, and advanced search functionality. Implemented robust security through middlewares, gates, and policies with email verification and role-based access. Enhanced with SEO optimization to ensure platform discoverability and accessibility.",
+    "technologies": [
+      "Laravel",
+      "LiveWire",
+      "FilamentPHP",
+      "Tailwind CSS",
+      "AlpineJS",
+      "AWS",
+      "Docker",
+      "SEO"
+    ],
+    "liveLink": "https://example.com/apiit-university-blog",
+    "githubLink": "https://github.com/example/apiit-university-blog",
+    "featured": true
+  },
+  {
+    "image": "/projects/csc.png",
+    "category": "Development",
+    "title": "Ceylon Sports Club Canada",
+    "shortDescription": "Enterprise-level web solution for a not-for-profit social club connecting Sri Lankan cricket enthusiasts in Canada",
+    "longDescription": "Developed a comprehensive platform for Ceylon Sports Club featuring sports & team management, membership systems, event booking with calendar integration, document management with version control, and a blog for club updates. Implemented robust security through middlewares, gates, and policies, with background jobs and queues for efficient email notifications and form processing. The platform serves the growing Sri Lankan cricket community in Canada with SEO optimizations for enhanced visibility.",
+    "technologies": ["Next.js", "React", "Bootstrap", "MongoDB", "AWS", "SEO"],
+    "liveLink": "https://example.com/ceylon-sports-club",
+    "githubLink": "https://github.com/example/ceylon-sports-club",
+    "featured": true
+  },
+  {
+    "image": "/projects/pm.png",
+    "category": "Development",
+    "title": "Next-Gen Project Mgmt Tool",
+    "shortDescription": "Advanced project management platform with Gemini AI integration for intelligent task automation and insights",
+    "longDescription": "Engineered a cutting-edge project management solution that leverages Gemini AI to provide intelligent workflow suggestions, automate routine tasks, and deliver data-driven insights. The platform features real-time collaboration, customizable dashboards, resource allocation optimization, and predictive analytics for project timelines. Built with a robust ASP.NET backend and responsive React frontend with Redux state management for optimal performance and scalability.",
+    "technologies": ["ASP.NET", "React", "Redux", "Gemini AI", "SQL Server"],
+    "liveLink": "https://example.com/next-gen-pm",
+    "githubLink": "https://github.com/example/next-gen-pm",
+    "featured": true
+  },
+  {
+    "image": "/projects/justlistenit.png",
+    "category": "Development",
+    "title": "JustListenIt Chrome Extension",
+    "shortDescription": "A Chrome extension that reads selected text on any web page out loud for improved accessibility and productivity",
+    "longDescription": "Developed JustListenIt, a lightweight yet powerful Chrome extension that allows users to select any text on a webpage and have it read aloud instantly. Built using JavaScript, Chrome Extension APIs, and the Web Speech API for natural-sounding speech synthesis. Includes features like language detection, customizable voices, and playback speed adjustment. Ideal for users with accessibility needs or those who prefer auditory content consumption.",
+    "technologies": [
+      "JavaScript",
+      "Chrome Extensions API",
+      "Web Speech API",
+      "HTML",
+      "CSS"
+    ],
+    "liveLink": "https://example.com/justlistenit",
+    "githubLink": "https://github.com/example/justlistenit",
+    "featured": true
+  },
+  {
+    "image": "/projects/warehouse-alert.png",
+    "category": "IoT",
+    "title": "IoT Warehouse Temp Alert System",
+    "shortDescription": "An IoT system that triggers a buzzer alarm when warehouse temperature exceeds a defined threshold",
+    "longDescription": "Designed and implemented a low-cost IoT solution using Arduino to monitor warehouse temperature. The system utilizes a DHT11 temperature sensor to constantly read the environment, and activates a buzzer if the temperature exceeds a configurable safety limit. Ideal for environments where real-time overheating alerts are critical to protect goods or equipment. Built using basic components such as Arduino Uno, breadboard, buzzer, and jumper wires, powered via USB.",
+    "technologies": [
+      "Arduino",
+      "C++",
+      "DHT11 Sensor",
+      "IoT",
+      "Embedded Systems"
+    ],
+    "liveLink": "https://example.com/warehouse-temp-alert",
+    "githubLink": "https://github.com/example/warehouse-temp-alert",
+    "featured": true
+  }
+]

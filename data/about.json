@@ -1,0 +1,246 @@
+{
+  "name": "Rakesh Nandakumar",
+  "title": [
+    "Full Stack Developer",
+    "Software Engineer",
+    "Technical Consultant"
+  ],
+  "profileImage": "/profileImg.jpg",
+  "heroImage": "/hero.jpg",
+  "cvLink": "/cv.pdf",
+  "shortBio": "I'm a skilled full-stack developer with 3+ years of experience, specializing in creating dynamic, user-centric applications with Laravel, React, Vue.js, and more.",
+  "longBio": "I'm a skilled full-stack developer with over 3 years of professional experience in creating dynamic, user-centric applications. My technical expertise spans Laravel, React, Vue.js, Tailwind CSS, and more, allowing me to design and develop comprehensive web solutions for both local and international clients.\n\nThroughout my career at Webrubix IT Consulting Canada and Procons Infotech, I've worked on multiple platforms and enterprise-level systems, implementing REST APIs, developing front-end features, and ensuring seamless integration between services. I'm proficient in cloud technologies like AWS, utilizing EC2, S3, and Lambda for scalable solutions.\n\nCommitted to continuous learning and delivering clean, efficient code, I focus on enhancing application performance and security through routine code reviews. My experience includes multi-vendor applications, SaaS solutions, and mobile app development with React Native. When I'm not coding, you might find me mentoring at hackathons or organizing technical workshops.",
+  "education": [
+    {
+      "degree": "BSc (Hons) in Computer Science",
+      "institution": "Staffordshire University UK",
+      "year": "",
+      "description": ""
+    },
+    {
+      "degree": "Diploma in Computer Science",
+      "institution": "Asia Pacific Institute of Information Technology",
+      "year": "",
+      "description": ""
+    }
+  ],
+  "experience": [
+    {
+      "title": "Software Engineer",
+      "company": "Procons Infotech",
+      "year": "AUG 2024 - PRESENT",
+      "description": "Design and develop various web and enterprise-level software solutions for local and foreign clients, including government contracts. Build with Laravel, JQuery, Bootstrap, and AWS services (EC2, S3). Implement back-end systems, create APIs for mobile apps, and collaborate with cross-functional teams."
+    },
+    {
+      "title": "Full Stack Developer",
+      "company": "Webrubix IT Consulting Canada",
+      "year": "NOV 2023 - AUG 2024",
+      "description": "Designed and developed web solutions for local and foreign clients. Worked on multiple platforms based on Laravel and Filament PHP, including a multi-vendor application. Developed front-end features using React JS, Vue JS, Tailwind, and React Native. Implemented REST APIs and maintained version control using Git."
+    },
+    {
+      "title": "Technical Consultant",
+      "company": "Freelance",
+      "year": "FEB 2023 - PRESENT",
+      "description": "Provide consulting services for full-stack web application development, enterprise-level system development, mobile app development with React Native, and Chrome extensions development."
+    }
+  ],
+  "techStack": [
+    {
+      "name": "Laravel",
+      "icon": "/tech-icons/laravel.svg",
+      "description": "Strong expertise in building scalable backends and APIs with Laravel, using features like authentication, middleware, and Eloquent ORM."
+    },
+    {
+      "name": "Next.js",
+      "icon": "/tech-icons/nextjs.svg",
+      "darkMode": true,
+      "description": "Expert in full-stack development with Next.js, leveraging SSR, static generation, and API routes for high-performance apps."
+    },
+    {
+      "name": "ASP.NET",
+      "icon": "/tech-icons/aspnet.svg",
+      "description": "Strong experience in developing secure, scalable enterprise apps with ASP.NET and integrating cloud-based services."
+    },
+    {
+      "name": "WordPress",
+      "icon": "/tech-icons/wordpress.svg",
+      "description": "Expert in WordPress development, including custom themes, plugins, WooCommerce, and performance optimization."
+    },
+    {
+      "name": "React Native",
+      "icon": "/tech-icons/react-native.svg",
+      "description": "Expert in building cross-platform mobile apps with React Native, ensuring smooth performance on iOS and Android."
+    },
+    {
+      "name": "AWS",
+      "icon": "/tech-icons/aws.svg",
+      "darkMode": true,
+      "description": "Extensive experience deploying and managing cloud solutions using AWS services like EC2, S3, RDS, Lambda, and IAM."
+    },
+    {
+      "name": "JavaScript Frameworks",
+      "icon": "/tech-icons/javascript.svg",
+      "description": "Strong proficiency in Vue.js, Alpine.js, and jQuery for building dynamic, responsive front-end components."
+    },
+    {
+      "name": "Raspberry Pi",
+      "icon": "/tech-icons/raspberry-pi.svg",
+      "description": "Hands-on experience using Raspberry Pi for IoT, automation, and educational projects with hardware integration."
+    },
+    {
+      "name": "ChatGPT",
+      "icon": "/tech-icons/chatgpt.svg",
+      "darkMode": true,
+      "description": "Strong experience integrating ChatGPT for chatbots, AI-powered analytics, content generation, and support automation."
+    }
+  ],
+  "timeline": [
+    {
+      "id": 1,
+      "time": "August 2024 - Present",
+      "active": true,
+      "title": "Software Engineer at Procons Infotech",
+      "description": "Designing and developing web and enterprise-level software solutions using Laravel, jQuery, Bootstrap, and AWS services",
+      "category": "work",
+      "technologies": ["Laravel", "jQuery", "Bootstrap", "AWS", "EC2", "S3"],
+      "achievements": [
+        "Build multi-vendor SaaS solutions",
+        "Implemented back-end systems",
+        "Created APIs for mobile apps"
+      ],
+      "links": []
+    },
+    {
+      "id": 2,
+      "time": "November 2023 - August 2024",
+      "title": "Full Stack Developer at Webrubix IT Consulting Canada",
+      "description": "Designed and developed web solutions for local and foreign clients using Laravel, React.js, Vue.js, and React Native",
+      "category": "work",
+      "technologies": [
+        "Laravel",
+        "Filament PHP",
+        "React.js",
+        "Vue.js",
+        "Tailwind CSS",
+        "React Native"
+      ],
+      "achievements": [
+        "Worked on multi-vendor applications",
+        "Implemented REST APIs",
+        "Delivered clean, efficient code"
+      ],
+      "links": []
+    },
+    {
+      "id": 3,
+      "time": "February 2023 - Present",
+      "active": true,
+      "title": "Technical Consultant (Freelance)",
+      "description": "Providing consulting services for web applications, enterprise systems, mobile apps, and Chrome extensions",
+      "category": "freelance",
+      "technologies": [
+        "Full Stack Web",
+        "React Native",
+        "Chrome Extensions",
+        "IOT"
+      ],
+      "achievements": [],
+      "links": []
+    },
+    {
+      "id": 5,
+      "time": "",
+      "title": "Diploma in Computer Science",
+      "description": "Diploma from Asia Pacific Institute of Information Technology",
+      "category": "education",
+      "technologies": [],
+      "achievements": [],
+      "links": []
+    },
+    {
+      "id": 4,
+      "time": "",
+      "title": "BSc (Hons) in Computer Science",
+      "description": "Degree from Staffordshire University UK",
+      "category": "education",
+      "technologies": [],
+      "achievements": [],
+      "links": []
+    }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "title": "APIIT Lanka Students Blog",
+      "description": "Built using Laravel, Livewire, Alpine JS and Filament PHP, with multiple user panels with Filament for different admin users. Implemented SEO strategies to improve visibility and search engine ranking. Deployed using Forge.",
+      "technologies": [
+        "Laravel",
+        "Livewire",
+        "Alpine JS",
+        "Filament PHP",
+        "Forge"
+      ],
+      "impact": "Streamlined the student blogging platform, fostering enhanced communication and collaboration within the APIIT community",
+      "category": "web",
+      "links": []
+    },
+    {
+      "id": 2,
+      "title": "Book Re-Sale Site",
+      "description": "Developed a tailored system for selling used books, using Laravel and Jetstream with Inertia.js and Vue.js for the admin panel, designed as a single-page application (SPA). Implemented SEO strategies to improve visibility.",
+      "technologies": ["Laravel", "Jetstream", "Inertia.js", "Vue.js", "SPA"],
+      "impact": "Vital solution in Sri Lanka's educational landscape, offering accessible educational materials amidst economic challenges, reducing financial barriers, and promoting textbook sustainability",
+      "category": "web",
+      "links": []
+    },
+    {
+      "id": 3,
+      "title": "SaaS Platform with OpenAI API Integration",
+      "description": "Developed a SaaS project using Laravel 11, Tailwind CSS, and Stripe Online Payments. Provided users with credits upon registration and integrated a chat feature using the OpenAI API, with each interaction consuming credits.",
+      "technologies": ["Laravel 11", "Tailwind CSS", "OpenAI API", "Stripe"],
+      "impact": "Delivered a flexible, scalable platform with advanced AI features and secure transactions, enhancing user interaction and experience",
+      "category": "web",
+      "links": []
+    }
+  ],
+  "contact": {
+    "email": "Rakeshnandakumarr@gmail.com",
+    "phone": "+9476-375-5374",
+    "address": "704/ Rilaulla kandana",
+    "linkedin": "https://linkedin.com/in/rakesh-nandakumar",
+    "github": "https://github.com/Rakesh4584/",
+    "facebook": "https://facebook.com/rakesh.nandakumar"
+  },
+  "galleryImages": [
+    {
+      "url": "/placeholder.svg",
+      "alt": "Project screenshot",
+      "caption": "APIIT Lanka Students Blog"
+    },
+    {
+      "url": "/placeholder.svg",
+      "alt": "Project screenshot",
+      "caption": "Book Re-Sale Site"
+    },
+    {
+      "url": "/placeholder.svg",
+      "alt": "Project screenshot",
+      "caption": "SaaS Platform with OpenAI Integration"
+    },
+    {
+      "url": "/placeholder.svg",
+      "alt": "Hackathon mentoring",
+      "caption": "Mentoring at APIIT Hackathon"
+    },
+    {
+      "url": "/placeholder.svg",
+      "alt": "Technical workshop",
+      "caption": "Leading a workshop on web development"
+    },
+    {
+      "url": "/placeholder.svg",
+      "alt": "Team collaboration",
+      "caption": "Collaborating with development team at Webrubix"
+    }
+  ]
+}

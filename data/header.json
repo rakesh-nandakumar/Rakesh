@@ -1,0 +1,29 @@
+{
+  "navigation": [
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "about",
+      "href": "/about"
+    },
+    {
+      "label": "Portfolio",
+      "href": "/portfolio"
+    },
+    {
+      "label": "Blogs",
+      "href": "/blogs"
+    },
+    {
+      "label": "Contact",
+      "href": "/contact"
+    }
+  ],
+  "ctaButton": {
+    "label": "Download CV",
+    "href": "#",
+    "target": "_blank"
+  }
+}

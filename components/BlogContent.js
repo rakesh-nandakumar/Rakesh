@@ -21,7 +21,7 @@ export default function BlogContent({ blog, relatedBlogs }) {
         >
           <div className="container">
             {/* Breadcrumb */}
-            <div className="row">
+            {/* <div className="row">
               <div className="col-lg-12">
                 <div className="blog-breadcrumb">
                   <Link href="/blogs" className="breadcrumb-link">
@@ -31,7 +31,7 @@ export default function BlogContent({ blog, relatedBlogs }) {
                   <span className="breadcrumb-current">{blog.title}</span>
                 </div>
               </div>
-            </div>
+            </div> */}
 
             {/* Hero Section */}
             <div className="row">
@@ -41,7 +41,7 @@ export default function BlogContent({ blog, relatedBlogs }) {
                   data-aos-duration={500}
                   data-aos-delay={100}
                   data-aos-once="true"
-                  className="section-title text-center rn-section-gap"
+                  className="section-title text-center"
                 >
                   <span className="subtitle">{blog.category}</span>
                   <h2 className="title">{blog.title}</h2>

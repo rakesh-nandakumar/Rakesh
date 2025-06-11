@@ -2365,7 +2365,7 @@ body:not(.white-version) #footer-area {
 }
 
 .content-p {
-  font-size: 1.125rem;
+  font-size: 1.55rem;
   line-height: 1.7;
   margin-bottom: 1.5rem;
 }
@@ -2438,7 +2438,7 @@ body:not(.white-version) #footer-area {
   .content-ul,
   .content-ol,
   .content-quote {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
   }
 }
 
@@ -2456,7 +2456,7 @@ body:not(.white-version) #footer-area {
   .content-ul,
   .content-ol,
   .content-quote {
-    font-size: 1.05rem;
+    font-size: 1.15rem;
   }
 }
 
@@ -2474,11 +2474,11 @@ body:not(.white-version) #footer-area {
   .content-ul,
   .content-ol,
   .content-quote {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
   .content-ul,
   .content-ol {
-    padding-left: 1.5rem;
+    padding-left: 1.1rem;
   }
   .content-quote {
     padding: 0.75rem 1rem;
@@ -2619,4 +2619,3 @@ body:not(.white-version) .code-block {
   color: #e8e8e8;
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
-

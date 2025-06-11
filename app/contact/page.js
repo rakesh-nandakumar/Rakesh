@@ -8,12 +8,16 @@ import emailjs from "@emailjs/browser";
 import ReCAPTCHA from "react-google-recaptcha";
 import { EMAILJS_CONFIG, RECAPTCHA_CONFIG } from "@/lib/config";
 import { useFormValidation } from "@/hooks/useFormValidation";
+import { useToast } from "@/hooks/useToast";
+import Toast from "@/components/Toast";
+import ClientOnly from "@/components/ClientOnly";
 
 export default function ContactSection() {
   const { name, title, profileImage, contact } = aboutData;
   const formRef = useRef();
   const recaptchaRef = useRef();
   const { errors, validateForm, clearFieldError } = useFormValidation();
+  const { toast, showSuccess, showError, hideToast } = useToast();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -22,9 +26,7 @@ export default function ContactSection() {
     subject: "",
     message: "",
   });
-
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState(null);
 
   const validationRules = {
     name: { required: true, minLength: 2 },
@@ -62,23 +64,20 @@ export default function ContactSection() {
       }
     }
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitStatus(null);
 
     // Validate form
-    if (!validateForm(formData, validationRules)) {
+    const isFormValid = validateForm(formData, validationRules);
+    if (!isFormValid) {
+      // Don't show toast for validation errors, the inline validation will handle it
       return;
     }
 
     // Verify reCAPTCHA
-    const recaptchaValue = recaptchaRef.current.getValue();
+    const recaptchaValue = recaptchaRef.current?.getValue();
     if (!recaptchaValue) {
-      setSubmitStatus({
-        type: "error",
-        message: "Please complete the reCAPTCHA verification.",
-      });
+      showError("Please complete the reCAPTCHA verification.");
       return;
     }
 
@@ -87,12 +86,13 @@ export default function ContactSection() {
     try {
       // Send email using EmailJS
       const templateParams = {
-        from_name: formData.name,
-        from_email: formData.email,
-        from_phone: formData.phone,
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
         subject: formData.subject,
         message: formData.message,
-        to_name: name,
+        timestamp: new Date().toISOString(),
+        name: name,
       };
 
       await emailjs.send(
@@ -102,11 +102,9 @@ export default function ContactSection() {
         EMAILJS_CONFIG.userId
       );
 
-      setSubmitStatus({
-        type: "success",
-        message:
-          "Thank you! Your message has been sent successfully. I'll get back to you soon.",
-      });
+      showSuccess(
+        "Thank you! Your message has been sent successfully. I'll get back to you soon."
+      );
 
       // Reset form
       setFormData({
@@ -116,14 +114,12 @@ export default function ContactSection() {
         subject: "",
         message: "",
       });
-      recaptchaRef.current.reset();
+      recaptchaRef.current?.reset();
     } catch (error) {
       console.error("EmailJS error:", error);
-      setSubmitStatus({
-        type: "error",
-        message:
-          "Sorry, there was an error sending your message. Please try again or contact me directly.",
-      });
+      showError(
+        "Sorry, there was an error sending your message. Please try again or contact me directly."
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -132,10 +128,7 @@ export default function ContactSection() {
   return (
     <>
       <FeatherInit />
-      <div
-        className="mt-20 rn-contact-area rn-section-gap"
-        id="contacts"
-      >
+      <div className="mt-20 rn-contact-area rn-section-gap" id="contacts">
         <div className="container">
           <div className="row">
             <div className="col-lg-12">
@@ -318,7 +311,7 @@ export default function ContactSection() {
                   </div>
                 </div>
               </div>
-            </div>
+            </div>{" "}
             <div data-aos-delay={600} className="col-lg-7 contact-input">
               <div className="contact-form-wrapper">
                 <div className="introduce">
@@ -327,43 +320,6 @@ export default function ContactSection() {
                     className="rnt-contact-form rwt-dynamic-form row"
                     onSubmit={handleSubmit}
                   >
-                    {/* Success/Error Messages */}
-                    {submitStatus && (
-                      <div className="col-lg-12 mb-3">
-                        <div
-                          className={`alert p-3 rounded ${
-                            submitStatus.type === "success"
-                              ? "alert-success"
-                              : "alert-danger"
-                          }`}
-                          style={{
-                            backgroundColor:
-                              submitStatus.type === "success"
-                                ? "#d4edda"
-                                : "#f8d7da",
-                            border: `1px solid ${
-                              submitStatus.type === "success"
-                                ? "#c3e6cb"
-                                : "#f5c6cb"
-                            }`,
-                            color:
-                              submitStatus.type === "success"
-                                ? "#155724"
-                                : "#721c24",
-                          }}
-                        >
-                          <i
-                            data-feather={
-                              submitStatus.type === "success"
-                                ? "check-circle"
-                                : "alert-circle"
-                            }
-                            className="me-2"
-                          />
-                          {submitStatus.message}
-                        </div>
-                      </div>
-                    )}
                     <div className="col-lg-6">
                       <div className="form-group">
                         <label htmlFor="contact-name">
@@ -619,12 +575,23 @@ export default function ContactSection() {
                       </div>
                     </div>
                   </div>
-                ))}
+                ))}{" "}
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Toast Notification */}
+      <ClientOnly>
+        <Toast
+          message={toast.message}
+          type={toast.type}
+          duration={toast.duration}
+          isVisible={toast.isVisible}
+          onClose={hideToast}
+        />
+      </ClientOnly>
     </>
   );
 }

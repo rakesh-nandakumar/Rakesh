@@ -22,7 +22,7 @@ export default function Header() {
                 />
               </Link>
             </div>
-            <div className="title ml-2 my-auto">RAKEZH</div>
+            <div className="title ml-2 my-auto">RAKESH</div>
           </div>
         </div>
         {/* End Header Left */}

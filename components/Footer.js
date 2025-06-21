@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import aboutData from '@/data/about.json';
 import { useTheme } from '@/contexts/ThemeContext';
+import FeatherIcon from './FeatherIcon';
 
 export default function Footer() {
   const { resolvedTheme } = useTheme();
@@ -45,61 +46,56 @@ export default function Footer() {
                 <ul className="social-icons d-flex liststyle" style={{ gap: '40px' }}>
                   {contact.linkedin && (
                     <li>
-                      <Link
-                        href={contact.linkedin}
+                      <Link                        href={contact.linkedin}
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="LinkedIn Profile"
                       >
-                        <i data-feather="linkedin" />
+                        <FeatherIcon name="linkedin" size={20} />
                       </Link>
                     </li>
                   )}
                   {contact.github && (
-                    <li>
-                      <Link
+                    <li>                      <Link
                         href={contact.github}
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="GitHub Profile"
                       >
-                        <i data-feather="github" />
+                        <FeatherIcon name="github" size={20} />
                       </Link>
                     </li>
                   )}
                   {contact.instagram && (
-                    <li>
-                      <Link
+                    <li>                      <Link
                         href={contact.instagram}
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="Instagram Profile"
                       >
-                        <i data-feather="instagram" />
+                        <FeatherIcon name="instagram" size={20} />
                       </Link>
                     </li>
                   )}
                   {contact.facebook && (
-                    <li>
-                      <Link
+                    <li>                      <Link
                         href={contact.facebook}
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="Facebook Profile"
                       >
-                        <i data-feather="facebook" />
+                        <FeatherIcon name="facebook" size={20} />
                       </Link>
                     </li>
                   )}
                   {contact.portfolio && (
-                    <li>
-                      <Link
+                    <li>                      <Link
                         href={contact.portfolio}
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="Portfolio Website"
                       >
-                        <i data-feather="external-link" />
+                        <FeatherIcon name="external-link" size={20} />
                       </Link>
                     </li>
                   )}
@@ -140,11 +136,10 @@ export default function Footer() {
           <div className="col-lg-3 col-md-6 col-12">
             <div className="footer-widget">
               <h4 className="footer-title">Get In Touch</h4>
-              <div className="footer-contact mt--20">
-                {contact.email && (
+              <div className="footer-contact mt--20">                {contact.email && (
                   <div className="contact-item mb--15">
                     <div className="contact-icon">
-                      <i data-feather="mail" />
+                      <FeatherIcon name="mail" size={20} />
                     </div>
                     <div className="contact-content">
                       <Link href={`mailto:${contact.email}`}>
@@ -152,23 +147,19 @@ export default function Footer() {
                       </Link>
                     </div>
                   </div>
-                )}
-
-                {contact.phone && (
+                )}                {contact.phone && (
                   <div className="contact-item mb--15">
                     <div className="contact-icon">
-                      <i data-feather="phone" />
+                      <FeatherIcon name="phone" size={20} />
                     </div>
                     <div className="contact-content">
                       <Link href={`tel:${contact.phone}`}>{contact.phone}</Link>
                     </div>
                   </div>
-                )}
-
-                {contact.address && (
+                )}                {contact.address && (
                   <div className="contact-item">
                     <div className="contact-icon">
-                      <i data-feather="map-pin" />
+                      <FeatherIcon name="map-pin" size={20} />
                     </div>
                     <div className="contact-content">
                       <span>{contact.address}</span>

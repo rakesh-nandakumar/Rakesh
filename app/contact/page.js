@@ -311,7 +311,7 @@ export default function ContactSection() {
                   </div>
                 </div>
               </div>
-            </div>{" "}
+            </div>
             <div data-aos-delay={600} className="col-lg-7 contact-input">
               <div className="contact-form-wrapper">
                 <div className="introduce">
@@ -575,7 +575,7 @@ export default function ContactSection() {
                       </div>
                     </div>
                   </div>
-                ))}{" "}
+                ))}
               </div>
             </div>
           </div>

@@ -19,7 +19,7 @@ export default function NotFound() {
             <div className="inner text-center">
               <div className="section-title text-center">
                 <h2 className="title">404</h2>
-                <h2 className="title">Page Not Found</h2>{" "}
+                <h2 className="title">Page Not Found</h2>
                 <span className="subtitle mt-5">
                   The page you&apos;re looking for doesn&apos;t exist.
                 </span>

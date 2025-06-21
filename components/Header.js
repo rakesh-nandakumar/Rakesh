@@ -2,7 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { X, Menu } from "react-feather";
 import headerData from "../data/header.json";
-import ThemeToggle from "./ThemeToggle";
+// COMMENTED OUT - Theme toggle functionality disabled
+// import ThemeToggle from "./ThemeToggle";
 
 export default function Header() {
   return (
@@ -18,7 +19,13 @@ export default function Header() {
                   alt="inbio logo"
                   width={50}
                   height={50}
-                  className="d-block"
+                  className="d-block object-cover rounded-full"
+                  style={{
+                    minWidth: "50px",
+                    minHeight: "50px",
+                    maxWidth: "50px",
+                    maxHeight: "50px",
+                  }}
                 />
               </Link>
             </div>
@@ -53,12 +60,13 @@ export default function Header() {
                   <span />
                 </div>
               </div>
-            </div>
+            </div>{" "}
             {/* Start Header Right  */}
             <div className="header-right">
-              <div className="theme-toggle-container">
+              {/* COMMENTED OUT - Theme toggle functionality disabled */}
+              {/* <div className="theme-toggle-container">
                 <ThemeToggle />
-              </div>
+              </div> */}
               <a
                 className="rn-btn"
                 target={headerData?.ctaButton?.target || "_blank"}

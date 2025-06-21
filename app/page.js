@@ -38,8 +38,8 @@ export default function Home() {
       <HeroSection />
       <FeaturesSection />
       <PortfolioSection />
-      <BlogSection />
       <CTASection />
+      <BlogSection />
     </>
   );
 }

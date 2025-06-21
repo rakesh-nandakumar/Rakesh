@@ -17,7 +17,8 @@
     ],
     "liveLink": "https://example.com/apiit-university-blog",
     "githubLink": "https://github.com/example/apiit-university-blog",
-    "featured": true
+    "featured": true,
+    "status": "completed"
   },
   {
     "image": "/projects/csc.png",
@@ -28,7 +29,9 @@
     "technologies": ["Next.js", "React", "Bootstrap", "MongoDB", "AWS", "SEO"],
     "liveLink": "https://example.com/ceylon-sports-club",
     "githubLink": "https://github.com/example/ceylon-sports-club",
-    "featured": true
+    "featured": true,
+    "status": "ongoing",
+    "progress": 75
   },
   {
     "image": "/projects/pm.png",
@@ -39,7 +42,8 @@
     "technologies": ["ASP.NET", "React", "Redux", "Gemini AI", "SQL Server"],
     "liveLink": "https://example.com/next-gen-pm",
     "githubLink": "https://github.com/example/next-gen-pm",
-    "featured": true
+    "featured": true,
+    "status": "upcoming"
   },
   {
     "image": "/projects/justlistenit.png",
@@ -56,7 +60,9 @@
     ],
     "liveLink": "https://example.com/justlistenit",
     "githubLink": "https://github.com/example/justlistenit",
-    "featured": true
+    "featured": true,
+    "status": "ongoing",
+    "progress": 45
   },
   {
     "image": "/projects/warehouse-alert.png",
@@ -73,6 +79,84 @@
     ],
     "liveLink": "https://example.com/warehouse-temp-alert",
     "githubLink": "https://github.com/example/warehouse-temp-alert",
-    "featured": true
+    "featured": true,
+    "status": "completed"
+  },
+  {
+    "image": "/projects/apiit.png",
+    "category": "Mobile Development",
+    "title": "E-Commerce Mobile App",
+    "shortDescription": "A comprehensive mobile e-commerce application with real-time inventory and payment integration",
+    "longDescription": "Building a full-featured mobile e-commerce app using React Native with real-time inventory management, secure payment processing, user authentication, shopping cart functionality, and push notifications. Integrating with Firebase for backend services and Stripe for payment processing.",
+    "technologies": [
+      "React Native",
+      "Firebase",
+      "Stripe",
+      "Redux",
+      "TypeScript"
+    ],
+    "liveLink": "https://example.com/ecommerce-app",
+    "githubLink": "https://github.com/example/ecommerce-app",
+    "featured": false,
+    "status": "ongoing",
+    "progress": 30
+  },
+  {
+    "image": "/projects/csc.png",
+    "category": "AI/ML",
+    "title": "AI Content Generator Platform",
+    "shortDescription": "An AI-powered platform for generating marketing content using GPT-4 and image generation APIs",
+    "longDescription": "Developing an intelligent content creation platform that leverages GPT-4 for text generation and DALL-E for image creation. Features include template management, brand voice customization, content scheduling, and analytics dashboard. Built with Next.js and integrated with OpenAI APIs.",
+    "technologies": [
+      "Next.js",
+      "OpenAI API",
+      "PostgreSQL",
+      "Prisma",
+      "Tailwind CSS"
+    ],
+    "liveLink": "https://example.com/ai-content-generator",
+    "githubLink": "https://github.com/example/ai-content-generator",
+    "featured": true,
+    "status": "ongoing",
+    "progress": 65
+  },
+  {
+    "image": "/projects/pm.png",
+    "category": "Web Development",
+    "title": "Social Media Analytics Dashboard",
+    "shortDescription": "Real-time social media analytics dashboard with advanced reporting and competitor analysis",
+    "longDescription": "Creating a comprehensive social media analytics platform that aggregates data from multiple social platforms, provides real-time insights, competitor analysis, and automated reporting. Features include custom dashboards, scheduled reports, and team collaboration tools.",
+    "technologies": ["Vue.js", "Node.js", "MongoDB", "D3.js", "Socket.io"],
+    "liveLink": "https://example.com/social-analytics",
+    "githubLink": "https://github.com/example/social-analytics",
+    "featured": false,
+    "status": "ongoing",
+    "progress": 85
+  },
+  {
+    "image": "/projects/justlistenit.png",
+    "category": "Blockchain",
+    "title": "NFT Marketplace Platform",
+    "shortDescription": "Decentralized NFT marketplace with smart contracts and cryptocurrency payment integration",
+    "longDescription": "Building a decentralized NFT marketplace on Ethereum blockchain with smart contract integration, crypto wallet connectivity, auction functionality, and royalty management. Features include user profiles, collection management, and integrated payment processing.",
+    "technologies": ["React", "Solidity", "Web3.js", "Ethereum", "IPFS"],
+    "liveLink": "https://example.com/nft-marketplace",
+    "githubLink": "https://github.com/example/nft-marketplace",
+    "featured": true,
+    "status": "ongoing",
+    "progress": 15
+  },
+  {
+    "image": "/projects/warehouse-alert.png",
+    "category": "DevOps",
+    "title": "Cloud Infrastructure Automation",
+    "shortDescription": "Automated cloud infrastructure deployment and management system using Terraform and Kubernetes",
+    "longDescription": "Developing a comprehensive cloud infrastructure automation platform that handles deployment, scaling, monitoring, and management of applications across multiple cloud providers. Includes CI/CD pipeline integration, cost optimization, and security compliance monitoring.",
+    "technologies": ["Terraform", "Kubernetes", "Docker", "AWS", "Jenkins"],
+    "liveLink": "https://example.com/cloud-automation",
+    "githubLink": "https://github.com/example/cloud-automation",
+    "featured": false,
+    "status": "ongoing",
+    "progress": 92
   }
 ]

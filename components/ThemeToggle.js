@@ -1,3 +1,7 @@
+// ENTIRE THEME TOGGLE COMPONENT COMMENTED OUT - THEME SWITCHING FUNCTIONALITY DISABLED
+// To re-enable theme switching, uncomment all the code below
+
+/*
 "use client";
 
 import { useTheme } from "../contexts/ThemeContext";
@@ -107,12 +111,17 @@ export default function ThemeToggle() {
           color: var(--color-primary, #ff6b6b);
         }
 
-        .theme-toggle-btn:hover {
-          background: var(--color-primary, #ff6b6b);
+        .theme-toggle-btn:hover {          background: var(--color-primary, #ff6b6b);
           color: white;
           transform: scale(1.05);
         }
       `}</style>
     </div>
   );
+}
+*/
+
+// Placeholder export to prevent import errors
+export default function ThemeToggle() {
+  return null;
 }

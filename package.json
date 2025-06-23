@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
+    "@tsparticles/react": "^3.0.0",
+    "@tsparticles/slim": "^3.8.1",
     "clsx": "^2.1.1",
     "critters": "^0.0.23",
     "framer-motion": "^12.15.0",
@@ -21,8 +23,11 @@
     "react-google-recaptcha": "^3.1.0",
     "react-hook-form": "^7.57.0",
     "react-markdown": "^10.1.0",
+    "react-particles": "^2.12.2",
+    "react-tsparticles": "^2.12.2",
     "rehype-highlight": "^7.0.2",
-    "remark-gfm": "^4.0.1"
+    "remark-gfm": "^4.0.1",
+    "tsparticles": "^3.8.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

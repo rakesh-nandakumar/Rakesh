@@ -30,7 +30,7 @@ const TechStackMarquee = () => {
           fill="currentColor"
           strokeWidth={0}
           viewBox="0 0 512 512"
-          className="w-6 h-6 text-gray-400"
+          className="w-6 h-6 text-[#666] dark:text-[#b3b3b3] transition-colors duration-300"
           height="1em"
           width="1em"
           xmlns="http://www.w3.org/2000/svg"
@@ -47,7 +47,7 @@ const TechStackMarquee = () => {
           fill="currentColor"
           strokeWidth={0}
           viewBox="0 0 448 512"
-          className="w-6 h-6 text-gray-400"
+          className="w-6 h-6 text-[#666] dark:text-[#b3b3b3] transition-colors duration-300"
           height="1em"
           width="1em"
           xmlns="http://www.w3.org/2000/svg"
@@ -65,7 +65,7 @@ const TechStackMarquee = () => {
           strokeWidth={0}
           role="img"
           viewBox="0 0 24 24"
-          className="w-6 h-6 text-gray-400"
+          className="w-6 h-6 text-[#666] dark:text-[#b3b3b3] transition-colors duration-300"
           height="1em"
           width="1em"
           xmlns="http://www.w3.org/2000/svg"
@@ -82,7 +82,7 @@ const TechStackMarquee = () => {
           fill="currentColor"
           strokeWidth={0}
           viewBox="0 0 448 512"
-          className="w-6 h-6 text-gray-400"
+          className="w-6 h-6 text-[#666] dark:text-[#b3b3b3] transition-colors duration-300"
           height="1em"
           width="1em"
           xmlns="http://www.w3.org/2000/svg"
@@ -99,7 +99,7 @@ const TechStackMarquee = () => {
           fill="currentColor"
           strokeWidth={0}
           viewBox="0 0 384 512"
-          className="w-6 h-6 text-gray-400"
+          className="w-6 h-6 text-[#666] dark:text-[#b3b3b3] transition-colors duration-300"
           height="1em"
           width="1em"
           xmlns="http://www.w3.org/2000/svg"
@@ -116,7 +116,7 @@ const TechStackMarquee = () => {
           fill="currentColor"
           strokeWidth={0}
           viewBox="0 0 384 512"
-          className="w-6 h-6 text-gray-400"
+          className="w-6 h-6 text-[#666] dark:text-[#b3b3b3] transition-colors duration-300"
           height="1em"
           width="1em"
           xmlns="http://www.w3.org/2000/svg"
@@ -133,7 +133,7 @@ const TechStackMarquee = () => {
           fill="currentColor"
           strokeWidth={0}
           viewBox="0 0 384 512"
-          className="w-6 h-6 text-gray-400"
+          className="w-6 h-6 text-[#666] dark:text-[#b3b3b3] transition-colors duration-300"
           height="1em"
           width="1em"
           xmlns="http://www.w3.org/2000/svg"
@@ -150,7 +150,7 @@ const TechStackMarquee = () => {
           fill="currentColor"
           strokeWidth={0}
           viewBox="0 0 496 512"
-          className="w-6 h-6 text-gray-400"
+          className="w-6 h-6 text-[#666] dark:text-[#b3b3b3] transition-colors duration-300"
           height="1em"
           width="1em"
           xmlns="http://www.w3.org/2000/svg"
@@ -167,7 +167,7 @@ const TechStackMarquee = () => {
           fill="currentColor"
           strokeWidth={0}
           viewBox="0 0 448 512"
-          className="w-6 h-6 text-gray-400"
+          className="w-6 h-6 text-[#666] dark:text-[#b3b3b3] transition-colors duration-300"
           height="1em"
           width="1em"
           xmlns="http://www.w3.org/2000/svg"
@@ -184,7 +184,7 @@ const TechStackMarquee = () => {
           fill="currentColor"
           strokeWidth={0}
           viewBox="0 0 640 512"
-          className="w-6 h-6 text-gray-400"
+          className="w-6 h-6 text-[#666] dark:text-[#b3b3b3] transition-colors duration-300"
           height="1em"
           width="1em"
           xmlns="http://www.w3.org/2000/svg"
@@ -201,7 +201,7 @@ const TechStackMarquee = () => {
           fill="currentColor"
           strokeWidth={0}
           viewBox="0 0 640 512"
-          className="w-6 h-6 text-gray-400"
+          className="w-6 h-6 text-[#666] dark:text-[#b3b3b3] transition-colors duration-300"
           height="1em"
           width="1em"
           xmlns="http://www.w3.org/2000/svg"
@@ -218,7 +218,7 @@ const TechStackMarquee = () => {
           fill="currentColor"
           strokeWidth={0}
           viewBox="0 0 448 512"
-          className="w-6 h-6 text-gray-400"
+          className="w-6 h-6 text-[#666] dark:text-[#b3b3b3] transition-colors duration-300"
           height="1em"
           width="1em"
           xmlns="http://www.w3.org/2000/svg"
@@ -235,7 +235,7 @@ const TechStackMarquee = () => {
           fill="currentColor"
           strokeWidth={0}
           viewBox="0 0 448 512"
-          className="w-6 h-6 text-gray-400"
+          className="w-6 h-6 text-[#666] dark:text-[#b3b3b3] transition-colors duration-300"
           height="1em"
           width="1em"
           xmlns="http://www.w3.org/2000/svg"
@@ -252,7 +252,7 @@ const TechStackMarquee = () => {
           fill="currentColor"
           strokeWidth={0}
           viewBox="0 0 640 512"
-          className="w-6 h-6 text-gray-400"
+          className="w-6 h-6 text-[#666] dark:text-[#b3b3b3] transition-colors duration-300"
           height="1em"
           width="1em"
           xmlns="http://www.w3.org/2000/svg"
@@ -269,7 +269,7 @@ const TechStackMarquee = () => {
           fill="currentColor"
           strokeWidth={0}
           viewBox="0 0 640 512"
-          className="w-6 h-6 text-gray-400"
+          className="w-6 h-6 text-[#666] dark:text-[#b3b3b3] transition-colors duration-300"
           height="1em"
           width="1em"
           xmlns="http://www.w3.org/2000/svg"
@@ -279,12 +279,11 @@ const TechStackMarquee = () => {
       ),
     },
   ];
-
   if (!aboutData) {
     return (
-      <div className="relative mt-10 py-8 overflow-hidden bg-gray-50 border-t border-b border-gray-100">
+      <div className="relative mt-10 py-8 overflow-hidden bg-white dark:bg-[#0a0a0a] border-t border-b border-gray-200 dark:border-gray-800">
         <div className="flex items-center justify-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-400"></div>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#ff6b35]"></div>
         </div>
       </div>
     );
@@ -310,17 +309,18 @@ const TechStackMarquee = () => {
 
   // Create duplicate array for seamless looping
   const duplicatedTechs = [...allTechs, ...allTechs];
-
   return (
-    <div className="relative mt-10 py-8 overflow-hidden bg-gray-50 dark:bg-gray-900 border-t border-b border-gray-100 dark:border-gray-800">
+    <div className="relative mt-10 py-8 overflow-hidden bg-white dark:bg-[#0a0a0a] border-t border-b border-gray-200 dark:border-gray-800">
       <div className="flex space-x-16 animate-marquee whitespace-nowrap">
         {duplicatedTechs.map((tech, index) => (
           <div
             key={`${tech.name}-${index}`}
-            className="flex items-center space-x-2 transition-transform duration-300 hover:scale-110"
+            className="flex items-center space-x-2 transition-all duration-300 hover:scale-110 group cursor-pointer"
           >
-            <div className="animate-spin-slow">{tech.icon}</div>
-            <span className="text-gray-400 dark:text-gray-600 font-medium">
+            <div className="animate-spin-slow transition-colors duration-300 group-hover:text-[#ff6b35]">
+              {tech.icon}
+            </div>
+            <span className="text-[#666] dark:text-[#b3b3b3] font-medium transition-colors duration-300 group-hover:text-[#ff6b35] dark:group-hover:text-[#ff6b35]">
               {tech.name}
             </span>
           </div>

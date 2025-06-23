@@ -1,5 +1,3 @@
-import FeatherIcon from "./FeatherIcon";
-
 export default function ContactSection() {
   return (
     <div
@@ -55,15 +53,16 @@ export default function ContactSection() {
                 </span>
               </div>
               <div className="social-area">
-                <div className="name">FIND WITH ME</div>                <div className="social-icone">
+                <div className="name">FIND WITH ME</div>
+                <div className="social-icone">
                   <a href="#">
-                    <FeatherIcon name="facebook" size={20} />
+                    <i data-feather="facebook" />
                   </a>
                   <a href="#">
-                    <FeatherIcon name="linkedin" size={20} />
+                    <i data-feather="linkedin" />
                   </a>
                   <a href="#">
-                    <FeatherIcon name="instagram" size={20} />
+                    <i data-feather="instagram" />
                   </a>
                 </div>
               </div>
@@ -144,8 +143,9 @@ export default function ContactSection() {
                       type="submit"
                       id="submit"
                       className="rn-btn"
-                    >                      <span>SEND MESSAGE</span>
-                      <FeatherIcon name="arrow-right" size={16} />
+                    >
+                      <span>SEND MESSAGE</span>
+                      <i data-feather="arrow-right" />
                     </button>
                   </div>
                 </form>

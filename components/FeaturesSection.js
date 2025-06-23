@@ -1,6 +1,5 @@
 import { ArrowRight } from "react-feather";
 import servicesData from "../data/services.json";
-import FeatherIcon from "./FeatherIcon";
 
 export default function FeaturesSection() {
   const services = servicesData.services;
@@ -35,9 +34,10 @@ export default function FeaturesSection() {
               data-aos-once="true"
               className="col-lg-6 col-xl-4 col-md-6 col-sm-12 col-12 mt--50 mt_md--30 mt_sm--30"
             >
-              <div className="rn-service">                <div className="inner">
+              <div className="rn-service">
+                <div className="inner">
                   <div className="icon">
-                    <FeatherIcon name={service.icon} size={24} />
+                    <i data-feather={service.icon} />
                   </div>
                   <div className="content">
                     <h4 className="title">

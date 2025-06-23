@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ChatButton from "@/components/ChatButton";
 import { ThemeProvider } from "@/contexts/ThemeContext";
+import FeatherInit from "@/components/FeatherInit";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 const geistSans = Geist({
@@ -165,6 +166,7 @@ export default function RootLayout({ children }) {
           <GoogleAnalytics
             GA_MEASUREMENT_ID={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}
           />
+          <FeatherInit />
           <Header />
           {children}
           <ChatButton />
@@ -177,6 +179,10 @@ export default function RootLayout({ children }) {
         />
         <Script
           src="https://inbio.pixcelsthemes.com/inbio/assets/js/vendor/modernizer.min.js"
+          strategy="beforeInteractive"
+        />
+        <Script
+          src="https://inbio.pixcelsthemes.com/inbio/assets/js/vendor/feather.min.js"
           strategy="beforeInteractive"
         />
         <Script

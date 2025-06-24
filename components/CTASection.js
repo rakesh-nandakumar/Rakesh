@@ -20,9 +20,14 @@ export default function CTASection() {
                   <Image
                     src="/avatar.png"
                     alt="inbio logo"
-                    width={100}
-                    height={100}
-                    className="mx-auto d-block"
+                    width={110}
+                    height={110}
+                    className="mx-auto d-block my-20 p-2.5"
+                    style={{
+                      borderRadius: "50%" ,
+                      // background: "var(--gradient-box-w)",
+                      boxShadow: "var(--shadow-white-3)"
+                    }}
                   />
                   <span className="subtitle theme-gradient">
                     Ready to bring your ideas to life?

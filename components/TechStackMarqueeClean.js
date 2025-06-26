@@ -246,15 +246,21 @@ const TechStackMarqueeClean = () => {
       ),
     },
   ];
-
   return (
-    <div className="relative mt-10 py-8 overflow-hidden bg-gray-50 border-t border-b border-gray-100">
-      <div className="flex space-x-16 animate-marquee whitespace-nowrap">
+    <div className="relative mt-10 py-6 md:py-8 overflow-hidden bg-white border-t border-b border-gray-100 shadow-sm">
+      <div className="flex space-x-8 md:space-x-16 animate-marquee-mobile md:animate-marquee whitespace-nowrap">
         {/* Render tech stack items twice for seamless scrolling */}
         {[...techStack, ...techStack].map((tech, index) => (
-          <div key={index} className="flex items-center space-x-2">
-            {tech.icon}
-            <span className="text-gray-400 font-medium">{tech.name}</span>
+          <div
+            key={index}
+            className="tech-stack-item flex items-center space-x-2 md:space-x-3 flex-shrink-0 px-2"
+          >
+            <div className="tech-icon text-gray-600 hover:text-orange-500 transition-colors duration-300">
+              {tech.icon}
+            </div>
+            <span className="tech-name text-sm md:text-base text-gray-700 font-medium hover:text-orange-500 transition-colors duration-300">
+              {tech.name}
+            </span>
           </div>
         ))}
       </div>

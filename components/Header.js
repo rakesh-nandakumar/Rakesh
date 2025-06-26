@@ -12,7 +12,7 @@ export default function Header() {
         {/* Start Header Left */}
         <div className="col-lg-2 col-6">
           <div className="header-left">
-            <div className="logo">
+            <div className="logo md:ml-3">
               <Link href="/">
                 <Image
                   src="/avatar.png"

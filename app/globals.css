@@ -51,6 +51,15 @@ body {
   }
 }
 
+@keyframes marquee-mobile {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
 @keyframes spin-slow {
   from {
     transform: rotate(0deg);
@@ -61,11 +70,39 @@ body {
 }
 
 .animate-marquee {
-  animation: marquee 20s linear infinite;
+  animation: marquee 12s linear infinite;
+}
+
+.animate-marquee-mobile {
+  animation: marquee-mobile 8s linear infinite;
 }
 
 .animate-spin-slow {
-  animation: spin-slow 8s linear infinite;
+  animation: spin-slow 15s linear infinite;
+}
+
+/* Tech Stack Item Hover Effects */
+.tech-stack-item {
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  padding: 4px 8px;
+}
+
+.tech-stack-item:hover {
+  transform: translateY(-2px);
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.1);
+  border: 1px solid rgba(255, 107, 53, 0.2);
+}
+
+.tech-stack-item:hover .tech-icon {
+  color: var(--color-primary) !important;
+  transform: scale(1.1);
+}
+
+.tech-stack-item:hover .tech-name {
+  color: var(--color-primary) !important;
+  font-weight: 600;
 }
 
 .logo-text:hover {

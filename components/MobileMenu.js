@@ -46,8 +46,7 @@ export default function MobileMenu({ headerData }) {
       {/* Mobile Menu Trigger Button */}
       <div className="header-right rn-mobile-menu d-block d-xl-none">
         <div className="hamberger-trigger" onClick={toggleMobileMenu}>
-          <div className="hamburger-menu">
-          </div>
+          <div className="hamburger-menu"></div>
         </div>
       </div>
 
@@ -68,9 +67,7 @@ export default function MobileMenu({ headerData }) {
 
       {/* Mobile Navigation Menu */}
       <div
-        className={`popup-mobile-menu ${
-          isMobileMenuOpen ? "menu-open" : ""
-        }`}
+        className={`popup-mobile-menu ${isMobileMenuOpen ? "menu-open" : ""}`}
       >
         <div className="menu-overlay" onClick={closeMobileMenu}></div>
         <div className="inner">
@@ -86,20 +83,26 @@ export default function MobileMenu({ headerData }) {
                 />
               </Link>
               <div className="close-button">
-                <button className="close-menu-activation close" onClick={closeMobileMenu}>
+                <button
+                  className="close-menu-activation close"
+                  onClick={closeMobileMenu}
+                >
                   <X className="feather feather-x" />
                 </button>
               </div>
             </div>
-            <p className="discription">Personal portfolio showcasing my work and expertise. Fully customizable and modern.</p>
+            <p className="discription">
+              Personal portfolio showcasing my work and expertise. Fully
+              customizable and modern.
+            </p>
           </div>
           <div className="content">
             <nav className="mainmenu-nav">
               <ul className="primary-menu nav nav-pills onepagenav">
                 {headerData.navigation.map((item, index) => (
                   <li key={index} className="nav-item">
-                    <Link 
-                      href={item.href} 
+                    <Link
+                      href={item.href}
                       className="nav-link smoth-animation"
                       onClick={closeMobileMenu}
                     >
@@ -109,22 +112,51 @@ export default function MobileMenu({ headerData }) {
                 ))}
               </ul>
             </nav>
-            
+
             {/* Social Share Area */}
             <div className="social-share-style-1 mt--40">
               <span className="title">find with me</span>
               <ul className="social-share d-flex liststyle">
                 <li className="facebook">
                   <a href="#" aria-label="Facebook">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-facebook">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="feather feather-facebook"
+                    >
                       <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
                     </svg>
                   </a>
                 </li>
                 <li className="instagram">
                   <a href="#" aria-label="Instagram">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-instagram">
-                      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="feather feather-instagram"
+                    >
+                      <rect
+                        x="2"
+                        y="2"
+                        width="20"
+                        height="20"
+                        rx="5"
+                        ry="5"
+                      ></rect>
                       <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
                       <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
                     </svg>
@@ -132,7 +164,18 @@ export default function MobileMenu({ headerData }) {
                 </li>
                 <li className="linkedin">
                   <a href="#" aria-label="LinkedIn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-linkedin">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="feather feather-linkedin"
+                    >
                       <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
                       <rect x="2" y="9" width="4" height="12"></rect>
                       <circle cx="4" cy="4" r="2"></circle>
@@ -141,7 +184,7 @@ export default function MobileMenu({ headerData }) {
                 </li>
               </ul>
             </div>
-            
+
             {/* CTA Button */}
             <div className="mobile-menu-bottom">
               <a

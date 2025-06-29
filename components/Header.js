@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { X, Menu } from "react-feather";
 import headerData from "../data/header.json";
+import MobileMenu from "./MobileMenu";
 // COMMENTED OUT - Theme toggle functionality disabled
 // import ThemeToggle from "./ThemeToggle";
 
@@ -51,16 +51,6 @@ export default function Header() {
                 ))}
               </ul>
             </nav>
-            {/* Mobile Menu Button */}
-            <div className="header-right rn-mobile-menu d-block d-xl-none">
-              <div className="hamberger-trigger">
-                <div className="hamburger-menu">
-                  <span />
-                  <span />
-                  <span />
-                </div>
-              </div>
-            </div>{" "}
             {/* Start Header Right  */}
             <div className="header-right">
               {/* COMMENTED OUT - Theme toggle functionality disabled */}
@@ -74,14 +64,8 @@ export default function Header() {
               >
                 <span>{headerData?.ctaButton?.label || "Download CV"}</span>
               </a>
-              <div className="hamberger-menu d-block d-xl-none">
-                <Menu id="menuBtn" className="feather-menu humberger-menu" />
-              </div>
-              <div className="close-menu d-block">
-                <span className="closeTrigger">
-                  <X />
-                </span>
-              </div>
+              {/* Mobile Menu Component */}
+              <MobileMenu headerData={headerData} />
             </div>
           </div>
         </div>

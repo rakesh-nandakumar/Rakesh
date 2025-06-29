@@ -24,9 +24,9 @@ export default function CTASection() {
                     height={110}
                     className="mx-auto d-block my-20 p-2.5"
                     style={{
-                      borderRadius: "50%" ,
+                      borderRadius: "50%",
                       // background: "var(--gradient-box-w)",
-                      boxShadow: "var(--shadow-white-3)"
+                      boxShadow: "var(--shadow-white-3)",
                     }}
                   />
                   <span className="subtitle theme-gradient">
@@ -42,7 +42,7 @@ export default function CTASection() {
                     Let's collaborate on your next project and create something
                     amazing together.
                   </p>
-                </div>{" "}
+                </div>
                 <div className="footer-btn mt--35">
                   <Link href="/contact" className="rn-btn btn-large mb-20">
                     <span>GET IN TOUCH</span>

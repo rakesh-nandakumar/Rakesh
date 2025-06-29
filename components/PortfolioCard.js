@@ -25,7 +25,6 @@ export default function PortfolioCard({ item, index }) {
       data-aos-once="true"
       className="col-lg-6 col-xl-4 col-md-6 col-12 mt--50 mt_md--30 mt_sm--30"
     >
-      {" "}
       <div className="rn-portfolio">
         <div className="inner">
           <div className="thumbnail">

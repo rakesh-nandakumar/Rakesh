@@ -10,7 +10,7 @@ const ChatButton = () => {
   const [messages, setMessages] = useState([
     {
       id: 1,
-      text: "Hello! I'm Rakesh's AI assistant. I can help you learn about his professional background, technical skills, projects, and experience. What would you like to know?",
+      text: "Hello! I'm Rakesh's AI assistant. I can help you learn about his professional background, technical skills, projects, and experience. Feel free to ask me anything about his work or expertise!",
       isBot: true,
       timestamp: new Date(),
     },
@@ -115,7 +115,7 @@ const ChatButton = () => {
     setMessages([
       {
         id: 1,
-        text: "Hello! I'm Rakesh's AI assistant. I can help you learn about his professional background, technical skills, projects, and experience. What would you like to know?",
+        text: "Hello! I'm Rakesh's AI assistant. I can help you learn about his professional background, technical skills, projects, and experience. Feel free to ask me anything about his work or expertise!",
         isBot: true,
         timestamp: new Date(),
       },
@@ -267,9 +267,10 @@ const ChatButton = () => {
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                     onKeyPress={handleKeyPress}
-                    placeholder="Type your message..."
+                    placeholder="Ask me about Rakesh's experience, skills, or projects..."
                     className="chat-input"
                     disabled={isLoading}
+                    aria-label="Type your message"
                   />
                   <button
                     className="send-btn"

@@ -1,12 +1,15 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import aboutData from "@/data/about.json";
 
 export default function HeroSection() {
+  
   const { name, title, shortBio, heroImage, cvLink } = aboutData;
   return (
     <div
-      className="rn-slider-area"
+      className="rn-slider-area hero-section-responsive"
       id="heroSection"
       style={{
         backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${heroImage})`,
@@ -82,6 +85,57 @@ export default function HeroSection() {
           </div>
         </div>
       </div>
+
+      {/* Responsive Background Image Styles */}
+      <style jsx>{`
+        .hero-section-responsive {
+          /* Default desktop background */
+          background-image: linear-gradient(
+              rgba(0, 0, 0, 0.5),
+              rgba(0, 0, 0, 0.5)
+            ),
+            url(${heroImage});
+        }
+
+        /* Mobile background image */
+        @media (max-width: 768px) {
+          .hero-section-responsive {
+            background-image: linear-gradient(
+                rgba(0, 0, 0, 0.5),
+                rgba(0, 0, 0, 0.5)
+              ),
+              url("/hero-mobile.jpg") !important;
+            background-position: center center;
+            background-size: cover;
+          }
+        }
+
+        /* Additional mobile optimizations */
+        @media (max-width: 576px) {
+          .hero-section-responsive {
+            background-position: center top;
+          }
+
+          .hero-section-responsive .container {
+            padding-left: 1rem;
+            padding-right: 1rem;
+          }
+
+          .hero-section-responsive .title {
+            font-size: 2.5rem;
+            line-height: 1.2;
+          }
+
+          .hero-section-responsive .subtitle {
+            font-size: 1rem;
+          }
+
+          .hero-section-responsive .description {
+            font-size: 0.95rem;
+            line-height: 1.5;
+          }
+        }
+      `}</style>
     </div>
   );
 }

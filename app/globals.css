@@ -2879,7 +2879,6 @@ body:not(.white-version) .toast {
   background: #2d3748;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4), 0 4px 16px rgba(0, 0, 0, 0.3),
     0 1px 0 rgba(255, 255, 255, 0.05) inset;
-  border: 1px solid #4a5568;
 }
 
 body:not(.white-version) .toast-message {
@@ -3161,5 +3160,52 @@ body:not(.white-version) .progress-bar-container {
   .filter-btn {
     padding: 0.25rem 0.6rem;
     font-size: 0.7rem;
+  }
+}
+
+/* Mobile Header Fixes */
+@media (max-width: 1199px) {
+  .header-center {
+    position: relative;
+  }
+
+  .header-right {
+    position: relative;
+    overflow: visible;
+    min-width: auto;
+    flex-shrink: 0;
+  }
+
+  .rn-btn {
+    font-size: 13px;
+    padding: 6px 12px;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 767px) {
+  .header-wrapper {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .header-right {
+    gap: 4px;
+    padding-right: 0;
+  }
+
+  .header-right .rn-btn {
+    display: none; /* Hide CTA button on very small screens */
+  }
+}
+
+@media (max-width: 575px) {
+  .header-left .title {
+    font-size: 16px;
+  }
+
+  .header-right {
+    justify-content: flex-end;
+    min-width: 40px;
   }
 }

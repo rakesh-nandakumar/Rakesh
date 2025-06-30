@@ -52,15 +52,29 @@ export default function Header() {
               </ul>
             </nav>
             {/* Start Header Right  */}
-            <div className="header-right">
+            <div
+              className="header-right"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "flex-end",
+                gap: "8px",
+                paddingRight: "15px",
+              }}
+            >
               {/* COMMENTED OUT - Theme toggle functionality disabled */}
               {/* <div className="theme-toggle-container">
                 <ThemeToggle />
               </div> */}
               <a
-                className="rn-btn"
+                className="rn-btn d-none d-sm-inline-block"
                 target={headerData?.ctaButton?.target || "_blank"}
                 href={headerData?.ctaButton?.href || "#"}
+                style={{
+                  whiteSpace: "nowrap",
+                  fontSize: "14px",
+                  padding: "8px 16px",
+                }}
               >
                 <span>{headerData?.ctaButton?.label || "Download CV"}</span>
               </a>

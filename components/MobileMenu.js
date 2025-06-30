@@ -19,7 +19,7 @@ export default function MobileMenu({ headerData }) {
   // Close mobile menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (isMobileMenuOpen && !event.target.closest(".rn-popup-mobile-menu")) {
+      if (isMobileMenuOpen && !event.target.closest(".popup-mobile-menu")) {
         setIsMobileMenuOpen(false);
       }
     };
@@ -43,26 +43,30 @@ export default function MobileMenu({ headerData }) {
 
   return (
     <>
-      {/* Mobile Menu Trigger Button */}
-      <div className="header-right rn-mobile-menu d-block d-xl-none">
-        <div className="hamberger-trigger" onClick={toggleMobileMenu}>
-          <div className="hamburger-menu"></div>
-        </div>
-      </div>
-
       {/* Mobile Menu Button in Header Right */}
       <div
         className="hamberger-menu d-block d-xl-none"
         onClick={toggleMobileMenu}
+        style={{
+          padding: '8px',
+          cursor: 'pointer',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          minWidth: '40px',
+          height: '40px',
+          marginLeft: '8px'
+        }}
       >
-        <Menu id="menuBtn" className="feather-menu humberger-menu" />
-      </div>
-
-      {/* Close Menu Button */}
-      <div className="close-menu d-block" onClick={closeMobileMenu}>
-        <span className="closeTrigger">
-          <X />
-        </span>
+        <Menu 
+          id="menuBtn" 
+          className="feather-menu humberger-menu mr-10" 
+          size={24}
+          style={{ 
+            color: 'var(--color-body)',
+            flexShrink: 0 
+          }}
+        />
       </div>
 
       {/* Mobile Navigation Menu */}
@@ -104,7 +108,10 @@ export default function MobileMenu({ headerData }) {
                     <Link
                       href={item.href}
                       className="nav-link smoth-animation"
-                      onClick={closeMobileMenu}
+                      onClick={(e) => {
+                        // Don't prevent default, let Next.js handle the navigation
+                        closeMobileMenu();
+                      }}
                     >
                       {item.label}
                     </Link>
@@ -191,7 +198,9 @@ export default function MobileMenu({ headerData }) {
                 className="rn-btn mobile-cta-btn"
                 target={headerData?.ctaButton?.target || "_blank"}
                 href={headerData?.ctaButton?.href || "#"}
-                onClick={closeMobileMenu}
+                onClick={(e) => {
+                  closeMobileMenu();
+                }}
               >
                 <span>{headerData?.ctaButton?.label || "Download CV"}</span>
               </a>
@@ -237,6 +246,7 @@ export default function MobileMenu({ headerData }) {
           transform: translateX(-100%);
           transition: transform 0.3s ease;
           overflow-y: auto;
+          z-index: 10001;
         }
 
         .popup-mobile-menu.menu-open .inner {
@@ -301,6 +311,9 @@ export default function MobileMenu({ headerData }) {
           text-decoration: none;
           border-bottom: 1px solid transparent;
           transition: all 0.3s ease;
+          position: relative;
+          z-index: 10;
+          cursor: pointer;
         }
 
         .primary-menu .nav-link:hover,
@@ -396,6 +409,35 @@ export default function MobileMenu({ headerData }) {
 
         .hamberger-menu {
           cursor: pointer;
+          position: relative;
+          z-index: 999;
+        }
+
+        .feather-menu {
+          transition: all 0.3s ease;
+        }
+
+        .feather-menu:hover {
+          color: var(--color-primary);
+        }
+
+        /* Ensure mobile menu button is always visible */
+        @media (max-width: 1199px) {
+          .hamberger-menu {
+            position: relative;
+            right: 0;
+            margin-left: auto;
+            flex-shrink: 0;
+          }
+        }
+
+        @media (max-width: 575px) {
+          .hamberger-menu {
+            margin-left: 4px;
+            padding: 4px !important;
+            min-width: 36px !important;
+            height: 36px !important;
+          }
         }
 
         .close-menu {

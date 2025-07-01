@@ -1,8 +1,26 @@
-import { ArrowRight } from "react-feather";
+import {
+  ArrowRight,
+  Globe,
+  Smartphone,
+  Briefcase,
+  BarChart,
+  Cpu,
+  Users,
+} from "react-feather";
 import servicesData from "../data/services.json";
 
 export default function FeaturesSection() {
   const services = servicesData.services;
+
+  // Map icon names to React Feather components
+  const iconMap = {
+    globe: Globe,
+    smartphone: Smartphone,
+    briefcase: Briefcase,
+    "bar-chart": BarChart,
+    cpu: Cpu,
+    users: Users,
+  };
 
   return (
     <div
@@ -37,7 +55,10 @@ export default function FeaturesSection() {
               <div className="rn-service">
                 <div className="inner">
                   <div className="icon">
-                    <i data-feather={service.icon} />
+                    {(() => {
+                      const IconComponent = iconMap[service.icon];
+                      return IconComponent ? <IconComponent size={24} /> : null;
+                    })()}
                   </div>
                   <div className="content">
                     <h4 className="title">

@@ -60,7 +60,7 @@
     ],
     "liveLink": "https://example.com/justlistenit",
     "githubLink": "https://github.com/example/justlistenit",
-    "featured": true,
+    "featured": false,
     "status": "ongoing",
     "progress": 45
   },
@@ -116,7 +116,7 @@
     ],
     "liveLink": "https://example.com/ai-content-generator",
     "githubLink": "https://github.com/example/ai-content-generator",
-    "featured": true,
+    "featured": false,
     "status": "ongoing",
     "progress": 65
   },
@@ -142,7 +142,7 @@
     "technologies": ["React", "Solidity", "Web3.js", "Ethereum", "IPFS"],
     "liveLink": "https://example.com/nft-marketplace",
     "githubLink": "https://github.com/example/nft-marketplace",
-    "featured": true,
+    "featured": false,
     "status": "ongoing",
     "progress": 15
   },

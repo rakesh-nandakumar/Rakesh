@@ -3,6 +3,11 @@
 import Script from "next/script";
 
 export default function GoogleAnalytics({ GA_MEASUREMENT_ID }) {
+  // Only render if GA_MEASUREMENT_ID is provided
+  if (!GA_MEASUREMENT_ID) {
+    return null;
+  }
+
   return (
     <>
       <Script

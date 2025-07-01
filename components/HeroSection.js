@@ -86,10 +86,8 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Responsive Background Image Styles */}
-      <style jsx>{`
+      {/* <style jsx>{`
         .hero-section-responsive {
-          /* Default desktop background */
           background-image: linear-gradient(
               rgba(0, 0, 0, 0.5),
               rgba(0, 0, 0, 0.5)
@@ -97,7 +95,6 @@ export default function HeroSection() {
             url(${heroImage});
         }
 
-        /* Mobile background image */
         @media (max-width: 768px) {
           .hero-section-responsive {
             background-image: linear-gradient(
@@ -110,7 +107,6 @@ export default function HeroSection() {
           }
         }
 
-        /* Additional mobile optimizations */
         @media (max-width: 576px) {
           .hero-section-responsive {
             background-position: center top;
@@ -135,7 +131,7 @@ export default function HeroSection() {
             line-height: 1.5;
           }
         }
-      `}</style>
+      `}</style> */}
     </div>
   );
 }

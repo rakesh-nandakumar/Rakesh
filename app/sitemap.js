@@ -1,4 +1,5 @@
 import { getAllBlogSlugs } from "@/lib/blogUtils";
+import portfolioData from "@/data/portfolio.json";
 
 export default function sitemap() {
   const baseUrl = "https://rakeshnandakumar.com";
@@ -51,5 +52,20 @@ export default function sitemap() {
     console.error("Error generating blog sitemap entries:", error);
   }
 
-  return [...staticPages, ...blogPages];
+  // Dynamic portfolio pages
+  const portfolioPages = portfolioData.map((project) => {
+    const slug = project.title
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+
+    return {
+      url: `${baseUrl}/portfolio/${slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    };
+  });
+
+  return [...staticPages, ...blogPages, ...portfolioPages];
 }

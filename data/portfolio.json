@@ -18,7 +18,8 @@
     "liveLink": "https://example.com/apiit-university-blog",
     "githubLink": "https://github.com/example/apiit-university-blog",
     "featured": true,
-    "status": "completed"
+    "status": "completed",
+    "type": "work"
   },
   {
     "image": "/projects/csc.png",
@@ -31,7 +32,8 @@
     "githubLink": "https://github.com/example/ceylon-sports-club",
     "featured": true,
     "status": "ongoing",
-    "progress": 75
+    "progress": 75,
+    "type": "freelance"
   },
   {
     "image": "/projects/pm.png",
@@ -43,7 +45,8 @@
     "liveLink": "https://example.com/next-gen-pm",
     "githubLink": "https://github.com/example/next-gen-pm",
     "featured": true,
-    "status": "upcoming"
+    "status": "upcoming",
+    "type": "work"
   },
   {
     "image": "/projects/justlistenit.png",
@@ -62,7 +65,8 @@
     "githubLink": "https://github.com/example/justlistenit",
     "featured": false,
     "status": "ongoing",
-    "progress": 45
+    "progress": 45,
+    "type": "personal"
   },
   {
     "image": "/projects/warehouse-alert.png",
@@ -80,7 +84,8 @@
     "liveLink": "https://example.com/warehouse-temp-alert",
     "githubLink": "https://github.com/example/warehouse-temp-alert",
     "featured": true,
-    "status": "completed"
+    "status": "completed",
+    "type": "personal"
   },
   {
     "image": "/projects/apiit.png",
@@ -99,7 +104,8 @@
     "githubLink": "https://github.com/example/ecommerce-app",
     "featured": false,
     "status": "ongoing",
-    "progress": 30
+    "progress": 30,
+    "type": "personal"
   },
   {
     "image": "/projects/csc.png",
@@ -118,7 +124,8 @@
     "githubLink": "https://github.com/example/ai-content-generator",
     "featured": false,
     "status": "ongoing",
-    "progress": 65
+    "progress": 65,
+    "type": "freelance"
   },
   {
     "image": "/projects/pm.png",
@@ -131,7 +138,8 @@
     "githubLink": "https://github.com/example/social-analytics",
     "featured": false,
     "status": "ongoing",
-    "progress": 85
+    "progress": 85,
+    "type": "work"
   },
   {
     "image": "/projects/justlistenit.png",
@@ -144,7 +152,8 @@
     "githubLink": "https://github.com/example/nft-marketplace",
     "featured": false,
     "status": "ongoing",
-    "progress": 15
+    "progress": 15,
+    "type": "personal"
   },
   {
     "image": "/projects/warehouse-alert.png",
@@ -157,6 +166,7 @@
     "githubLink": "https://github.com/example/cloud-automation",
     "featured": false,
     "status": "ongoing",
-    "progress": 92
+    "progress": 92,
+    "type": "work"
   }
 ]

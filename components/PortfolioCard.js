@@ -1,9 +1,16 @@
 import { ExternalLink, GitHub, ArrowUpRight } from "react-feather";
+import Link from "next/link";
 
 export default function PortfolioCard({ item, index }) {
   // Default status to 'upcoming' if not specified
   const status = item.status || "upcoming";
   const progress = item.progress || 0;
+
+  // Generate slug for the project
+  const projectSlug = item.title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
 
   const getStatusColor = (status) => {
     switch (status) {
@@ -17,6 +24,7 @@ export default function PortfolioCard({ item, index }) {
         return "status-upcoming";
     }
   };
+
   return (
     <div
       key={item.id}
@@ -28,39 +36,48 @@ export default function PortfolioCard({ item, index }) {
       <div className="rn-portfolio">
         <div className="inner">
           <div className="thumbnail">
-            <a href="javascript:void(0)">
+            <Link href={`/portfolio/${projectSlug}`}>
               <img src={item.image} alt="Personal Portfolio Images" />
-            </a>
+            </Link>
           </div>
           <div
             className="content"
-            style={{ display: "flex", flexDirection: "column", height: "100%" }}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              minHeight: "300px", // Adjust this value based on your needs
+            }}
           >
-            {/* Status Badge */}
-            <div className="category-info">
-              <div className="category-list">
-                <a href="javascript:void(0)">{item.category}</a>
+            {/* Content section */}
+            <div>
+              {/* Status Badge */}
+              <div className="category-info">
+                <div className="category-list">
+                  <a href="javascript:void(0)">{item.category}</a>
+                </div>
+              </div>
+              <h4 className="title">
+                <Link href={`/portfolio/${projectSlug}`}>
+                  {item.title}
+                  {/* <i className="feather-arrow-up-right" /> */}
+                </Link>
+              </h4>
+              <div className="technologies">
+                {item.technologies &&
+                  item.technologies.map((tech, techIndex) => (
+                    <span key={techIndex} className="tech-badge">
+                      {tech}
+                    </span>
+                  ))}
+              </div>
+              <div className="description">
+                <p className="short-description">{item.shortDescription}</p>
               </div>
             </div>
-            <h4 className="title">
-              <a href="javascript:void(0)">
-                {item.title}
-                {/* <i className="feather-arrow-up-right" /> */}
-              </a>
-            </h4>
-            <div className="technologies">
-              {item.technologies &&
-                item.technologies.map((tech, techIndex) => (
-                  <span key={techIndex} className="tech-badge">
-                    {tech}
-                  </span>
-                ))}
-            </div>
-            <div className="description" style={{ flex: "1" }}>
-              <p className="short-description">{item.shortDescription}</p>
-            </div>
-            {/* Progress Bar for Ongoing Projects */}
-            <div className="" style={{ marginTop: "auto" }}>
+
+            {/* Bottom section - buttons always stick to bottom */}
+            <div style={{ marginTop: "auto" }}>
+              {/* Progress Bar for Ongoing Projects */}
               {status === "ongoing" && progress > 0 && (
                 <div className="project-progress">
                   <div className="progress-label">
@@ -75,6 +92,8 @@ export default function PortfolioCard({ item, index }) {
                   </div>
                 </div>
               )}
+
+              {/* Links for completed projects */}
               {status === "completed" && (item.liveLink || item.githubLink) && (
                 <div className="portfolio-links">
                   {item.liveLink && (
@@ -101,6 +120,17 @@ export default function PortfolioCard({ item, index }) {
                   )}
                 </div>
               )}
+
+              {/* View Details Button for all projects */}
+              <div className="portfolio-view-details">
+                <Link
+                  href={`/portfolio/${projectSlug}`}
+                  className="portfolio-link view-details-link"
+                >
+                  <ArrowUpRight size={14} />
+                  View Details
+                </Link>
+              </div>
             </div>
           </div>
         </div>

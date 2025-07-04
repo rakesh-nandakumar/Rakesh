@@ -25,6 +25,7 @@ import {
 } from "react-feather";
 import Link from "next/link";
 import PortfolioCard from "@/components/PortfolioCard";
+import HireMePopup from "@/components/HireMePopup";
 
 export default function PortfolioDetail() {
   const params = useParams();
@@ -1147,6 +1148,7 @@ export default function PortfolioDetail() {
           }
         }
       `}</style>
+      <HireMePopup showOnMount={true} />
     </>
   );
 }

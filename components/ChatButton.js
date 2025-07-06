@@ -152,52 +152,172 @@ const ChatButton = () => {
 
       {/* Chat Modal/Widget - shown when isOpen is true */}
       {isOpen && (
-        <>
-          <div className="chat-backdrop" onClick={toggleChat}></div>
+        <div
+          className="modal fade show light-theme"
+          tabIndex="-1"
+          style={{ display: "block", paddingRight: "15px" }}
+          aria-modal="true"
+          role="dialog"
+          onClick={toggleChat}
+        >
           <div
-            className={`chat-widget ${
-              resolvedTheme === "light" ? "light-theme" : "dark-theme"
-            }`}
+            className="modal-dialog modal-dialog-centered modal-lg mobile-chat-modal"
+            role="document"
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              maxHeight: "80vh",
+              height: "600px",
+              maxWidth: "500px",
+              margin: "auto",
+            }}
           >
-            <div className="modal-content">
-              <div className="modal-header chat-header">
-                <div className="chat-header-content">
-                  <div className="avatar">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth="1.5"
-                      stroke="currentColor"
-                      className="size-5"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"
-                      />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3>Rakesh&apos;s AI Assistant</h3>
-                    <span className="status">Ready to Help</span>
-                  </div>
+            <div
+              className="modal-content"
+              style={{
+                background: "linear-gradient(145deg, #e2e8ec, #ffffff)",
+                border: "none",
+                boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
+                height: "100%",
+                display: "flex",
+                flexDirection: "column",
+                padding: "10px 20px",
+              }}
+            >
+              <div
+                className="modal-header chat-header-responsive"
+                style={{
+                  backgroundColor: "transparent",
+                  borderBottom: "1px solid #dee2e6",
+                  color: "#333",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  flexWrap: "nowrap",
+                  gap: "8px",
+                  padding: "12px 16px",
+                }}
+              >
+                {/* Avatar */}
+                <div
+                  className="chat-avatar"
+                  style={{
+                    background: "var(--color-primary)",
+                    border: "2px solid var(--color-primary)",
+                    borderRadius: "50%",
+                    width: "36px",
+                    height: "36px",
+                    minWidth: "36px",
+                    minHeight: "36px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    flexShrink: "0",
+                  }}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="white"
+                    style={{ width: "18px", height: "18px" }}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"
+                    />
+                  </svg>
                 </div>
-                <div className="header-actions">
+
+                {/* Title and Status */}
+                <div
+                  className="chat-title-section"
+                  style={{ flex: "1", minWidth: "0" }}
+                >
+                  <h3
+                    className="chat-title"
+                    style={{
+                      color: "#333",
+                      fontSize: "16px",
+                      fontWeight: "600",
+                      margin: "0",
+                      lineHeight: "1.2",
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                    }}
+                  >
+                    Rakesh&apos;s AI Assistant
+                  </h3>
+                  <span
+                    className="chat-status"
+                    style={{
+                      color: "#666",
+                      fontSize: "12px",
+                      lineHeight: "1",
+                      whiteSpace: "nowrap",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "4px",
+                    }}
+                  >
+                    <span
+                      style={{
+                        width: "6px",
+                        height: "6px",
+                        backgroundColor: "#10b981",
+                        borderRadius: "50%",
+                        display: "inline-block",
+                        flexShrink: "0",
+                      }}
+                    ></span>
+                    Ready to Help
+                  </span>
+                </div>
+
+                {/* Action Buttons */}
+                <div
+                  className="chat-header-actions"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "8px",
+                    flexShrink: "0",
+                  }}
+                >
                   <button
-                    className="action-btn clear-chat"
+                    type="button"
+                    className="chat-action-btn"
                     onClick={clearConversation}
                     aria-label="Clear conversation"
                     title="Clear conversation"
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      backgroundColor: "transparent",
+                      border: "none",
+                      opacity: "0.7",
+                      transition: "opacity 0.2s",
+                      width: "32px",
+                      height: "32px",
+                      borderRadius: "4px",
+                      cursor: "pointer",
+                    }}
+                    onMouseEnter={(e) => (e.target.style.opacity = "1")}
+                    onMouseLeave={(e) => (e.target.style.opacity = "0.7")}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth="2"
-                      stroke="currentColor"
                       width="18"
                       height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     >
                       <path
                         strokeLinecap="round"
@@ -208,10 +328,25 @@ const ChatButton = () => {
                   </button>
                   <button
                     type="button"
-                    className="action-btn modal-close"
+                    className="chat-action-btn"
                     onClick={toggleChat}
                     aria-label="Close"
                     title="Close chat"
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      backgroundColor: "transparent",
+                      border: "none",
+                      opacity: "0.7",
+                      transition: "opacity 0.2s",
+                      width: "32px",
+                      height: "32px",
+                      borderRadius: "4px",
+                      cursor: "pointer",
+                    }}
+                    onMouseEnter={(e) => (e.target.style.opacity = "1")}
+                    onMouseLeave={(e) => (e.target.style.opacity = "0.7")}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -231,8 +366,30 @@ const ChatButton = () => {
                 </div>
               </div>
 
-              <div className="modal-body chat-body">
-                <div className="chat-messages">
+              <div
+                className="modal-body"
+                style={{
+                  flex: "1",
+                  display: "flex",
+                  flexDirection: "column",
+                  backgroundColor: "transparent",
+                  minHeight: "0",
+                  overflow: "hidden",
+                }}
+              >
+                <div
+                  className="chat-messages"
+                  style={{
+                    flex: "1",
+                    overflowY: "auto",
+                    marginBottom: "15px",
+                    borderRadius: "12px",
+                    padding: "15px",
+                    border: "1px solid var(--color-lightn)",
+                    maxHeight: "400px",
+                    minHeight: "300px",
+                  }}
+                >
                   {messages.map((message) => (
                     <div
                       key={message.id}
@@ -261,7 +418,20 @@ const ChatButton = () => {
                   )}
                   <div ref={messagesEndRef} />
                 </div>
-                <div className="chat-input-container">
+                <div
+                  className="chat-input-container"
+                  style={{
+                    backgroundColor: "rgba(255, 255, 255, 0.7)",
+                    borderRadius: "12px",
+                    border: "1px solid var(--color-lightn)",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "8px",
+                    flexShrink: "0",
+                    marginTop: "auto",
+                    padding: "6px 10px",
+                  }}
+                >
                   <input
                     type="text"
                     value={inputValue}
@@ -271,11 +441,36 @@ const ChatButton = () => {
                     className="chat-input"
                     disabled={isLoading}
                     aria-label="Type your message"
+                    style={{
+                      flex: "1",
+                      border: "none",
+                      outline: "none",
+                      backgroundColor: "transparent",
+                      padding: "6px 8px",
+                      fontSize: "14px",
+                      color: "#333",
+                      minHeight: "20px",
+                    }}
                   />
                   <button
                     className="send-btn"
                     onClick={sendMessage}
                     disabled={isLoading || !inputValue.trim()}
+                    style={{
+                      backgroundColor: "#007bff",
+                      color: "white",
+                      border: "none",
+                      borderRadius: "8px",
+                      padding: "6px 8px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      cursor: "pointer",
+                      opacity: isLoading || !inputValue.trim() ? "0.5" : "1",
+                      transition: "opacity 0.2s",
+                      minWidth: "32px",
+                      height: "32px",
+                    }}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -296,7 +491,7 @@ const ChatButton = () => {
               </div>
             </div>
           </div>
-        </>
+        </div>
       )}
     </>
   );

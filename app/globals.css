@@ -996,26 +996,7 @@ body:not(.white-version) .modal-description {
   color: #b3b3b3;
 }
 
-.chat-btn div {
-  position: fixed;
-  bottom: 50px;
-  right: 30px;
-  cursor: pointer;
-  z-index: 999;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background-color: #212428;
-  text-align: center;
-  z-index: 999 !important;
-  box-shadow: var(--shadow-1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-}
-
-.chat-btn div:hover {
+.chat-btn:hover {
   background: linear-gradient(135deg, #ff014f 0%, #ff6b9d 100%);
   transform: scale(1.1);
   box-shadow: 0 8px 30px rgba(255, 1, 79, 0.3);
@@ -1028,26 +1009,11 @@ body:not(.white-version) .modal-description {
   transition: all 0.3s ease;
 }
 
-.white-version .chat-btn div {
-  position: fixed;
-  bottom: 50px;
-  right: 30px;
-  cursor: pointer;
-  width: 50px;
-  height: 50px;
-  line-height: 46px;
-  border-radius: 50%;
-  background: var(--gradient-box-w);
-  box-shadow: var(--shadow-white-3);
-  text-align: center;
-  z-index: 9999 !important;
-}
-
 .white-version .chat-btn div svg {
   color: var(--color-primary);
 }
 
-.white-version .chat-btn div:hover svg {
+.white-version .chat-btn:hover svg {
   color: var(--color-light);
 }
 

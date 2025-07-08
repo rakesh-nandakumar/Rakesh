@@ -33,7 +33,8 @@
     "featured": true,
     "status": "ongoing",
     "progress": 75,
-    "type": "freelance"
+    "type": "freelance",
+    "price": "$20"
   },
   {
     "image": "/projects/pm.png",

@@ -65,11 +65,24 @@ const HireMePopup = ({ showOnMount = true }) => {
             <div className="hire-popup-header">
               <button
                 type="button"
-                className="hire-popup-close"
+                className="action-btn-common ms-auto"
                 onClick={handleClose}
               >
                 <span aria-hidden="true">
-                  <X size={24} />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                  </svg>
                 </span>
               </button>
             </div>
@@ -86,7 +99,7 @@ const HireMePopup = ({ showOnMount = true }) => {
                         borderRadius: "50%",
                         objectFit: "cover",
                         border: "3px solid white",
-                        boxShadow: "var(--shadow-white-3)"
+                        boxShadow: "var(--shadow-white-3)",
                       }}
                     />
                   </div>
@@ -129,7 +142,6 @@ const HireMePopup = ({ showOnMount = true }) => {
           left: 0;
           right: 0;
           bottom: 0;
-          background: rgba(0, 0, 0, 0.4);
           backdrop-filter: blur(4px);
           z-index: 999;
           opacity: 0;
@@ -196,52 +208,7 @@ const HireMePopup = ({ showOnMount = true }) => {
           border-bottom: none;
         }
 
-        .hire-popup-close {
-          cursor: pointer;
-          z-index: 10;
-          width: 40px;
-          height: 40px;
-          box-shadow: var(--shadow-1);
-          background: linear-gradient(145deg, #1e2024, #23272b);
-          border: none;
-          border-radius: 50%;
-          outline: none;
-          justify-content: center;
-          align-items: center;
-          transition: all 0.3s;
-          display: flex;
-          position: relative;
-          opacity: 1;
-          margin: 0;
-          padding: 0;
-        }
-
-        .hire-popup-close:hover {
-          background: linear-gradient(135deg, #ff014f 0%, #ff6b9d 100%);
-          transform: scale(1.1);
-        }
-
-        .hire-popup-close span {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 100%;
-          height: 100%;
-          color: var(--color-primary);
-        }
-
-        .hire-popup-close svg {
-          display: block;
-          color: var(--color-lightn) !important;
-          stroke: var(--color-lightn) !important;
-          fill: none !important;
-          stroke-width: 2;
-        }
-
-        .hire-popup-close:hover {
-          opacity: 0.9;
-          transform: scale(1.05);
-        }
+        /* Custom styling for hire popup can go here if needed */
 
         .hire-popup-body {
           position: relative;
@@ -492,7 +459,7 @@ const HireMePopup = ({ showOnMount = true }) => {
 
         /* Theme-specific styles */
         .white-version .hire-popup-backdrop {
-          background: rgba(255, 255, 255, 0.6);
+          background: rgba(255, 255, 255, 0.3);
           backdrop-filter: blur(6px);
         }
 
@@ -500,27 +467,6 @@ const HireMePopup = ({ showOnMount = true }) => {
           background: var(--gradient-box-w);
           border-color: var(--color-light);
           box-shadow: var(--shadow-white-3);
-        }
-
-        .hire-popup-close {
-          margin-left: auto;
-          background: var(--gradient-box-w) !important;
-          box-shadow: var(--shadow-white-3) !important;
-        }
-
-        .white-version .hire-popup-close svg {
-          stroke: var(--color-midgray) !important;
-          color: var(--color-midgray) !important;
-        }
-
-        .white-version .hire-popup-close:hover {
-          opacity: 0.9;
-          transform: scale(1.05);
-        }
-
-        .white-version .hire-popup-close:hover svg {
-          stroke: var(--color-heading-wv) !important;
-          color: var(--color-heading-wv) !important;
         }
 
         .white-version .hire-popup-text-content p {
@@ -551,7 +497,7 @@ const HireMePopup = ({ showOnMount = true }) => {
 
         /* Dark mode styles */
         body:not(.white-version) .hire-popup-backdrop {
-          background: rgba(0, 0, 0, 0.5);
+          background: rgba(0, 0, 0, 0.25);
           backdrop-filter: blur(8px);
         }
 
@@ -559,27 +505,6 @@ const HireMePopup = ({ showOnMount = true }) => {
           background: var(--background-color-1);
           border-color: var(--color-tertiary);
           box-shadow: var(--shadow-1);
-        }
-
-        body:not(.white-version) .hire-popup-close {
-          background: linear-gradient(145deg, #1e2024, #23272b);
-          box-shadow: var(--shadow-1);
-          color: var(--color-lightn);
-        }
-
-        body:not(.white-version) .hire-popup-close svg {
-          stroke: var(--color-lightn) !important;
-          color: var(--color-lightn) !important;
-        }
-
-        body:not(.white-version) .hire-popup-close:hover {
-          opacity: 0.9;
-          transform: scale(1.05);
-        }
-
-        body:not(.white-version) .hire-popup-close:hover svg {
-          stroke: var(--color-heading) !important;
-          color: var(--color-heading) !important;
         }
 
         body:not(.white-version) .hire-popup-text-content p {

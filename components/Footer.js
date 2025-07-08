@@ -3,19 +3,15 @@
 import Link from 'next/link';
 import aboutData from '@/data/about.json';
 import { useTheme } from '@/contexts/ThemeContext';
+import headerData from "../data/header.json";
 
 export default function Footer() {
   const { resolvedTheme } = useTheme();
   const { name, title, contact, shortBio } = aboutData;
   const currentYear = new Date().getFullYear();
 
-  const quickLinks = [
-    { name: 'Home', href: '/' },
-    { name: 'About', href: '/about' },
-    { name: 'Portfolio', href: '/portfolio' },
-    { name: 'Blogs', href: '/blogs' },
-    { name: 'Contact', href: '/contact' }
-  ];
+  const quickLinks = headerData.navigation;
+  // Define services offered
 
   const services = [
     'Web Development',
@@ -115,7 +111,7 @@ export default function Footer() {
               <ul className="footer-link mt--20">
                 {quickLinks.map((link, index) => (
                   <li key={index}>
-                    <Link href={link.href}>{link.name}</Link>
+                    <Link href={link.href}>{link.label}</Link>
                   </li>
                 ))}
               </ul>
@@ -142,8 +138,8 @@ export default function Footer() {
               <h4 className="footer-title">Get In Touch</h4>
               <div className="footer-contact mt--20">
                 {contact.email && (
-                  <div className="contact-item mb--15">
-                    <div className="contact-icon">
+                  <div className="contact-item mb--15 d-flex align-items-start">
+                    <div className="contact-icon me-3">
                       <i data-feather="mail" />
                     </div>
                     <div className="contact-content">
@@ -155,8 +151,8 @@ export default function Footer() {
                 )}
 
                 {contact.phone && (
-                  <div className="contact-item mb--15">
-                    <div className="contact-icon">
+                  <div className="contact-item mb--15 d-flex align-items-start">
+                    <div className="contact-icon me-3">
                       <i data-feather="phone" />
                     </div>
                     <div className="contact-content">
@@ -166,8 +162,8 @@ export default function Footer() {
                 )}
 
                 {contact.address && (
-                  <div className="contact-item">
-                    <div className="contact-icon">
+                  <div className="contact-item d-flex align-items-start">
+                    <div className="contact-icon me-3">
                       <i data-feather="map-pin" />
                     </div>
                     <div className="contact-content">

@@ -131,8 +131,8 @@ const ChatButton = () => {
 
   return (
     <>
-      <div className="chat-btn">
-        <div onClick={toggleChat}>
+      <div className="chat-btn" onClick={toggleChat}>
+        <div>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -295,25 +295,10 @@ const ChatButton = () => {
                 >
                   <button
                     type="button"
-                    className="chat-action-btn"
+                    className="action-btn-common chat-size"
                     onClick={clearConversation}
                     aria-label="Clear conversation"
                     title="Clear conversation"
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      backgroundColor: "transparent",
-                      border: "none",
-                      opacity: "0.7",
-                      transition: "opacity 0.2s",
-                      width: "32px",
-                      height: "32px",
-                      borderRadius: "4px",
-                      cursor: "pointer",
-                    }}
-                    onMouseEnter={(e) => (e.target.style.opacity = "1")}
-                    onMouseLeave={(e) => (e.target.style.opacity = "0.7")}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -335,25 +320,10 @@ const ChatButton = () => {
                   </button>
                   <button
                     type="button"
-                    className="chat-action-btn"
+                    className="action-btn-common chat-size"
                     onClick={toggleChat}
                     aria-label="Close"
                     title="Close chat"
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      backgroundColor: "transparent",
-                      border: "none",
-                      opacity: "0.7",
-                      transition: "opacity 0.2s",
-                      width: "32px",
-                      height: "32px",
-                      borderRadius: "4px",
-                      cursor: "pointer",
-                    }}
-                    onMouseEnter={(e) => (e.target.style.opacity = "1")}
-                    onMouseLeave={(e) => (e.target.style.opacity = "0.7")}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

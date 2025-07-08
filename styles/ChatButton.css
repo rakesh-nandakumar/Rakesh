@@ -315,10 +315,8 @@
   transform: scale(1.1);
 }
 
-.chat-action-btn svg {
-  color: var(--color-primary) !important;
-  stroke: var(--color-primary) !important;
-}
+/* Chat action buttons now use the common action-btn-common class */
+/* Additional chat-specific styling only */
 
 /* Remove old separate styling for clear-chat and modal-close - now handled by .action-btn */
 
@@ -1214,9 +1212,6 @@
   .modal-header {
     padding: 8px 12px !important;
     border-radius: 16px 16px 0 0 !important;
-  }
-
-  .chat-messages {
   }
 }
 

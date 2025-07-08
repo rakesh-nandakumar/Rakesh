@@ -52,7 +52,7 @@ const TimelineProgress = () => {
         <div
           className="w-full rounded-full"
           style={{
-            background: "var(--gradient-red-hover)",
+            background: "linear-gradient(135deg, #ff014f 0%, #ff6b9d 100%)",
             boxShadow: "0 0 15px rgba(255, 1, 79, 0.6)",
             height: `${progress}%`,
             transition: "height 50ms linear",

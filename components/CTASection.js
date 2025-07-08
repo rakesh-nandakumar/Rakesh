@@ -22,10 +22,11 @@ export default function CTASection() {
                     alt="inbio logo"
                     width={110}
                     height={110}
-                    className="mx-auto d-block my-20 p-2.5"
+                    className="mx-auto d-block my-15"
                     style={{
                       borderRadius: "50%",
-                      // background: "var(--gradient-box-w)",
+                      objectFit: "cover",
+                      border: "4px solid white",
                       boxShadow: "var(--shadow-white-3)",
                     }}
                   />

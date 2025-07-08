@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { X, MessageCircle, Mail, Phone } from "react-feather";
+import Image from "next/image";
+import { X } from "react-feather";
 import { useTheme } from "@/contexts/ThemeContext";
 
 const HireMePopup = ({ showOnMount = true }) => {
@@ -42,121 +43,264 @@ const HireMePopup = ({ showOnMount = true }) => {
   if (!isVisible) return null;
 
   return (
-    <div
-      className={`hire-me-popup ${isClosing ? "closing" : ""}`}
-      role="dialog"
-      aria-labelledby="hire-me-title"
-      aria-modal="true"
-    >
-      <div className="hire-me-popup-content">
-        <button
-          className="hire-me-close"
-          onClick={handleClose}
-          aria-label="Close popup"
+    <>
+      {/* Modal Backdrop */}
+      <div className="hire-popup-backdrop" onClick={handleClose}></div>
+
+      <div
+        className={`hire-popup-modal hire-popup-fade hire-popup-show ${
+          isClosing ? "hire-popup-closing" : ""
+        }`}
+        id="hireMeModal"
+        tabIndex="-1"
+        style={{ display: "block", paddingRight: "15px" }}
+        aria-modal="true"
+        role="dialog"
+      >
+        <div
+          className="hire-popup-dialog hire-popup-dialog-centered"
+          role="document"
         >
-          <X size={16} />
-        </button>
+          <div className="hire-popup-content">
+            <div className="hire-popup-header">
+              <button
+                type="button"
+                className="hire-popup-close"
+                onClick={handleClose}
+              >
+                <span aria-hidden="true">
+                  <X size={24} />
+                </span>
+              </button>
+            </div>
+            <div className="hire-popup-body">
+              <div className="hire-popup-row hire-popup-align-center">
+                <div className="hire-popup-col">
+                  <div className="hire-popup-avatar-center">
+                    <Image
+                      src="/avatar.png"
+                      alt="Rakesh Nandakumar"
+                      width={80}
+                      height={80}
+                      style={{
+                        borderRadius: "50%",
+                        objectFit: "cover",
+                        border: "3px solid white",
+                        boxShadow: "var(--shadow-white-3)"
+                      }}
+                    />
+                  </div>
+                </div>
 
-        <div className="hire-me-header">
-          <div className="hire-me-avatar">
-            <img src="/avatar.png" alt="Rakesh Nandakumar" />
+                <div className="hire-popup-col">
+                  <div className="hire-popup-text-content">
+                    <h3
+                      id="hire-me-title"
+                      style={{ color: "var(--color-body-white)" }}
+                    >
+                      <span>Available for hire</span> Let's work together!
+                    </h3>
+                    <p className="hire-popup-description">
+                      I'm available for freelance projects and full-time
+                      opportunities. Let's discuss how I can help bring your
+                      ideas to life!
+                    </p>
+                    <div className="hire-popup-button-group">
+                      <button
+                        className="hire-popup-btn hire-popup-btn-primary"
+                        onClick={() => handleContactClick("contact")}
+                      >
+                        <span>LET'S CHAT</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="hire-me-greeting">
-            <h3 id="hire-me-title">👋 Hi there!</h3>
-            <p>Ready to work together?</p>
-          </div>
-        </div>
-
-        <div className="hire-me-body">
-          <p className="hire-me-message">
-            I'm available for freelance projects and full-time opportunities.
-            Let's discuss how I can help bring your ideas to life!
-          </p>
-
-          <div className="hire-me-actions">
-            <button
-              className="hire-me-btn primary"
-              onClick={() => handleContactClick("contact")}
-            >
-              <MessageCircle size={16} />
-              Let's Chat
-            </button>
-            <button
-              className="hire-me-btn secondary"
-              onClick={() => handleContactClick("email")}
-            >
-              <Mail size={16} />
-              Email Me
-            </button>
-          </div>
-        </div>
-
-        <div className="hire-me-footer">
-          <span className="hire-me-badge">Available for hire</span>
         </div>
       </div>
 
       <style jsx>{`
-        .hire-me-popup {
+        /* Modal Backdrop */
+        .hire-popup-backdrop {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: rgba(0, 0, 0, 0.4);
+          backdrop-filter: blur(4px);
+          z-index: 999;
+          opacity: 0;
+          animation: backdropFadeIn 0.3s ease forwards;
+        }
+
+        @keyframes backdropFadeIn {
+          to {
+            opacity: 1;
+          }
+        }
+
+        .hire-popup-modal.hire-popup-fade.hire-popup-show {
           position: fixed;
           top: 50%;
           right: 20px;
           transform: translateY(-50%) translateX(100%);
+          width: auto;
+          height: auto;
+          background-color: transparent;
           z-index: 1000;
-          animation: slideIn 0.4s ease-out forwards;
-          max-width: 320px;
-          width: 90%;
+          animation: hirePopupSlideIn 0.4s ease-out forwards;
+          max-width: 400px;
+        }
+
+        .hire-popup-modal.hire-popup-fade.hire-popup-show.hire-popup-closing {
+          animation: hirePopupSlideOut 0.3s ease-in forwards;
+        }
+
+        .hire-popup-dialog {
+          position: relative;
+          width: 100%;
+          margin: 0;
+          pointer-events: auto;
+        }
+
+        .hire-popup-dialog-centered {
+          display: block;
+          align-items: unset;
+          min-height: auto;
+        }
+
+        .hire-popup-content {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          pointer-events: auto;
+          background-clip: padding-box;
+          background: var(--gradient-box-w);
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 30px;
+          border-radius: 16px;
+          outline: 0;
+          max-width: 400px;
+          margin: 0;
           filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.15));
         }
 
-        .hire-me-popup.closing {
-          animation: slideOut 0.3s ease-in forwards;
-        }
-
-        .hire-me-popup-content {
-          background: ${theme === "light" ? "#ffffff" : "#1a1a1a"};
-          border-radius: 16px;
-          border: 1px solid ${theme === "light" ? "#e5e7eb" : "#374151"};
-          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-          position: relative;
-          overflow: hidden;
-        }
-
-        .hire-me-close {
-          position: absolute;
-          top: 12px;
-          right: 12px;
-          background: ${theme === "light" ? "#f3f4f6" : "#374151"};
-          border: none;
-          border-radius: 50%;
-          width: 32px;
-          height: 32px;
+        .hire-popup-header {
           display: flex;
           align-items: center;
-          justify-content: center;
-          cursor: pointer;
-          transition: all 0.2s ease;
-          z-index: 10;
-          color: ${theme === "light" ? "#6b7280" : "#d1d5db"};
+          justify-content: center !important;
+          padding: 1rem 1.5rem 0;
+          border-bottom: none;
         }
 
-        .hire-me-close:hover {
-          background: ${theme === "light" ? "#e5e7eb" : "#4b5563"};
-          color: ${theme === "light" ? "#374151" : "#f3f4f6"};
+        .hire-popup-close {
+          cursor: pointer;
+          z-index: 10;
+          width: 40px;
+          height: 40px;
+          box-shadow: var(--shadow-1);
+          background: linear-gradient(145deg, #1e2024, #23272b);
+          border: none;
+          border-radius: 50%;
+          outline: none;
+          justify-content: center;
+          align-items: center;
+          transition: all 0.3s;
+          display: flex;
+          position: relative;
+          opacity: 1;
+          margin: 0;
+          padding: 0;
+        }
+
+        .hire-popup-close:hover {
+          background: linear-gradient(135deg, #ff014f 0%, #ff6b9d 100%);
           transform: scale(1.1);
         }
 
-        .hire-me-header {
-          padding: 24px 24px 16px;
+        .hire-popup-close span {
           display: flex;
           align-items: center;
-          gap: 16px;
-          background: linear-gradient(135deg, #ff6b35 0%, #ff8c5a 100%);
-          color: white;
-          position: relative;
+          justify-content: center;
+          width: 100%;
+          height: 100%;
+          color: var(--color-primary);
         }
 
-        .hire-me-header::before {
+        .hire-popup-close svg {
+          display: block;
+          color: var(--color-lightn) !important;
+          stroke: var(--color-lightn) !important;
+          fill: none !important;
+          stroke-width: 2;
+        }
+
+        .hire-popup-close:hover {
+          opacity: 0.9;
+          transform: scale(1.05);
+        }
+
+        .hire-popup-body {
+          position: relative;
+          flex: 1 1 auto;
+          padding: 1.5rem;
+        }
+
+        .hire-popup-row {
+          display: flex;
+          flex-wrap: wrap;
+          margin-right: -15px;
+          margin-left: -15px;
+        }
+
+        .hire-popup-align-center {
+          align-items: center;
+        }
+
+        .hire-popup-col {
+          position: relative;
+          width: 100%;
+          padding-right: 15px;
+          padding-left: 15px;
+          flex: 0 0 100%;
+          max-width: 100%;
+        }
+
+        .hire-popup-avatar-center {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          margin-bottom: 1.5rem;
+        }
+
+        .hire-popup-avatar-center img {
+          border: 3px solid white !important;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+          transition: all 0.3s ease;
+        }
+
+        .hire-popup-avatar-center img:hover {
+          transform: scale(1.05);
+          box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2) !important;
+        }
+
+        .hire-popup-avatar-section {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 1.5rem;
+          background: var(--gradient-red-hover);
+          border-radius: 12px;
+          position: relative;
+          overflow: hidden;
+          margin-bottom: 1rem;
+        }
+
+        .hire-popup-avatar-section::before {
           content: "";
           position: absolute;
           top: 0;
@@ -168,125 +312,103 @@ const HireMePopup = ({ showOnMount = true }) => {
           opacity: 0.3;
         }
 
-        .hire-me-avatar {
+        .hire-popup-avatar {
           position: relative;
           z-index: 2;
-        }
-
-        .hire-me-avatar img {
-          width: 50px;
-          height: 50px;
-          border-radius: 50%;
+          width: 80px;
+          height: 80px;
           border: 3px solid rgba(255, 255, 255, 0.3);
-          object-fit: cover;
+          border-radius: 50%;
+          overflow: hidden;
         }
 
-        .hire-me-greeting {
-          position: relative;
-          z-index: 2;
+        .hire-popup-text-content {
+          padding-left: 0;
+          text-align: center;
         }
 
-        .hire-me-greeting h3 {
-          margin: 0 0 4px 0;
-          font-size: 18px;
-          font-weight: 700;
-          color: white;
+        .hire-popup-text-content h3 {
+          margin: 0 0 1rem 0;
+          font-size: 2rem;
+          font-weight: var(--p-bold);
+          color: var(--color-heading);
+          line-height: 1.3;
         }
 
-        .hire-me-greeting p {
-          margin: 0;
-          font-size: 14px;
-          color: rgba(255, 255, 255, 0.9);
-          font-weight: 500;
+        .hire-popup-text-content h3 span {
+          color: var(--color-primary);
+          font-size: 0.95rem;
+          font-weight: var(--p-semi-bold);
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          display: block;
+          margin-bottom: 0.5rem;
         }
 
-        .hire-me-body {
-          padding: 20px 24px;
-        }
-
-        .hire-me-message {
-          font-size: 14px;
+        .hire-popup-text-content p {
+          font-size: 1.3rem;
           line-height: 1.6;
-          color: ${theme === "light" ? "#4b5563" : "#d1d5db"};
-          margin: 0 0 20px 0;
+          color: var(--color-body);
+          margin-bottom: 1rem;
         }
 
-        .hire-me-actions {
+        .hire-popup-description {
+          margin-bottom: 1.5rem;
+        }
+
+        .hire-popup-button-group {
           display: flex;
-          gap: 8px;
+          gap: 0.5rem;
           flex-direction: column;
+          margin-top: 1rem;
         }
 
-        .hire-me-btn {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 8px;
-          padding: 12px 16px;
-          border-radius: 8px;
-          font-size: 14px;
-          font-weight: 600;
+        /* Hire Popup Button Styles */
+        .hire-popup-btn {
           cursor: pointer;
-          transition: all 0.2s ease;
-          text-decoration: none;
+          white-space: nowrap;
+          width: 100%;
+          min-width: 120px;
+          box-shadow: var(--shadow-white-3);
           border: none;
-          outline: none;
+          border-radius: 8px;
+          justify-content: center;
+          align-items: center;
+          gap: 0.5rem;
+          padding: 10px 18px;
+          font-size: 13px;
+          font-weight: 500;
+          text-decoration: none;
+          transition: all 0.3s;
+          display: inline-flex;
         }
 
-        .hire-me-btn.primary {
-          background: var(--color-primary, #ff6b35);
-          color: white;
+        .hire-popup-btn-primary {
+          background: var(--gradient-red-hover);
+          color: var(--color-white);
+          box-shadow: var(--shadow-white-3);
         }
 
-        .hire-me-btn.primary:hover {
-          background: #e55a2e;
+        .hire-popup-btn-primary:hover {
+          background: var(--color-primary);
           transform: translateY(-2px);
-          box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
         }
 
-        .hire-me-btn.secondary {
-          background: ${theme === "light" ? "#f3f4f6" : "#374151"};
-          color: ${theme === "light" ? "#374151" : "#f3f4f6"};
-          border: 1px solid ${theme === "light" ? "#e5e7eb" : "#4b5563"};
+        .hire-popup-btn-secondary {
+          background: var(--gradient-box-w);
+          color: var(--color-heading);
+          border-color: var(--color-border);
+          box-shadow: var(--shadow-white-3);
         }
 
-        .hire-me-btn.secondary:hover {
-          background: ${theme === "light" ? "#e5e7eb" : "#4b5563"};
+        .hire-popup-btn-secondary:hover {
+          border-color: var(--color-primary);
+          color: var(--color-primary);
           transform: translateY(-2px);
           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
-        .hire-me-footer {
-          padding: 16px 24px;
-          background: ${theme === "light" ? "#f9fafb" : "#111827"};
-          border-top: 1px solid ${theme === "light" ? "#e5e7eb" : "#374151"};
-          text-align: center;
-        }
-
-        .hire-me-badge {
-          display: inline-flex;
-          align-items: center;
-          gap: 6px;
-          background: #10b981;
-          color: white;
-          font-size: 12px;
-          font-weight: 600;
-          padding: 4px 12px;
-          border-radius: 20px;
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
-        }
-
-        .hire-me-badge::before {
-          content: "";
-          width: 6px;
-          height: 6px;
-          background: #34d399;
-          border-radius: 50%;
-          animation: pulse 2s infinite;
-        }
-
-        @keyframes slideIn {
+        @keyframes hirePopupSlideIn {
           from {
             transform: translateY(-50%) translateX(100%);
             opacity: 0;
@@ -297,7 +419,7 @@ const HireMePopup = ({ showOnMount = true }) => {
           }
         }
 
-        @keyframes slideOut {
+        @keyframes hirePopupSlideOut {
           from {
             transform: translateY(-50%) translateX(0);
             opacity: 1;
@@ -305,70 +427,182 @@ const HireMePopup = ({ showOnMount = true }) => {
           to {
             transform: translateY(-50%) translateX(100%);
             opacity: 0;
-          }
-        }
-
-        @keyframes pulse {
-          0%,
-          100% {
-            opacity: 1;
-          }
-          50% {
-            opacity: 0.5;
           }
         }
 
         /* Mobile responsiveness */
         @media (max-width: 768px) {
-          .hire-me-popup {
-            right: 16px;
-            top: auto;
-            bottom: 20px;
-            transform: translateX(100%);
-            max-width: 280px;
+          .hire-popup-modal.hire-popup-fade.hire-popup-show {
+            right: 10px;
+            left: 10px;
+            transform: translateY(-50%) translateX(100%);
+            max-width: calc(100% - 20px);
           }
 
-          .hire-me-popup.closing {
-            animation: slideOutMobile 0.3s ease-in forwards;
+          .hire-popup-dialog {
+            margin: 0.5rem;
           }
 
-          @keyframes slideIn {
-            from {
-              transform: translateX(100%);
-              opacity: 0;
-            }
-            to {
-              transform: translateX(0);
-              opacity: 1;
-            }
+          .hire-popup-col {
+            flex: 0 0 100%;
+            max-width: 100%;
+            margin-bottom: 1.5rem;
           }
-        }
 
-        @keyframes slideOutMobile {
-          from {
-            transform: translateX(0);
-            opacity: 1;
+          .hire-popup-avatar-center {
+            justify-content: center;
+            margin-bottom: 1.5rem;
           }
-          to {
-            transform: translateX(100%);
-            opacity: 0;
+
+          .hire-popup-text-content {
+            padding-left: 0;
+            text-align: center;
+          }
+
+          .hire-popup-text-content h3 {
+            font-size: 1.5rem;
+          }
+
+          .hire-popup-button-group {
+            justify-content: center;
+          }
+
+          .hire-popup-avatar-section {
+            padding: 1.5rem;
+          }
+
+          .hire-popup-avatar {
+            width: 100px;
+            height: 100px;
           }
         }
 
         /* Accessibility */
         @media (prefers-reduced-motion: reduce) {
-          .hire-me-popup {
+          .hire-popup-modal.hire-popup-fade.hire-popup-show {
             animation: none;
           }
-          .hire-me-popup.closing {
+          .hire-popup-modal.hire-popup-fade.hire-popup-show.hire-popup-closing {
             animation: none;
           }
-          .hire-me-btn {
+          .hire-popup-btn {
             transition: none;
           }
         }
+
+        /* Theme-specific styles */
+        .white-version .hire-popup-backdrop {
+          background: rgba(255, 255, 255, 0.6);
+          backdrop-filter: blur(6px);
+        }
+
+        .white-version .hire-popup-content {
+          background: var(--gradient-box-w);
+          border-color: var(--color-light);
+          box-shadow: var(--shadow-white-3);
+        }
+
+        .hire-popup-close {
+          margin-left: auto;
+          background: var(--gradient-box-w) !important;
+          box-shadow: var(--shadow-white-3) !important;
+        }
+
+        .white-version .hire-popup-close svg {
+          stroke: var(--color-midgray) !important;
+          color: var(--color-midgray) !important;
+        }
+
+        .white-version .hire-popup-close:hover {
+          opacity: 0.9;
+          transform: scale(1.05);
+        }
+
+        .white-version .hire-popup-close:hover svg {
+          stroke: var(--color-heading-wv) !important;
+          color: var(--color-heading-wv) !important;
+        }
+
+        .white-version .hire-popup-text-content p {
+          color: var(--color-body-white);
+        }
+
+        .white-version .hire-popup-text-content h3 {
+          color: var(--color-heading-wv);
+        }
+
+        .white-version .hire-popup-text-content h3 span {
+          color: var(--color-primary);
+        }
+
+        .white-version .hire-popup-btn-secondary {
+          background: var(--color-gray);
+          color: var(--color-body-white);
+          border-color: var(--color-lighter);
+          box-shadow: var(--shadow-white-3);
+        }
+
+        .white-version .hire-popup-btn-secondary:hover {
+          background: var(--color-light);
+          border-color: var(--color-primary);
+          color: var(--color-primary);
+          box-shadow: 0 4px 12px rgba(255, 1, 79, 0.15);
+        }
+
+        /* Dark mode styles */
+        body:not(.white-version) .hire-popup-backdrop {
+          background: rgba(0, 0, 0, 0.5);
+          backdrop-filter: blur(8px);
+        }
+
+        body:not(.white-version) .hire-popup-content {
+          background: var(--background-color-1);
+          border-color: var(--color-tertiary);
+          box-shadow: var(--shadow-1);
+        }
+
+        body:not(.white-version) .hire-popup-close {
+          background: linear-gradient(145deg, #1e2024, #23272b);
+          box-shadow: var(--shadow-1);
+          color: var(--color-lightn);
+        }
+
+        body:not(.white-version) .hire-popup-close svg {
+          stroke: var(--color-lightn) !important;
+          color: var(--color-lightn) !important;
+        }
+
+        body:not(.white-version) .hire-popup-close:hover {
+          opacity: 0.9;
+          transform: scale(1.05);
+        }
+
+        body:not(.white-version) .hire-popup-close:hover svg {
+          stroke: var(--color-heading) !important;
+          color: var(--color-heading) !important;
+        }
+
+        body:not(.white-version) .hire-popup-text-content p {
+          color: var(--color-body);
+        }
+
+        body:not(.white-version) .hire-popup-text-content h3 {
+          color: var(--color-heading);
+        }
+
+        body:not(.white-version) .hire-popup-btn-secondary {
+          background: var(--background-color-2);
+          color: var(--color-heading);
+          border-color: var(--color-tertiary);
+        }
+
+        body:not(.white-version) .hire-popup-btn-secondary:hover {
+          background: var(--color-tertiary);
+          border-color: var(--color-primary);
+          color: var(--color-primary);
+        }
       `}</style>
-    </div>
+    </>
   );
 };
 

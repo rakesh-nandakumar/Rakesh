@@ -155,7 +155,12 @@ const ChatButton = () => {
         <div
           className="modal fade show light-theme"
           tabIndex="-1"
-          style={{ display: "block", paddingRight: "15px" }}
+          style={{
+            display: "block",
+            paddingRight: "15px",
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            backdropFilter: "blur(2px)",
+          }}
           aria-modal="true"
           role="dialog"
           onClick={toggleChat}
@@ -202,16 +207,18 @@ const ChatButton = () => {
                   className="chat-avatar"
                   style={{
                     background: "var(--color-primary)",
-                    border: "2px solid var(--color-primary)",
                     borderRadius: "50%",
-                    width: "36px",
-                    height: "36px",
-                    minWidth: "36px",
-                    minHeight: "36px",
+                    width: "40px",
+                    height: "40px",
+                    minWidth: "40px",
+                    minHeight: "40px",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
                     flexShrink: "0",
+                    objectFit: "cover",
+                    border: "3px solid white",
+                    boxShadow: "var(--shadow-white-3)",
                   }}
                 >
                   <svg
@@ -386,8 +393,6 @@ const ChatButton = () => {
                     borderRadius: "12px",
                     padding: "15px",
                     border: "1px solid var(--color-lightn)",
-                    maxHeight: "400px",
-                    minHeight: "300px",
                   }}
                 >
                   {messages.map((message) => (

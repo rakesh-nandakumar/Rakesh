@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
-import { Calendar } from "react-feather";
+import React, { useEffect, useRef, useState } from "react";
+import { Calendar, ChevronDown, ChevronUp } from "react-feather";
 
 const TimelineCard = ({ item, position, isPast }) => {
   const cardRef = useRef(null);
+  const [showAchievements, setShowAchievements] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -218,13 +219,78 @@ const TimelineCard = ({ item, position, isPast }) => {
               </div>
             )}
             {item.achievements && item.achievements.length > 0 && (
-              <div className="Achievements">
-                <h5>Key Achievements:</h5>
-                <ul className="achievement-list">
-                  {item.achievements.map((achievement, index) => (
-                    <li key={index}>{achievement}</li>
-                  ))}
-                </ul>
+              <div className="achievements-section">
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "flex-end",
+                    marginTop: "12px",
+                  }}
+                >
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      setShowAchievements(!showAchievements);
+                    }}
+                    className="view-achievements-btn"
+                    style={{
+                      background: "none",
+                      border: "1px solid var(--color-primary)",
+                      color: "var(--color-primary)",
+                      padding: "6px 10px",
+                      borderRadius: "4px",
+                      fontSize: "12px",
+                      marginTop: "12px",
+                      fontWeight: "500",
+                      cursor: "pointer",
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: "4px",
+                      transition: "all 0.3s ease",
+                      backgroundColor: "transparent",
+                      width: "auto",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.target.style.backgroundColor = "var(--color-primary)";
+                      e.target.style.color = "white";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.backgroundColor = "transparent";
+                      e.target.style.color = "var(--color-primary)";
+                    }}
+                  >
+                    {showAchievements
+                      ? "Hide Achievements"
+                      : "View Achievements"}
+                    {showAchievements ? (
+                      <ChevronUp size={14} />
+                    ) : (
+                      <ChevronDown size={14} />
+                    )}
+                  </button>
+                </div>
+
+                <div
+                  className="achievements-content"
+                  style={{
+                    maxHeight: showAchievements ? "300px" : "0",
+                    overflow: "hidden",
+                    transition:
+                      "max-height 0.4s ease-in-out, opacity 0.3s ease",
+                    opacity: showAchievements ? 1 : 0,
+                    marginTop: showAchievements ? "12px" : "0",
+                  }}
+                >
+                  <div className="Achievements">
+                    <h5>Key Achievements:</h5>
+                    <ul className="achievement-list">
+                      {item.achievements.map((achievement, index) => (
+                        <li key={index}>{achievement}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
               </div>
             )}
 

@@ -7,17 +7,22 @@
   right: 2rem;
   width: 56px;
   height: 56px;
-  background: var(--gradient-box-w);
   border-radius: 50%;
   cursor: pointer;
   z-index: 9999;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
   border: none;
   outline: none;
+  box-shadow: var(--shadow-1);
+  background: linear-gradient(145deg, rgb(30, 32, 36), rgb(35, 39, 43));
+}
+
+.white-version .chat-btn {
+  background: var(--gradient-box-w) !important;
+  box-shadow: var(--shadow-white-3) !important;
 }
 
 .chat-btn:hover {
@@ -1159,8 +1164,6 @@
 .chat-messages {
   flex: 1 !important;
   overflow-y: auto !important;
-  max-height: 400px !important;
-  min-height: 300px !important;
 }
 
 .chat-input-container {
@@ -1177,25 +1180,13 @@
     max-width: calc(100vw - 2rem) !important;
     margin: 1.5rem auto !important;
   }
-
-  .chat-messages {
-    max-height: calc(100vh - 300px) !important;
-    min-height: 200px !important;
-  }
 }
 
 @media (max-width: 480px) {
   .modal-dialog {
     height: calc(100vh - 2rem) !important;
-    max-height: calc(100vh - 2rem) !important;
     width: calc(100vw - 1rem) !important;
-    max-width: calc(100vw - 1rem) !important;
     margin: 1rem auto !important;
-  }
-
-  .chat-messages {
-    max-height: calc(100vh - 280px) !important;
-    min-height: 150px !important;
   }
 }
 
@@ -1226,8 +1217,6 @@
   }
 
   .chat-messages {
-    max-height: calc(100vh - 200px) !important;
-    min-height: calc(100vh - 300px) !important;
   }
 }
 
@@ -1271,8 +1260,6 @@
 
   .chat-messages {
     padding: 8px !important;
-    max-height: calc(100vh - 180px) !important;
-    min-height: calc(100vh - 250px) !important;
   }
 
   .chat-input-container {

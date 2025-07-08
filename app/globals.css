@@ -9,6 +9,7 @@
   --font-mono: var(--font-geist-mono);
   --color-primary: #ff6b35;
   --color-subtitle: #666;
+  --gradient-red-hover: linear-gradient(135deg, #ff014f 0%, #ff6b9d 100%);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -935,8 +936,9 @@ body:not(.white-version) .skill-name:hover {
 }
 
 .white-version .filter-btn:hover {
-  border-color: #10b981;
-  background: rgba(16, 185, 129, 0.1);
+  color: var(--color-body);
+  border-color: var(--color-primary);
+  background: rgba(var(--color-primary), 0.1);
 }
 
 .white-version .gallery-item {
@@ -1017,9 +1019,8 @@ body:not(.white-version) .modal-description {
   color: var(--color-light);
 }
 
-.white-version .chat-btn div:hover {
-  background: linear-gradient(135deg, #ff014f 0%, #ff6b9d 100%);
-  box-shadow: 0 8px 30px rgba(255, 1, 79, 0.3);
+.white-version .chat-btn:hover {
+  background: linear-gradient(135deg, #ff014f 0%, #ff6b9d 100%) !important;
 }
 
 /* Chat Widget Styles */
@@ -2677,7 +2678,7 @@ body:not(.white-version) .code-block {
   border-radius: 12px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1), 0 4px 16px rgba(0, 0, 0, 0.06),
     0 1px 0 rgba(255, 255, 255, 0.8) inset;
-   border: 1px solid rgba(0, 0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0, 0.08);
   max-width: 500px;
   min-width: 320px;
   position: relative;
@@ -3050,14 +3051,14 @@ body:not(.white-version) .filter-btn:hover {
 }
 
 .progress-percentage {
-  color: #ff014f;
+  color: var(--color-heading-wv);
   font-weight: 600;
 }
 
 .progress-bar-container {
   width: 100%;
   height: 8px;
-  background-color: #e5e7eb;
+  background-color: var(--color-light);
   border-radius: 4px;
   overflow: hidden;
   position: relative;
@@ -3065,7 +3066,7 @@ body:not(.white-version) .filter-btn:hover {
 
 .progress-bar-fill {
   height: 100%;
-  background-color: var(--color-primary);
+  background: var(--gradient-red-hover);
   transition: width 0.3s ease;
 }
 
@@ -3289,9 +3290,7 @@ body:not(.white-version) .filter-btn:hover {
   background: var(--background);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px 0 0 16px;
-  box-shadow: 
-    -4px 0 20px rgba(0, 0, 0, 0.1),
-    -2px 0 8px rgba(0, 0, 0, 0.05);
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1), -2px 0 8px rgba(0, 0, 0, 0.05);
   z-index: 1000;
   overflow: hidden;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -3305,9 +3304,7 @@ body:not(.white-version) .filter-btn:hover {
 .hire-me-side-popup.dark-mode {
   background: rgba(26, 26, 26, 0.95);
   border-color: rgba(255, 255, 255, 0.1);
-  box-shadow: 
-    -4px 0 20px rgba(0, 0, 0, 0.3),
-    -2px 0 8px rgba(0, 0, 0, 0.2);
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.3), -2px 0 8px rgba(0, 0, 0, 0.2);
 }
 
 .hire-me-close {
@@ -3471,7 +3468,8 @@ body:not(.white-version) .filter-btn:hover {
 
 /* Animations */
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
   50% {
@@ -3485,15 +3483,15 @@ body:not(.white-version) .filter-btn:hover {
     width: 280px;
     right: -280px;
   }
-  
+
   .hire-me-content {
     padding: 16px 14px 14px;
   }
-  
+
   .hire-me-title {
     font-size: 16px;
   }
-  
+
   .hire-me-description {
     font-size: 12px;
   }
@@ -3504,11 +3502,11 @@ body:not(.white-version) .filter-btn:hover {
     width: 260px;
     right: -260px;
   }
-  
+
   .hire-me-content {
     padding: 14px 12px 12px;
   }
-  
+
   .hire-me-btn {
     padding: 8px 12px;
     min-height: 32px;
@@ -3521,7 +3519,7 @@ body:not(.white-version) .filter-btn:hover {
   .hire-me-side-popup {
     transition: none;
   }
-  
+
   .status-dot {
     animation: none;
   }
@@ -3533,11 +3531,11 @@ body:not(.white-version) .filter-btn:hover {
     background: rgba(26, 26, 26, 0.95);
     border-color: rgba(255, 255, 255, 0.1);
   }
-  
+
   .avatar-status {
     background: #2a2a2a;
   }
-  
+
   .hire-me-contact-info {
     border-color: rgba(255, 255, 255, 0.1);
   }

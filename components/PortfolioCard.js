@@ -81,7 +81,10 @@ export default function PortfolioCard({ item, index }) {
               {status === "ongoing" && progress > 0 && (
                 <div className="project-progress">
                   <div className="progress-label">
-                    <span>Project Progress</span>
+                    <span style={{
+                      color: "var(--color-heading-wv)",
+
+                    }}>Project Progress</span>
                     <span className="progress-percentage">{progress}%</span>
                   </div>
                   <div className="progress-bar-container">
@@ -122,7 +125,7 @@ export default function PortfolioCard({ item, index }) {
               )}
 
               {/* View Details Button for all projects */}
-              <div className="portfolio-view-details">
+              {/* <div className="portfolio-view-details">
                 <Link
                   href={`/portfolio/${projectSlug}`}
                   className="portfolio-link view-details-link"
@@ -130,7 +133,7 @@ export default function PortfolioCard({ item, index }) {
                   <ArrowUpRight size={14} />
                   View Details
                 </Link>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

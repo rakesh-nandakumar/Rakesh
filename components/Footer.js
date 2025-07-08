@@ -1,8 +1,8 @@
 "use client";
 
-import Link from 'next/link';
-import aboutData from '@/data/about.json';
-import { useTheme } from '@/contexts/ThemeContext';
+import Link from "next/link";
+import aboutData from "@/data/about.json";
+import { useTheme } from "@/contexts/ThemeContext";
 import headerData from "../data/header.json";
 
 export default function Footer() {
@@ -14,11 +14,11 @@ export default function Footer() {
   // Define services offered
 
   const services = [
-    'Web Development',
-    'Mobile App Development',
-    'Cloud Solutions',
-    'Technical Consulting',
-    'API Development'
+    "Web Development",
+    "Mobile App Development",
+    "Cloud Solutions",
+    "Technical Consulting",
+    "API Development",
   ];
 
   return (
@@ -38,7 +38,10 @@ export default function Footer() {
 
               {/* Social Links */}
               <div className="social-icon-inner mt--30">
-                <ul className="social-icons d-flex liststyle" style={{ gap: '40px' }}>
+                <ul
+                  className="social-icons d-flex liststyle"
+                  style={{ gap: "40px" }}
+                >
                   {contact.linkedin && (
                     <li>
                       <Link

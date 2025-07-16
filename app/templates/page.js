@@ -1,45 +1,54 @@
 "use client";
 
 import React, { useState, useMemo, useEffect } from "react";
-import PortfolioCard from "@/components/PortfolioCard";
+import TemplateCard from "@/components/TemplateCard";
 import portfolioData from "@/data/portfolio.json";
 import BreadcrumbSchema from "@/components/BreadcrumbSchema";
 import Head from "next/head";
 
-export default function PortfolioSection() {
-  const [activeFilter, setActiveFilter] = useState("completed");
-  const portfolioItems = portfolioData;
-  // Filter projects based on status
+export default function TemplatesSection() {
+  const [activeFilter, setActiveFilter] = useState("available");
+  // Filter only items that have a price (templates for sale)
+  const templateItems = portfolioData.filter((item) => item.price);
+
+  // Filter templates based on availability
   const filteredProjects = useMemo(() => {
-    return portfolioItems.filter((item) => {
-      const status = item.status || "upcoming";
-      return status === activeFilter;
+    return templateItems.filter((item) => {
+      if (activeFilter === "available") {
+        return item.status === "completed"; // Only show completed templates as available
+      } else if (activeFilter === "coming-soon") {
+        return item.status === "ongoing" || item.status === "upcoming";
+      } else if (activeFilter === "all") {
+        return true; // Show all templates
+      }
+      return true;
     });
-  }, [activeFilter, portfolioItems]);
-  // Get counts for each status
+  }, [activeFilter, templateItems]);
+  // Get counts for each category
   const statusCounts = useMemo(() => {
-    const counts = portfolioItems.reduce((acc, item) => {
-      const status = item.status || "upcoming";
-      acc[status] = (acc[status] || 0) + 1;
-      return acc;
-    }, {});
+    const available = templateItems.filter(
+      (item) => item.status === "completed"
+    ).length;
+    const comingSoon = templateItems.filter(
+      (item) => item.status === "ongoing" || item.status === "upcoming"
+    ).length;
     return {
-      ongoing: counts.ongoing || 0,
-      completed: counts.completed || 0,
-      upcoming: counts.upcoming || 0,
+      available,
+      comingSoon,
+      total: templateItems.length,
     };
-  }, [portfolioItems]);
+  }, [templateItems]);
 
   // Set document title and meta tags
   useEffect(() => {
-    document.title = "Portfolio - Rakesh Nandakumar";
+    document.title = "Templates - Rakesh Nandakumar";
 
     // Update meta description
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
       metaDescription.setAttribute(
         "content",
-        "Explore Rakesh Nandakumar's portfolio of web applications, enterprise solutions, and technical projects built with Laravel, React, Vue.js, AWS, and more modern technologies."
+        "Browse and purchase premium web application templates and solutions. High-quality, professionally designed templates built with modern technologies like Laravel, React, Next.js, and more."
       );
     }
   }, []);
@@ -47,28 +56,41 @@ export default function PortfolioSection() {
   // Breadcrumb data
   const breadcrumbItems = [
     { name: "Home", url: "https://rakeshnandakumar.com" },
-    { name: "Portfolio", url: "https://rakeshnandakumar.com/portfolio" },
+    { name: "Templates", url: "https://rakeshnandakumar.com/templates" },
   ];
 
-  // Structured data for portfolio
-  const portfolioStructuredData = {
+  // Structured data for templates
+  const templateStructuredData = {
     "@context": "https://schema.org",
-    "@type": "CreativeWork",
-    name: "Rakesh Nandakumar's Portfolio",
+    "@type": "Store",
+    name: "Rakesh Nandakumar's Templates",
     description:
-      "A showcase of technical projects and contributions across various domains and technologies",
+      "Premium web application templates and solutions for sale. Professional, modern designs built with cutting-edge technologies.",
     author: {
       "@type": "Person",
       name: "Rakesh Nandakumar",
       jobTitle: "Full Stack Developer",
     },
-    mainEntity: portfolioItems.map((item) => ({
-      "@type": "SoftwareApplication",
-      name: item.title,
-      description: item.description || item.shortDescription,
-      applicationCategory: "WebApplication",
-      operatingSystem: "Cross-platform",
-    })),
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Web Application Templates",
+      itemListElement: templateItems.map((item) => ({
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "SoftwareApplication",
+          name: item.title,
+          description: item.description || item.shortDescription,
+          applicationCategory: "WebApplication",
+          operatingSystem: "Cross-platform",
+        },
+        price: item.price?.replace("$", ""),
+        priceCurrency: "USD",
+        availability:
+          item.status === "completed"
+            ? "https://schema.org/InStock"
+            : "https://schema.org/PreOrder",
+      })),
+    },
   };
 
   return (
@@ -77,18 +99,18 @@ export default function PortfolioSection() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(portfolioStructuredData),
+          __html: JSON.stringify(templateStructuredData),
         }}
       />
       <div
         className="rn-portfolio-area rn-section-gap section-separator"
-        id="portfolio"
+        id="templates"
       >
         <div className="container">
           <div className="row">
             <div className="col-lg-12">
               <div className="section-title text-center">
-                <h2 className="title">My Portfolio</h2>
+                <h2 className="title">Premium Templates</h2>
                 <p
                   className="description mt-5"
                   style={{
@@ -96,8 +118,9 @@ export default function PortfolioSection() {
                     marginBottom: "0px",
                   }}
                 >
-                  A showcase of my technical projects and contributions across
-                  various domains and technologies.
+                  Professional web application templates and solutions available
+                  for purchase. High-quality, modern designs built with
+                  cutting-edge technologies.
                 </p>
                 <p
                   className="description"
@@ -107,10 +130,8 @@ export default function PortfolioSection() {
                     fontStyle: "italic",
                   }}
                 >
-                  Note: This portfolio includes only a small percentage of my
-                  work - just projects that I have permission to publish or that
-                  are my personal creations. My professional portfolio is much
-                  more extensive.
+                  Ready-to-use templates that can save you months of development
+                  time. Contact us for customization and support services.
                 </p>
               </div>
             </div>
@@ -122,36 +143,50 @@ export default function PortfolioSection() {
                 <div className="filter-buttons">
                   <button
                     className={`filter-btn ${
-                      activeFilter === "completed" ? "active" : ""
+                      activeFilter === "available" ? "active" : ""
                     }`}
-                    onClick={() => setActiveFilter("completed")}
+                    onClick={() => setActiveFilter("available")}
                   >
-                    Completed ({statusCounts.completed})
+                    Available Now ({statusCounts.available})
                   </button>
                   <button
                     className={`filter-btn ${
-                      activeFilter === "ongoing" ? "active" : ""
+                      activeFilter === "coming-soon" ? "active" : ""
                     }`}
-                    onClick={() => setActiveFilter("ongoing")}
+                    onClick={() => setActiveFilter("coming-soon")}
                   >
-                    Ongoing ({statusCounts.ongoing})
+                    Coming Soon ({statusCounts.comingSoon})
                   </button>
                   <button
                     className={`filter-btn ${
-                      activeFilter === "upcoming" ? "active" : ""
+                      activeFilter === "all" ? "active" : ""
                     }`}
-                    onClick={() => setActiveFilter("upcoming")}
+                    onClick={() => setActiveFilter("all")}
                   >
-                    Upcoming ({statusCounts.upcoming})
+                    All Templates ({statusCounts.total})
                   </button>
                 </div>
               </div>
             </div>
           </div>
           <div className="row row--25 mt--10 mt_md--10 mt_sm--10">
-            {filteredProjects.map((item, index) => (
-              <PortfolioCard key={index} item={item} index={index} />
-            ))}
+            {filteredProjects.length > 0 ? (
+              filteredProjects.map((item, index) => (
+                <TemplateCard key={index} item={item} index={index} />
+              ))
+            ) : (
+              <div className="col-12">
+                <div className="text-center">
+                  <p className="description">
+                    {activeFilter === "available"
+                      ? "No templates are currently available for purchase."
+                      : activeFilter === "coming-soon"
+                      ? "No templates are currently in development."
+                      : "No templates found."}
+                  </p>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

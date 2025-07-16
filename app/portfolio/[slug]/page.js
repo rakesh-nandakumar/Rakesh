@@ -183,6 +183,33 @@ export default function PortfolioDetail({ params }) {
 
             {/* Project Details Sidebar */}
             <div className="project-sidebar">
+              {project.price && (
+                <div className="sidebar-section price-section">
+                  <h3 className="section-title-2">Template Price</h3>
+                  <div className="price-display">
+                    <span className="price-value">{project.price}</span>
+                    <span className="price-description">One-time purchase</span>
+                  </div>
+                  <div className="purchase-info">
+                    <p>Full source code included</p>
+                    <p>Documentation provided</p>
+                    <p>Basic support included</p>
+                  </div>
+                  <div className="purchase-actions">
+                    <Link
+                      href={`/contact?project=${encodeURIComponent(
+                        project.title
+                      )}&price=${encodeURIComponent(
+                        project.price
+                      )}&type=purchase`}
+                      className="purchase-button"
+                    >
+                      <Download size={16} />
+                      Purchase Now
+                    </Link>
+                  </div>
+                </div>
+              )}
               {/* Progress for Ongoing Projects */}
               {project.status === "ongoing" && project.progress > 0 && (
                 <div className="sidebar-section progress-section">

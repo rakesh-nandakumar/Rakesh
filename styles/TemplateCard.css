@@ -1,0 +1,249 @@
+/* Template Card Specific Styles */
+
+.template-card {
+  position: relative;
+}
+
+.template-card .thumbnail {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Price Overlay */
+.price-overlay {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: var(--gradient-red-hover);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 2;
+}
+
+.price-overlay .price {
+  display: block;
+}
+
+/* Availability Badge */
+.availability-badge {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  padding: 6px 12px;
+  border-radius: 15px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  z-index: 2;
+}
+
+.availability-available {
+  background: linear-gradient(135deg, #4caf50, #45a049);
+  color: white;
+}
+
+.availability-coming-soon {
+  background: linear-gradient(135deg, #ff9800, #f57c00);
+  color: white;
+}
+
+.availability-pre-order {
+  background: linear-gradient(135deg, #9c27b0, #7b1fa2);
+  color: white;
+}
+
+/* Template Price in Content */
+.template-price {
+  margin: 15px 0;
+  padding: 10px 0;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.price-label {
+  color: var(--color-text-light);
+  font-size: 14px;
+  margin-right: 8px;
+}
+
+.price-value {
+  color: var(--color-primary) !important;
+  font-size: 18px !important;
+  font-weight: 600 !important;
+}
+
+/* Template Demo Links */
+.template-demo-links {
+  margin-bottom: 15px;
+}
+
+/* Purchase Buttons */
+.template-actions {
+  margin-bottom: 15px;
+}
+
+.purchase-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.btn-purchase {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  flex: 1;
+  justify-content: center;
+  min-width: 120px;
+}
+
+.btn-purchase.primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: 2px solid transparent;
+}
+
+.btn-purchase.primary:hover {
+  background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  color: white;
+}
+
+.btn-purchase.secondary {
+  background: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+}
+
+.btn-purchase.secondary:hover {
+  background: var(--color-primary);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(var(--color-primary-rgb), 0.4);
+}
+
+/* Template Actions Row - Flexbox layout for demo link and purchase button */
+.template-actions-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 15px;
+  padding: 10px 0;
+}
+
+/* Purchase Button - Special styling */
+.purchase-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: var(--gradient-red-hover);
+  color: white !important;
+  text-decoration: none;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: none;
+  box-shadow: var(--shadow-white-3);
+  white-space: nowrap;
+}
+
+.purchase-btn:hover {
+  background: var(--gradient-red-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-white-3);
+  color: white !important;
+  text-decoration: none;
+}
+
+.purchase-btn:active {
+  transform: translateY(0);
+}
+
+/* Live Demo Link in actions row */
+.template-actions-row .live-link {
+  flex: 1;
+  text-align: left;
+}
+
+/* Template View Details */
+.template-view-details {
+  text-align: center;
+  padding-top: 10px;
+  border-top: 1px solid var(--color-border);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .purchase-buttons {
+    flex-direction: column;
+  }
+
+  .btn-purchase {
+    min-width: 100%;
+  }
+
+  .price-overlay {
+    top: 10px;
+    right: 10px;
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  .availability-badge {
+    top: 10px;
+    left: 10px;
+    padding: 4px 8px;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 576px) {
+  .template-actions-row {
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+
+  .template-actions-row .live-link {
+    text-align: center;
+  }
+
+  .purchase-btn {
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+/* Dark theme adjustments */
+[data-theme="dark"] .template-price {
+  border-color: var(--color-border-dark);
+}
+
+[data-theme="dark"] .btn-purchase.secondary {
+  border-color: var(--color-primary-dark);
+  color: var(--color-primary-dark);
+}
+
+[data-theme="dark"] .btn-purchase.secondary:hover {
+  background: var(--color-primary-dark);
+}
+
+[data-theme="dark"] .template-view-details {
+  border-color: var(--color-border-dark);
+}

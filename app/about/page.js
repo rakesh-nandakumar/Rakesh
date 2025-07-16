@@ -10,6 +10,7 @@ import BlogSection from "@/components/BlogSection";
 import AboutSection from "@/components/AboutSection";
 import SkillsSection from "@/components/SkillsSection";
 import GallerySection from "@/components/GallerySection";
+import galleryData from "@/data/gallery.json";
 import { Calendar, Clock } from "react-feather";
 import { ExternalLink, GitHub } from "react-feather";
 
@@ -85,7 +86,7 @@ export default function About() {
         <TimelineComponent />
         <ResumeSection />
         <SkillsSection />
-        <GallerySection />
+        {galleryData.galleryOn && <GallerySection />}
       </div>
     </>
   );

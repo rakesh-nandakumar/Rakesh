@@ -86,7 +86,8 @@
     "githubLink": "https://github.com/example/warehouse-temp-alert",
     "featured": true,
     "status": "completed",
-    "type": "personal"
+    "type": "personal",
+    "price": "$15"
   },
   {
     "image": "/projects/apiit.png",

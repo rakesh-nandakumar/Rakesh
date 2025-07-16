@@ -1,4 +1,4 @@
-import { ExternalLink, GitHub, ArrowUpRight } from "react-feather";
+import { ExternalLink, GitHub, ArrowUpRight, Download } from "react-feather";
 import Link from "next/link";
 
 export default function PortfolioCard({ item, index }) {
@@ -81,10 +81,13 @@ export default function PortfolioCard({ item, index }) {
               {status === "ongoing" && progress > 0 && (
                 <div className="project-progress">
                   <div className="progress-label">
-                    <span style={{
-                      color: "var(--color-heading-wv)",
-
-                    }}>Project Progress</span>
+                    <span
+                      style={{
+                        color: "var(--color-heading-wv)",
+                      }}
+                    >
+                      Project Progress
+                    </span>
                     <span className="progress-percentage">{progress}%</span>
                   </div>
                   <div className="progress-bar-container">
@@ -121,6 +124,21 @@ export default function PortfolioCard({ item, index }) {
                       GitHub
                     </a>
                   )}
+                </div>
+              )}
+
+              {/* Purchase Button for projects with price */}
+              {item.price && (
+                <div className="portfolio-purchase">
+                  <Link
+                    href={`/contact?project=${encodeURIComponent(
+                      item.title
+                    )}&price=${encodeURIComponent(item.price)}&type=purchase`}
+                    className="portfolio-link purchase-link"
+                  >
+                    <Download size={14} />
+                    Purchase - {item.price}
+                  </Link>
                 </div>
               )}
 

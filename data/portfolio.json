@@ -137,5 +137,27 @@
     "featured": true,
     "status": "completed",
     "type": "personal"
+  },
+  {
+    "image": "/projects/apilite.png",
+    "category": "Development Tools",
+    "title": "APILite",
+    "shortDescription": "A sleek and powerful Postman-lite API request builder with modern UI and enhanced request/response workflows.",
+    "longDescription": "Designed and built a lightweight yet feature-rich API testing tool that streamlines the process of crafting, sending, and inspecting HTTP requests. APILite features method toggles, header and query param editors, raw/form/x-www support, and a dynamic response viewer with syntax highlighting. Requests can be saved, organized, and re-executed via a built-in history manager. The application focuses heavily on user experience with dark-mode UI, intuitive animations, local storage persistence, and real-time validation feedback. Ideal for developers looking for a fast, clean, browser-based alternative to Postman.",
+    "technologies": [
+      "React",
+      "TypeScript",
+      "Vite",
+      "ShadCN UI",
+      "Tailwind CSS",
+      "React Query",
+      "Lucide Icons",
+      "Prism.js"
+    ],
+    "liveLink": "https://apilite.rakeshn.com/",
+    "featured": true,
+    "status": "completed",
+    "type": "personal"
   }
+
 ]

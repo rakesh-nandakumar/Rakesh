@@ -128,7 +128,7 @@ export default function PortfolioCard({ item, index }) {
               )}
 
               {/* Purchase Button for projects with price */}
-              {item.price && (
+              {/* {item.price && (
                 <div className="portfolio-purchase">
                   <Link
                     href={`/contact?project=${encodeURIComponent(
@@ -140,7 +140,7 @@ export default function PortfolioCard({ item, index }) {
                     Purchase - {item.price}
                   </Link>
                 </div>
-              )}
+              )} */}
 
               {/* View Details Button for all projects */}
               {/* <div className="portfolio-view-details">

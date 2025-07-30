@@ -7,6 +7,7 @@ import "../styles/ChatButton.css";
 const ChatButton = () => {
   const { resolvedTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const [messages, setMessages] = useState([
     {
       id: 1,
@@ -26,6 +27,17 @@ const ChatButton = () => {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   const toggleChat = () => {
     setIsOpen(!isOpen);
@@ -171,8 +183,8 @@ const ChatButton = () => {
             onClick={(e) => e.stopPropagation()}
             style={{
               maxHeight: "80vh",
-              height: "600px",
-              maxWidth: "500px",
+              height: isMobile ? "calc(100vh - 4rem)" : "600px",
+              maxWidth: isMobile ? "calc(100vw - 2rem)" : "500px",
               margin: "auto",
             }}
           >
@@ -185,7 +197,7 @@ const ChatButton = () => {
                 height: "100%",
                 display: "flex",
                 flexDirection: "column",
-                padding: "10px 20px",
+                padding: isMobile ? "15px 20px" : "10px 20px",
               }}
             >
               <div
@@ -199,7 +211,7 @@ const ChatButton = () => {
                   justifyContent: "space-between",
                   flexWrap: "nowrap",
                   gap: "8px",
-                  padding: "12px 16px",
+                  padding: isMobile ? "16px 20px" : "12px 16px",
                 }}
               >
                 {/* Avatar */}
@@ -208,10 +220,10 @@ const ChatButton = () => {
                   style={{
                     background: "var(--color-primary)",
                     borderRadius: "50%",
-                    width: "40px",
-                    height: "40px",
-                    minWidth: "40px",
-                    minHeight: "40px",
+                    width: isMobile ? "44px" : "40px",
+                    height: isMobile ? "44px" : "40px",
+                    minWidth: isMobile ? "44px" : "40px",
+                    minHeight: isMobile ? "44px" : "40px",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -227,7 +239,10 @@ const ChatButton = () => {
                     viewBox="0 0 24 24"
                     strokeWidth="1.5"
                     stroke="white"
-                    style={{ width: "18px", height: "18px" }}
+                    style={{
+                      width: isMobile ? "20px" : "18px",
+                      height: isMobile ? "20px" : "18px",
+                    }}
                   >
                     <path
                       strokeLinecap="round"
@@ -246,7 +261,7 @@ const ChatButton = () => {
                     className="chat-title"
                     style={{
                       color: "#333",
-                      fontSize: "16px",
+                      fontSize: isMobile ? "18px" : "16px",
                       fontWeight: "600",
                       margin: "0",
                       lineHeight: "1.2",
@@ -261,7 +276,7 @@ const ChatButton = () => {
                     className="chat-status"
                     style={{
                       color: "#666",
-                      fontSize: "12px",
+                      fontSize: isMobile ? "14px" : "12px",
                       lineHeight: "1",
                       whiteSpace: "nowrap",
                       display: "flex",
@@ -299,11 +314,16 @@ const ChatButton = () => {
                     onClick={clearConversation}
                     aria-label="Clear conversation"
                     title="Clear conversation"
+                    style={{
+                      width: isMobile ? "36px" : "32px",
+                      height: isMobile ? "36px" : "32px",
+                      minWidth: isMobile ? "36px" : "32px",
+                    }}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      width="18"
-                      height="18"
+                      width={isMobile ? "20" : "18"}
+                      height={isMobile ? "20" : "18"}
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
@@ -324,11 +344,16 @@ const ChatButton = () => {
                     onClick={toggleChat}
                     aria-label="Close"
                     title="Close chat"
+                    style={{
+                      width: isMobile ? "36px" : "32px",
+                      height: isMobile ? "36px" : "32px",
+                      minWidth: isMobile ? "36px" : "32px",
+                    }}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      width="18"
-                      height="18"
+                      width={isMobile ? "20" : "18"}
+                      height={isMobile ? "20" : "18"}
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
@@ -361,7 +386,7 @@ const ChatButton = () => {
                     overflowY: "auto",
                     marginBottom: "15px",
                     borderRadius: "12px",
-                    padding: "15px",
+                    padding: isMobile ? "18px" : "15px",
                     border: "1px solid var(--color-lightn)",
                   }}
                 >
@@ -404,7 +429,7 @@ const ChatButton = () => {
                     gap: "8px",
                     flexShrink: "0",
                     marginTop: "auto",
-                    padding: "6px 10px",
+                    padding: isMobile ? "10px 12px" : "6px 10px",
                   }}
                 >
                   <input
@@ -412,7 +437,11 @@ const ChatButton = () => {
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                     onKeyPress={handleKeyPress}
-                    placeholder="Ask me about Rakesh's experience, skills, or projects..."
+                    placeholder={
+                      isMobile
+                        ? "Ask about Rakesh..."
+                        : "Ask me about Rakesh's experience, skills, or projects..."
+                    }
                     className="chat-input"
                     disabled={isLoading}
                     aria-label="Type your message"
@@ -421,10 +450,10 @@ const ChatButton = () => {
                       border: "none",
                       outline: "none",
                       backgroundColor: "transparent",
-                      padding: "6px 8px",
-                      fontSize: "14px",
+                      padding: isMobile ? "10px 12px" : "6px 8px",
+                      fontSize: isMobile ? "16px" : "14px",
                       color: "#333",
-                      minHeight: "20px",
+                      minHeight: isMobile ? "24px" : "20px",
                     }}
                   />
                   <button
@@ -436,15 +465,15 @@ const ChatButton = () => {
                       color: "white",
                       border: "none",
                       borderRadius: "8px",
-                      padding: "6px 8px",
+                      padding: isMobile ? "10px 12px" : "6px 8px",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
                       cursor: "pointer",
                       opacity: isLoading || !inputValue.trim() ? "0.5" : "1",
                       transition: "opacity 0.2s",
-                      minWidth: "32px",
-                      height: "32px",
+                      minWidth: isMobile ? "40px" : "32px",
+                      height: isMobile ? "40px" : "32px",
                     }}
                   >
                     <svg
@@ -454,6 +483,10 @@ const ChatButton = () => {
                       strokeWidth="1.5"
                       stroke="currentColor"
                       className="size-4"
+                      style={{
+                        width: isMobile ? "18px" : "16px",
+                        height: isMobile ? "18px" : "16px",
+                      }}
                     >
                       <path
                         strokeLinecap="round"

@@ -90,46 +90,6 @@
     "price": "$15"
   },
   {
-    "image": "/projects/apiit.png",
-    "category": "Mobile Development",
-    "title": "E-Commerce Mobile App",
-    "shortDescription": "A comprehensive mobile e-commerce application with real-time inventory and payment integration",
-    "longDescription": "Building a full-featured mobile e-commerce app using React Native with real-time inventory management, secure payment processing, user authentication, shopping cart functionality, and push notifications. Integrating with Firebase for backend services and Stripe for payment processing.",
-    "technologies": [
-      "React Native",
-      "Firebase",
-      "Stripe",
-      "Redux",
-      "TypeScript"
-    ],
-    "liveLink": "https://example.com/ecommerce-app",
-    "githubLink": "https://github.com/example/ecommerce-app",
-    "featured": false,
-    "status": "ongoing",
-    "progress": 30,
-    "type": "personal"
-  },
-  {
-    "image": "/projects/csc.png",
-    "category": "AI/ML",
-    "title": "AI Content Generator Platform",
-    "shortDescription": "An AI-powered platform for generating marketing content using GPT-4 and image generation APIs",
-    "longDescription": "Developing an intelligent content creation platform that leverages GPT-4 for text generation and DALL-E for image creation. Features include template management, brand voice customization, content scheduling, and analytics dashboard. Built with Next.js and integrated with OpenAI APIs.",
-    "technologies": [
-      "Next.js",
-      "OpenAI API",
-      "PostgreSQL",
-      "Prisma",
-      "Tailwind CSS"
-    ],
-    "liveLink": "https://example.com/ai-content-generator",
-    "githubLink": "https://github.com/example/ai-content-generator",
-    "featured": false,
-    "status": "ongoing",
-    "progress": 65,
-    "type": "freelance"
-  },
-  {
     "image": "/projects/pm.png",
     "category": "Web Development",
     "title": "Social Media Analytics Dashboard",
@@ -158,17 +118,24 @@
     "type": "personal"
   },
   {
-    "image": "/projects/warehouse-alert.png",
-    "category": "DevOps",
-    "title": "Cloud Infrastructure Automation",
-    "shortDescription": "Automated cloud infrastructure deployment and management system using Terraform and Kubernetes",
-    "longDescription": "Developing a comprehensive cloud infrastructure automation platform that handles deployment, scaling, monitoring, and management of applications across multiple cloud providers. Includes CI/CD pipeline integration, cost optimization, and security compliance monitoring.",
-    "technologies": ["Terraform", "Kubernetes", "Docker", "AWS", "Jenkins"],
-    "liveLink": "https://example.com/cloud-automation",
-    "githubLink": "https://github.com/example/cloud-automation",
-    "featured": false,
-    "status": "ongoing",
-    "progress": 92,
-    "type": "work"
+    "image": "/projects/sql-script-shaper.png",
+    "category": "Development Tools",
+    "title": "SQL Script Shaper",
+    "shortDescription": "A modern web application that converts CSV and Excel files into ready-to-use SQL INSERT statements with customizable options",
+    "longDescription": "Developed a streamlined web tool that transforms spreadsheet data into SQL database scripts instantly. The application features drag-and-drop file upload supporting both CSV and Excel formats, real-time data preview with validation, customizable SQL generation options including table naming, DROP TABLE statements, and string wrapping preferences. Built with a modern React interface using ShadCN UI components, particle background animations, and toast notifications for enhanced user experience. Includes intelligent data type detection, automatic table name generation from filenames, and comprehensive error handling for robust file processing.",
+    "technologies": [
+      "React",
+      "TypeScript",
+      "Vite",
+      "ShadCN UI",
+      "Tailwind CSS",
+      "XLSX",
+      "React Query",
+      "Lucide Icons"
+    ],
+    "liveLink": "https://sql-script-shaper.rakeshn.com/",
+    "featured": true,
+    "status": "completed",
+    "type": "personal"
   }
 ]

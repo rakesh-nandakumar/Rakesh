@@ -15,7 +15,6 @@
       "Docker",
       "SEO"
     ],
-    "liveLink": "https://example.com/apiit-university-blog",
     "githubLink": "https://github.com/example/apiit-university-blog",
     "featured": true,
     "status": "completed",
@@ -28,13 +27,10 @@
     "shortDescription": "Enterprise-level web solution for a not-for-profit social club connecting Sri Lankan cricket enthusiasts in Canada",
     "longDescription": "Developed a comprehensive platform for Ceylon Sports Club featuring sports & team management, membership systems, event booking with calendar integration, document management with version control, and a blog for club updates. Implemented robust security through middlewares, gates, and policies, with background jobs and queues for efficient email notifications and form processing. The platform serves the growing Sri Lankan cricket community in Canada with SEO optimizations for enhanced visibility.",
     "technologies": ["Next.js", "React", "Bootstrap", "MongoDB", "AWS", "SEO"],
-    "liveLink": "https://example.com/ceylon-sports-club",
     "githubLink": "https://github.com/example/ceylon-sports-club",
     "featured": true,
-    "status": "ongoing",
-    "progress": 75,
-    "type": "freelance",
-    "price": "$20"
+    "status": "completed",
+    "type": "work"
   },
   {
     "image": "/projects/pm.png",
@@ -43,11 +39,10 @@
     "shortDescription": "Advanced project management platform with Gemini AI integration for intelligent task automation and insights",
     "longDescription": "Engineered a cutting-edge project management solution that leverages Gemini AI to provide intelligent workflow suggestions, automate routine tasks, and deliver data-driven insights. The platform features real-time collaboration, customizable dashboards, resource allocation optimization, and predictive analytics for project timelines. Built with a robust ASP.NET backend and responsive React frontend with Redux state management for optimal performance and scalability.",
     "technologies": ["ASP.NET", "React", "Redux", "Gemini AI", "SQL Server"],
-    "liveLink": "https://example.com/next-gen-pm",
     "githubLink": "https://github.com/example/next-gen-pm",
     "featured": true,
-    "status": "upcoming",
-    "type": "work"
+    "status": "completed",
+    "type": "feelance"
   },
   {
     "image": "/projects/justlistenit.png",
@@ -62,59 +57,8 @@
       "HTML",
       "CSS"
     ],
-    "liveLink": "https://example.com/justlistenit",
-    "githubLink": "https://github.com/example/justlistenit",
     "featured": false,
-    "status": "ongoing",
-    "progress": 45,
-    "type": "personal"
-  },
-  {
-    "image": "/projects/warehouse-alert.png",
-    "category": "IoT",
-    "title": "IoT Warehouse Temp Alert System",
-    "shortDescription": "An IoT system that triggers a buzzer alarm when warehouse temperature exceeds a defined threshold",
-    "longDescription": "Designed and implemented a low-cost IoT solution using Arduino to monitor warehouse temperature. The system utilizes a DHT11 temperature sensor to constantly read the environment, and activates a buzzer if the temperature exceeds a configurable safety limit. Ideal for environments where real-time overheating alerts are critical to protect goods or equipment. Built using basic components such as Arduino Uno, breadboard, buzzer, and jumper wires, powered via USB.",
-    "technologies": [
-      "Arduino",
-      "C++",
-      "DHT11 Sensor",
-      "IoT",
-      "Embedded Systems"
-    ],
-    "liveLink": "https://example.com/warehouse-temp-alert",
-    "githubLink": "https://github.com/example/warehouse-temp-alert",
-    "featured": true,
     "status": "completed",
-    "type": "personal",
-    "price": "$15"
-  },
-  {
-    "image": "/projects/pm.png",
-    "category": "Web Development",
-    "title": "Social Media Analytics Dashboard",
-    "shortDescription": "Real-time social media analytics dashboard with advanced reporting and competitor analysis",
-    "longDescription": "Creating a comprehensive social media analytics platform that aggregates data from multiple social platforms, provides real-time insights, competitor analysis, and automated reporting. Features include custom dashboards, scheduled reports, and team collaboration tools.",
-    "technologies": ["Vue.js", "Node.js", "MongoDB", "D3.js", "Socket.io"],
-    "liveLink": "https://example.com/social-analytics",
-    "githubLink": "https://github.com/example/social-analytics",
-    "featured": false,
-    "status": "ongoing",
-    "progress": 85,
-    "type": "work"
-  },
-  {
-    "image": "/projects/justlistenit.png",
-    "category": "Blockchain",
-    "title": "NFT Marketplace Platform",
-    "shortDescription": "Decentralized NFT marketplace with smart contracts and cryptocurrency payment integration",
-    "longDescription": "Building a decentralized NFT marketplace on Ethereum blockchain with smart contract integration, crypto wallet connectivity, auction functionality, and royalty management. Features include user profiles, collection management, and integrated payment processing.",
-    "technologies": ["React", "Solidity", "Web3.js", "Ethereum", "IPFS"],
-    "liveLink": "https://example.com/nft-marketplace",
-    "githubLink": "https://github.com/example/nft-marketplace",
-    "featured": false,
-    "status": "ongoing",
-    "progress": 15,
     "type": "personal"
   },
   {
@@ -158,6 +102,28 @@
     "featured": true,
     "status": "completed",
     "type": "personal"
-  }
-
+  },
+  {
+  "image": "/projects/ai-resume-matcher.png",
+  "category": "AI Tools",
+  "title": "AI Resume Matcher",
+  "shortDescription": "A smart resume analysis tool that ranks CVs based on job descriptions using Gemini AI with built-in ZIP parsing and real-time scoring.",
+  "longDescription": "AI Resume Matcher is an intelligent frontend-only tool that allows users to upload a ZIP file of CVs (PDF/DOCX/TXT) and input a job description. The application parses the resumes, compares them to the job requirements using Gemini API, and generates a match score with reasoning for each candidate. It features light/dark theme toggle, file validation, Supabase authentication, usage limits for free users, and a beautiful UI built with ShadCN components. Designed for quick assessments and ranking of candidates without a backend, this tool is ideal for HR professionals, recruiters, and startups.",
+  "technologies": [
+    "React",
+    "TypeScript",
+    "Vite",
+    "ShadCN UI",
+    "Tailwind CSS",
+    "JSZip",
+    "pdfjs-dist",
+    "@google/generative-ai",
+    "Supabase Auth"
+  ],
+  "liveLink": "https://ai-resume-matcher.rakeshn.com/",
+  "featured": true,
+      "status": "ongoing",
+    "progress": 90,
+  "type": "personal"
+}
 ]

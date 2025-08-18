@@ -80,6 +80,11 @@ export const metadata = {
   alternates: {
     canonical: "https://rakeshnandakumar.com",
   },
+  icons: {
+    icon: "/avatar.png",
+    shortcut: "/avatar.png",
+    apple: "/avatar.png",
+  },
 };
 
 export default function RootLayout({ children }) {

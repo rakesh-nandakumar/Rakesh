@@ -27,7 +27,7 @@
   ],
   "ctaButton": {
     "label": "Download CV",
-    "href": "#",
+    "href": "/cv.pdf",
     "target": "_blank"
   }
 }

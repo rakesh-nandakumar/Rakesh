@@ -29,9 +29,7 @@ const SkillsSection = () => {
                   />
                 </li>
                 <div className="skill-content">
-                  <h6 className="skill-name">
-                    {skill.name}
-                  </h6>
+                  <h6 className="skill-name">{skill.name}</h6>
                   <p className="skill-description">{skill.description}</p>
                 </div>
               </div>

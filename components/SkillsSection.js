@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import aboutData from "../data/about.json";
+import "../styles/SkillsSection.css";
 
 const SkillsSection = () => {
   // Get primary skills from about.json techStack
@@ -14,24 +15,10 @@ const SkillsSection = () => {
           <h2 className="title">Skills &amp; Technologies</h2>
         </div>
         <div className="skill-share-inner pt--100">
-          <ul
-            className="skill-share liststyle"
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(3, 1fr)",
-              gap: "20px",
-            }}
-          >
+          <ul className="skill-share liststyle skills-grid">
             {primarySkills.map((skill, index) => (
-              <div className="rn-blog d-flex gap-5 items-center" key={index}>
-                <li
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    padding: "12px",
-                  }}
-                >
+              <div className="rn-blog skill-card" key={index}>
+                <li className="skill-icon">
                   <Image
                     src={skill.icon}
                     alt={skill.name}
@@ -41,15 +28,8 @@ const SkillsSection = () => {
                     style={{ objectFit: "contain" }}
                   />
                 </li>
-                <div>
-                  <h6
-                    style={{
-                      fontSize: "16px",
-                      fontWeight: "600",
-                      margin: "0 0 8px 0",
-                    }}
-                    className="skill-name"
-                  >
+                <div className="skill-content">
+                  <h6 className="skill-name">
                     {skill.name}
                   </h6>
                   <p className="skill-description">{skill.description}</p>

@@ -118,41 +118,54 @@ const TimelineComponent = () => {
 
                   return (
                     <div
-                      key={item.id}
+                      key={index}
                       className="relative mb-16 flex items-center"
                     >
-
-                      {/* Left side card - right-aligned to timeline, stretches leftward */}
-                      {position === "left" && (
-                        <div className="w-1/2 flex justify-end z-20">
-                          <div className="w-full mr-12 flex justify-end">
-                            <TimelineCard
-                              item={item}
-                              position={position}
-                              isPast={!isActive}
-                            />
-                          </div>
+                      {/* Mobile Layout - Centered cards */}
+                      <div className="block sm:hidden w-full flex justify-center z-20">
+                        <div className="w-full px-4 flex justify-center">
+                          <TimelineCard
+                            item={item}
+                            position="center"
+                            isPast={!isActive}
+                          />
                         </div>
-                      )}
+                      </div>
 
-                      {/* Right side spacing for left cards */}
-                      {position === "left" && <div className="w-1/2"></div>}
-
-                      {/* Left side spacing for right cards */}
-                      {position === "right" && <div className="w-1/2"></div>}
-
-                      {/* Right side card - left-aligned to timeline, stretches rightward */}
-                      {position === "right" && (
-                        <div className="w-1/2 flex justify-start z-20">
-                          <div className="w-full ml-12 flex justify-start">
-                            <TimelineCard
-                              item={item}
-                              position={position}
-                              isPast={!isActive}
-                            />
+                      {/* Desktop/Tablet Layout - Alternating sides */}
+                      <div className="hidden sm:flex w-full items-center">
+                        {/* Left side card - right-aligned to timeline, stretches leftward */}
+                        {position === "left" && (
+                          <div className="w-1/2 flex justify-end z-20">
+                            <div className="w-full mr-12 flex justify-end">
+                              <TimelineCard
+                                item={item}
+                                position={position}
+                                isPast={!isActive}
+                              />
+                            </div>
                           </div>
-                        </div>
-                      )}
+                        )}
+
+                        {/* Right side spacing for left cards */}
+                        {position === "left" && <div className="w-1/2"></div>}
+
+                        {/* Left side spacing for right cards */}
+                        {position === "right" && <div className="w-1/2"></div>}
+
+                        {/* Right side card - left-aligned to timeline, stretches rightward */}
+                        {position === "right" && (
+                          <div className="w-1/2 flex justify-start z-20">
+                            <div className="w-full ml-12 flex justify-start">
+                              <TimelineCard
+                                item={item}
+                                position={position}
+                                isPast={!isActive}
+                              />
+                            </div>
+                          </div>
+                        )}
+                      </div>
                     </div>
                   );
                 })}

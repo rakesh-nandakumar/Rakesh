@@ -17,11 +17,15 @@ export default function ResumeSection() {
       <div className="container">
         <div className="personal-experience-inner">
           <div className="row">
-            <div className="personal-experience-inner">              <div className="row m--0">                {/* Start Experience List Area  */}
+            <div className="personal-experience-inner">
+              {" "}
+              <div className="row m--0">
+                {" "}
+                {/* Start Experience List Area  */}
                 <div className="col-lg-6 col-md-12 col-12">
                   <div className="content">
-                    <span className="subtitle">Experience</span>
-                    <h4 className="maintitle">Job Experience</h4>
+                    <span className="subtitle ps-4">Experience</span>
+                    <h4 className="maintitle ps-4">Job Experience</h4>
                     <div className="experience-list padding-none border-none">
                       {resumeData.experience.map((exp, index) => (
                         <div key={index} className="resume-single-list mt--30">
@@ -35,9 +39,7 @@ export default function ResumeSection() {
                                 <span>{exp.year}</span>
                               </div>
                             </div>
-                            <p className="description">
-                              {exp.description}
-                            </p>
+                            <p className="description">{exp.description}</p>
                           </div>
                         </div>
                       ))}
@@ -48,8 +50,8 @@ export default function ResumeSection() {
                 {/* Start Education List Area  */}
                 <div className="col-lg-6 col-md-12 col-12 mt_md--60 mt_sm--60">
                   <div className="content">
-                    <span className="subtitle">Education</span>
-                    <h4 className="maintitle">Education Quality</h4>
+                    <span className="subtitle ps-4">Education</span>
+                    <h4 className="maintitle ps-4">Education Quality</h4>
                     <div className="experience-list padding-none border-none">
                       {resumeData.education.map((edu, index) => (
                         <div key={index} className="resume-single-list mt--30">
@@ -57,14 +59,18 @@ export default function ResumeSection() {
                             <div className="heading">
                               <div className="title">
                                 <h4>{edu.degree}</h4>
-                                <span>{edu.institution} {edu.year && `(${edu.year})`}</span>
+                                <span>
+                                  {edu.institution}{" "}
+                                  {edu.year && `(${edu.year})`}
+                                </span>
                               </div>
                               <div className="date-of-time">
                                 <span>{edu.year || "Completed"}</span>
                               </div>
                             </div>
                             <p className="description">
-                              {edu.description || `Specialized degree in ${edu.degree} from ${edu.institution}.`}
+                              {edu.description ||
+                                `Specialized degree in ${edu.degree} from ${edu.institution}.`}
                             </p>
                           </div>
                         </div>

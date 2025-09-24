@@ -1,11 +1,13 @@
 import { NextResponse } from "next/server";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
-const GEMINI_API_URL =
-  "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent";
 
 // Import AI system prompt data
 import aiPromptData from "../../../data/ai-system-prompt.json";
+
+// Initialize the Google Generative AI client
+const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
 
 // Rate limiting map (in production, use Redis or a proper rate limiting service)
 const rateLimitMap = new Map();
@@ -163,46 +165,14 @@ export async function POST(request) {
       );
     }
 
-    // Build conversation context
-    const conversationContents = [];
-    // Add system prompt
-    conversationContents.push({
-      role: "user",
-      parts: [{ text: generateSystemPrompt() }],
-    });
-
-    conversationContents.push({
-      role: "model",
-      parts: [
-        {
-          text: "I understand. I'm ready to assist visitors with questions about Rakesh Nandakumar's portfolio, skills, and experience. How can I help?",
-        },
-      ],
-    });
-
-    // Add conversation history (last 10 messages to maintain context while limiting token usage)
-    const recentHistory = conversationHistory.slice(-10);
-    recentHistory.forEach((msg) => {
-      conversationContents.push({
-        role: msg.isBot ? "model" : "user",
-        parts: [{ text: sanitizeInput(msg.text) }],
-      });
-    });
-
-    // Add current message
-    conversationContents.push({
-      role: "user",
-      parts: [{ text: sanitizedMessage }],
-    });
-
-    const requestBody = {
-      contents: conversationContents,
+    // Get the Gemini model
+    const model = genAI.getGenerativeModel({
+      model: "gemini-2.0-flash-exp",
       generationConfig: {
         temperature: 0.7,
         topK: 40,
         topP: 0.95,
-        maxOutputTokens: 1024, // Reduced for more concise responses
-        candidateCount: 1,
+        maxOutputTokens: 1024,
       },
       safetySettings: [
         {
@@ -222,40 +192,34 @@ export async function POST(request) {
           threshold: "BLOCK_MEDIUM_AND_ABOVE",
         },
       ],
-    };
-
-    const response = await fetch(`${GEMINI_API_URL}?key=${GEMINI_API_KEY}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(requestBody),
     });
 
-    if (!response.ok) {
-      console.error("Gemini API error:", response.status, response.statusText);
+    // Build conversation history
+    const history = [];
 
-      // Handle specific error cases
-      if (response.status === 429) {
-        return NextResponse.json(
-          {
-            error:
-              "I'm experiencing high demand right now. Please try again in a moment.",
-          },
-          { status: 429 }
-        );
-      }
+    // Add conversation history (last 10 messages to maintain context)
+    const recentHistory = conversationHistory.slice(-10);
+    recentHistory.forEach((msg) => {
+      history.push({
+        role: msg.isBot ? "model" : "user",
+        parts: [{ text: sanitizeInput(msg.text) }],
+      });
+    });
 
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
+    // Start a chat session with history
+    const chat = model.startChat({
+      history: history,
+      systemInstruction: generateSystemPrompt(),
+    });
 
-    const data = await response.json();
+    // Send the message and get response
+    const result = await chat.sendMessage(sanitizedMessage);
+    const response = await result.response;
 
     // Handle blocked content
     if (
-      data.candidates &&
-      data.candidates[0] &&
-      data.candidates[0].finishReason === "SAFETY"
+      response.candidates &&
+      response.candidates[0]?.finishReason === "SAFETY"
     ) {
       return NextResponse.json({
         response:
@@ -263,22 +227,17 @@ export async function POST(request) {
       });
     }
 
-    if (data.candidates && data.candidates[0] && data.candidates[0].content) {
-      const botResponse = data.candidates[0].content.parts[0].text;
+    const botResponse = response.text();
 
-      // Additional response validation
-      if (!botResponse || botResponse.trim().length === 0) {
-        throw new Error("Empty response from AI");
-      }
-
-      return NextResponse.json({
-        response: botResponse.trim(),
-        timestamp: new Date().toISOString(),
-      });
-    } else {
-      console.error("Invalid response format:", data);
-      throw new Error("Invalid response format from Gemini API");
+    // Additional response validation
+    if (!botResponse || botResponse.trim().length === 0) {
+      throw new Error("Empty response from AI");
     }
+
+    return NextResponse.json({
+      response: botResponse.trim(),
+      timestamp: new Date().toISOString(),
+    });
   } catch (error) {
     console.error("Error calling Gemini API:", error);
 

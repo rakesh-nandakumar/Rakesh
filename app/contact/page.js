@@ -108,11 +108,13 @@ Thank you!`;
       return;
     }
 
-    // Verify reCAPTCHA
-    const recaptchaValue = recaptchaRef.current?.getValue();
-    if (!recaptchaValue) {
-      showError("Please complete the reCAPTCHA verification.");
-      return;
+    // Verify reCAPTCHA (only if site key is available)
+    if (RECAPTCHA_CONFIG.siteKey) {
+      const recaptchaValue = recaptchaRef.current?.getValue();
+      if (!recaptchaValue) {
+        showError("Please complete the reCAPTCHA verification.");
+        return;
+      }
     }
 
     setIsSubmitting(true);
@@ -517,15 +519,17 @@ Thank you!`;
                     <div className="col-lg-12 lg:h-1/7"></div>
                     {/* reCAPTCHA */}
                     <div className="mt-auto">
-                      <div className="col-lg-12">
-                        <div className="form-group d-flex justify-content-center">
-                          <ReCAPTCHA
-                            ref={recaptchaRef}
-                            sitekey={RECAPTCHA_CONFIG.siteKey}
-                            theme="light"
-                          />
+                      {RECAPTCHA_CONFIG.siteKey && (
+                        <div className="col-lg-12">
+                          <div className="form-group d-flex justify-content-center">
+                            <ReCAPTCHA
+                              ref={recaptchaRef}
+                              sitekey={RECAPTCHA_CONFIG.siteKey}
+                              theme="light"
+                            />
+                          </div>
                         </div>
-                      </div>
+                      )}
                       <div className="col-lg-12">
                         <button
                           type="submit"

@@ -2,11 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { X, Menu } from "react-feather";
 import { useState, useEffect } from "react";
 
 export default function MobileMenu({ headerData }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const router = useRouter();
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -14,6 +16,11 @@ export default function MobileMenu({ headerData }) {
 
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
+  };
+
+  const handleNavigation = (href) => {
+    closeMobileMenu();
+    router.push(href);
   };
 
   // Close mobile menu when clicking outside
@@ -48,23 +55,23 @@ export default function MobileMenu({ headerData }) {
         className="hamberger-menu d-block d-xl-none"
         onClick={toggleMobileMenu}
         style={{
-          padding: '8px',
-          cursor: 'pointer',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          minWidth: '40px',
-          height: '40px',
-          marginLeft: '8px'
+          padding: "8px",
+          cursor: "pointer",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          minWidth: "40px",
+          height: "40px",
+          marginLeft: "8px",
         }}
       >
-        <Menu 
-          id="menuBtn" 
-          className="feather-menu humberger-menu mr-10" 
+        <Menu
+          id="menuBtn"
+          className="feather-menu humberger-menu mr-10"
           size={24}
-          style={{ 
-            color: 'var(--color-body)',
-            flexShrink: 0 
+          style={{
+            color: "var(--color-body)",
+            flexShrink: 0,
           }}
         />
       </div>
@@ -102,19 +109,19 @@ export default function MobileMenu({ headerData }) {
           </div>
           <div className="content">
             <nav className="mainmenu-nav">
-              <ul className="primary-menu nav nav-pills onepagenav">
+              <ul className="primary-menu nav nav-pills">
                 {headerData.navigation.map((item, index) => (
                   <li key={index} className="nav-item">
-                    <Link
+                    <a
                       href={item.href}
-                      className="nav-link smoth-animation"
+                      className="nav-link"
                       onClick={(e) => {
-                        // Don't prevent default, let Next.js handle the navigation
-                        closeMobileMenu();
+                        e.preventDefault();
+                        handleNavigation(item.href);
                       }}
                     >
                       {item.label}
-                    </Link>
+                    </a>
                   </li>
                 ))}
               </ul>
@@ -289,6 +296,8 @@ export default function MobileMenu({ headerData }) {
           display: flex;
           flex-direction: column;
           height: calc(100% - 120px);
+          position: relative;
+          z-index: 10001;
         }
 
         .primary-menu {
@@ -296,6 +305,8 @@ export default function MobileMenu({ headerData }) {
           padding: 0;
           margin: 0;
           flex: 1;
+          position: relative;
+          z-index: 10002;
         }
 
         .primary-menu .nav-item {
@@ -312,8 +323,9 @@ export default function MobileMenu({ headerData }) {
           border-bottom: 1px solid transparent;
           transition: all 0.3s ease;
           position: relative;
-          z-index: 10;
+          z-index: 10002;
           cursor: pointer;
+          pointer-events: auto;
         }
 
         .primary-menu .nav-link:hover,

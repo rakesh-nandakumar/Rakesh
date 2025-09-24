@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
+    "@google/generative-ai": "^0.24.1",
     "clsx": "^2.1.1",
     "critters": "^0.0.23",
     "framer-motion": "^12.15.0",

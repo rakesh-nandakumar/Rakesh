@@ -92,6 +92,16 @@ export function ThemeProvider({ children }) {
         const heroRect = heroSection.getBoundingClientRect();
         const headerRect = header.getBoundingClientRect();
 
+        // Add null checks for rect objects
+        if (
+          !heroRect ||
+          !headerRect ||
+          typeof heroRect.top === "undefined" ||
+          typeof headerRect.bottom === "undefined"
+        ) {
+          return;
+        }
+
         // Check if header is fixed/sticky and overlapping hero section
         const headerStyle = window.getComputedStyle(header);
         const isHeaderFixed =

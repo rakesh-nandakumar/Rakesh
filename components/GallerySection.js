@@ -19,6 +19,16 @@ const GallerySection = () => {
         const modal = document.querySelector(".modal-dialog");
         if (modal) {
           const modalRect = modal.getBoundingClientRect();
+
+          // Add null check for modalRect
+          if (
+            !modalRect ||
+            typeof modalRect.width === "undefined" ||
+            typeof modalRect.height === "undefined"
+          ) {
+            return;
+          }
+
           const modalWidth = modalRect.width;
           const modalHeight = modalRect.height;
 

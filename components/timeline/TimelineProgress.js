@@ -16,6 +16,10 @@ const TimelineProgress = () => {
       if (!progressRef.current || !timelineContainerRef.current) return;
 
       const timelineRect = timelineContainerRef.current.getBoundingClientRect();
+
+      // Add null check for timelineRect
+      if (!timelineRect || typeof timelineRect.top === "undefined") return;
+
       const windowHeight = window.innerHeight;
       const scrollTop =
         window.pageYOffset || document.documentElement.scrollTop;

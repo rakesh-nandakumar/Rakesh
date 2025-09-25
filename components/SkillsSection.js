@@ -17,19 +17,35 @@ const SkillsSection = () => {
         <div className="skill-share-inner pt--100">
           <ul className="skill-share liststyle skills-grid">
             {primarySkills.map((skill, index) => (
-              <div className="rn-blog skill-card" key={index}>
-                <li className="skill-icon">
+              <div className="rn-blog gap-5" key={index}>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    padding: "12px",
+                  }}
+                >
                   <Image
                     src={skill.icon}
                     alt={skill.name}
-                    width={48}
-                    height={48}
+                    width={50}
+                    height={50}
                     className={skill.darkMode ? "dark-mode-icon" : ""}
                     style={{ objectFit: "contain" }}
                   />
-                </li>
-                <div className="skill-content">
-                  <h6 className="skill-name">{skill.name}</h6>
+                </div>
+                <div>
+                  <h6
+                    style={{
+                      fontSize: "16px",
+                      fontWeight: "600",
+                      margin: "8px 0 8px 0",
+                    }}
+                    className="skill-name"
+                  >
+                    {skill.name}
+                  </h6>
                   <p className="skill-description">{skill.description}</p>
                 </div>
               </div>

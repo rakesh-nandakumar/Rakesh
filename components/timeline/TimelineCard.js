@@ -11,15 +11,22 @@ const TimelineCard = ({ item, position, isPast }) => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
+          if (entry.isIntersecting && entry.target && entry.target.classList) {
             if (position === "left") {
               entry.target.classList.add("animate-fade-in-right");
             } else {
               entry.target.classList.add("animate-fade-in-left");
             }
             if (isPast) {
+              const targetElement = entry.target;
               setTimeout(() => {
-                entry.target.classList.add("animate-scale-up");
+                if (
+                  targetElement &&
+                  targetElement.classList &&
+                  targetElement.isConnected
+                ) {
+                  targetElement.classList.add("animate-scale-up");
+                }
               }, 500);
             }
             observer.unobserve(entry.target);
@@ -40,7 +47,7 @@ const TimelineCard = ({ item, position, isPast }) => {
         observer.unobserve(currentRef);
       }
     };
-  }, [position, isPast]);
+  }, [position, isPast, showAchievements]);
 
   const getCategoryIcon = () => {
     switch (item.category) {
@@ -182,12 +189,7 @@ const TimelineCard = ({ item, position, isPast }) => {
 
   return (
     <div className="timeline-card">
-      <div
-        ref={cardRef}
-        data-bs-toggle="modal"
-        data-bs-target="#exampleModalCenter"
-        className="rn-portfolio"
-      >
+      <div ref={cardRef} className="rn-portfolio">
         <div className="inner">
           <div className="content">
             <div className="category-info">

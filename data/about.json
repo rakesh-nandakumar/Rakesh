@@ -97,7 +97,6 @@
   ],
   "timeline": [
     {
-      "id": 1,
       "time": "September 2024 - Present",
       "active": true,
       "title": "Software Engineer at Procons Infotech",
@@ -122,7 +121,6 @@
       "links": []
     },
     {
-      "id": 2,
       "time": "November 2023 - August 2024",
       "title": "Full Stack Developer at Webrubix IT Consulting Canada",
       "description": "Designed and developed web solutions for local and foreign clients using ASP.NET Core, React.js, Tailwind, and React Native",
@@ -144,7 +142,6 @@
       "links": []
     },
     {
-      "id": 3,
       "time": "February 2023 - Present",
       "active": true,
       "title": "Technical Consultant (Freelance)",
@@ -166,20 +163,18 @@
       "links": []
     },
     {
-      "id": 4,
       "time": "",
-      "title": "BSc (Hons) in Computer Science",
-      "description": "Degree from Staffordshire University UK",
+      "title": "Diploma in Computer Science",
+      "description": "Diploma from Asia Pacific Institute of Information Technology",
       "category": "education",
       "technologies": [],
       "achievements": [],
       "links": []
     },
     {
-      "id": 5,
       "time": "",
-      "title": "Diploma in Computer Science",
-      "description": "Diploma from Asia Pacific Institute of Information Technology",
+      "title": "BSc (Hons) in Computer Science",
+      "description": "Degree from Staffordshire University UK",
       "category": "education",
       "technologies": [],
       "achievements": [],

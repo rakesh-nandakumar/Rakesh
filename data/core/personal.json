@@ -1,0 +1,35 @@
+{
+  "profile": {
+    "name": "Rakesh Nandakumar",
+    "titles": [
+      "Software Engineer",
+      "Technical Consultant", 
+      "Full Stack Developer",
+      "Freelancer"
+    ],
+    "location": {
+      "city": "Colombo",
+      "country": "Sri Lanka",
+      "address": "704/ Rilaulla kandana"
+    },
+    "images": {
+      "profile": "/profileImg.jpg",
+      "hero": "/hero.jpg",
+      "avatar": "/avatar.png"
+    },
+    "shortBio": "With over 3+ years of hands-on experience in full-stack development, I bring more than just skills—I bring results. I've mastered Laravel, React, ASP.NET Core, and cloud technologies, consistently delivering scalable solutions for government clients and international companies.",
+    "longBio": "With over 3+ years of hands-on experience in full-stack development, I bring more than just skills, I bring results. I've worked with government clients, international companies, startups, and freelance projects, consistently delivering clean, scalable, and high-performance solutions. I learn incredibly fast and I understand technologies at their core, which means I don't just use tools, I master them.\n\nWhether it's Laravel, React, .NET, or anything in between, transitioning between stacks has never been a challenge for me. I take ownership, solve real problems, and push projects across the finish line. If you're looking for someone who brings confidence, adaptability, and serious capability to the table, I'm the right person.\n\nLet's build something amazing together."
+  },
+  "contact": {
+    "email": "Rakeshnandakumarr@gmail.com",
+    "phone": "+9476-375-5374",
+    "social": {
+      "linkedin": "https://linkedin.com/in/rakesh-nandakumar",
+      "github": "https://github.com/rakesh-nandakumar/",
+      "portfolio": "https://rakeshn.com/"
+    }
+  },
+  "documents": {
+    "cv": "/cv.pdf"
+  }
+}

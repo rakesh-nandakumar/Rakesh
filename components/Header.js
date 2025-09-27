@@ -39,7 +39,7 @@ export default function Header() {
           <div className="header-center">
             <nav
               id="sideNav"
-              className="mainmenu-nav navbar-example2 d-none d-xl-block onepagenav"
+              className="mainmenu-nav navbar-example2 d-none d-xl-block"
             >
               <ul className="primary-menu nav nav-pills">
                 {headerData.navigation.map((item, index) => (

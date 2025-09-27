@@ -7,6 +7,7 @@ import ChatButton from "@/components/ChatButton";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import FeatherInit from "@/components/FeatherInit";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import ErrorBoundary from "@/components/ErrorBoundary";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -149,16 +150,18 @@ export default function RootLayout({ children }) {
         data-target=".navbar-example2"
         data-offset="70"
       >
-        <ThemeProvider>
-          <GoogleAnalytics
-            GA_MEASUREMENT_ID={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}
-          />
-          <FeatherInit />
-          <Header />
-          {children}
-          <ChatButton />
-          <Footer />
-        </ThemeProvider>
+        <ErrorBoundary>
+          <ThemeProvider>
+            <GoogleAnalytics
+              GA_MEASUREMENT_ID={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}
+            />
+            <FeatherInit />
+            <Header />
+            {children}
+            <ChatButton />
+            <Footer />
+          </ThemeProvider>
+        </ErrorBoundary>
 
         <Script
           src="/assets/js/vendor/jquery.js"
@@ -180,6 +183,10 @@ export default function RootLayout({ children }) {
         <Script src="/assets/js/vendor/particles.js" strategy="lazyOnload" />
         <Script
           src="/assets/js/vendor/jquery-one-page-nav.js"
+          strategy="lazyOnload"
+        />
+        <Script
+          src="/assets/js/jquery-one-page-nav-fix.js"
           strategy="lazyOnload"
         />
         <Script src="/assets/js/main.js" strategy="lazyOnload" />

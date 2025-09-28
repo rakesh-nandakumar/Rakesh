@@ -25,7 +25,7 @@ export async function POST(request) {
             headers: {
               "Content-Type": "application/x-www-form-urlencoded",
             },
-            body: `secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${recaptchaToken}`,
+            body: `secret=${process.env.RECAPTCHA_SECRET}&response=${recaptchaToken}`,
           }
         );
 
@@ -53,7 +53,7 @@ export async function POST(request) {
     }
 
     // Create transporter using Gmail SMTP
-    const transporter = nodemailer.createTransporter({
+    const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
         user: EMAIL_CONFIG.user,
@@ -198,7 +198,7 @@ export async function POST(request) {
     // Send email
     const mailOptions = {
       from: `"Portfolio Contact Form" <${EMAIL_CONFIG.user}>`,
-      to: EMAIL_CONFIG.user,
+      to: EMAIL_CONFIG.recipient,
       replyTo: email,
       subject: `🚀 New Contact: ${subject}`,
       html: htmlContent,
@@ -235,7 +235,7 @@ Received: ${new Date().toLocaleString()}
     return NextResponse.json(
       {
         success: false,
-        error: "Failed to send email. Please try again later.",
+        error: "Email sending failed: " + error.message,
       },
       { status: 500 }
     );

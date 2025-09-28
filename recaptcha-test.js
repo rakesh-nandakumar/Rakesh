@@ -18,7 +18,7 @@ async function testRecaptchaIntegration() {
     console.log("✅ reCAPTCHA widget found on page");
   } else {
     console.log("❌ reCAPTCHA widget not found");
-    console.log("💡 Make sure NEXT_PUBLIC_RECAPTCHA_SITE_KEY is set in .env");
+    console.log("💡 Make sure NEXT_PUBLIC_RECAPTCHA_SITE is set in .env");
     return;
   }
 

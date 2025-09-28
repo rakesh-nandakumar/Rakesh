@@ -6,6 +6,15 @@ const withBundleAnalyzer = bundleAnalyzer({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Disable development overlays including FPS counter
+  devIndicators: {
+    position: "bottom-right",
+  },
+  experimental: {
+    turbo: {
+      rules: {},
+    },
+  },
   eslint: {
     ignoreDuringBuilds: false,
   },

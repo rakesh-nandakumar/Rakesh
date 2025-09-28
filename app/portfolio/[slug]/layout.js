@@ -10,7 +10,7 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
-  const slug = params.slug;
+  const { slug } = await params;
 
   // Find project by slug
   const project = portfolioData.find((item) => {

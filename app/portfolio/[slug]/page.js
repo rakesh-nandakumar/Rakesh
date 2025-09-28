@@ -29,7 +29,7 @@ import "./portfolio-detail.css";
 
 // Generate metadata for SEO
 export async function generateMetadata({ params }) {
-  const slug = params.slug;
+  const { slug } = await params;
 
   const project = portfolioData.find((item) => {
     const projectSlug = item.title
@@ -67,8 +67,8 @@ export async function generateStaticParams() {
   }));
 }
 
-export default function PortfolioDetail({ params }) {
-  const slug = params.slug;
+export default async function PortfolioDetail({ params }) {
+  const { slug } = await params;
 
   // Find project by converting title to slug format
   const project = portfolioData.find((item) => {

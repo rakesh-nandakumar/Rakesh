@@ -1,7 +1,7 @@
 import { getAllBlogSlugs } from "@/lib/blogUtils";
 import portfolioData from "@/data/portfolio.json";
 
-export default function sitemap() {
+export default async function sitemap() {
   const baseUrl = "https://rakeshnandakumar.com";
 
   // Static pages
@@ -41,7 +41,7 @@ export default function sitemap() {
   // Dynamic blog pages - with error handling
   let blogPages = [];
   try {
-    const blogSlugs = getAllBlogSlugs();
+    const blogSlugs = await getAllBlogSlugs();
     blogPages = blogSlugs.map((slug) => ({
       url: `${baseUrl}/blogs/${slug}`,
       lastModified: new Date(),

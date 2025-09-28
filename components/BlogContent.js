@@ -7,6 +7,10 @@ import rehypeHighlight from "rehype-highlight";
 import Link from "next/link";
 import Image from "next/image";
 import HireMePopup from "./HireMePopup";
+import TableOfContents from "./TableOfContents";
+import RelatedContent from "./RelatedContent";
+import BreadcrumbSchema from "./BreadcrumbSchema";
+import { SmartLink } from "./SmartLink";
 import "highlight.js/styles/github-dark.css";
 
 export default function BlogContent({ blog, relatedBlogs }) {
@@ -15,24 +19,45 @@ export default function BlogContent({ blog, relatedBlogs }) {
 
   return (
     <>
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://rakeshnandakumar.com" },
+          { name: "Blog", url: "https://rakeshnandakumar.com/blogs" },
+          {
+            name: blog.title,
+            url: `https://rakeshnandakumar.com/blogs/${blog.slug}`,
+          },
+        ]}
+      />
+
       <div
         className={`rn-blog-area rn-section-gap mt-20 ${
           isDarkMode ? "dark-mode" : "light-mode"
         }`}
       >
         <div className="container">
-          {/* Breadcrumb */}
-          {/* <div className="row">
-              <div className="col-lg-12">
-                <div className="blog-breadcrumb">
-                  <Link href="/blogs" className="breadcrumb-link">
-                    Blogs
-                  </Link>
-                  <span className="breadcrumb-separator">/</span>
-                  <span className="breadcrumb-current">{blog.title}</span>
-                </div>
-              </div>
-            </div> */}
+          {/* Breadcrumb Navigation */}
+          <div className="row">
+            <div className="col-lg-12">
+              <nav className="blog-breadcrumb" aria-label="Breadcrumb">
+                <ol className="breadcrumb-list">
+                  <li className="breadcrumb-item">
+                    <SmartLink href="/" className="breadcrumb-link">
+                      Home
+                    </SmartLink>
+                  </li>
+                  <li className="breadcrumb-item">
+                    <SmartLink href="/blogs" className="breadcrumb-link">
+                      Blog
+                    </SmartLink>
+                  </li>
+                  <li className="breadcrumb-item active" aria-current="page">
+                    {blog.title}
+                  </li>
+                </ol>
+              </nav>
+            </div>
+          </div>
 
           {/* Hero Section */}
           <div className="row">
@@ -59,19 +84,37 @@ export default function BlogContent({ blog, relatedBlogs }) {
 
                 <div className="blog-meta float-right">
                   <div className="meta-item">
-                    <span className="meta-label">Published</span>
-                    <span className="meta-value">
-                      {new Date(blog.publishDate).toLocaleDateString("en-US", {
+                    <time dateTime={blog.date} className="meta-label">
+                      Published:{" "}
+                      {new Date(
+                        blog.date || blog.publishDate
+                      ).toLocaleDateString("en-US", {
                         year: "numeric",
                         month: "long",
                         day: "numeric",
                       })}
-                    </span>
+                    </time>
                   </div>
                   <div className="meta-item">
                     <span className="meta-label">Read Time</span>
-                    <span className="meta-value">{blog.readTime}</span>
+                    <span className="meta-value">
+                      {blog.readingTime || blog.readTime}
+                    </span>
                   </div>
+                  {blog.wordCount && (
+                    <div className="meta-item">
+                      <span className="meta-label">Words</span>
+                      <span className="meta-value">
+                        {blog.wordCount.toLocaleString()}
+                      </span>
+                    </div>
+                  )}
+                  {blog.author && (
+                    <div className="meta-item">
+                      <span className="meta-label">By</span>
+                      <span className="meta-value">{blog.author}</span>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -112,106 +155,116 @@ export default function BlogContent({ blog, relatedBlogs }) {
       {/* Blog Content */}
       <section className="blog-content">
         <div className="container">
-          <div className="blog-content-wrapper">
-            <article className="blog-article">
-              <ReactMarkdown
-                remarkPlugins={[remarkGfm]}
-                rehypePlugins={[rehypeHighlight]}
-                components={{
-                  h1: ({ children }) => (
-                    <h1 className="content-h1">{children}</h1>
-                  ),
-                  h2: ({ children }) => (
-                    <h2 className="content-h2">{children}</h2>
-                  ),
-                  h3: ({ children }) => (
-                    <h3 className="content-h3">{children}</h3>
-                  ),
-                  p: ({ children }) => <p className="content-p">{children}</p>,
-                  blockquote: ({ children }) => (
-                    <blockquote className="content-quote">
-                      {children}
-                    </blockquote>
-                  ),
-                  code: ({ inline, children, ...props }) =>
-                    inline ? (
-                      <code className="inline-code" {...props}>
-                        {children}
-                      </code>
-                    ) : (
-                      <code className="code-block" {...props}>
-                        {children}
-                      </code>
-                    ),
-                  ul: ({ children }) => (
-                    <ul className="content-ul">{children}</ul>
-                  ),
-                  ol: ({ children }) => (
-                    <ol className="content-ol">{children}</ol>
-                  ),
-                  li: ({ children }) => (
-                    <li className="content-li">{children}</li>
-                  ),
-                  a: ({ href, children }) => (
-                    <a
-                      href={href}
-                      className="content-link"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {children}
-                    </a>
-                  ),
-                }}
-              >
-                {blog.content}
-              </ReactMarkdown>
-            </article>
+          <div className="row">
+            <div className="col-lg-8">
+              <div className="blog-content-wrapper">
+                <article
+                  className="blog-article"
+                  itemScope
+                  itemType="https://schema.org/BlogPosting"
+                >
+                  <ReactMarkdown
+                    remarkPlugins={[remarkGfm]}
+                    rehypePlugins={[rehypeHighlight]}
+                    components={{
+                      h1: ({ children }) => (
+                        <h1
+                          className="content-h1"
+                          id={children
+                            .toString()
+                            .toLowerCase()
+                            .replace(/\s+/g, "-")}
+                        >
+                          {children}
+                        </h1>
+                      ),
+                      h2: ({ children }) => (
+                        <h2
+                          className="content-h2"
+                          id={children
+                            .toString()
+                            .toLowerCase()
+                            .replace(/\s+/g, "-")}
+                        >
+                          {children}
+                        </h2>
+                      ),
+                      h3: ({ children }) => (
+                        <h3
+                          className="content-h3"
+                          id={children
+                            .toString()
+                            .toLowerCase()
+                            .replace(/\s+/g, "-")}
+                        >
+                          {children}
+                        </h3>
+                      ),
+                      p: ({ children }) => (
+                        <p className="content-p">{children}</p>
+                      ),
+                      blockquote: ({ children }) => (
+                        <blockquote className="content-quote">
+                          {children}
+                        </blockquote>
+                      ),
+                      code: ({ inline, children, ...props }) =>
+                        inline ? (
+                          <code className="inline-code" {...props}>
+                            {children}
+                          </code>
+                        ) : (
+                          <code className="code-block" {...props}>
+                            {children}
+                          </code>
+                        ),
+                      ul: ({ children }) => (
+                        <ul className="content-ul">{children}</ul>
+                      ),
+                      ol: ({ children }) => (
+                        <ol className="content-ol">{children}</ol>
+                      ),
+                      li: ({ children }) => (
+                        <li className="content-li">{children}</li>
+                      ),
+                      a: ({ href, children }) => (
+                        <a
+                          href={href}
+                          className="content-link"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {children}
+                        </a>
+                      ),
+                    }}
+                  >
+                    {blog.content}
+                  </ReactMarkdown>
+                </article>
+              </div>
+            </div>
+
+            {/* Sidebar with Table of Contents */}
+            <div className="col-lg-4">
+              <div className="blog-sidebar">
+                <TableOfContents content={blog.content} />
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Related Blogs */}
-      {relatedBlogs && relatedBlogs.length > 0 && (
-        <section className="related-blogs">
-          <div className="container">
-            <h2 className="related-title">Related Articles</h2>
-            <div className="related-grid">
-              {relatedBlogs.map((relatedBlog) => (
-                <Link
-                  key={relatedBlog.id}
-                  href={`/blogs/${relatedBlog.id}`}
-                  className="related-card"
-                >
-                  <div className="related-card-image">
-                    <Image
-                      src={relatedBlog.image}
-                      alt={relatedBlog.title}
-                      width={300}
-                      height={200}
-                      style={{ objectFit: "cover" }}
-                    />
-                  </div>
-                  <div className="related-card-content">
-                    <span className="related-category">
-                      {relatedBlog.category}
-                    </span>
-                    <h3 className="related-title">{relatedBlog.title}</h3>
-                    <p className="related-excerpt">{relatedBlog.excerpt}</p>
-                    <div className="related-meta">
-                      <span>{relatedBlog.readTime}</span>
-                      <span>•</span>
-                      <span>
-                        {new Date(relatedBlog.publishDate).toLocaleDateString()}
-                      </span>
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
+      {/* Related Content */}
+      <div className="container">
+        <RelatedContent
+          currentSlug={blog.slug}
+          currentTags={blog.tags || []}
+          currentCategory={blog.category}
+          type="blog"
+          maxItems={3}
+        />
+      </div>
       <HireMePopup showOnMount={true} />
     </>
   );

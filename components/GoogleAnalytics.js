@@ -1,8 +1,11 @@
 "use client";
 
 import Script from "next/script";
+import { ANALYTICS_CONFIG } from "@/lib/config";
 
-export default function GoogleAnalytics({ GA_MEASUREMENT_ID }) {
+export default function GoogleAnalytics() {
+  const GA_MEASUREMENT_ID = ANALYTICS_CONFIG.googleAnalyticsId;
+
   // Only render if GA_MEASUREMENT_ID is provided
   if (!GA_MEASUREMENT_ID) {
     return null;

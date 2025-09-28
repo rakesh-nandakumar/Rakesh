@@ -5,10 +5,13 @@ import {
 } from "../../../lib/blogUtils";
 import BlogContent from "../../../components/BlogContent";
 import { notFound } from "next/navigation";
+import { calculateReadingTime } from "@/lib/readingTime";
+import StructuredData from "@/components/StructuredData";
 
 // Generate metadata for SEO
 export async function generateMetadata({ params }) {
-  const blog = await getBlogBySlug(params.slug);
+  const { slug } = await params;
+  const blog = await getBlogBySlug(slug);
 
   if (!blog) {
     return {
@@ -72,7 +75,7 @@ export async function generateMetadata({ params }) {
       images: blog.image ? [blog.image] : ["/hero.jpg"],
     },
     alternates: {
-      canonical: `https://rakeshnandakumar.com/blogs/${params.slug}`,
+      canonical: `https://rakeshnandakumar.com/blogs/${slug}`,
     },
   };
 }
@@ -88,7 +91,7 @@ export async function generateStaticParams() {
 
 // Main blog post page component
 export default async function BlogPost({ params }) {
-  const { slug } = params;
+  const { slug } = await params;
 
   // Get blog data at build time
   const blog = await getBlogBySlug(slug);
@@ -97,8 +100,42 @@ export default async function BlogPost({ params }) {
     notFound();
   }
 
+  // Calculate reading time
+  const readingTime = calculateReadingTime(blog.content || blog.excerpt || "");
+
   // Get related blogs
   const relatedBlogs = await getRelatedBlogs(blog);
 
-  return <BlogContent blog={blog} relatedBlogs={relatedBlogs} />;
+  // Enhanced blog data with reading time
+  const enhancedBlog = {
+    ...blog,
+    readingTime: readingTime.text,
+    readingTimeMinutes: readingTime.minutes,
+    wordCount: readingTime.words,
+  };
+
+  return (
+    <>
+      <StructuredData
+        type="BlogPosting"
+        data={{
+          title: blog.title,
+          description: blog.excerpt,
+          image: blog.image
+            ? `https://rakeshnandakumar.com${blog.image}`
+            : "https://rakeshnandakumar.com/hero.jpg",
+          author: blog.author || "Rakesh Nandakumar",
+          datePublished: blog.date,
+          dateModified: blog.updatedDate || blog.date,
+          url: `https://rakeshnandakumar.com/blogs/${slug}`,
+          keywords: blog.tags,
+          category: blog.category,
+          wordCount: readingTime.words,
+          readingTime: readingTime.minutes,
+        }}
+      />
+
+      <BlogContent blog={enhancedBlog} relatedBlogs={relatedBlogs} />
+    </>
+  );
 }

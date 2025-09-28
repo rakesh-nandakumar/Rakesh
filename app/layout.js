@@ -8,6 +8,8 @@ import { ThemeProvider } from "@/contexts/ThemeContext";
 import FeatherInit from "@/components/FeatherInit";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import ErrorBoundary from "@/components/ErrorBoundary";
+import StructuredData from "@/components/StructuredData";
+import ClientComponents from "@/components/ClientComponents";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -111,36 +113,75 @@ export default function RootLayout({ children }) {
         <link rel="stylesheet" href="/assets/css/plugins/feature.css" />
         <link rel="stylesheet" href="/assets/css/style.css" />
 
-        {/* Structured Data for SEO */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Person",
-              name: "Rakesh Nandakumar",
-              jobTitle: "Full Stack Developer",
-              description:
-                "Experienced Full Stack Developer with 3+ years in Laravel, React, Vue.js, and AWS",
-              url: "https://rakeshnandakumar.com",
-              image: "https://rakeshnandakumar.com/profileImg.jpg",
-              sameAs: [
-                "https://linkedin.com/in/rakesh-nandakumar",
-                "https://github.com/rakesh-nandakumar",
-              ],
-              knowsAbout: [
-                "Laravel",
-                "React",
-                "Vue.js",
-                "AWS",
-                "Full Stack Development",
-                "Software Engineering",
-              ],
-              worksFor: {
-                "@type": "Organization",
-                name: "Procons Infotech",
-              },
-            }),
+        {/* Preload critical resources */}
+        <link
+          rel="preload"
+          href="/assets/css/vendor/bootstrap.min.css"
+          as="style"
+        />
+        <link
+          rel="preload"
+          href="/assets/fonts/feather.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+
+        {/* DNS prefetch for external resources */}
+        <link rel="dns-prefetch" href="//www.google-analytics.com" />
+        <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+
+        {/* RSS Feed */}
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="Rakesh Nandakumar Blog RSS Feed"
+          href="/api/rss"
+        />
+
+        <StructuredData
+          type="WebSite"
+          data={{
+            name: "Rakesh Nandakumar Portfolio",
+            url: "https://rakeshnandakumar.com",
+            description:
+              "Full Stack Developer & Software Engineer portfolio showcasing expertise in Laravel, React, Vue.js, and AWS",
+          }}
+        />
+
+        <StructuredData
+          type="Person"
+          data={{
+            name: "Rakesh Nandakumar",
+            jobTitle: "Full Stack Developer",
+            description:
+              "Experienced Full Stack Developer with 3+ years in Laravel, React, Vue.js, and AWS",
+            url: "https://rakeshnandakumar.com",
+            image: "https://rakeshnandakumar.com/profileImg.jpg",
+            email: "hello@rakeshnandakumar.com",
+            socialProfiles: [
+              "https://linkedin.com/in/rakesh-nandakumar",
+              "https://github.com/rakesh-nandakumar",
+            ],
+            skills: [
+              "Laravel",
+              "React",
+              "Vue.js",
+              "AWS",
+              "Full Stack Development",
+              "Software Engineering",
+              "JavaScript",
+              "PHP",
+              "MySQL",
+              "PostgreSQL",
+            ],
+            company: "Procons Infotech",
           }}
         />
       </head>
@@ -152,9 +193,8 @@ export default function RootLayout({ children }) {
       >
         <ErrorBoundary>
           <ThemeProvider>
-            <GoogleAnalytics
-              GA_MEASUREMENT_ID={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}
-            />
+            <GoogleAnalytics />
+            <ClientComponents />
             <FeatherInit />
             <Header />
             {children}

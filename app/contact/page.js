@@ -5,9 +5,8 @@ import FeatherInit from "@/components/FeatherInit";
 import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
-import emailjs from "@emailjs/browser";
 import ReCAPTCHA from "react-google-recaptcha";
-import { EMAILJS_CONFIG, RECAPTCHA_CONFIG } from "@/lib/config";
+import { RECAPTCHA_CONFIG } from "@/lib/config";
 import { useFormValidation } from "@/hooks/useFormValidation";
 import { useToast } from "@/hooks/useToast";
 import Toast from "@/components/Toast";
@@ -120,39 +119,42 @@ Thank you!`;
     setIsSubmitting(true);
 
     try {
-      // Send email using EmailJS
-      const templateParams = {
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
-        subject: formData.subject,
-        message: formData.message,
-        timestamp: new Date().toISOString(),
-        name: name,
-      };
-
-      await emailjs.send(
-        EMAILJS_CONFIG.serviceId,
-        EMAILJS_CONFIG.templateId,
-        templateParams,
-        EMAILJS_CONFIG.userId
-      );
-
-      showSuccess(
-        "Thank you! Your message has been sent successfully. I'll get back to you soon."
-      );
-
-      // Reset form
-      setFormData({
-        name: "",
-        phone: "",
-        email: "",
-        subject: "",
-        message: "",
+      // Send email using our API endpoint
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          subject: formData.subject,
+          message: formData.message,
+        }),
       });
-      recaptchaRef.current?.reset();
+
+      const result = await response.json();
+
+      if (result.success) {
+        showSuccess(
+          "Thank you! Your message has been sent successfully. I'll get back to you soon."
+        );
+
+        // Reset form
+        setFormData({
+          name: "",
+          phone: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
+        recaptchaRef.current?.reset();
+      } else {
+        showError(result.error || "Failed to send message. Please try again.");
+      }
     } catch (error) {
-      console.error("EmailJS error:", error);
+      console.error("Email sending error:", error);
       showError(
         "Sorry, there was an error sending your message. Please try again or contact me directly."
       );

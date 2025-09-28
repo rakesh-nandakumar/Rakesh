@@ -119,6 +119,11 @@ Thank you!`;
     setIsSubmitting(true);
 
     try {
+      // Get reCAPTCHA token if available
+      const recaptchaToken = RECAPTCHA_CONFIG.siteKey
+        ? recaptchaRef.current?.getValue()
+        : null;
+
       // Send email using our API endpoint
       const response = await fetch("/api/contact", {
         method: "POST",
@@ -131,6 +136,7 @@ Thank you!`;
           phone: formData.phone,
           subject: formData.subject,
           message: formData.message,
+          recaptchaToken: recaptchaToken,
         }),
       });
 

@@ -5,7 +5,7 @@ import { EMAIL_CONFIG } from "@/lib/config";
 export async function POST(request) {
   try {
     const body = await request.json();
-    const { name, email, phone, subject, message } = body;
+    const { name, email, phone, subject, message, recaptchaToken } = body;
 
     // Validate required fields
     if (!name || !email || !subject || !message) {
@@ -13,6 +13,34 @@ export async function POST(request) {
         { success: false, error: "All fields are required" },
         { status: 400 }
       );
+    }
+
+    // Verify reCAPTCHA token (if provided)
+    if (recaptchaToken) {
+      try {
+        const recaptchaResponse = await fetch(
+          "https://www.google.com/recaptcha/api/siteverify",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: `secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${recaptchaToken}`,
+          }
+        );
+
+        const recaptchaResult = await recaptchaResponse.json();
+
+        if (!recaptchaResult.success) {
+          return NextResponse.json(
+            { success: false, error: "reCAPTCHA verification failed" },
+            { status: 400 }
+          );
+        }
+      } catch (error) {
+        console.error("reCAPTCHA verification error:", error);
+        // Continue without reCAPTCHA verification in case of network issues
+      }
     }
 
     // Validate email format

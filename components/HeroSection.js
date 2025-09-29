@@ -5,7 +5,6 @@ import Link from "next/link";
 import aboutData from "@/data/about.json";
 
 export default function HeroSection() {
-  
   const { name, title, shortBio, heroImage, cvLink } = aboutData;
   return (
     <div
@@ -59,7 +58,10 @@ export default function HeroSection() {
                     </span>
                   </h1>
                   <div>
-                    <p className="description text-white mb-4">{shortBio}</p>
+                    <p
+                      className="description text-white mb-4"
+                      dangerouslySetInnerHTML={{ __html: shortBio }}
+                    />
                   </div>
                   {/* Call to Action Buttons */}
                   <div className="hero-cta-buttons pt-15 d-flex flex-column flex-sm-row gap-3">

@@ -6,6 +6,11 @@ import aboutData from "@/data/about.json";
 
 export default function HeroSection() {
   const { name, title, shortBio, heroImage, cvLink } = aboutData;
+
+  // Convert **text** to <strong>text</strong>
+  const formatBio = (text) => {
+    return text.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+  };
   return (
     <div
       className="rn-slider-area hero-section-responsive"
@@ -60,7 +65,7 @@ export default function HeroSection() {
                   <div>
                     <p
                       className="description text-white mb-4"
-                      dangerouslySetInnerHTML={{ __html: shortBio }}
+                      dangerouslySetInnerHTML={{ __html: formatBio(shortBio) }}
                     />
                   </div>
                   {/* Call to Action Buttons */}

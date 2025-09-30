@@ -4,6 +4,11 @@ import aboutData from "@/data/about.json";
 export default function AboutSection() {
   const { name, shortBio, longBio, profileImage, cvLink } = aboutData;
 
+  // Convert **text** to <strong>text</strong>
+  const formatBio = (text) => {
+    return text.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+  };
+
   // Split longBio into paragraphs for better display
   const bioParagraphs = longBio.split("\n\n");
 
@@ -46,9 +51,11 @@ export default function AboutSection() {
                 <h2 className="title">About Me</h2>
               </div>
               {bioParagraphs.map((paragraph, index) => (
-                <p key={index} className="discription">
-                  {paragraph}
-                </p>
+                <p
+                  key={index}
+                  className="discription"
+                  dangerouslySetInnerHTML={{ __html: formatBio(paragraph) }}
+                />
               ))}
               <a className="rn-btn" href={cvLink} download>
                 <span>DOWNLOAD MY CV</span>

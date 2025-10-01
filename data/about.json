@@ -7,7 +7,7 @@
     "Freelancer",
     "Lecturer"
   ],
-  "profileImage": "/profileImg.jpg",
+  "profileImage": "/profileImg.png",
   "heroImage": "/hero.jpg",
   "cvLink": "/cv.pdf",
   "shortBio": "With over **3+ years** of hands-on experience in full-stack development, I bring more than just skills, I bring results. I've mastered the art of understanding client needs and architecting precise tech solution on the most in-demand, up-to-date industry best practices and technologies, ensuring scalability for the future. I’ve consistently delivered impactful solutions for government contracts and international clients.",
@@ -31,19 +31,19 @@
       "title": "Software Engineer",
       "company": "Procons Infotech",
       "year": "SEPT 2024 - PRESENT",
-      "description": "Design and develop various web and Enterprise level software solutions for various government contracts. Developed countless web apps with Laravel, React, jQuery and Bootstrap CSS using agile methods. Built multi-vendor SaaS solutions with EC2 and storage services like S3 using AWS. Collaborated with web, WordPress, and mobile teams for integrated solutions. Implemented back-end systems for various business needs. Created APIs for mobile apps to ensure seamless integration. Consistently delivered clean, efficient, and well-documented code, improving application performance and security through routine code reviews."
+      "description": "Building enterprise-level systems for government contracts, working on large-scale, mission-critical applications where security, scalability, and reliability are non-negotiable. Developed multi-vendor SaaS platforms, complex APIs, and web solutions using Laravel, React, Vue, and AWS. Designed and optimized back-end architectures, integrated cross-platform solutions, and contributed to government-grade systems that require clean architecture, performance tuning, and rigorous security standards."
     },
     {
       "title": "Full Stack Developer",
-      "company": "Webrubix IT Consulting Canada",
+      "company": "Webrubix IT Consulting (Canada)",
       "year": "NOV 2023 - AUG 2024",
-      "description": "Designed and developed web solutions for local and foreign clients. Worked on multiple platforms based on ASP.NET core. Worked on a multi vendor application. Developed front-end features using React js, Tailwind, and React Native. Implemented REST APIs and ensured seamless integration with backend services. Maintained version control using Git and collaborated with the team through regular code reviews. Delivered clean, efficient, and well-documented code, enhancing application performance and security."
+      "description": "Delivered international projects for Canadian clients in a full-time remote role. Designed and built applications using ASP.NET Core, React, Node.js, and cloud-first architectures. Worked on multi-vendor systems, implemented modern front-end features with React + Tailwind, and built secure REST APIs. Ensured seamless integration across stacks, collaborated with international teams, and consistently delivered polished, production-ready software tailored for global clients."
     },
     {
       "title": "Technical Consultant",
       "company": "Freelance",
       "year": "FEB 2023 - PRESENT",
-      "description": "Full Stack Web Application Development, Enterprise Level System Development, Full Stack Mobile App Development (React Native), Chrome Extensions Development, IOT solutions (eg arduino)."
+      "description": "Started my career as a freelancer, where I delivered full-stack web and mobile applications, Chrome extensions, IoT and hardware-based solutions, and even machine learning projects. This role gave me direct client-facing experience, teaching me how to translate ideas into real solutions while managing end-to-end delivery—from requirement gathering and solution design to deployment and long-term support. Built a strong reputation for adaptability, problem-solving, and creating impactful solutions for both local and international clients."
     }
   ],
   "techStack": [
@@ -94,92 +94,6 @@
       "icon": "/tech-icons/chatgpt.svg",
       "darkMode": true,
       "description": "Strong experience integrating ChatGPT for chatbots, AI-powered analytics, content generation, and support automation."
-    }
-  ],
-  "timeline": [
-    {
-      "time": "September 2024 - Present",
-      "active": true,
-      "title": "Software Engineer at Procons Infotech",
-      "description": "Designing and developing web and Enterprise level software solutions for government contracts using Laravel, React, jQuery, Bootstrap, and AWS services",
-      "category": "work",
-      "technologies": [
-        "Laravel",
-        "React",
-        "jQuery",
-        "Bootstrap",
-        "AWS",
-        "EC2",
-        "S3"
-      ],
-      "achievements": [
-        "Developed countless web apps using agile methods",
-        "Built multi-vendor SaaS solutions with AWS",
-        "Collaborated with web, WordPress, and mobile teams",
-        "Implemented back-end systems for various business needs",
-        "Created APIs for mobile apps"
-      ],
-      "links": []
-    },
-    {
-      "time": "November 2023 - August 2024",
-      "title": "Full Stack Developer at Webrubix IT Consulting Canada",
-      "description": "Designed and developed web solutions for local and foreign clients using ASP.NET Core, React.js, Tailwind, and React Native",
-      "category": "work",
-      "technologies": [
-        "ASP.NET Core",
-        "React.js",
-        "Tailwind CSS",
-        "React Native",
-        "Git"
-      ],
-      "achievements": [
-        "Worked on multiple platforms based on ASP.NET core",
-        "Worked on a multi vendor application",
-        "Developed front-end features using React js, Tailwind, and React Native",
-        "Implemented REST APIs and ensured seamless integration",
-        "Delivered clean, efficient, and well-documented code"
-      ],
-      "links": []
-    },
-    {
-      "time": "February 2023 - Present",
-      "active": true,
-      "title": "Technical Consultant (Freelance)",
-      "description": "Providing consulting services for full-stack web applications, enterprise systems, mobile apps, Chrome extensions, and IoT solutions",
-      "category": "freelance",
-      "technologies": [
-        "Full Stack Web Development",
-        "React Native",
-        "Chrome Extensions",
-        "IoT Solutions",
-        "Arduino"
-      ],
-      "achievements": [
-        "Enterprise Level System Development",
-        "Full Stack Mobile App Development",
-        "Chrome Extensions Development",
-        "IOT solutions development"
-      ],
-      "links": []
-    },
-    {
-      "time": "",
-      "title": "Diploma in Computer Science",
-      "description": "Diploma from Asia Pacific Institute of Information Technology",
-      "category": "education",
-      "technologies": [],
-      "achievements": [],
-      "links": []
-    },
-    {
-      "time": "",
-      "title": "BSc (Hons) in Computer Science",
-      "description": "Degree from Staffordshire University UK",
-      "category": "education",
-      "technologies": [],
-      "achievements": [],
-      "links": []
     }
   ],
   "contact": {

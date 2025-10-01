@@ -1,9 +1,9 @@
 "use client";
 
-import aboutData from "../data/about.json";
+import timelineData from "../data/timeline.json";
 
 export default function CareerTimeline() {
-  const timelineItems = aboutData.timeline || [];
+  const timelineItems = timelineData || [];
   return (
     <div className="container">
       <div className="row">

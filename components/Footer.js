@@ -10,6 +10,11 @@ export default function Footer() {
   const { name, title, contact, shortBio } = aboutData;
   const currentYear = new Date().getFullYear();
 
+  // Convert **text** to <strong>text</strong>
+  const formatBio = (text) => {
+    return text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+  };
+
   const quickLinks = headerData.navigation;
   // Define services offered
 
@@ -34,7 +39,10 @@ export default function Footer() {
                   <h3 className="footer-logo-text">{name}</h3>
                 </Link>
               </div>
-              <p className="description text-2xl">{shortBio}</p>
+              <p 
+                className="description text-2xl" 
+                dangerouslySetInnerHTML={{ __html: formatBio(shortBio) }}
+              />
 
               {/* Social Links */}
               <div className="social-icon-inner mt--30">

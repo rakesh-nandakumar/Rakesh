@@ -1,21 +1,13 @@
-"use client";
-
-import React, { useEffect, useState } from "react";
+import React from "react";
 import TimelineCard from "./TimelineCard";
 import TimelineProgress from "./TimelineProgress";
-import timelineData from "../../data/about.json";
+import timelineData from "../../data/timeline.json";
 
 const TimelineComponent = () => {
-  const [data, setData] = useState([]);
-  const currentYear = new Date().getFullYear();
-  const currentMonth = new Date().getMonth() + 1;
-
-  useEffect(() => {
-    // Use timeline data from about.json
-    const timelineItems = timelineData.timeline || [];
-
+  // Process timeline data directly (server-side)
+  const processedData = (() => {
     // Validate that categories match the allowed types
-    const validatedData = timelineItems.map((item) => {
+    const validatedData = timelineData.map((item) => {
       const category = ["work", "education", "freelance", "other"].includes(
         item.category
       )
@@ -26,31 +18,25 @@ const TimelineComponent = () => {
     });
 
     // Sort data from oldest to newest
-    const sortedData = validatedData.sort((a, b) => {
-      if (a.time && b.time) {
-        const yearA = parseInt(a.time.split(" ")[1]);
-        const yearB = parseInt(b.time.split(" ")[1]);
-        return yearA - yearB;
-      } else if (a.time && !b.time) {
-        const yearA = parseInt(a.time.split(" ")[1]);
-        const yearB = parseInt(b.year || "0");
-        return yearA - yearB;
-      } else if (b.time && !a.time) {
-        const yearA = parseInt(a.year || "0");
-        const yearB = parseInt(b.time.split(" ")[1]);
-        return yearA - yearB;
-      }
+    return validatedData.sort((a, b) => {
+      // Handle different time formats
+      const getYearFromItem = (item) => {
+        if (item.time) {
+          // Extract year from "September 2024 - Present" or "November 2023 - August 2024"
+          const match = item.time.match(/(\d{4})/);
+          return match ? parseInt(match[1]) : 0;
+        }
+        return parseInt(item.year || "0");
+      };
 
-      const yearA = parseInt(a.year || "0");
-      const yearB = parseInt(b.year || "0");
+      const yearA = getYearFromItem(a);
+      const yearB = getYearFromItem(b);
       return yearA - yearB;
     });
+  })();
 
-    setData(sortedData);
-  }, []);
-
-  if (!data.length) {
-    return <div className="text-center py-10">Loading timeline data...</div>;
+  if (!processedData.length) {
+    return <div className="text-center py-10">No timeline data available</div>;
   }
 
   return (
@@ -112,7 +98,7 @@ const TimelineComponent = () => {
               <TimelineProgress />
 
               <div className="mx-auto relative pt-20 pb-20">
-                {data.map((item, index) => {
+                {processedData.map((item, index) => {
                   const isActive = item.active === true;
                   const position = index % 2 === 0 ? "left" : "right";
 

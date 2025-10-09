@@ -1,6 +1,32 @@
 @import "tailwindcss";
 @import "../styles/EnhancedSEO.css";
 
+/* Prevent FOUC (Flash of Unstyled Content) for AOS elements */
+/* Ensure elements are visible before AOS initializes */
+[data-aos] {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+/* After AOS initializes, restore transition behavior */
+html.aos-init [data-aos] {
+  opacity: 1;
+  transition-property: opacity, transform;
+}
+
+html.aos-init [data-aos][data-aos][data-aos-duration="500"] {
+  transition-duration: 500ms;
+}
+
+/* Ensure cards are always visible during load */
+.rn-portfolio,
+.rn-blog,
+.service {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;

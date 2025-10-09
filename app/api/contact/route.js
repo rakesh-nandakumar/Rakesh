@@ -25,7 +25,7 @@ export async function POST(request) {
             headers: {
               "Content-Type": "application/x-www-form-urlencoded",
             },
-            body: `secret=${process.env.RECAPTCHA_SECRET}&response=${recaptchaToken}`,
+            body: `secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${recaptchaToken}`,
           }
         );
 

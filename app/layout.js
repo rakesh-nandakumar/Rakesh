@@ -119,6 +119,7 @@ export default function RootLayout({ children }) {
           href="/assets/css/vendor/bootstrap.min.css"
           as="style"
         />
+        <link rel="preload" href="/assets/css/vendor/aos.css" as="style" />
         <link
           rel="preload"
           href="/assets/fonts/feather.woff2"
@@ -215,11 +216,14 @@ export default function RootLayout({ children }) {
           src="/assets/js/vendor/feather.min.js"
           strategy="beforeInteractive"
         />
+        <Script
+          src="/assets/js/vendor/bootstrap.js"
+          strategy="afterInteractive"
+        />
+        <Script src="/assets/js/vendor/aos.js" strategy="afterInteractive" />
         <Script src="/assets/js/vendor/slick.min.js" strategy="lazyOnload" />
-        <Script src="/assets/js/vendor/bootstrap.js" strategy="lazyOnload" />
         <Script src="/assets/js/vendor/text-type.js" strategy="lazyOnload" />
         <Script src="/assets/js/vendor/wow.js" strategy="lazyOnload" />
-        <Script src="/assets/js/vendor/aos.js" strategy="lazyOnload" />
         <Script src="/assets/js/vendor/particles.js" strategy="lazyOnload" />
         <Script
           src="/assets/js/vendor/jquery-one-page-nav.js"
@@ -229,7 +233,7 @@ export default function RootLayout({ children }) {
           src="/assets/js/jquery-one-page-nav-fix.js"
           strategy="lazyOnload"
         />
-        <Script src="/assets/js/main.js" strategy="lazyOnload" />
+        <Script src="/assets/js/main.js" strategy="afterInteractive" />
       </body>
     </html>
   );

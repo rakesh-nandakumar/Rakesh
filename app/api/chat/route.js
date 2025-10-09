@@ -7,7 +7,12 @@ const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 import aiPromptData from "../../../data/ai-system-prompt.json";
 
 // Initialize the Google Generative AI client
-const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
+let genAI;
+if (GEMINI_API_KEY) {
+  genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
+} else {
+  console.error("GEMINI_API_KEY is not configured in environment variables");
+}
 
 // Rate limiting map (in production, use Redis or a proper rate limiting service)
 const rateLimitMap = new Map();
@@ -137,10 +142,14 @@ export async function POST(request) {
     }
 
     // Check if API key is available
-    if (!GEMINI_API_KEY) {
-      console.error("GEMINI_API_KEY is not configured");
+    if (!GEMINI_API_KEY || !genAI) {
+      console.error(
+        "GEMINI_API_KEY is not configured or GoogleGenerativeAI client not initialized"
+      );
+      console.error("GEMINI_API_KEY exists:", !!GEMINI_API_KEY);
+      console.error("genAI exists:", !!genAI);
       return NextResponse.json(
-        { error: "Server configuration error" },
+        { error: "AI service is not configured. Please restart the server." },
         { status: 500 }
       );
     }
@@ -240,6 +249,11 @@ export async function POST(request) {
     });
   } catch (error) {
     console.error("Error calling Gemini API:", error);
+    console.error("Error details:", {
+      message: error.message,
+      name: error.name,
+      stack: error.stack?.split("\n")[0],
+    });
 
     // Provide user-friendly error messages
     let errorMessage =
@@ -251,6 +265,12 @@ export async function POST(request) {
     } else if (error.message.includes("timeout")) {
       errorMessage =
         "The request timed out. Please try asking a shorter question.";
+    } else if (
+      error.message.includes("API_KEY") ||
+      error.message.includes("API key")
+    ) {
+      errorMessage =
+        "AI service configuration error. Please contact the administrator.";
     }
 
     return NextResponse.json({ error: errorMessage }, { status: 500 });

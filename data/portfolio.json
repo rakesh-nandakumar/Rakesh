@@ -104,26 +104,96 @@
     "type": "personal"
   },
   {
-  "image": "/projects/ai-resume-matcher.png",
-  "category": "AI Tools",
-  "title": "AI Resume Matcher",
-  "shortDescription": "A smart resume analysis tool that ranks CVs based on job descriptions using Gemini AI with built-in ZIP parsing and real-time scoring.",
-  "longDescription": "AI Resume Matcher is an intelligent frontend-only tool that allows users to upload a ZIP file of CVs (PDF/DOCX/TXT) and input a job description. The application parses the resumes, compares them to the job requirements using Gemini API, and generates a match score with reasoning for each candidate. It features light/dark theme toggle, file validation, Supabase authentication, usage limits for free users, and a beautiful UI built with ShadCN components. Designed for quick assessments and ranking of candidates without a backend, this tool is ideal for HR professionals, recruiters, and startups.",
-  "technologies": [
-    "React",
-    "TypeScript",
-    "Vite",
-    "ShadCN UI",
-    "Tailwind CSS",
-    "JSZip",
-    "pdfjs-dist",
-    "@google/generative-ai",
-    "Supabase Auth"
-  ],
-  "liveLink": "https://ai-resume-matcher.rakeshn.com/",
-  "featured": true,
-      "status": "ongoing",
+    "image": "/projects/ai-resume-matcher.png",
+    "category": "AI Tools",
+    "title": "AI Resume Matcher",
+    "shortDescription": "A smart resume analysis tool that ranks CVs based on job descriptions using Gemini AI with built-in ZIP parsing and real-time scoring.",
+    "longDescription": "AI Resume Matcher is an intelligent frontend-only tool that allows users to upload a ZIP file of CVs (PDF/DOCX/TXT) and input a job description. The application parses the resumes, compares them to the job requirements using Gemini API, and generates a match score with reasoning for each candidate. It features light/dark theme toggle, file validation, Supabase authentication, usage limits for free users, and a beautiful UI built with ShadCN components. Designed for quick assessments and ranking of candidates without a backend, this tool is ideal for HR professionals, recruiters, and startups.",
+    "technologies": [
+      "React",
+      "TypeScript",
+      "Vite",
+      "ShadCN UI",
+      "Tailwind CSS",
+      "JSZip",
+      "pdfjs-dist",
+      "@google/generative-ai",
+      "Supabase Auth"
+    ],
+    "liveLink": "https://ai-resume-matcher.rakeshn.com/",
+    "featured": true,
+    "status": "ongoing",
     "progress": 90,
-  "type": "personal"
-}
+    "type": "personal"
+  },
+  {
+    "image": "/projects/dcula.png",
+    "category": "Government",
+    "title": "Song Registration Portal - Department of Cultural Affairs",
+    "shortDescription": "A government song registration portal and CMS linking Joomla! with a Laravel + React portal, built for Procons Infectic.",
+    "longDescription": "Delivered for Procons Infectic as a government contract with the Department of Cultural Affairs. The solution consists of a public portal (Laravel + React) where users can register songs, search, and view submissions, and a full-featured Joomla! CMS for content and administrative workflows. Implemented secure REST APIs to synchronize data between Laravel and Joomla!, enabling Joomla! components to render portal data and the portal to consume CMS-managed content. Features include user registration and authentication, song metadata management, admin approval and moderation workflows, search and filtering, audit logging, and responsive UI built with Bootstrap. Deployed on AWS with a MySQL backend and production-hardened security and validation.",
+    "technologies": [
+      "Laravel",
+      "React",
+      "Joomla!",
+      "AWS",
+      "MySQL",
+      "Bootstrap",
+      "REST API",
+      "Docker",
+      "AWS"
+    ],
+    "featured": true,
+    "status": "completed",
+    "liveLink": "https://www.culturaldept.gov.lk/index.php?lang=en#thirdPage",
+    "type": "work"
+  },
+  {
+    "image": "/projects/nilet.png",
+    "category": "Government",
+    "title": "NiLET (National Institute of Language Education and Training)",
+    "shortDescription": "Integrated WordPress CMS with a custom Laravel + Bootstrap + Vue.js student portal for managing language course registrations and administration.",
+    "longDescription": "Built for Procons Infotech as a government contract, NiLET combines a public WordPress CMS with a fully custom Laravel portal to manage language education services. The portal handles student registration for multiple language courses, fees management, recordings and WhatsApp group integrations (including automated group creation and link handling), complaint management, certificate printing and stock control, and payment change requests with slip uploads for penalty charges. It includes coordinator workflows, role-based permissions, results publishing via CSV upload with publish/unpublish/hold controls, batch-based course enrollment limits, and administrative tools for coordinators and lecturers. Secure REST APIs synchronize data between WordPress and the portal. Deployed on AWS for scalability and reliability.",
+    "technologies": [
+      "Laravel",
+      "Bootstrap",
+      "Vue.js",
+      "WordPress",
+      "AWS",
+      "MySQL",
+      "REST API",
+      "Docker"
+    ],
+    "featured": true,
+    "status": "completed",
+    "liveLink": "https://nilet.gov.lk/index.php/en/",
+
+    "type": "work"
+  },
+  {
+    "image": "/projects/academy.png",
+    "category": "Education",
+    "title": "Procons Academy",
+    "shortDescription": "Enterprise-grade academy platform integrating ASP.NET Core, React + Redux frontend, Tailwind CSS, WordPress CMS, Laravel admin, and Moodle for student LMS.",
+    "longDescription": "Procons Academy is a full-featured enterprise learning platform built for the Procons group. The public client-facing UI uses a premium WordPress theme for CMS-driven content and marketing pages, while the core application combines an ASP.NET Core backend with a React + Redux frontend styled with Tailwind CSS (ESS). Lecturers and coordinators manage courses and lectures in a Laravel-based admin panel; those actions are automatically synchronized to Moodle via Moodle web services and custom Moodle APIs, ensuring duplicate course creation and consistent student enrollments. Students access coursework and learning activities in Moodle (student portal). The system supports online and offline payments with automated reconciliation, Zoom integration for scheduling and automatic capture of meeting links/emails, automated email notifications, certificate generation, role-based permissions (course coordinators, lecturers, admins, students), audit logging, and background job processing for long-running tasks. Deployed on AWS with load balancing, auto-scaling, Dockerized services, secure networking, monitoring and backup strategies to ensure high availability and enterprise-grade performance.",
+    "technologies": [
+      "ASP.NET Core",
+      "React",
+      "Redux",
+      "Tailwind CSS",
+      "WordPress",
+      "Laravel",
+      "Moodle",
+      "Zoom API",
+      "AWS (ELB, Auto Scaling, RDS)",
+      "Docker",
+      "MySQL",
+      "Redis",
+      "Background Jobs"
+    ],
+    "featured": true,
+    "status": "completed",
+    "liveLink": "https://proconsacademy.com/",
+    "type": "work"
+  }
 ]

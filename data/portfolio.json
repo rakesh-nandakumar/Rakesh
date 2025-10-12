@@ -1,5 +1,4 @@
 [
-  
   {
     "image": "/projects/dcula.png",
     "category": "Government",
@@ -69,6 +68,28 @@
     "status": "completed",
     "liveLink": "https://proconsacademy.com/",
     "type": "work"
+  },
+  {
+    "image": "/projects/erdly.png",
+    "category": "Development Tools",
+    "title": "ERDly",
+    "shortDescription": "Lightweight visual ERD builder with AI assistant to draft schemas and export SQL.",
+    "longDescription": "ERDly is a lightweight visual ERD (Entity Relationship Diagram) builder built with React + TypeScript, Vite and shadcn-ui. Design schemas visually on a drag-and-drop canvas (React Flow), add fields (PK, UNIQUE, NULL flags), and create relationships (1:1, 1:N, N:M) with automatic junction-table creation. Use the Gemini-powered AI assistant to auto-draft schemas from a business idea and export production-ready SQL.",
+    "technologies": [
+      "React",
+      "TypeScript",
+      "Vite",
+      "shadcn-ui",
+      "React Flow",
+      "Tailwind CSS",
+      "Zustand",
+      "file-saver",
+      "Gemini AI"
+    ],
+    "liveLink": "https://erdly.rakeshn.com",
+    "featured": true,
+    "status": "completed",
+    "type": "personal"
   },
   {
     "image": "/projects/apiit.png",

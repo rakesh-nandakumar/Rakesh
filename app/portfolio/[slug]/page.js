@@ -300,51 +300,21 @@ export default async function PortfolioDetail({ params }) {
               <div className="section-divider"></div>
             </div>
             <div className="features-grid">
-              {/* Prefer custom keyFeatures from JSON; fall back to technologies */}
-              {project.keyFeatures && project.keyFeatures.length > 0
-                ? project.keyFeatures.map((kf, index) => (
-                    <div key={index} className="feature-card">
-                      <div className="feature-icon">
-                        <CheckCircle size={20} />
-                      </div>
-                      <div className="feature-content">
-                        <h4 className="feature-title">{kf.feature}</h4>
-                        <p className="feature-description">{kf.description}</p>
-                      </div>
+              {/* Render all keyFeatures from JSON (now includes previous highlights) */}
+              {project.keyFeatures &&
+                project.keyFeatures.length > 0 &&
+                project.keyFeatures.map((kf, index) => (
+                  <div key={`kf-${index}`} className="feature-card">
+                    <div className="feature-icon">
+                      <CheckCircle size={20} />
                     </div>
-                  ))
-                : project.technologies &&
-                  project.technologies.map((tech, index) => (
-                    <div key={index} className="feature-card">
-                      <div className="feature-icon">
-                        <CheckCircle size={20} />
-                      </div>
-                      <div className="feature-content">
-                        <h4 className="feature-title">Built with {tech}</h4>
-                        <p className="feature-description">
-                          Leveraging {tech} for optimal performance and
-                          functionality
-                        </p>
-                      </div>
+                    <div className="feature-content">
+                      <h4 className="feature-title">{kf.feature}</h4>
+                      <p className="feature-description">{kf.description}</p>
                     </div>
-                  ))}
-
-              {/* only render structured keyFeatures from JSON (no auto-generated tech cards) */}
+                  </div>
+                ))}
             </div>
-
-            {/* Highlights / quick bullets from JSON */}
-            {project.highlights && project.highlights.length > 0 && (
-              <div className="highlights-section">
-                <h3 className="section-subtitle">Highlights</h3>
-                <div className="highlights-list">
-                  {project.highlights.map((hl, i) => (
-                    <span key={i} className="highlight-badge">
-                      {hl}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            )}
           </div>
 
           {/* Related Projects */}

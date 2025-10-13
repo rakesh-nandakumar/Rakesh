@@ -21,13 +21,23 @@
       {
         "feature": "Production-grade deployment",
         "description": "CI/CD pipelines, automated backups, and monitoring on AWS with secure network and DB configurations."
+      },
+      {
+        "feature": "Government-grade security",
+        "description": "Enterprise-level security measures and compliance standards for government data protection."
+      },
+      {
+        "feature": "Real-time synchronization",
+        "description": "Near-real-time data sync between portal and CMS ensuring consistency across platforms."
+      },
+      {
+        "feature": "Accessible UI design",
+        "description": "Responsive, accessible UI built for wide public reach across devices and connection speeds."
+      },
+      {
+        "feature": "Comprehensive audit logging",
+        "description": "Detailed audit logging and moderation workflows for transparency and accountability."
       }
-    ],
-    "highlights": [
-      "Government-grade security and compliance",
-      "Near-real-time data sync between portal and CMS",
-      "Responsive, accessible UI for wide public reach",
-      "Audit logging and moderation workflows"
     ],
     "technologies": [
       "Laravel",
@@ -67,13 +77,23 @@
       {
         "feature": "WhatsApp automation",
         "description": "Automated group creation and secure link management for course cohorts to improve student communication."
+      },
+      {
+        "feature": "Unified platform architecture",
+        "description": "Integrated CMS and transactional portal providing seamless user experience across systems."
+      },
+      {
+        "feature": "Smart communication system",
+        "description": "Automated communication and media handling to streamline student and staff interactions."
+      },
+      {
+        "feature": "Advanced access control",
+        "description": "Coordinator dashboards and role-based controls for secure multi-level administration."
+      },
+      {
+        "feature": "Cloud infrastructure",
+        "description": "Scalable AWS deployment with auto-scaling and high availability configurations."
       }
-    ],
-    "highlights": [
-      "Integrated CMS and transactional portal",
-      "Automated communication and media handling",
-      "Coordinator dashboards and role-based controls",
-      "Scalable AWS deployment"
     ],
     "technologies": [
       "Laravel",
@@ -113,13 +133,23 @@
       {
         "feature": "Containerized, monitored deployment",
         "description": "Dockerized services deployed with CI/CD to AWS and observability tooling for logs, metrics, and alerts."
+      },
+      {
+        "feature": "Enterprise architecture",
+        "description": "Enterprise-grade architecture and scaling capabilities for high-traffic educational platforms."
+      },
+      {
+        "feature": "Intelligent course management",
+        "description": "Automated course sync with Moodle ensuring seamless content delivery and student enrollment."
+      },
+      {
+        "feature": "Security & compliance",
+        "description": "Role-based permissions and auditing systems for educational data protection and compliance."
+      },
+      {
+        "feature": "Asynchronous processing",
+        "description": "Background job processing for heavy workloads without impacting user experience."
       }
-    ],
-    "highlights": [
-      "Enterprise-grade architecture and scaling",
-      "Automated course sync with Moodle",
-      "Role-based permissions and auditing",
-      "Background job processing for heavy workloads"
     ],
     "technologies": [
       "ASP.NET Core",
@@ -163,13 +193,23 @@
       {
         "feature": "Collaboration-ready bundles",
         "description": "Import/export JSON schema bundles and shareable links for team review and versioning."
+      },
+      {
+        "feature": "Intelligent AI assistance",
+        "description": "AI-assisted schema drafting that understands business requirements and generates optimal database designs."
+      },
+      {
+        "feature": "Enterprise SQL generation",
+        "description": "Production-ready SQL exports compatible with major database systems and migration tools."
+      },
+      {
+        "feature": "Built-in validation",
+        "description": "Visual editor with anti-pattern checks to prevent common database design mistakes."
+      },
+      {
+        "feature": "Team collaboration tools",
+        "description": "Quick import/export for collaboration with version control and shareable schema links."
       }
-    ],
-    "highlights": [
-      "AI-assisted schema drafting",
-      "Production-ready SQL exports",
-      "Visual editor with anti-pattern checks",
-      "Quick import/export for collaboration"
     ],
     "technologies": [
       "React",
@@ -209,13 +249,23 @@
       {
         "feature": "SEO & analytics",
         "description": "Semantic markup, sitemaps, and analytics dashboards for content performance tracking."
+      },
+      {
+        "feature": "Community management",
+        "description": "Rich community and moderation tools for fostering student engagement and interaction."
+      },
+      {
+        "feature": "Smart content discovery",
+        "description": "Personalized and discoverable content system optimized for student interests and academic programs."
+      },
+      {
+        "feature": "Integrated networking",
+        "description": "Events, booking and alumni networking features to build lasting academic connections."
+      },
+      {
+        "feature": "Enterprise handover",
+        "description": "Operational runbooks for IT handover ensuring smooth transition and maintenance."
       }
-    ],
-    "highlights": [
-      "Rich community and moderation tools",
-      "Personalized and discoverable content",
-      "Events, booking and alumni networking",
-      "Operational runbooks for IT handover"
     ],
     "technologies": [
       "Laravel",
@@ -254,13 +304,23 @@
       {
         "feature": "Background processing",
         "description": "Queued jobs for notifications, payment reconciliation, and heavy imports to keep the UI responsive."
+      },
+      {
+        "feature": "Unified management system",
+        "description": "Centralized membership and team management in a single integrated platform."
+      },
+      {
+        "feature": "Event scheduling",
+        "description": "Calendar & ticketing integration for seamless event management and attendance tracking."
+      },
+      {
+        "feature": "Secure document storage",
+        "description": "Versioned document repository with access controls for club governance and compliance."
+      },
+      {
+        "feature": "Performance optimization",
+        "description": "Queued processing for scalability ensuring responsive user experience under load."
       }
-    ],
-    "highlights": [
-      "Centralized membership and team management",
-      "Calendar & ticketing integration",
-      "Versioned document repository",
-      "Queued processing for scalability"
     ],
     "technologies": ["Next.js", "React", "Bootstrap", "MongoDB", "AWS", "SEO"],
     "githubLink": "https://github.com/example/ceylon-sports-club",
@@ -290,13 +350,23 @@
       {
         "feature": "Extensible plugin model",
         "description": "Integrations and plugin hooks for custom automations and enterprise systems."
+      },
+      {
+        "feature": "Intelligent planning",
+        "description": "AI-first project planning that learns from historical data to improve accuracy."
+      },
+      {
+        "feature": "Live collaboration",
+        "description": "Real-time collaboration and dashboards for team visibility and coordination."
+      },
+      {
+        "feature": "Risk management",
+        "description": "Predictive risk analysis to identify and mitigate project risks before they impact delivery."
+      },
+      {
+        "feature": "Enterprise connectivity",
+        "description": "Enterprise integration points for seamless connection with existing business tools and workflows."
       }
-    ],
-    "highlights": [
-      "AI-first project planning",
-      "Real-time collaboration and dashboards",
-      "Predictive risk analysis",
-      "Enterprise integration points"
     ],
     "technologies": ["ASP.NET", "React", "Redux", "Gemini AI", "SQL Server"],
     "githubLink": "https://github.com/example/next-gen-pm",
@@ -326,13 +396,23 @@
       {
         "feature": "Customizable presets",
         "description": "User-configurable voices, speed, and hotkeys with per-domain preferences."
+      },
+      {
+        "feature": "Minimal footprint",
+        "description": "Lightweight, privacy-first TTS solution that doesn't slow down browser performance."
+      },
+      {
+        "feature": "Quick access controls",
+        "description": "Keyboard shortcuts and quick controls for efficient text-to-speech operation."
+      },
+      {
+        "feature": "Global language support",
+        "description": "Multilingual detection and voice synthesis for international content consumption."
+      },
+      {
+        "feature": "Universal accessibility",
+        "description": "Ideal for accessibility and productivity needs across diverse user groups."
       }
-    ],
-    "highlights": [
-      "Lightweight, privacy-first TTS",
-      "Keyboard shortcuts and quick controls",
-      "Multilingual detection",
-      "Ideal for accessibility and productivity"
     ],
     "technologies": [
       "JavaScript",
@@ -367,13 +447,23 @@
       {
         "feature": "Live editing and immediate export",
         "description": "Edit cell values directly in the preview and see SQL update instantly, then download or copy script."
+      },
+      {
+        "feature": "Instant conversion",
+        "description": "Quick conversion from spreadsheets to SQL with zero configuration required."
+      },
+      {
+        "feature": "Smart data analysis",
+        "description": "Intelligent type inference and reporting for accurate database schema creation."
+      },
+      {
+        "feature": "Enterprise file handling",
+        "description": "Supports large files with chunked parsing to handle enterprise-scale datasets."
+      },
+      {
+        "feature": "Developer-focused UX",
+        "description": "Minimal, productivity-focused UI designed for developer efficiency."
       }
-    ],
-    "highlights": [
-      "Quick conversion from spreadsheets to SQL",
-      "Intelligent type inference and reporting",
-      "Supports large files with chunked parsing",
-      "Minimal, productivity-focused UI"
     ],
     "technologies": [
       "React",
@@ -412,13 +502,23 @@
       {
         "feature": "Production-friendly UX",
         "description": "Keyboard-first navigation, dark mode, and local persistence with optional sync."
+      },
+      {
+        "feature": "Rapid testing workflows",
+        "description": "Fast, minimal API testing workflows designed for developer speed and efficiency."
+      },
+      {
+        "feature": "Request management",
+        "description": "Collections and replayability features for organizing and reusing API requests."
+      },
+      {
+        "feature": "Debug integration",
+        "description": "Exportable HAR for debugging and integration with other development tools."
+      },
+      {
+        "feature": "Developer efficiency",
+        "description": "Keyboard-first developer UX eliminating mouse dependency for faster workflows."
       }
-    ],
-    "highlights": [
-      "Fast, minimal API testing workflows",
-      "Collections and replayability",
-      "Exportable HAR for debugging",
-      "Keyboard-first developer UX"
     ],
     "technologies": [
       "React",
@@ -457,13 +557,23 @@
       {
         "feature": "Privacy and rate controls",
         "description": "Client-side processing with configurable usage limits and optional authenticated sessions."
+      },
+      {
+        "feature": "Rapid candidate screening",
+        "description": "Fast bulk triage of resumes reducing time-to-shortlist dramatically."
+      },
+      {
+        "feature": "Transparent AI evaluation",
+        "description": "Explainable AI match scores with clear reasoning for hiring decisions."
+      },
+      {
+        "feature": "ATS integration ready",
+        "description": "Exports for ATS and downstream review compatible with major hiring platforms."
+      },
+      {
+        "feature": "Privacy-focused architecture",
+        "description": "Front-end-first, privacy-aware design keeping candidate data secure and local."
       }
-    ],
-    "highlights": [
-      "Fast bulk triage of resumes",
-      "Explainable AI match scores",
-      "Exports for ATS and downstream review",
-      "Front-end-first, privacy-aware design"
     ],
     "technologies": [
       "React",

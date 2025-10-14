@@ -329,6 +329,62 @@
     "type": "work"
   },
   {
+    "image": "/projects/ai-resume-matcher.png",
+    "category": "AI Tools",
+    "title": "AI Resume Matcher",
+    "shortDescription": "A smart resume analysis tool that ranks CVs based on job descriptions using Gemini AI with built-in ZIP parsing and real-time scoring.",
+    "longDescription": "AI Resume Matcher is a front-end-first assessment tool that streamlines initial candidate triage by combining robust file parsing with generative AI-driven evaluation. Users upload a ZIP of resumes in PDF/DOCX/TXT formats, provide a job description, and the tool performs extraction, parsing and normalization of resume content (text extraction, basic entity detection). A generative scoring engine then compares candidate attributes to the JD and emits a match score with structured reasoning and highlights for strengths and gaps. The app includes safeguards around file validation, rate-limited usage for free tiers, and optional Supabase authentication for usage tracking. The UI focuses on clarity—side-by-side comparison of candidate scores, key skill matches, and exportable shortlists. The product lowers the time-to-shortlist substantially, surfaces objective reasons for matches, and can be integrated into downstream ATS workflows by exporting CSV shortlists and annotated candidate reports.",
+    "keyFeatures": [
+      {
+        "feature": "Bulk resume parsing",
+        "description": "ZIP upload support with robust extraction for PDF, DOCX and plain text files, plus basic entity recognition."
+      },
+      {
+        "feature": "AI-driven scoring",
+        "description": "Generative comparison of candidate profiles against job descriptions with explainable match reasoning."
+      },
+      {
+        "feature": "Exportable shortlists",
+        "description": "Download CSV shortlists and annotated candidate reports for ATS imports and hiring workflows."
+      },
+      {
+        "feature": "Privacy and rate controls",
+        "description": "Client-side processing with configurable usage limits and optional authenticated sessions."
+      },
+      {
+        "feature": "Rapid candidate screening",
+        "description": "Fast bulk triage of resumes reducing time-to-shortlist dramatically."
+      },
+      {
+        "feature": "Transparent AI evaluation",
+        "description": "Explainable AI match scores with clear reasoning for hiring decisions."
+      },
+      {
+        "feature": "ATS integration ready",
+        "description": "Exports for ATS and downstream review compatible with major hiring platforms."
+      },
+      {
+        "feature": "Privacy-focused architecture",
+        "description": "Front-end-first, privacy-aware design keeping candidate data secure and local."
+      }
+    ],
+    "technologies": [
+      "React",
+      "TypeScript",
+      "Vite",
+      "ShadCN UI",
+      "Tailwind CSS",
+      "JSZip",
+      "pdfjs-dist",
+      "@google/generative-ai",
+      "Supabase Auth"
+    ],
+    "liveLink": "https://ai-resume-matcher.rakeshn.com/",
+    "featured": true,
+    "status": "completed",
+    "type": "personal"
+  },
+  {
     "image": "/projects/pm.png",
     "category": "Development",
     "title": "Next-Gen Project Mgmt Tool",
@@ -373,57 +429,6 @@
     "featured": true,
     "status": "completed",
     "type": "feelance"
-  },
-  {
-    "image": "/projects/justlistenit.png",
-    "category": "Development",
-    "title": "JustListenIt Chrome Extension",
-    "shortDescription": "A Chrome extension that reads selected text on any web page out loud for improved accessibility and productivity",
-    "longDescription": "JustListenIt is a compact accessibility-first Chrome extension that transforms selected page text into spoken audio using the browser's Web Speech API. The extension includes intuitive selection triggers, keyboard shortcuts, and a small persistent control UI so users can manage playback, choose voices and adjust speed without leaving the page. Language detection heuristics and fallback strategies ensure the best available voice is selected for multilingual content. The codebase is lightweight, privacy-conscious (no text is sent to external services), and uses the Chrome Extensions manifest and APIs for secure permissions and storage. The extension includes options for customizing hotkeys, voice presets, and saving preferred settings per domain. Built for productivity and accessibility, it helps users consume content while multitasking, supports low-vision users, and can be integrated into assistive workflows.",
-    "keyFeatures": [
-      {
-        "feature": "On-page text-to-speech",
-        "description": "Convert selected text to speech instantly with keyboard shortcuts and in-page controls."
-      },
-      {
-        "feature": "Language-aware voice selection",
-        "description": "Automatic detection and adaptive voice fallback for multilingual web content."
-      },
-      {
-        "feature": "Privacy-first design",
-        "description": "All processing uses local Web Speech API—no text is transmitted externally by default."
-      },
-      {
-        "feature": "Customizable presets",
-        "description": "User-configurable voices, speed, and hotkeys with per-domain preferences."
-      },
-      {
-        "feature": "Minimal footprint",
-        "description": "Lightweight, privacy-first TTS solution that doesn't slow down browser performance."
-      },
-      {
-        "feature": "Quick access controls",
-        "description": "Keyboard shortcuts and quick controls for efficient text-to-speech operation."
-      },
-      {
-        "feature": "Global language support",
-        "description": "Multilingual detection and voice synthesis for international content consumption."
-      },
-      {
-        "feature": "Universal accessibility",
-        "description": "Ideal for accessibility and productivity needs across diverse user groups."
-      }
-    ],
-    "technologies": [
-      "JavaScript",
-      "Chrome Extensions API",
-      "Web Speech API",
-      "HTML",
-      "CSS"
-    ],
-    "featured": false,
-    "status": "completed",
-    "type": "personal"
   },
   {
     "image": "/projects/sql-script-shaper.png",
@@ -532,64 +537,60 @@
     ],
     "liveLink": "https://apilite.rakeshn.com/",
     "featured": true,
-    "status": "completed",
-    "type": "personal"
+    "status": "ongoing",
+    "progress": 90,
+    "type": "development"
   },
+
   {
-    "image": "/projects/ai-resume-matcher.png",
-    "category": "AI Tools",
-    "title": "AI Resume Matcher",
-    "shortDescription": "A smart resume analysis tool that ranks CVs based on job descriptions using Gemini AI with built-in ZIP parsing and real-time scoring.",
-    "longDescription": "AI Resume Matcher is a front-end-first assessment tool that streamlines initial candidate triage by combining robust file parsing with generative AI-driven evaluation. Users upload a ZIP of resumes in PDF/DOCX/TXT formats, provide a job description, and the tool performs extraction, parsing and normalization of resume content (text extraction, basic entity detection). A generative scoring engine then compares candidate attributes to the JD and emits a match score with structured reasoning and highlights for strengths and gaps. The app includes safeguards around file validation, rate-limited usage for free tiers, and optional Supabase authentication for usage tracking. The UI focuses on clarity—side-by-side comparison of candidate scores, key skill matches, and exportable shortlists. The product lowers the time-to-shortlist substantially, surfaces objective reasons for matches, and can be integrated into downstream ATS workflows by exporting CSV shortlists and annotated candidate reports.",
+    "image": "/projects/justlistenit.png",
+    "category": "Development",
+    "title": "JustListenIt Chrome Extension",
+    "shortDescription": "A Chrome extension that reads selected text on any web page out loud for improved accessibility and productivity",
+    "longDescription": "JustListenIt is a compact accessibility-first Chrome extension that transforms selected page text into spoken audio using the browser's Web Speech API. The extension includes intuitive selection triggers, keyboard shortcuts, and a small persistent control UI so users can manage playback, choose voices and adjust speed without leaving the page. Language detection heuristics and fallback strategies ensure the best available voice is selected for multilingual content. The codebase is lightweight, privacy-conscious (no text is sent to external services), and uses the Chrome Extensions manifest and APIs for secure permissions and storage. The extension includes options for customizing hotkeys, voice presets, and saving preferred settings per domain. Built for productivity and accessibility, it helps users consume content while multitasking, supports low-vision users, and can be integrated into assistive workflows.",
     "keyFeatures": [
       {
-        "feature": "Bulk resume parsing",
-        "description": "ZIP upload support with robust extraction for PDF, DOCX and plain text files, plus basic entity recognition."
+        "feature": "On-page text-to-speech",
+        "description": "Convert selected text to speech instantly with keyboard shortcuts and in-page controls."
       },
       {
-        "feature": "AI-driven scoring",
-        "description": "Generative comparison of candidate profiles against job descriptions with explainable match reasoning."
+        "feature": "Language-aware voice selection",
+        "description": "Automatic detection and adaptive voice fallback for multilingual web content."
       },
       {
-        "feature": "Exportable shortlists",
-        "description": "Download CSV shortlists and annotated candidate reports for ATS imports and hiring workflows."
+        "feature": "Privacy-first design",
+        "description": "All processing uses local Web Speech API—no text is transmitted externally by default."
       },
       {
-        "feature": "Privacy and rate controls",
-        "description": "Client-side processing with configurable usage limits and optional authenticated sessions."
+        "feature": "Customizable presets",
+        "description": "User-configurable voices, speed, and hotkeys with per-domain preferences."
       },
       {
-        "feature": "Rapid candidate screening",
-        "description": "Fast bulk triage of resumes reducing time-to-shortlist dramatically."
+        "feature": "Minimal footprint",
+        "description": "Lightweight, privacy-first TTS solution that doesn't slow down browser performance."
       },
       {
-        "feature": "Transparent AI evaluation",
-        "description": "Explainable AI match scores with clear reasoning for hiring decisions."
+        "feature": "Quick access controls",
+        "description": "Keyboard shortcuts and quick controls for efficient text-to-speech operation."
       },
       {
-        "feature": "ATS integration ready",
-        "description": "Exports for ATS and downstream review compatible with major hiring platforms."
+        "feature": "Global language support",
+        "description": "Multilingual detection and voice synthesis for international content consumption."
       },
       {
-        "feature": "Privacy-focused architecture",
-        "description": "Front-end-first, privacy-aware design keeping candidate data secure and local."
+        "feature": "Universal accessibility",
+        "description": "Ideal for accessibility and productivity needs across diverse user groups."
       }
     ],
     "technologies": [
-      "React",
-      "TypeScript",
-      "Vite",
-      "ShadCN UI",
-      "Tailwind CSS",
-      "JSZip",
-      "pdfjs-dist",
-      "@google/generative-ai",
-      "Supabase Auth"
+      "JavaScript",
+      "Chrome Extensions API",
+      "Web Speech API",
+      "HTML",
+      "CSS"
     ],
-    "liveLink": "https://ai-resume-matcher.rakeshn.com/",
-    "featured": true,
-    "status": "ongoing",
-    "progress": 90,
+    "featured": false,
+    "status": "completed",
     "type": "personal"
   }
 ]

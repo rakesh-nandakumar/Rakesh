@@ -76,7 +76,7 @@ export default function PortfolioCard({ item, index }) {
             </div>
 
             {/* Bottom section - buttons always stick to bottom */}
-            <div style={{ marginTop: "auto" }}>
+            <div>
               {/* Progress Bar for Ongoing Projects */}
               {status === "ongoing" && progress > 0 && (
                 <div className="project-progress">

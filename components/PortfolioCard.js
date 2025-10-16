@@ -45,7 +45,7 @@ export default function PortfolioCard({ item, index }) {
             style={{
               display: "flex",
               flexDirection: "column",
-              minHeight: "300px", // Adjust this value based on your needs
+              justifyContent: "space-between",
             }}
           >
             {/* Content section */}

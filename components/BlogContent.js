@@ -84,18 +84,6 @@ export default function BlogContent({ blog, relatedBlogs }) {
 
                 <div className="blog-meta float-right">
                   <div className="meta-item">
-                    <time dateTime={blog.date} className="meta-label">
-                      Published:{" "}
-                      {new Date(
-                        blog.date || blog.publishDate
-                      ).toLocaleDateString("en-US", {
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric",
-                      })}
-                    </time>
-                  </div>
-                  <div className="meta-item">
                     <span className="meta-label">Read Time</span>
                     <span className="meta-value">
                       {blog.readingTime || blog.readTime}
@@ -109,10 +97,18 @@ export default function BlogContent({ blog, relatedBlogs }) {
                       </span>
                     </div>
                   )}
-                  {blog.author && (
+                  {blog.publishDate && (
                     <div className="meta-item">
-                      <span className="meta-label">By</span>
-                      <span className="meta-value">{blog.author}</span>
+                      <span className="meta-label">Published Date</span>
+                      <span className="meta-value">
+                        {new Date(
+                          blog.date || blog.publishDate
+                        ).toLocaleDateString("en-US", {
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        })}
+                      </span>
                     </div>
                   )}
                 </div>

@@ -1,58 +1,59 @@
 [
   {
-    "image": "/projects/dcula.png",
+    "image": "/projects/eead.png",
     "category": "Government",
-    "title": "Song Registration Portal - Department of Cultural Affairs",
-    "shortDescription": "A government song registration portal and CMS linking Joomla! with a Laravel + React portal, built for Procons Infectic.",
-    "longDescription": "Delivered for Procons Infectic as a strategic government contract with the Department of Cultural Affairs, this project is a comprehensive, production-hardened song registration and archival platform that modernized legacy content workflows and introduced a resilient public-facing portal. The solution blends a performant Laravel + React portal for public submissions with a robust Joomla! CMS acting as the authoritative content source for administrative workflows, editorial publishing, and rich content presentation. I designed and implemented secure RESTful synchronization bridges and webhooks that ensure near-real-time consistency between the portal and Joomla!, allowing editorial teams to author content in the CMS while the portal consumes and renders that content with precise caching and invalidation rules. The system supports multi-step user registration, two-factor-capable authentication hooks, role-based admin approvals, staged moderation queues, and a detailed audit trail for every submission to meet government compliance requirements. Search and discovery were upgraded with indexed metadata, multi-faceted filtering, and relevance-weighted results. Accessibility, cross-browser compatibility, and responsive UI were implemented with Bootstrap and progressive enhancement techniques so the public portal remains usable on low-bandwidth devices. For production we automated CI/CD deployments into AWS with immutable releases, database migration scripts and backups, monitoring and alerting, and hardened input validation and sanitization to reduce attack surface. The project delivered a measurable improvement in submission processing times, administrative throughput, and public discoverability while meeting strict security and governance standards.",
+    "title": "EEAD — Energy Efficiency Assessment & Database",
+    "shortDescription": "A full-fledged ERP and product energy-efficiency certification system built for the Sustainable Energy Authority (SLSEA).",
+    "longDescription": "Built while at Procons Infotech for the Sustainable Energy Authority (SLSEA), EEAD is an enterprise-grade ERP and certification platform that handles product registrations, agency-driven testing workflows, payments (online and offline), rating generation, and public product discovery. Manufacturers (Damro, Singer, Abans, etc.) submit product applications which SLSEA routes to accredited test agencies based on product type and agency capabilities. Test agencies update safety and performance test results back into the system; products that pass safety testing proceed to energy performance testing which yields a 1–5 star efficiency rating. Each certified product receives a generated QR code and printable sticker/artwork reflecting its star rating so consumers can verify efficiency by scanning. The platform exposes APIs consumed by a WordPress marketing front-end (product listings, comparisons, reviews) and includes offline-capable features for field inspectors. Built with Laravel (API, services, background jobs) and React (admin & agency UIs), it uses AWS for hosting with load balancing, autoscaling, and resilient deployment patterns. The system follows SOLID principles, uses the Laravel ecosystem (Spatie roles & permissions, Media Library, AWS S3 for media, queues), and includes robust audit logs, role-based workflows, and secure payment integrations.",
     "keyFeatures": [
       {
-        "feature": "Bi-directional CMS sync",
-        "description": "Secure REST API and webhook-based synchronization between Joomla! and the Laravel portal to keep content and metadata consistent in near-real-time."
+        "feature": "Multi-stage certification workflow",
+        "description": "Product application → safety test → performance test → rating issuance with automated agency assignment and reassignment."
       },
       {
-        "feature": "Moderation & audit trails",
-        "description": "Role-based approval workflows, staged moderation queues, and immutable audit logs for compliance and traceability."
+        "feature": "Agency integration & updates",
+        "description": "Accredited test agencies receive assignments and push structured test results back to the ERP via secure APIs or signed uploads."
       },
       {
-        "feature": "Advanced search & filtering",
-        "description": "Indexed metadata search with multi-faceted filters and relevance weighting to surface the most appropriate song entries."
+        "feature": "Online & offline payments",
+        "description": "Supports gateways for online payments plus offline receipt/manual reconciliation for bank/cheque payments used by businesses."
       },
       {
-        "feature": "Production-grade deployment",
-        "description": "CI/CD pipelines, automated backups, and monitoring on AWS with secure network and DB configurations."
+        "feature": "QR code & dynamic rating stickers",
+        "description": "Automated QR generation per certified product plus printable sticker art that reflects the star rating and links to verification pages."
       },
       {
-        "feature": "Government-grade security",
-        "description": "Enterprise-level security measures and compliance standards for government data protection."
+        "feature": "Public discovery & WordPress integration",
+        "description": "Product catalogs, comparisons and consumer reviews are published to a WordPress front-end via authenticated API syncs."
       },
       {
-        "feature": "Real-time synchronization",
-        "description": "Near-real-time data sync between portal and CMS ensuring consistency across platforms."
+        "feature": "Role-based ERP with audit trails",
+        "description": "Fine-grained roles for SLSEA admins, agency testers, manufacturer users and field inspectors with immutable audit logs for compliance."
       },
       {
-        "feature": "Accessible UI design",
-        "description": "Responsive, accessible UI built for wide public reach across devices and connection speeds."
+        "feature": "AWS resilient deployment",
+        "description": "Load balancers, autoscaling groups, S3 for media, RDS for relational data, and background workers for heavy processing and reports."
       },
       {
-        "feature": "Comprehensive audit logging",
-        "description": "Detailed audit logging and moderation workflows for transparency and accountability."
+        "feature": "Offline-capable field workflows",
+        "description": "Field inspector UIs that can cache data offline and sync when connectivity is restored."
       }
     ],
     "technologies": [
       "Laravel",
       "React",
-      "Joomla!",
+      "Spatie Packages",
       "AWS",
       "MySQL",
       "Bootstrap",
-      "REST API",
       "Docker",
-      "AWS"
+      "Queuing",
+      "REST API",
+      "QR generation"
     ],
     "featured": true,
     "status": "completed",
-    "liveLink": "https://www.culturaldept.gov.lk/index.php?lang=en#thirdPage",
+    "liveLink": "https://www.energy.gov.lk/en/",
     "type": "work"
   },
   {
@@ -160,15 +161,71 @@
       "Laravel",
       "Moodle",
       "Zoom API",
-      "AWS (ELB, Auto Scaling, RDS)",
+      "AWS",
       "Docker",
       "MySQL",
       "Redis",
-      "Background Jobs"
+      "Cron Jobs"
     ],
     "featured": true,
     "status": "completed",
     "liveLink": "https://proconsacademy.com/",
+    "type": "work"
+  },
+  {
+    "image": "/projects/dcula.png",
+    "category": "Government",
+    "title": "Song Registration Portal - Department of Cultural Affairs",
+    "shortDescription": "A government song registration portal and CMS linking Joomla! with a Laravel + React portal, built for Procons Infectic.",
+    "longDescription": "Delivered for Procons Infectic as a strategic government contract with the Department of Cultural Affairs, this project is a comprehensive, production-hardened song registration and archival platform that modernized legacy content workflows and introduced a resilient public-facing portal. The solution blends a performant Laravel + React portal for public submissions with a robust Joomla! CMS acting as the authoritative content source for administrative workflows, editorial publishing, and rich content presentation. I designed and implemented secure RESTful synchronization bridges and webhooks that ensure near-real-time consistency between the portal and Joomla!, allowing editorial teams to author content in the CMS while the portal consumes and renders that content with precise caching and invalidation rules. The system supports multi-step user registration, two-factor-capable authentication hooks, role-based admin approvals, staged moderation queues, and a detailed audit trail for every submission to meet government compliance requirements. Search and discovery were upgraded with indexed metadata, multi-faceted filtering, and relevance-weighted results. Accessibility, cross-browser compatibility, and responsive UI were implemented with Bootstrap and progressive enhancement techniques so the public portal remains usable on low-bandwidth devices. For production we automated CI/CD deployments into AWS with immutable releases, database migration scripts and backups, monitoring and alerting, and hardened input validation and sanitization to reduce attack surface. The project delivered a measurable improvement in submission processing times, administrative throughput, and public discoverability while meeting strict security and governance standards.",
+    "keyFeatures": [
+      {
+        "feature": "Bi-directional CMS sync",
+        "description": "Secure REST API and webhook-based synchronization between Joomla! and the Laravel portal to keep content and metadata consistent in near-real-time."
+      },
+      {
+        "feature": "Moderation & audit trails",
+        "description": "Role-based approval workflows, staged moderation queues, and immutable audit logs for compliance and traceability."
+      },
+      {
+        "feature": "Advanced search & filtering",
+        "description": "Indexed metadata search with multi-faceted filters and relevance weighting to surface the most appropriate song entries."
+      },
+      {
+        "feature": "Production-grade deployment",
+        "description": "CI/CD pipelines, automated backups, and monitoring on AWS with secure network and DB configurations."
+      },
+      {
+        "feature": "Government-grade security",
+        "description": "Enterprise-level security measures and compliance standards for government data protection."
+      },
+      {
+        "feature": "Real-time synchronization",
+        "description": "Near-real-time data sync between portal and CMS ensuring consistency across platforms."
+      },
+      {
+        "feature": "Accessible UI design",
+        "description": "Responsive, accessible UI built for wide public reach across devices and connection speeds."
+      },
+      {
+        "feature": "Comprehensive audit logging",
+        "description": "Detailed audit logging and moderation workflows for transparency and accountability."
+      }
+    ],
+    "technologies": [
+      "Laravel",
+      "React",
+      "Joomla!",
+      "AWS",
+      "MySQL",
+      "Bootstrap",
+      "REST API",
+      "Docker",
+      "AWS"
+    ],
+    "featured": true,
+    "status": "completed",
+    "liveLink": "https://www.culturaldept.gov.lk/index.php?lang=en#thirdPage",
     "type": "work"
   },
   {

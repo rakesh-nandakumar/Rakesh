@@ -77,9 +77,9 @@ export default function TableOfContents({ content, className = "" }) {
     >
       <h3 className="toc-title">Table of Contents</h3>
       <ul className="toc-list">
-        {toc.map(({ id, title, level }) => (
+        {toc.map(({ id, title, level }, index) => (
           <li
-            key={id}
+            key={`${id}-${index}`}
             className={`toc-item toc-level-${level} ${
               activeId === id ? "active" : ""
             }`}

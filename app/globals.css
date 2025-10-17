@@ -2555,13 +2555,15 @@ body:not(.white-version) #footer-area {
 }
 
 .code-block {
-  padding: 1.5rem;
   border-radius: 8px;
   font-family: "Courier New", monospace;
-  font-size: 0.95rem;
+  font-size: 1.20rem;
+  padding: .5rem;
   line-height: 1.5;
   overflow-x: auto;
   margin: 1.5rem 0;
+  background: var(--bg-code-dark, #1a202c) !important;
+  border-color: var(--border-color-dark, #4a5568);
 }
 
 /* Responsive adjustments */
@@ -2625,10 +2627,6 @@ body:not(.white-version) #footer-area {
     padding: 0.75rem 1rem;
     margin: 1rem 0;
   }
-  .code-block {
-    padding: 1rem;
-    font-size: 0.9rem;
-  }
 }
 
 /* Comprehensive Theme Support */
@@ -2689,12 +2687,6 @@ body:not(.white-version) #footer-area {
 .white-version .inline-code {
   background: rgba(255, 107, 53, 0.1);
   color: #d53f07;
-}
-
-.white-version .code-block {
-  background: #f7fafc;
-  color: #2d3748;
-  border: 1px solid #e2e8f0;
 }
 
 /* Dark Theme (Default) Styling */

@@ -1,5 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
+import aiSystemPrompt from "@/data/ai-system-prompt.json";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -91,6 +92,8 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  // runtime flag from data/ai-system-prompt.json
+  const ChatButtonOn = aiSystemPrompt?.ChatButtonOn ?? false;
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -199,7 +202,7 @@ export default function RootLayout({ children }) {
             <FeatherInit />
             <Header />
             {children}
-            <ChatButton />
+            {ChatButtonOn && <ChatButton />}
             <Footer />
           </ThemeProvider>
         </ErrorBoundary>

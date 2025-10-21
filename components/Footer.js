@@ -110,6 +110,18 @@ export default function Footer() {
                       </Link>
                     </li>
                   )}
+                  {contact.whatsapp && (
+                    <li>
+                      <Link
+                        href={contact.whatsapp}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="WhatsApp"
+                      >
+                        <i data-feather="message-circle" />
+                      </Link>
+                    </li>
+                  )}
                 </ul>
               </div>
             </div>

@@ -225,7 +225,7 @@ const TimelineCard = ({ item, position, isPast }) => {
                 <div
                   style={{
                     display: "flex",
-                    justifyContent: "center",
+                    justifyContent: "end",
                     marginTop: "16px",
                   }}
                 >
@@ -240,9 +240,9 @@ const TimelineCard = ({ item, position, isPast }) => {
                       background: "none",
                       border: "1px solid var(--color-primary)",
                       color: "var(--color-primary)",
-                      padding: "8px 16px",
-                      borderRadius: "20px",
-                      fontSize: "13px",
+                      padding: "5px 10px",
+                      borderRadius: "10px",
+                      fontSize: "10px",
                       marginTop: "8px",
                       fontWeight: "500",
                       cursor: "pointer",

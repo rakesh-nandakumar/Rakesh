@@ -50,52 +50,52 @@
     {
       "name": "Laravel",
       "icon": "/tech-icons/laravel.svg",
-      "description": "Strong expertise in building scalable backends and APIs with Laravel, using features like authentication, middleware, and Eloquent ORM."
+      "description": "Extensive Laravel experience across versions and ecosystem tools (Livewire, Inertia, Filament, Jetstream, Spatie). Skilled in Blade templating, auth, middleware, and building scalable APIs."
     },
     {
       "name": "Next.js",
       "icon": "/tech-icons/nextjs.svg",
       "darkMode": true,
-      "description": "Expert in full-stack development with Next.js, leveraging SSR, static generation, and API routes for high-performance apps."
+      "description": "Strong Next.js experience (App Router, Prisma, RSC). Proficient with SSR, CSR, static generation, API routes, and building high-performance, SEO-friendly frontend architectures."
     },
     {
-      "name": "ASP.NET",
+      "name": "ASP.NET Core",
       "icon": "/tech-icons/aspnet.svg",
-      "description": "Strong experience in developing secure, scalable enterprise apps with ASP.NET and integrating cloud-based services."
+      "description": "Experienced in ASP.NET Core and .NET versions, including Entity Framework. Skilled in MVC, RESTful API design, Razor Pages, and building secure, maintainable server-side applications."
     },
     {
       "name": "WordPress",
       "icon": "/tech-icons/wordpress.svg",
-      "description": "Expert in WordPress development, including custom themes, plugins, WooCommerce, and performance optimization."
+      "description": "Skilled in building CMS solutions with WordPress: custom themes, plugins, WooCommerce, performance tuning, and implementing SEO best practices for maximum visibility."
     },
     {
       "name": "React Native",
       "icon": "/tech-icons/react-native.svg",
-      "description": "Expert in building cross-platform mobile apps with React Native, ensuring smooth performance on iOS and Android."
+      "description": "Experienced building cross-platform mobile apps with React Native, focusing on performance, native integrations, and polished UX across iOS and Android devices."
     },
     {
       "name": "AWS",
       "icon": "/tech-icons/aws.svg",
       "darkMode": true,
-      "description": "Extensive experience deploying and managing cloud solutions using AWS services like EC2, S3, RDS, Lambda, and IAM."
+      "description": "Extensive AWS experience (EC2, S3, RDS, Lambda, IAM). Skilled in deploying scalable apps with EC2/ALB, monitoring, auto-scaling, and optimizing performance for high-availability systems."
     },
     {
       "name": "JavaScript Frameworks",
       "icon": "/tech-icons/javascript.svg",
-      "description": "Strong proficiency in Vue.js, Alpine.js, and jQuery for building dynamic, responsive front-end components."
+      "description": "Proficient in modern JS frameworks (Vue.js, Alpine.js) and libraries(jQuery, React) for creating dynamic, responsive front-end components and interactive UI patterns."
     },
     {
-      "name": "Raspberry Pi",
-      "icon": "/tech-icons/raspberry-pi.svg",
-      "description": "Hands-on experience using Raspberry Pi for IoT, automation, and educational projects with hardware integration."
+      "name": "Python",
+      "icon": "/tech-icons/python.png",
+      "description": "Extensive Python experience: Django and Flask backends, machine learning projects, web scraping and Selenium testing, plus MicroPython for IoT on Raspberry Pi and microcontrollers."
     },
     {
-      "name": "ChatGPT",
+      "name": "Generative AI",
       "icon": "/tech-icons/chatgpt.svg",
       "darkMode": true,
-      "description": "Strong experience integrating ChatGPT for chatbots, AI-powered analytics, content generation, and support automation."
-    }
-  ],
+      "description": "Experience designing production-grade GenAI solutions with OpenAI, Gemini, and similar APIs. Skilled in prompt engineering, model integration, and deploying scalable LLM-powered solutions and applications."
+        }
+      ],
   "contact": {
     "email": "Rakeshnandakumarr@gmail.com",
     "phone": "+9476-375-5374",

@@ -1,0 +1,182 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2025-10-23",
+  "description": "Classification manifest for AI-powered chat system - defines priority levels and field selections for each JSON data source",
+  "files": {
+    "about.json": {
+      "priority": "high",
+      "alwaysInclude": true,
+      "description": "Core identity and contact information",
+      "fields": {
+        "include": ["name", "title", "shortBio", "contact"],
+        "exclude": ["longBio"],
+        "onDemand": ["longBio"]
+      },
+      "tokenBudget": 150,
+      "summaryTemplate": "{name} is a {title}. {shortBio}. Contact: {contact.email}"
+    },
+    "site-config.json": {
+      "priority": "high",
+      "alwaysInclude": true,
+      "description": "Feature toggles and site configuration",
+      "fields": {
+        "include": ["*"]
+      },
+      "tokenBudget": 50,
+      "summaryTemplate": "Site features enabled: Chat={ChatAssistantEnabled}, Gallery={GalleryEnabled}, Blog={BlogEnabled}, Projects={ProjectsEnabled}"
+    },
+    "services.json": {
+      "priority": "medium",
+      "alwaysInclude": false,
+      "description": "Services offered",
+      "fields": {
+        "include": [
+          "headline",
+          "subheadline",
+          "services.title",
+          "services.description"
+        ],
+        "exclude": ["services.icon"]
+      },
+      "tokenBudget": 200,
+      "itemSummaryTemplate": "{title}: {description}",
+      "itemArrayPath": "services"
+    },
+    "technologies.json": {
+      "priority": "medium",
+      "alwaysInclude": false,
+      "description": "Tech stack and expertise",
+      "fields": {
+        "include": ["name", "description"],
+        "exclude": ["icon", "darkMode"]
+      },
+      "tokenBudget": 250,
+      "itemSummaryTemplate": "{name}: {description}",
+      "itemArrayPath": "technologies"
+    },
+    "timeline.json": {
+      "priority": "medium",
+      "alwaysInclude": false,
+      "description": "Work experience and education history",
+      "fields": {
+        "include": ["category", "time", "title", "short-description"],
+        "exclude": ["technologies", "links"],
+        "onDemand": ["long-description", "technologies", "links"]
+      },
+      "tokenBudget": 400,
+      "retrievalStrategy": "semantic",
+      "itemSummaryTemplate": "{title} ({time}): {short-description}",
+      "itemArrayPath": "timeline",
+      "categoryLabels": {
+        "1": "Work Experience",
+        "2": "Education"
+      }
+    },
+    "portfolio.json": {
+      "priority": "medium",
+      "alwaysInclude": false,
+      "description": "Project portfolio and case studies",
+      "fields": {
+        "include": ["title", "category", "shortDescription", "status"],
+        "exclude": [
+          "image",
+          "keyFeatures",
+          "testimonials",
+          "demoUrl",
+          "sourceCode"
+        ],
+        "onDemand": [
+          "longDescription",
+          "keyFeatures",
+          "technologies",
+          "challenges",
+          "testimonials"
+        ]
+      },
+      "tokenBudget": 600,
+      "retrievalStrategy": "semantic",
+      "itemSummaryTemplate": "{title} ({category}): {shortDescription}",
+      "itemArrayPath": "projects"
+    },
+    "blogs.json": {
+      "priority": "low",
+      "alwaysInclude": false,
+      "description": "Blog posts and articles",
+      "fields": {
+        "include": [
+          "id",
+          "title",
+          "category",
+          "excerpt",
+          "tags",
+          "publishDate",
+          "readTime"
+        ],
+        "exclude": ["content", "image"],
+        "onDemand": ["content"]
+      },
+      "tokenBudget": 300,
+      "retrievalStrategy": "semantic",
+      "chunking": {
+        "enabled": true,
+        "chunkSize": 1000,
+        "overlap": 100
+      },
+      "itemSummaryTemplate": "{title} ({category}, {publishDate}): {excerpt}",
+      "itemArrayPath": "blogs"
+    },
+    "gallery.json": {
+      "priority": "low",
+      "alwaysInclude": false,
+      "description": "Personal and professional photos",
+      "fields": {
+        "include": ["title", "description", "date", "category"],
+        "exclude": ["src", "location"]
+      },
+      "tokenBudget": 100,
+      "itemSummaryTemplate": "{title} ({date}): {description}",
+      "itemArrayPath": "gallery"
+    },
+    "header.json": {
+      "priority": "low",
+      "alwaysInclude": false,
+      "description": "Navigation structure",
+      "fields": {
+        "include": ["navigation", "ctaButton"]
+      },
+      "tokenBudget": 50,
+      "summaryTemplate": "Navigation includes: {navigation} | CTA: {ctaButton.text}"
+    }
+  },
+  "retrievalRules": {
+    "defaultTopK": 3,
+    "maxTopK": 5,
+    "minSimilarityScore": 0.7,
+    "priorityBoost": {
+      "high": 1.5,
+      "medium": 1.0,
+      "low": 0.7
+    }
+  },
+  "tokenBudgets": {
+    "total": 4096,
+    "system": 200,
+    "alwaysInclude": 400,
+    "retrieved": 1200,
+    "userQuery": 300,
+    "response": 2000,
+    "buffer": 96
+  },
+  "privacyRules": {
+    "redactFields": [],
+    "publicFields": [
+      "name",
+      "title",
+      "shortBio",
+      "contact.email",
+      "contact.linkedin",
+      "contact.github",
+      "contact.portfolio"
+    ]
+  }
+}

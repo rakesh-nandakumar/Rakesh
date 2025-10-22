@@ -4,7 +4,9 @@ import siteConfig from "@/data/site-config.json";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import ChatButton from "@/components/ChatButton";
+// OLD: import ChatButton from "@/components/ChatButton";
+// NEW: Enhanced RAG-powered chat with smart context retrieval
+import EnhancedChatButton from "@/components/EnhancedChatButton";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import FeatherInit from "@/components/FeatherInit";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
@@ -202,7 +204,7 @@ export default function RootLayout({ children }) {
             <FeatherInit />
             <Header />
             {children}
-            {ChatButtonOn && <ChatButton />}
+            {ChatButtonOn && <EnhancedChatButton />}
             <Footer />
           </ThemeProvider>
         </ErrorBoundary>

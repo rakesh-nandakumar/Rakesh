@@ -10,7 +10,12 @@ const GallerySection = () => {
   const [closeButtonStyle, setCloseButtonStyle] = useState({});
 
   // Get gallery images from JSON file
-  const galleryImages = galleryData.galleryImages;
+  // Support both formats:
+  // - legacy: { galleryImages: [...] }
+  // - current: [ ... ]
+  const galleryImages = Array.isArray(galleryData)
+    ? galleryData
+    : galleryData.galleryImages || [];
 
   // Dynamic close button sizing based on modal size
   useEffect(() => {

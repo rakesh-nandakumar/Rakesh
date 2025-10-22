@@ -11,6 +11,7 @@ import AboutSection from "@/components/AboutSection";
 import SkillsSection from "@/components/SkillsSection";
 import GallerySection from "@/components/GallerySection";
 import galleryData from "@/data/gallery.json";
+import siteConfig from "@/data/site-config.json";
 import { Calendar, Clock } from "react-feather";
 import { ExternalLink, GitHub } from "react-feather";
 
@@ -83,10 +84,12 @@ export default function About() {
       />
       <div className="about-page pt-20">
         <AboutSection />
-        <TimelineComponent />
-        <ResumeSection />
-        <SkillsSection />
-        {galleryData.galleryOn && <GallerySection />}
+        {siteConfig.TimelineEnabled && <TimelineComponent />}
+        {siteConfig.TimelineEnabled && <ResumeSection />}
+        {siteConfig.TechnologiesEnabled && <SkillsSection />}
+        {siteConfig.GalleryEnabled &&  (
+          <GallerySection />
+        )}
       </div>
     </>
   );

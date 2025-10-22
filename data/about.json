@@ -12,96 +12,13 @@
   "cvLink": "/cv.pdf",
   "shortBio": "With over **3+ years** of hands-on experience in full-stack development, I bring more than just skills, I bring results. I've mastered the art of understanding client needs and architecting precise tech solution on the most in-demand, up-to-date industry best practices and technologies, ensuring scalability for the future. I’ve consistently delivered impactful solutions for government contracts and international clients.",
   "longBio": "I am Rakesh Nandakumar, a software engineer with over 3 years of experience. I began as a freelancer, building web apps, mobile apps, IoT solutions, and cloud-based systems. Later, I joined WebRubix, a Canadian consulting company, where I worked remotely on international projects, expanding my expertise in .NET, React, Node.js, and cloud-first systems while delivering production-ready applications.\n\nI then moved to Procons Infotech, developing enterprise-level solutions for government contracts. My work there involved Laravel, React, Vue, AWS, and React Native, often in high-performance, large-scale environments where security, scalability, and clean architecture were essential.\n\nI don’t limit myself to a single stack—I choose the right tools for the problem. With a deep understanding of technology, I move easily between frameworks. What sets me apart is my ability to combine hands-on coding with big-picture thinking: aligning system design with business goals, long-term growth, and real-world impact. I can switch seamlessly between technical problem solving and architectural strategy, ensuring I deliver not just solutions, but the right solutions. Beyond tech, I excel at communication—translating ideas into scalable software, leading projects end-to-end, and driving initiatives with speed and precision. In short, I don’t just build software—I build trust, confidence, and systems people say are exactly what they needed.",
-  "education": [
-    {
-      "degree": "BSc (Hons) in Computer Science",
-      "institution": "Staffordshire University UK",
-      "year": "",
-      "description": ""
-    },
-    {
-      "degree": "Diploma in Computer Science",
-      "institution": "Asia Pacific Institute of Information Technology",
-      "year": "",
-      "description": ""
-    }
-  ],
-  "experience": [
-    {
-      "title": "Software Engineer",
-      "company": "Procons Infotech",
-      "year": "SEPT 2024 - PRESENT",
-      "description": "Building enterprise-level systems for government contracts, working on large-scale, mission-critical applications where security, scalability, and reliability are non-negotiable. Developed multi-vendor SaaS platforms, complex APIs, and web solutions using Laravel, React, Vue, and AWS. Designed and optimized back-end architectures, integrated cross-platform solutions, and contributed to government-grade systems that require clean architecture, performance tuning, and rigorous security standards."
-    },
-    {
-      "title": "Full Stack Developer",
-      "company": "Webrubix IT Consulting (Canada)",
-      "year": "NOV 2023 - AUG 2024",
-      "description": "Delivered international projects for Canadian clients in a full-time remote role. Designed and built applications using ASP.NET Core, React, Node.js, and cloud-first architectures. Worked on multi-vendor systems, implemented modern front-end features with React + Tailwind, and built secure REST APIs. Ensured seamless integration across stacks, collaborated with international teams, and consistently delivered polished, production-ready software tailored for global clients."
-    },
-    {
-      "title": "Technical Consultant",
-      "company": "Freelance",
-      "year": "FEB 2023 - PRESENT",
-      "description": "Started my career as a freelancer, where I delivered full-stack web and mobile applications, Chrome extensions, IoT and hardware-based solutions, and even machine learning projects. This role gave me direct client-facing experience, teaching me how to translate ideas into real solutions while managing end-to-end delivery—from requirement gathering and solution design to deployment and long-term support. Built a strong reputation for adaptability, problem-solving, and creating impactful solutions for both local and international clients."
-    }
-  ],
-  "techStack": [
-    {
-      "name": "Laravel",
-      "icon": "/tech-icons/laravel.svg",
-      "description": "Extensive Laravel experience across versions and ecosystem tools (Livewire, Inertia, Filament, Jetstream, Spatie). Skilled in Blade templating, auth, middleware, and building scalable APIs."
-    },
-    {
-      "name": "Next.js",
-      "icon": "/tech-icons/nextjs.svg",
-      "darkMode": true,
-      "description": "Strong Next.js experience (App Router, Prisma, RSC). Proficient with SSR, CSR, static generation, API routes, and building high-performance, SEO-friendly frontend architectures."
-    },
-    {
-      "name": "ASP.NET Core",
-      "icon": "/tech-icons/aspnet.svg",
-      "description": "Experienced in ASP.NET Core and .NET versions, including Entity Framework. Skilled in MVC, RESTful API design, Razor Pages, and building secure, maintainable server-side applications."
-    },
-    {
-      "name": "WordPress",
-      "icon": "/tech-icons/wordpress.svg",
-      "description": "Skilled in building CMS solutions with WordPress: custom themes, plugins, WooCommerce, performance tuning, and implementing SEO best practices for maximum visibility."
-    },
-    {
-      "name": "React Native",
-      "icon": "/tech-icons/react-native.svg",
-      "description": "Experienced building cross-platform mobile apps with React Native, focusing on performance, native integrations, and polished UX across iOS and Android devices."
-    },
-    {
-      "name": "AWS",
-      "icon": "/tech-icons/aws.svg",
-      "darkMode": true,
-      "description": "Extensive AWS experience (EC2, S3, RDS, Lambda, IAM). Skilled in deploying scalable apps with EC2/ALB, monitoring, auto-scaling, and optimizing performance for high-availability systems."
-    },
-    {
-      "name": "JavaScript Frameworks",
-      "icon": "/tech-icons/javascript.svg",
-      "description": "Proficient in modern JS frameworks (Vue.js, Alpine.js) and libraries(jQuery, React) for creating dynamic, responsive front-end components and interactive UI patterns."
-    },
-    {
-      "name": "Python",
-      "icon": "/tech-icons/python.png",
-      "description": "Extensive Python experience: Django and Flask backends, machine learning projects, web scraping and Selenium testing, plus MicroPython for IoT on Raspberry Pi and microcontrollers."
-    },
-    {
-      "name": "Generative AI",
-      "icon": "/tech-icons/chatgpt.svg",
-      "darkMode": true,
-      "description": "Experience designing production-grade GenAI solutions with OpenAI, Gemini, and similar APIs. Skilled in prompt engineering, model integration, and deploying scalable LLM-powered solutions and applications."
-        }
-      ],
   "contact": {
     "email": "Rakeshnandakumarr@gmail.com",
     "phone": "+9476-375-5374",
     "address": "704/ Rilaulla kandana",
     "linkedin": "https://linkedin.com/in/rakesh-nandakumar",
     "github": "https://github.com/rakesh-nandakumar/",
-    "portfolio": "https://rakeshn.com/"
+    "portfolio": "https://rakeshn.com/",
+    "whatsapp": "https://wa.me/94763755374"
   }
 }

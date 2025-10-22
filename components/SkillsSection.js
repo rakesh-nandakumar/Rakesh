@@ -1,11 +1,11 @@
 import React from "react";
 import Image from "next/image";
-import aboutData from "../data/about.json";
+import technologiesData from "../data/technologies.json";
 import "../styles/SkillsSection.css";
 
 const SkillsSection = () => {
-  // Get primary skills from about.json techStack
-  const primarySkills = aboutData.techStack;
+  // Get skills from technologies.json
+  const primarySkills = technologiesData;
 
   return (
     <div className="rn-skill-area rn-section-gap section-separator">

@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Laravel",
+    "icon": "/tech-icons/laravel.svg",
+    "description": "Extensive Laravel experience across versions and ecosystem tools (Livewire, Inertia, Filament, Jetstream, Spatie). Skilled in Blade templating, auth, middleware, and building scalable APIs."
+  },
+  {
+    "name": "Next.js",
+    "icon": "/tech-icons/nextjs.svg",
+    "darkMode": true,
+    "description": "Strong Next.js experience (App Router, Prisma, RSC). Proficient with SSR, CSR, static generation, API routes, and building high-performance, SEO-friendly frontend architectures."
+  },
+  {
+    "name": "ASP.NET Core",
+    "icon": "/tech-icons/aspnet.svg",
+    "description": "Experienced in ASP.NET Core and .NET versions, including Entity Framework. Skilled in MVC, RESTful API design, Razor Pages, and building secure, maintainable server-side applications."
+  },
+  {
+    "name": "WordPress",
+    "icon": "/tech-icons/wordpress.svg",
+    "description": "Skilled in building CMS solutions with WordPress: custom themes, plugins, WooCommerce, performance tuning, and implementing SEO best practices for maximum visibility."
+  },
+  {
+    "name": "React Native",
+    "icon": "/tech-icons/react-native.svg",
+    "description": "Experienced building cross-platform mobile apps with React Native, focusing on performance, native integrations, and polished UX across iOS and Android devices."
+  },
+  {
+    "name": "AWS",
+    "icon": "/tech-icons/aws.svg",
+    "darkMode": true,
+    "description": "Extensive AWS experience (EC2, S3, RDS, Lambda, IAM). Skilled in deploying scalable apps with EC2/ALB, monitoring, auto-scaling, and optimizing performance for high-availability systems."
+  },
+  {
+    "name": "JavaScript Frameworks",
+    "icon": "/tech-icons/javascript.svg",
+    "description": "Proficient in modern JS frameworks (Vue.js, Alpine.js) and libraries(jQuery, React) for creating dynamic, responsive front-end components and interactive UI patterns."
+  },
+  {
+    "name": "Python",
+    "icon": "/tech-icons/python.png",
+    "description": "Extensive Python experience: Django and Flask backends, machine learning projects, web scraping and Selenium testing, plus MicroPython for IoT on Raspberry Pi and microcontrollers."
+  },
+  {
+    "name": "Generative AI",
+    "icon": "/tech-icons/chatgpt.svg",
+    "darkMode": true,
+    "description": "Experience designing production-grade GenAI solutions with OpenAI, Gemini, and similar APIs. Skilled in prompt engineering, model integration, and deploying scalable LLM-powered solutions and applications."
+  }
+]

@@ -6,9 +6,16 @@ import { useRouter } from "next/navigation";
 import { X, Menu } from "react-feather";
 import { useState, useEffect } from "react";
 
-export default function MobileMenu({ headerData }) {
+export default function MobileMenu({
+  headerData,
+  siteConfig,
+  filteredNavigation,
+}) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const router = useRouter();
+
+  // Use filteredNavigation if provided, otherwise fall back to all navigation items
+  const navigationItems = filteredNavigation || headerData.navigation;
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -110,7 +117,7 @@ export default function MobileMenu({ headerData }) {
           <div className="content">
             <nav className="mainmenu-nav">
               <ul className="primary-menu nav nav-pills">
-                {headerData.navigation.map((item, index) => (
+                {navigationItems.map((item, index) => (
                   <li key={index} className="nav-item">
                     <a
                       href={item.href}

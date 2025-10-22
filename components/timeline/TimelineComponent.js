@@ -6,19 +6,11 @@ import timelineData from "../../data/timeline.json";
 const TimelineComponent = () => {
   // Process timeline data directly (server-side)
   const processedData = (() => {
-    // Validate that categories match the allowed types
-    const validatedData = timelineData.map((item) => {
-      const category = ["work", "education", "freelance", "other"].includes(
-        item.category
-      )
-        ? item.category
-        : "other";
-
-      return { ...item, category };
-    });
+    // Use timeline.timeline array from the JSON structure
+    const timelineItems = timelineData.timeline;
 
     // Sort data from oldest to newest
-    return validatedData.sort((a, b) => {
+    return timelineItems.sort((a, b) => {
       // Handle different time formats
       const getYearFromItem = (item) => {
         if (item.time) {

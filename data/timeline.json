@@ -1,10 +1,15 @@
-[
-  {
+{
+  "category": {
+    "Work Experience": 1,
+    "Education": 2
+  },
+  "timeline": [{
+    "category": 1,
     "time": "September 2024 - Present",
-    "active": true,
     "title": "Software Engineer at Procons Infotech",
-    "description": "Building enterprise-grade software for government contracts with a focus on high scalability, security, and performance using Laravel, React, Vue, and AWS.",
-    "category": "work",
+    "short-description": "Building enterprise-grade software for government contracts with a focus on high scalability, security, and performance using Laravel, React, Vue, and AWS.",
+    "long-description": "Building enterprise-level systems for government contracts, working on large-scale, mission-critical applications where security, scalability, and reliability are non-negotiable. Developed multi-vendor SaaS platforms, complex APIs, and web solutions using Laravel, React, Vue, and AWS. Designed and optimized back-end architectures, integrated cross-platform solutions, and contributed to government-grade systems that require clean architecture, performance tuning, and rigorous security standards.",
+
     "technologies": [
       "Laravel",
       "React",
@@ -14,13 +19,19 @@
       "S3",
       "React Native"
     ],
-    "links": [{ "portfolio": "https://proconsinfotech.com/" }, { "linkedin": "https://www.linkedin.com/company/procons-infotech/" }]
+
+    "links": [
+      { "portfolio": "https://proconsinfotech.com/" },
+      { "linkedin": "https://www.linkedin.com/company/procons-infotech/" }
+    ]
   },
   {
+    "category": 1,
     "time": "November 2023 - August 2024",
     "title": "Full Stack Developer at Webrubix IT Consulting (Canada)",
-    "description": "Worked on international projects for Canadian clients, delivering scalable, production-ready applications using ASP.NET Core, React, Node.js, and cloud-first designs.",
-    "category": "work",
+    "short-description": "Worked on international projects for Canadian clients, delivering scalable, production-ready applications using ASP.NET Core, React, Node.js, and cloud-first designs.",
+    "long-description": "Delivered international projects for Canadian clients in a full-time remote role. Designed and built applications using ASP.NET Core, React, Node.js, and cloud-first architectures. Worked on multi-vendor systems, implemented modern front-end features with React + Tailwind, and built secure REST APIs. Ensured seamless integration across stacks, collaborated with international teams, and consistently delivered polished, production-ready software tailored for global clients.",
+
     "technologies": [
       "ASP.NET Core",
       "React.js",
@@ -31,11 +42,11 @@
     ]
   },
   {
+    "category": 1,
     "time": "February 2023 - Present",
-    "active": true,
     "title": "Technical Consultant (Freelance)",
-    "description": "Provided end-to-end consulting for web, mobile, and IoT projects, working directly with clients to design, build, and deploy complete software solutions.",
-    "category": "freelance",
+    "short-description": "Provided end-to-end consulting for web, mobile, and IoT projects, working directly with clients to design, build, and deploy complete software solutions.",
+    "long-description": "Started my career as a freelancer, where I delivered full-stack web and mobile applications, Chrome extensions, IoT and hardware-based solutions, and even machine learning projects. This role gave me direct client-facing experience, teaching me how to translate ideas into real solutions while managing end-to-end delivery—from requirement gathering and solution design to deployment and long-term support. Built a strong reputation for adaptability, problem-solving, and creating impactful solutions for both local and international clients.",
     "technologies": [
       "Laravel",
       "React",
@@ -47,16 +58,17 @@
     ]
   },
   {
-    "time": "",
+    "category": 2,
     "title": "Diploma in Computer Science",
-    "description": "Diploma from Asia Pacific Institute of Information Technology",
-    "category": "education",
-    "More-info": "GPA: 3.5 / 4.0 (Computer Science)"
+    "short-description": "Diploma from Asia Pacific Institute of Information Technology",
+    "long-description": "GPA: 3.5 / 4.0 (Computer Science)",
+    "status": "Completed"
   },
   {
-    "time": "",
+    "category": 2,
     "title": "BSc (Hons) in Computer Science",
-    "description": "Degree from Staffordshire University UK",
-    "category": "education"
+    "short-description": "Degree from Staffordshire University UK",
+    "status": "Completed"
   }
-]
+  ]
+}

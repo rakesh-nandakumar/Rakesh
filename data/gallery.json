@@ -1,86 +1,83 @@
-{
-  "galleryOn" : false,
-  "galleryImages": [
-    {
-      "id": 1,
-      "src": "https://picsum.photos/400/600",
-      "title": "Graduation Day",
-      "description": "Bachelor's degree in Computer Science - A milestone achievement",
-      "date": "May 2022",
-      "location": "University Campus",
-      "category": "education"
-    },
-    {
-      "id": 2,
-      "src": "https://picsum.photos/600/400",
-      "title": "First Day at Work",
-      "description": "Starting my professional journey as a Software Developer",
-      "date": "June 2022",
-      "location": "Tech Company HQ",
-      "category": "career"
-    },
-    {
-      "id": 3,
-      "src": "https://picsum.photos/500/500",
-      "title": "Team Building Event",
-      "description": "Building connections with amazing colleagues",
-      "date": "September 2022",
-      "location": "Corporate Retreat",
-      "category": "team"
-    },
-    {
-      "id": 4,
-      "src": "https://picsum.photos/350/700",
-      "title": "Tech Conference Speaker",
-      "description": "Presenting my first technical talk at a developer conference",
-      "date": "March 2023",
-      "location": "Convention Center",
-      "category": "speaking"
-    },
-    {
-      "id": 5,
-      "src": "https://picsum.photos/800/300",
-      "title": "Excellence Award",
-      "description": "Received recognition for outstanding performance",
-      "date": "December 2023",
-      "location": "Company Headquarters",
-      "category": "achievement"
-    },
-    {
-      "id": 6,
-      "src": "https://picsum.photos/450/550",
-      "title": "Mentoring Session",
-      "description": "Guiding junior developers and sharing knowledge",
-      "date": "June 2024",
-      "location": "Office",
-      "category": "mentoring"
-    },
-    {
-      "id": 7,
-      "src": "https://picsum.photos/600/350",
-      "title": "Code Review Session",
-      "description": "Collaborative code review with the development team",
-      "date": "August 2024",
-      "location": "Office",
-      "category": "career"
-    },
-    {
-      "id": 8,
-      "src": "https://picsum.photos/300/800",
-      "title": "Workshop Presentation",
-      "description": "Leading a technical workshop on modern web development",
-      "date": "October 2024",
-      "location": "Training Center",
-      "category": "speaking"
-    },
-    {
-      "id": 9,
-      "src": "https://picsum.photos/550/400",
-      "title": "Team Collaboration",
-      "description": "Working together on a challenging project",
-      "date": "November 2024",
-      "location": "Office",
-      "category": "team"
-    }
-  ]
-}
+[
+  {
+    "id": 1,
+    "src": "https://picsum.photos/400/600",
+    "title": "Graduation Day",
+    "description": "Bachelor's degree in Computer Science - A milestone achievement",
+    "date": "May 2022",
+    "location": "University Campus",
+    "category": "education"
+  },
+  {
+    "id": 2,
+    "src": "https://picsum.photos/600/400",
+    "title": "First Day at Work",
+    "description": "Starting my professional journey as a Software Developer",
+    "date": "June 2022",
+    "location": "Tech Company HQ",
+    "category": "career"
+  },
+  {
+    "id": 3,
+    "src": "https://picsum.photos/500/500",
+    "title": "Team Building Event",
+    "description": "Building connections with amazing colleagues",
+    "date": "September 2022",
+    "location": "Corporate Retreat",
+    "category": "team"
+  },
+  {
+    "id": 4,
+    "src": "https://picsum.photos/350/700",
+    "title": "Tech Conference Speaker",
+    "description": "Presenting my first technical talk at a developer conference",
+    "date": "March 2023",
+    "location": "Convention Center",
+    "category": "speaking"
+  },
+  {
+    "id": 5,
+    "src": "https://picsum.photos/800/300",
+    "title": "Excellence Award",
+    "description": "Received recognition for outstanding performance",
+    "date": "December 2023",
+    "location": "Company Headquarters",
+    "category": "achievement"
+  },
+  {
+    "id": 6,
+    "src": "https://picsum.photos/450/550",
+    "title": "Mentoring Session",
+    "description": "Guiding junior developers and sharing knowledge",
+    "date": "June 2024",
+    "location": "Office",
+    "category": "mentoring"
+  },
+  {
+    "id": 7,
+    "src": "https://picsum.photos/600/350",
+    "title": "Code Review Session",
+    "description": "Collaborative code review with the development team",
+    "date": "August 2024",
+    "location": "Office",
+    "category": "career"
+  },
+  {
+    "id": 8,
+    "src": "https://picsum.photos/300/800",
+    "title": "Workshop Presentation",
+    "description": "Leading a technical workshop on modern web development",
+    "date": "October 2024",
+    "location": "Training Center",
+    "category": "speaking"
+  },
+  {
+    "id": 9,
+    "src": "https://picsum.photos/550/400",
+    "title": "Team Collaboration",
+    "description": "Working together on a challenging project",
+    "date": "November 2024",
+    "location": "Office",
+    "category": "team"
+  }
+]

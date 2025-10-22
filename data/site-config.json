@@ -1,0 +1,10 @@
+{
+  "ChatAssistantEnabled": false,
+  "GalleryEnabled": false,
+  "BlogEnabled": true,
+  "ProjectsEnabled": true,
+  "TemplatesEnabled": true,
+  "TechnologiesEnabled": true,
+  "TimelineEnabled": true,
+  "ServicesEnabled": true
+}

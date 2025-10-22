@@ -1,6 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
-import aiSystemPrompt from "@/data/ai-system-prompt.json";
+import siteConfig from "@/data/site-config.json";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -92,8 +92,8 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  // runtime flag from data/ai-system-prompt.json
-  const ChatButtonOn = aiSystemPrompt?.ChatButtonOn ?? false;
+  // Use site-config.json for feature flags
+  const ChatButtonOn = siteConfig?.ChatAssistantEnabled ?? false;
   return (
     <html lang="en" suppressHydrationWarning>
       <head>

@@ -50,7 +50,15 @@ const TimelineCard = ({ item, position, isPast }) => {
   }, [position, isPast, showMoreInfo]);
 
   const getCategoryIcon = () => {
-    switch (item.category) {
+    // Map numeric categories: 1 = Work Experience, 2 = Education
+    const categoryType =
+      item.category === 1
+        ? "work"
+        : item.category === 2
+        ? "education"
+        : "other";
+
+    switch (categoryType) {
       case "work":
         return (
           <svg
@@ -131,7 +139,15 @@ const TimelineCard = ({ item, position, isPast }) => {
   };
 
   const getCategoryColor = () => {
-    switch (item.category) {
+    // Map numeric categories: 1 = Work Experience, 2 = Education
+    const categoryType =
+      item.category === 1
+        ? "work"
+        : item.category === 2
+        ? "education"
+        : "other";
+
+    switch (categoryType) {
       case "work":
         return "bg-blue-600 text-white";
       case "education":
@@ -141,6 +157,15 @@ const TimelineCard = ({ item, position, isPast }) => {
       default:
         return "bg-gray-600 text-white";
     }
+  };
+
+  const getCategoryLabel = () => {
+    // Map numeric categories: 1 = Work Experience, 2 = Education
+    return item.category === 1
+      ? "Work Experience"
+      : item.category === 2
+      ? "Education"
+      : "Other";
   };
 
   const formatDate = () => {
@@ -194,7 +219,7 @@ const TimelineCard = ({ item, position, isPast }) => {
           <div className="content">
             <div className="category-info">
               <div className="category-list">
-                <a href="javascript:void(0)">{item.category}</a>
+                <a href="javascript:void(0)">{getCategoryLabel()}</a>
               </div>
               {(item.time || item.year) && (
                 <div className="meta">
@@ -209,7 +234,7 @@ const TimelineCard = ({ item, position, isPast }) => {
               <a href="javascript:void(0)">{item.title}</a>
             </h4>
             <div className="description w">
-              <p className="short-description">{item.description}</p>
+              <p className="short-description">{item["short-description"]}</p>
             </div>
             {item.technologies && item.technologies.length > 0 && (
               <div className="technologies">
@@ -220,7 +245,7 @@ const TimelineCard = ({ item, position, isPast }) => {
                 ))}
               </div>
             )}
-            {item["More-info"] && (
+            {item["long-description"] && (
               <div className="more-info-section">
                 <div
                   style={{
@@ -307,7 +332,9 @@ const TimelineCard = ({ item, position, isPast }) => {
                       Additional Information:
                     </h5>
                     <div className="description w">
-                      <p className="short-description">{item["More-info"]}</p>
+                      <p className="short-description">
+                        {item["long-description"]}
+                      </p>
                     </div>
                   </div>
                 </div>

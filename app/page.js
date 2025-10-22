@@ -7,6 +7,7 @@ import ContactSection from "@/components/ContactSection";
 import BlogSection from "@/components/BlogSection";
 import CTASection from "@/components/CTASection";
 import TechStackMarqueeClean from "@/components/TechStackMarqueeClean";
+import siteConfig from "@/data/site-config.json";
 
 export const metadata = {
   title: "Home",
@@ -37,11 +38,11 @@ export default function Home() {
   return (
     <>
       <HeroSection />
-      <FeaturesSection />
-      <TechStackMarqueeClean />
-      <PortfolioSection />
+      {siteConfig.ServicesEnabled && <FeaturesSection />}
+      {siteConfig.TechnologiesEnabled && <TechStackMarqueeClean />}
+      {siteConfig.ProjectsEnabled && <PortfolioSection />}
       <CTASection />
-      <BlogSection />
+      {siteConfig.BlogEnabled && <BlogSection />}
     </>
   );
 }

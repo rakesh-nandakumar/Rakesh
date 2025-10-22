@@ -1,13 +1,16 @@
 "use client";
 
-import aboutData from "../data/about.json";
-
-const resumeData = {
-  education: aboutData.education,
-  experience: aboutData.experience,
-};
+import timelineData from "../data/timeline.json";
 
 export default function ResumeSection() {
+  // Filter timeline data by category
+  // Category 1 = Work Experience, Category 2 = Education
+  const experienceItems = timelineData.timeline.filter(
+    (item) => item.category === 1
+  );
+  const educationItems = timelineData.timeline.filter(
+    (item) => item.category === 2
+  );
 
   return (
     <div
@@ -27,19 +30,21 @@ export default function ResumeSection() {
                     <span className="subtitle ps-4">Experience</span>
                     <h4 className="maintitle ps-4">Job Experience</h4>
                     <div className="experience-list padding-none border-none">
-                      {resumeData.experience.map((exp, index) => (
+                      {experienceItems.map((exp, index) => (
                         <div key={index} className="resume-single-list mt--30">
                           <div className="inner psudo-after-none">
                             <div className="heading">
                               <div className="title">
                                 <h4>{exp.title}</h4>
-                                <span>{exp.company}</span>
+                                <span>{exp.time}</span>
                               </div>
                               <div className="date-of-time">
-                                <span>{exp.year}</span>
+                                <span>{exp.time}</span>
                               </div>
                             </div>
-                            <p className="description">{exp.description}</p>
+                            <p className="description">
+                              {exp["long-description"]}
+                            </p>
                           </div>
                         </div>
                       ))}
@@ -53,24 +58,20 @@ export default function ResumeSection() {
                     <span className="subtitle ps-4">Education</span>
                     <h4 className="maintitle ps-4">Education Quality</h4>
                     <div className="experience-list padding-none border-none">
-                      {resumeData.education.map((edu, index) => (
+                      {educationItems.map((edu, index) => (
                         <div key={index} className="resume-single-list mt--30">
                           <div className="inner psudo-after-none">
                             <div className="heading">
                               <div className="title">
-                                <h4>{edu.degree}</h4>
-                                <span>
-                                  {edu.institution}{" "}
-                                  {edu.year && `(${edu.year})`}
-                                </span>
+                                <h4>{edu.title}</h4>
+                                <span>{edu["short-description"]}</span>
                               </div>
                               <div className="date-of-time">
-                                <span>{edu.year || "Completed"}</span>
+                                <span>{edu.status || "Completed"}</span>
                               </div>
                             </div>
                             <p className="description">
-                              {edu.description ||
-                                `Specialized degree in ${edu.degree} from ${edu.institution}.`}
+                              {edu["long-description"]}
                             </p>
                           </div>
                         </div>

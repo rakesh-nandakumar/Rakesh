@@ -1,12 +1,27 @@
 "use client";
 
 import { Clock, ArrowUpRight, Search } from "react-feather";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import BlogCard from "@/components/BlogCard";
-import blogsData from "@/data/blogs";
 
 const BlogSection = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [blogsData, setBlogsData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Fetch blogs from API
+    fetch("/api/blogs")
+      .then((res) => res.json())
+      .then((data) => {
+        setBlogsData(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching blogs:", error);
+        setLoading(false);
+      });
+  }, []);
 
   // Filter blogs based on search term
   const displayBlogs = blogsData.filter((blog) => {
@@ -79,7 +94,13 @@ const BlogSection = () => {
             </div>
           </div>
           <div className="row row--25 mt--30 mt_md--10 mt_sm--10">
-            {displayBlogs.length > 0 ? (
+            {loading ? (
+              <div className="col-12">
+                <div className="text-center py-5">
+                  <h4 className="title">Loading blogs...</h4>
+                </div>
+              </div>
+            ) : displayBlogs.length > 0 ? (
               displayBlogs.map((blog, index) => (
                 <BlogCard key={index} blog={blog} delay={100 + index * 50} />
               ))

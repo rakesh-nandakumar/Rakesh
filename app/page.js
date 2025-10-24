@@ -7,7 +7,7 @@ import ContactSection from "@/components/ContactSection";
 import BlogSection from "@/components/BlogSection";
 import CTASection from "@/components/CTASection";
 import TechStackMarqueeClean from "@/components/TechStackMarqueeClean";
-import siteConfig from "@/data/site-config.json";
+import { getSiteConfig } from "@/lib/dataService";
 
 export const metadata = {
   title: "Home",
@@ -34,7 +34,9 @@ export const metadata = {
   },
 };
 
-export default function Home() {
+export default async function Home() {
+  const siteConfig = await getSiteConfig();
+
   return (
     <>
       <HeroSection />

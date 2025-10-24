@@ -1,6 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
-import siteConfig from "@/data/site-config.json";
+import { getSiteConfig } from "@/lib/dataService";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -93,9 +93,11 @@ export const metadata = {
   },
 };
 
-export default function RootLayout({ children }) {
-  // Use site-config.json for feature flags
+export default async function RootLayout({ children }) {
+  // Fetch site config from data service
+  const siteConfig = await getSiteConfig();
   const ChatButtonOn = siteConfig?.ChatAssistantEnabled ?? false;
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head>

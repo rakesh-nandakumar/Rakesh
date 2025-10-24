@@ -10,8 +10,7 @@ import BlogSection from "@/components/BlogSection";
 import AboutSection from "@/components/AboutSection";
 import SkillsSection from "@/components/SkillsSection";
 import GallerySection from "@/components/GallerySection";
-import galleryData from "@/data/gallery.json";
-import siteConfig from "@/data/site-config.json";
+import { getGallery, getSiteConfig } from "@/lib/dataService";
 import { Calendar, Clock } from "react-feather";
 import { ExternalLink, GitHub } from "react-feather";
 
@@ -38,7 +37,10 @@ export const metadata = {
   },
 };
 
-export default function About() {
+export default async function About() {
+  const siteConfig = await getSiteConfig();
+  const galleryData = await getGallery();
+
   // Structured data for About page
   const aboutStructuredData = {
     "@context": "https://schema.org",
@@ -87,9 +89,7 @@ export default function About() {
         {siteConfig.TimelineEnabled && <TimelineComponent />}
         {siteConfig.TimelineEnabled && <ResumeSection />}
         {siteConfig.TechnologiesEnabled && <SkillsSection />}
-        {siteConfig.GalleryEnabled &&  (
-          <GallerySection />
-        )}
+        {siteConfig.GalleryEnabled && <GallerySection />}
       </div>
     </>
   );

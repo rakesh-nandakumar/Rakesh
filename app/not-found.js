@@ -86,9 +86,13 @@ export default function NotFound() {
             <div className="col-lg-12">
               <div className="inner text-center">
                 <div className="section-title text-center">
-                  <h1 className="title" role="banner">
+                  <h2
+                    className="title"
+                    role="banner"
+                    style={{ color: "var(--color-primary)" }}
+                  >
                     404
-                  </h1>
+                  </h2>
                   <h2 className="title">Page Not Found</h2>
                   <p className="subtitle mt-5">
                     Oops! The page you&apos;re looking for seems to have
@@ -103,7 +107,6 @@ export default function NotFound() {
                     className="rn-btn mr-3"
                     aria-label="Return to homepage"
                   >
-                    <i className="feather-home" aria-hidden="true"></i>
                     Back to Home
                   </Link>
 
@@ -112,7 +115,6 @@ export default function NotFound() {
                     className="rn-btn btn-outline"
                     aria-label="Contact for help"
                   >
-                    <i className="feather-mail" aria-hidden="true"></i>
                     Report Issue
                   </Link>
                 </div>

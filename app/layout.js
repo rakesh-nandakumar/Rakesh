@@ -228,8 +228,8 @@ export default function RootLayout({ children }) {
           src="/assets/js/vendor/slick.min.js"
           strategy="afterInteractive"
         />
+        <Script src="/assets/js/vendor/wow.js" strategy="afterInteractive" />
         <Script src="/assets/js/vendor/text-type.js" strategy="lazyOnload" />
-        <Script src="/assets/js/vendor/wow.js" strategy="lazyOnload" />
         <Script src="/assets/js/vendor/particles.js" strategy="lazyOnload" />
         <Script
           src="/assets/js/vendor/jquery-one-page-nav.js"

@@ -449,7 +449,8 @@
     },
 
     awsActivation: function (e) {
-      AOS.init();
+      // AOS initialization moved to AOSInit.js client component
+      // This prevents hydration errors in Next.js
     },
 
     onePageNav: function () {

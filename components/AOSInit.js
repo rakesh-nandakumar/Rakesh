@@ -4,9 +4,6 @@ import { useEffect } from "react";
 
 export default function AOSInit() {
   useEffect(() => {
-    // Add aos-init class immediately to prevent FOUC
-    document.documentElement.classList.add("aos-init");
-
     // Function to initialize AOS
     const initAOS = () => {
       if (typeof window !== "undefined" && window.AOS) {

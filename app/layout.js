@@ -4,11 +4,10 @@ import { getSiteConfig } from "@/lib/dataService";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-// OLD: import ChatButton from "@/components/ChatButton";
-// NEW: Enhanced RAG-powered chat with smart context retrieval
 import EnhancedChatButton from "@/components/EnhancedChatButton";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import FeatherInit from "@/components/FeatherInit";
+import AOSInit from "@/components/AOSInit";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import StructuredData from "@/components/StructuredData";
@@ -204,6 +203,7 @@ export default async function RootLayout({ children }) {
             <GoogleAnalytics />
             <ClientComponents />
             <FeatherInit />
+            <AOSInit />
             <Header />
             {children}
             {ChatButtonOn && <EnhancedChatButton />}

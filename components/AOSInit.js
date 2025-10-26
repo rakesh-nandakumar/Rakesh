@@ -4,47 +4,69 @@ import { useEffect } from "react";
 
 export default function AOSInit() {
   useEffect(() => {
-    // Function to initialize AOS
-    const initAOS = () => {
-      if (typeof window !== "undefined" && window.AOS) {
-        window.AOS.init({
-          duration: 500,
-          once: true,
-          easing: "ease-in-out",
-          offset: 50,
-          delay: 0,
-          disable: false,
-          startEvent: "DOMContentLoaded",
-        });
+    let refreshTimer;
+    let pollTimer;
+    let initTimer;
+    let idleHandle;
 
-        // Refresh AOS to catch any dynamically added elements
-        setTimeout(() => {
-          window.AOS.refresh();
-        }, 100);
+    const initAOS = () => {
+      if (!window.AOS) return;
+
+      window.AOS.init({
+        duration: 500,
+        once: true,
+        easing: "ease-in-out",
+        offset: 50,
+        delay: 0,
+        disable: false,
+        startEvent: "DOMContentLoaded",
+      });
+
+      refreshTimer = window.setTimeout(() => {
+        window.AOS?.refresh();
+      }, 200);
+    };
+
+    const scheduleInit = () => {
+      if (!window.AOS) return;
+
+      if (typeof window.requestIdleCallback === "function") {
+        idleHandle = window.requestIdleCallback(() => {
+          initTimer = window.setTimeout(initAOS, 0);
+        });
+      } else {
+        initTimer = window.setTimeout(initAOS, 150);
       }
     };
 
-    // Try to initialize immediately if AOS is already loaded
-    if (window.AOS) {
-      initAOS();
+    const startWhenReady = () => {
+      if (window.AOS) {
+        scheduleInit();
+      } else {
+        pollTimer = window.setInterval(() => {
+          if (window.AOS) {
+            window.clearInterval(pollTimer);
+            scheduleInit();
+          }
+        }, 150);
+      }
+    };
+
+    if (document.readyState === "complete") {
+      startWhenReady();
     } else {
-      // Set up a listener for when AOS script loads
-      const checkAOS = setInterval(() => {
-        if (window.AOS) {
-          initAOS();
-          clearInterval(checkAOS);
-        }
-      }, 100);
-
-      // Cleanup after 5 seconds to prevent infinite checking
-      setTimeout(() => {
-        clearInterval(checkAOS);
-      }, 5000);
-
-      return () => {
-        clearInterval(checkAOS);
-      };
+      window.addEventListener("load", startWhenReady, { once: true });
     }
+
+    return () => {
+      window.removeEventListener("load", startWhenReady);
+      window.clearInterval(pollTimer);
+      window.clearTimeout(refreshTimer);
+      if (typeof window.cancelIdleCallback === "function" && idleHandle) {
+        window.cancelIdleCallback(idleHandle);
+      }
+      window.clearTimeout(initTimer);
+    };
   }, []);
 
   return null;

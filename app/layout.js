@@ -7,7 +7,6 @@ import Footer from "@/components/Footer";
 import EnhancedChatButton from "@/components/EnhancedChatButton";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import FeatherInit from "@/components/FeatherInit";
-import AOSInit from "@/components/AOSInit";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import StructuredData from "@/components/StructuredData";
@@ -203,7 +202,6 @@ export default async function RootLayout({ children }) {
             <GoogleAnalytics />
             <ClientComponents />
             <FeatherInit />
-            <AOSInit />
             <Header />
             {children}
             {ChatButtonOn && <EnhancedChatButton />}
@@ -244,7 +242,7 @@ export default async function RootLayout({ children }) {
           src="/assets/js/jquery-one-page-nav-fix.js"
           strategy="lazyOnload"
         />
-        <Script src="/assets/js/main.js" strategy="afterInteractive" />
+        <Script src="/assets/js/main.js" strategy="lazyOnload" />
       </body>
     </html>
   );

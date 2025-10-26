@@ -234,11 +234,8 @@ export default async function RootLayout({ children }) {
         />
         <Script src="/assets/js/vendor/wow.js" strategy="afterInteractive" />
         <Script src="/assets/js/vendor/text-type.js" strategy="lazyOnload" />
-<<<<<<< HEAD
-=======
-        <Script src="/assets/js/vendor/wow.js" strategy="afterInteractive" />
->>>>>>> f4d2a9b080306cf306402730b6e1031648a2efcb
         <Script src="/assets/js/vendor/particles.js" strategy="lazyOnload" />
+
         <Script
           src="/assets/js/vendor/jquery-one-page-nav.js"
           strategy="lazyOnload"

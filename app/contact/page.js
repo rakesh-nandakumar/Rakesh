@@ -1,6 +1,5 @@
 "use client";
 
-import aboutData from "@/data/about.json";
 import FeatherInit from "@/components/FeatherInit";
 import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
@@ -13,7 +12,22 @@ import Toast from "@/components/Toast";
 import ClientOnly from "@/components/ClientOnly";
 
 export default function ContactSection() {
-  const { name, title, profileImage, contact } = aboutData;
+  const [aboutData, setAboutData] = useState(null);
+
+  // Fetch about data
+  useEffect(() => {
+    fetch("/api/data?type=about")
+      .then((res) => res.json())
+      .then((data) => setAboutData(data))
+      .catch((error) => console.error("Error fetching about data:", error));
+  }, []);
+
+  const {
+    name = "",
+    title = "",
+    profileImage = "",
+    contact = {},
+  } = aboutData || {};
   const formRef = useRef();
   const recaptchaRef = useRef();
   const { errors, validateForm, clearFieldError } = useFormValidation();

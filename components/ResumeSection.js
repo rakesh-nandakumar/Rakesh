@@ -23,31 +23,46 @@ export default function ResumeSection() {
             <div className="personal-experience-inner">
               {" "}
               <div className="row m--0">
-                {" "}
                 {/* Start Experience List Area  */}
                 <div className="col-lg-6 col-md-12 col-12">
                   <div className="content">
                     <span className="subtitle ps-4">Experience</span>
                     <h4 className="maintitle ps-4">Job Experience</h4>
                     <div className="experience-list padding-none border-none">
-                      {experienceItems.map((exp, index) => (
-                        <div key={index} className="resume-single-list mt--30">
-                          <div className="inner psudo-after-none">
-                            <div className="heading">
-                              <div className="title">
-                                <h4>{exp.title}</h4>
-                                <span>{exp.time}</span>
+                      {experienceItems.map((exp, index) => {
+                        const time = exp.time || "";
+                        const match = time.match(/(present|prasanth)/i);
+                        const showDate = Boolean(match);
+                        const dateText = /present/i.test(time)
+                          ? "Present"
+                          : match
+                          ? match[0]
+                          : "";
+
+                        return (
+                          <div
+                            key={index}
+                            className="resume-single-list mt--30"
+                          >
+                            <div className="inner psudo-after-none">
+                              <div className="heading">
+                                <div className="title">
+                                  <h4>{exp.title}</h4>
+                                  {/* intentionally not showing the raw time here */}
+                                </div>
+                                {showDate && (
+                                  <div className="date-of-time">
+                                    <span>{dateText}</span>
+                                  </div>
+                                )}
                               </div>
-                              <div className="date-of-time">
-                                <span>{exp.time}</span>
-                              </div>
+                              <p className="description">
+                                {exp["long-description"]}
+                              </p>
                             </div>
-                            <p className="description">
-                              {exp["long-description"]}
-                            </p>
                           </div>
-                        </div>
-                      ))}
+                        );
+                      })}
                     </div>
                   </div>
                 </div>

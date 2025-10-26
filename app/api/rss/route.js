@@ -1,11 +1,14 @@
 import { NextResponse } from "next/server";
-import blogData from "@/data/blogs.json";
+import { getBlogs } from "@/lib/dataService";
 
 export async function GET() {
   const siteUrl = "https://rakeshnandakumar.com";
   const feedTitle = "Rakesh Nandakumar - Blog";
   const feedDescription =
     "Latest articles and insights from Rakesh Nandakumar on Full Stack Development, Laravel, React, and AWS.";
+
+  // Get blogs from data service
+  const blogData = await getBlogs();
 
   // Sort blogs by date (newest first)
   const sortedBlogs = blogData

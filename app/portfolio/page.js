@@ -2,13 +2,27 @@
 
 import React, { useState, useMemo, useEffect } from "react";
 import PortfolioCard from "@/components/PortfolioCard";
-import portfolioData from "@/data/portfolio.json";
 import BreadcrumbSchema from "@/components/BreadcrumbSchema";
 import Head from "next/head";
 
 export default function PortfolioSection() {
   const [activeFilter, setActiveFilter] = useState("completed");
-  const portfolioItems = portfolioData;
+  const [portfolioItems, setPortfolioItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // Fetch portfolio data on mount
+  useEffect(() => {
+    fetch("/api/portfolio")
+      .then((res) => res.json())
+      .then((data) => {
+        setPortfolioItems(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching portfolio:", error);
+        setLoading(false);
+      });
+  }, []);
   // Filter projects based on status
   const filteredProjects = useMemo(() => {
     return portfolioItems.filter((item) => {
@@ -149,9 +163,26 @@ export default function PortfolioSection() {
             </div>
           </div>
           <div className="row row--25 mt--10 mt_md--10 mt_sm--10">
-            {filteredProjects.map((item, index) => (
-              <PortfolioCard key={index} item={item} index={index} />
-            ))}
+            {loading ? (
+              <div className="col-12">
+                <div className="text-center py-5">
+                  <h4 className="title">Loading portfolio...</h4>
+                </div>
+              </div>
+            ) : filteredProjects.length > 0 ? (
+              filteredProjects.map((item, index) => (
+                <PortfolioCard key={index} item={item} index={index} />
+              ))
+            ) : (
+              <div className="col-12">
+                <div className="text-center py-5">
+                  <h4 className="title">No projects found</h4>
+                  <p className="text-muted">
+                    No projects match the selected filter.
+                  </p>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

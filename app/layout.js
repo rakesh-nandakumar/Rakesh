@@ -1,10 +1,12 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
-import siteConfig from "@/data/site-config.json";
+import { getSiteConfig } from "@/lib/dataService";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import ChatButton from "@/components/ChatButton";
+// OLD: import ChatButton from "@/components/ChatButton";
+// NEW: Enhanced RAG-powered chat with smart context retrieval
+import EnhancedChatButton from "@/components/EnhancedChatButton";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import FeatherInit from "@/components/FeatherInit";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
@@ -91,9 +93,11 @@ export const metadata = {
   },
 };
 
-export default function RootLayout({ children }) {
-  // Use site-config.json for feature flags
+export default async function RootLayout({ children }) {
+  // Fetch site config from data service
+  const siteConfig = await getSiteConfig();
   const ChatButtonOn = siteConfig?.ChatAssistantEnabled ?? false;
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -202,7 +206,7 @@ export default function RootLayout({ children }) {
             <FeatherInit />
             <Header />
             {children}
-            {ChatButtonOn && <ChatButton />}
+            {ChatButtonOn && <EnhancedChatButton />}
             <Footer />
           </ThemeProvider>
         </ErrorBoundary>
@@ -230,6 +234,10 @@ export default function RootLayout({ children }) {
         />
         <Script src="/assets/js/vendor/wow.js" strategy="afterInteractive" />
         <Script src="/assets/js/vendor/text-type.js" strategy="lazyOnload" />
+<<<<<<< HEAD
+=======
+        <Script src="/assets/js/vendor/wow.js" strategy="afterInteractive" />
+>>>>>>> f4d2a9b080306cf306402730b6e1031648a2efcb
         <Script src="/assets/js/vendor/particles.js" strategy="lazyOnload" />
         <Script
           src="/assets/js/vendor/jquery-one-page-nav.js"

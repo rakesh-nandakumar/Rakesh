@@ -1,5 +1,5 @@
 import { getAllBlogSlugs } from "@/lib/blogUtils";
-import portfolioData from "@/data/portfolio.json";
+import { getPortfolio } from "@/lib/dataService";
 
 export default async function sitemap() {
   const baseUrl = "https://rakeshnandakumar.com";
@@ -53,6 +53,7 @@ export default async function sitemap() {
   }
 
   // Dynamic portfolio pages
+  const portfolioData = await getPortfolio();
   const portfolioPages = portfolioData.map((project) => {
     const slug = project.title
       .toLowerCase()

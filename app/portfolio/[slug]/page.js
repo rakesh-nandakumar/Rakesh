@@ -1,6 +1,6 @@
 import React from "react";
 import { notFound } from "next/navigation";
-import portfolioData from "@/data/portfolio.json";
+import { getPortfolio, getPortfolioBySlug } from "@/lib/dataService";
 import BreadcrumbSchema from "@/components/BreadcrumbSchema";
 import {
   ExternalLink,
@@ -31,13 +31,7 @@ import "./portfolio-detail.css";
 export async function generateMetadata({ params }) {
   const { slug } = await params;
 
-  const project = portfolioData.find((item) => {
-    const projectSlug = item.title
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/^-+|-+$/g, "");
-    return projectSlug === slug;
-  });
+  const project = await getPortfolioBySlug(slug);
 
   if (!project) {
     return {
@@ -70,14 +64,8 @@ export async function generateStaticParams() {
 export default async function PortfolioDetail({ params }) {
   const { slug } = await params;
 
-  // Find project by converting title to slug format
-  const project = portfolioData.find((item) => {
-    const projectSlug = item.title
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/^-+|-+$/g, "");
-    return projectSlug === slug;
-  });
+  // Get project from data service
+  const project = await getPortfolioBySlug(slug);
 
   if (!project) {
     notFound();

@@ -1,9 +1,194 @@
 import ContactSection from "@/components/ContactSection";
+import LoadingIndicator from "@/components/LoadingIndicator";
 import Image from "next/image";
 
 export default function Home() {
   return (
     <>
+      {/* Loading Indicator Showcase */}
+      <div
+        className="rn-section-gap section-separator"
+        style={{ background: "var(--color-background)" }}
+      >
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-12">
+              <div className="section-title text-center mb--50">
+                <h2 className="title">Loading Indicators Showcase</h2>
+                <p className="description">
+                  Unified loading components with beautiful gradient animations
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Spinner Variant */}
+          <div className="row mb--60">
+            <div className="col-lg-12">
+              <h3 className="title mb--30">Spinner Variant</h3>
+            </div>
+            <div className="col-lg-4">
+              <div
+                className="text-center p-4"
+                style={{
+                  background: "var(--color-lightn)",
+                  borderRadius: "10px",
+                }}
+              >
+                <h5 className="mb--30">Small</h5>
+                <LoadingIndicator
+                  size="small"
+                  message="Loading"
+                  variant="spinner"
+                />
+              </div>
+            </div>
+            <div className="col-lg-4">
+              <div
+                className="text-center p-4"
+                style={{
+                  background: "var(--color-lightn)",
+                  borderRadius: "10px",
+                }}
+              >
+                <h5 className="mb--30">Medium</h5>
+                <LoadingIndicator
+                  size="medium"
+                  message="Loading content"
+                  variant="spinner"
+                />
+              </div>
+            </div>
+            <div className="col-lg-4">
+              <div
+                className="text-center p-4"
+                style={{
+                  background: "var(--color-lightn)",
+                  borderRadius: "10px",
+                }}
+              >
+                <h5 className="mb--30">Large</h5>
+                <LoadingIndicator
+                  size="large"
+                  message="Loading page"
+                  variant="spinner"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Pulse Variant */}
+          <div className="row mb--60">
+            <div className="col-lg-12">
+              <h3 className="title mb--30">Pulse Variant</h3>
+            </div>
+            <div className="col-lg-4">
+              <div
+                className="text-center p-4"
+                style={{
+                  background: "var(--color-lightn)",
+                  borderRadius: "10px",
+                }}
+              >
+                <h5 className="mb--30">Small</h5>
+                <LoadingIndicator
+                  size="small"
+                  message="Loading"
+                  variant="pulse"
+                />
+              </div>
+            </div>
+            <div className="col-lg-4">
+              <div
+                className="text-center p-4"
+                style={{
+                  background: "var(--color-lightn)",
+                  borderRadius: "10px",
+                }}
+              >
+                <h5 className="mb--30">Medium</h5>
+                <LoadingIndicator
+                  size="medium"
+                  message="Loading content"
+                  variant="pulse"
+                />
+              </div>
+            </div>
+            <div className="col-lg-4">
+              <div
+                className="text-center p-4"
+                style={{
+                  background: "var(--color-lightn)",
+                  borderRadius: "10px",
+                }}
+              >
+                <h5 className="mb--30">Large</h5>
+                <LoadingIndicator
+                  size="large"
+                  message="Loading page"
+                  variant="pulse"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Dots Variant */}
+          <div className="row mb--60">
+            <div className="col-lg-12">
+              <h3 className="title mb--30">Dots Variant</h3>
+            </div>
+            <div className="col-lg-4">
+              <div
+                className="text-center p-4"
+                style={{
+                  background: "var(--color-lightn)",
+                  borderRadius: "10px",
+                }}
+              >
+                <h5 className="mb--30">Small</h5>
+                <LoadingIndicator
+                  size="small"
+                  message="Loading"
+                  variant="dots"
+                />
+              </div>
+            </div>
+            <div className="col-lg-4">
+              <div
+                className="text-center p-4"
+                style={{
+                  background: "var(--color-lightn)",
+                  borderRadius: "10px",
+                }}
+              >
+                <h5 className="mb--30">Medium</h5>
+                <LoadingIndicator
+                  size="medium"
+                  message="Loading content"
+                  variant="dots"
+                />
+              </div>
+            </div>
+            <div className="col-lg-4">
+              <div
+                className="text-center p-4"
+                style={{
+                  background: "var(--color-lightn)",
+                  borderRadius: "10px",
+                }}
+              >
+                <h5 className="mb--30">Large</h5>
+                <LoadingIndicator
+                  size="large"
+                  message="Loading page"
+                  variant="dots"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <main className="main-page-wrapper">
         {/* Start Slider Area */}
         <div id="home" className="rn-slider-area">

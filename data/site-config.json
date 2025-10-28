@@ -1,5 +1,5 @@
 {
-  "ChatAssistantEnabled": false,
+  "ChatAssistantEnabled": true,
   "GalleryEnabled": false,
   "BlogEnabled": true,
   "ProjectsEnabled": true,

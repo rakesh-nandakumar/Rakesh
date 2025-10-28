@@ -3,6 +3,7 @@
 import { Clock, ArrowUpRight, Search } from "react-feather";
 import { useState, useEffect } from "react";
 import BlogCard from "@/components/BlogCard";
+import LoadingIndicator from "@/components/LoadingIndicator";
 
 const BlogSection = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -96,9 +97,11 @@ const BlogSection = () => {
           <div className="row row--25 mt--30 mt_md--10 mt_sm--10">
             {loading ? (
               <div className="col-12">
-                <div className="text-center py-5">
-                  <h4 className="title">Loading blogs...</h4>
-                </div>
+                <LoadingIndicator
+                  size="large"
+                  message="Loading blogs"
+                  variant="spinner"
+                />
               </div>
             ) : displayBlogs.length > 0 ? (
               displayBlogs.map((blog, index) => (

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Suspense } from "react";
+import LoadingIndicator from "@/components/LoadingIndicator";
 
 export const metadata = {
   title: "404 - Page Not Found | Rakesh Nandakumar",
@@ -119,7 +120,15 @@ export default function NotFound() {
                   </Link>
                 </div>
 
-                <Suspense fallback={<div>Loading suggestions...</div>}>
+                <Suspense
+                  fallback={
+                    <LoadingIndicator
+                      size="small"
+                      message="Loading suggestions"
+                      variant="dots"
+                    />
+                  }
+                >
                   <SearchSuggestions />
                 </Suspense>
               </div>

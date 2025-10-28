@@ -3,6 +3,7 @@
 import React, { useState, useMemo, useEffect } from "react";
 import PortfolioCard from "@/components/PortfolioCard";
 import BreadcrumbSchema from "@/components/BreadcrumbSchema";
+import LoadingIndicator from "@/components/LoadingIndicator";
 import Head from "next/head";
 
 export default function PortfolioSection() {
@@ -165,9 +166,11 @@ export default function PortfolioSection() {
           <div className="row row--25 mt--10 mt_md--10 mt_sm--10">
             {loading ? (
               <div className="col-12">
-                <div className="text-center py-5">
-                  <h4 className="title">Loading portfolio...</h4>
-                </div>
+                <LoadingIndicator
+                  size="large"
+                  message="Loading portfolio"
+                  variant="spinner"
+                />
               </div>
             ) : filteredProjects.length > 0 ? (
               filteredProjects.map((item, index) => (

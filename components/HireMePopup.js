@@ -3,12 +3,10 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { X } from "react-feather";
-import { useTheme } from "@/contexts/ThemeContext";
 
 const HireMePopup = ({ showOnMount = true }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
-  const { theme } = useTheme();
 
   useEffect(() => {
     if (showOnMount) {

@@ -1528,7 +1528,6 @@ body:not(.white-version) .modal-description {
 }
 
 .white-version .chat-input-container {
-  border-top-color: #e9ecef;
   background: #f8f9fa;
 }
 

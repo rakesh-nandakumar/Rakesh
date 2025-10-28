@@ -7,7 +7,11 @@ import {
   getTimeline,
   getGallery,
   getSiteConfig,
+  getPortfolio,
+  getBlogs,
 } from "@/lib/dataService";
+import path from "path";
+import fs from "fs/promises";
 
 export async function GET(request) {
   try {
@@ -15,6 +19,14 @@ export async function GET(request) {
     const type = searchParams.get("type");
 
     let data;
+
+    // Handle special AI data files (raw JSON files)
+    if (type === "rag-manifest") {
+      const filePath = path.join(process.cwd(), "data", "rag-manifest.json");
+      const fileContent = await fs.readFile(filePath, "utf-8");
+      data = JSON.parse(fileContent);
+      return NextResponse.json(data);
+    } // Handle regular data types
     switch (type) {
       case "about":
         data = await getAbout();
@@ -37,6 +49,12 @@ export async function GET(request) {
       case "site-config":
         data = await getSiteConfig();
         break;
+      case "portfolio":
+        data = await getPortfolio();
+        break;
+      case "blogs":
+        data = await getBlogs();
+        break;
       default:
         return NextResponse.json(
           { error: "Invalid data type specified" },
@@ -48,7 +66,7 @@ export async function GET(request) {
   } catch (error) {
     console.error("Error fetching data:", error);
     return NextResponse.json(
-      { error: "Failed to fetch data" },
+      { error: "Failed to fetch data", details: error.message },
       { status: 500 }
     );
   }

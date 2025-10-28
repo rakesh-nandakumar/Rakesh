@@ -5,7 +5,6 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import EnhancedChatButton from "@/components/EnhancedChatButton";
-import { ThemeProvider } from "@/contexts/ThemeContext";
 import FeatherInit from "@/components/FeatherInit";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import ErrorBoundary from "@/components/ErrorBoundary";
@@ -192,21 +191,19 @@ export default async function RootLayout({ children }) {
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased template-color-1 spybody`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased template-color-1 spybody white-version`}
         data-spy="scroll"
         data-target=".navbar-example2"
         data-offset="70"
       >
         <ErrorBoundary>
-          <ThemeProvider>
-            <GoogleAnalytics />
-            <ClientComponents />
-            <FeatherInit />
-            <Header />
-            {children}
-            {ChatButtonOn && <EnhancedChatButton />}
-            <Footer />
-          </ThemeProvider>
+          <GoogleAnalytics />
+          <ClientComponents />
+          <FeatherInit />
+          <Header />
+          {children}
+          {ChatButtonOn && <EnhancedChatButton />}
+          <Footer />
         </ErrorBoundary>
 
         <Script

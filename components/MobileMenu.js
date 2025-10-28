@@ -10,6 +10,7 @@ export default function MobileMenu({
   headerData,
   siteConfig,
   filteredNavigation,
+  isOverlaying = false,
 }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const router = useRouter();
@@ -77,8 +78,11 @@ export default function MobileMenu({
           className="feather-menu humberger-menu mr-10"
           size={24}
           style={{
-            color: "var(--color-body)",
+            color: isOverlaying
+              ? "rgba(255, 255, 255, 0.9)"
+              : "var(--color-body)",
             flexShrink: 0,
+            transition: "color 0.3s ease",
           }}
         />
       </div>

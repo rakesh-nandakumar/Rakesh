@@ -1,6 +1,5 @@
 "use client";
 
-import { useTheme } from "../contexts/ThemeContext";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
@@ -14,9 +13,6 @@ import { SmartLink } from "./SmartLink";
 import "highlight.js/styles/github-dark.css";
 
 export default function BlogContent({ blog, relatedBlogs }) {
-  const { resolvedTheme } = useTheme();
-  const isDarkMode = resolvedTheme === "dark";
-
   return (
     <>
       <BreadcrumbSchema
@@ -30,11 +26,7 @@ export default function BlogContent({ blog, relatedBlogs }) {
         ]}
       />
 
-      <div
-        className={`rn-blog-area rn-section-gap mt-20 ${
-          isDarkMode ? "dark-mode" : "light-mode"
-        }`}
-      >
+      <div className="rn-blog-area rn-section-gap mt-20 light-mode">
         <div className="container">
           {/* Breadcrumb Navigation */}
           <div className="row">

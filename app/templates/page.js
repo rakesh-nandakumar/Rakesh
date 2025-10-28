@@ -3,6 +3,7 @@
 import React, { useState, useMemo, useEffect } from "react";
 import TemplateCard from "@/components/TemplateCard";
 import BreadcrumbSchema from "@/components/BreadcrumbSchema";
+import LoadingIndicator from "@/components/LoadingIndicator";
 import Head from "next/head";
 
 export default function TemplatesSection() {
@@ -186,7 +187,15 @@ export default function TemplatesSection() {
             </div>
           </div>
           <div className="row row--25 mt--10 mt_md--10 mt_sm--10">
-            {filteredProjects.length > 0 ? (
+            {loading ? (
+              <div className="col-12">
+                <LoadingIndicator
+                  size="large"
+                  message="Loading templates"
+                  variant="spinner"
+                />
+              </div>
+            ) : filteredProjects.length > 0 ? (
               filteredProjects.map((item, index) => (
                 <TemplateCard key={index} item={item} index={index} />
               ))

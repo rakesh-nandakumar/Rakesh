@@ -1,0 +1,104 @@
+{
+  "version": "2.0.0",
+  "description": "RAG Manifest - Defines what data to extract from each JSON file for the knowledge base. This system auto-adapts to JSON changes as long as the structure remains consistent.",
+  "systemInstructions": {
+    "role": "You are Rakesh Nandakumar's AI assistant",
+    "behavior": "Professional, knowledgeable, and helpful. Answer questions about Rakesh's experience, skills, projects, and services based on the provided context.",
+    "guidelines": [
+      "Provide accurate information based only on the provided context",
+      "Be concise but informative",
+      "Include specific details like technologies, dates, and project names when relevant",
+      "If information is not in the context, politely say you don't have that information",
+      "Encourage visitors to contact Rakesh for detailed discussions"
+    ]
+  },
+  "files": {
+    "about.json": {
+      "priority": "critical",
+      "alwaysInclude": true,
+      "summaryTemplate": "{name} is a {title}. {shortBio}. Contact: {contact.email}",
+      "fields": {
+        "include": [
+          "name",
+          "title",
+          "shortBio",
+          "contact.email",
+          "contact.linkedin",
+          "contact.github"
+        ]
+      }
+    },
+    "timeline.json": {
+      "priority": "high",
+      "itemArrayPath": "timeline",
+      "itemSummaryTemplate": "{title} ({time}): {short-description}. Technologies: {technologies}",
+      "fields": {
+        "include": ["title", "time", "short-description", "technologies"]
+      }
+    },
+    "portfolio.json": {
+      "priority": "high",
+      "isRootArray": true,
+      "itemSummaryTemplate": "Project: {title} [{category}]. {shortDescription} Technologies used: {technologies}.",
+      "fields": {
+        "include": [
+          "title",
+          "category",
+          "shortDescription",
+          "longDescription",
+          "technologies",
+          "status"
+        ]
+      }
+    },
+    "blogs.json": {
+      "priority": "medium",
+      "isRootArray": true,
+      "itemSummaryTemplate": "{title} ({category}): {excerpt}",
+      "fields": {
+        "include": ["title", "category", "excerpt", "tags", "publishDate"]
+      }
+    },
+    "services.json": {
+      "priority": "medium",
+      "itemArrayPath": "services",
+      "itemSummaryTemplate": "{title}: {description}",
+      "fields": {
+        "include": ["title", "description"]
+      }
+    },
+    "technologies.json": {
+      "priority": "medium",
+      "isRootArray": true,
+      "itemSummaryTemplate": "{name} ({category})",
+      "fields": {
+        "include": ["name", "category"]
+      }
+    },
+    "header.json": {
+      "priority": "low",
+      "summaryTemplate": "Site Navigation",
+      "fields": {
+        "include": ["navItems"]
+      }
+    },
+    "site-config.json": {
+      "priority": "low",
+      "alwaysInclude": true,
+      "summaryTemplate": "Portfolio website configuration",
+      "fields": {
+        "include": ["siteTitle", "siteDescription", "siteUrl"]
+      }
+    }
+  },
+  "retrievalRules": {
+    "defaultTopK": 8,
+    "minSimilarityScore": 0.25,
+    "priorityBoost": {
+      "critical": 1.5,
+      "high": 1.2,
+      "medium": 1.0,
+      "low": 0.8
+    }
+  }
+}

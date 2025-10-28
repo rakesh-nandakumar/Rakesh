@@ -2,17 +2,15 @@
 
 import Link from "next/link";
 import aboutData from "@/data/about.json";
-import { useTheme } from "@/contexts/ThemeContext";
 import headerData from "../data/header.json";
 
 export default function Footer() {
-  const { resolvedTheme } = useTheme();
   const { name, title, contact, shortBio } = aboutData;
   const currentYear = new Date().getFullYear();
 
   // Convert **text** to <strong>text</strong>
   const formatBio = (text) => {
-    return text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    return text.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
   };
 
   const quickLinks = headerData.navigation;
@@ -39,8 +37,8 @@ export default function Footer() {
                   <h3 className="footer-logo-text">{name}</h3>
                 </Link>
               </div>
-              <p 
-                className="description text-2xl" 
+              <p
+                className="description text-2xl"
                 dangerouslySetInnerHTML={{ __html: formatBio(shortBio) }}
               />
 

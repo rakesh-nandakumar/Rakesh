@@ -45,7 +45,6 @@
           "title",
           "category",
           "shortDescription",
-          "longDescription",
           "technologies",
           "status"
         ]
@@ -99,6 +98,37 @@
       "high": 1.2,
       "medium": 1.0,
       "low": 0.8
+    }
+  },
+  "enhancements": {
+    "hybridSearch": {
+      "enabled": true,
+      "semanticWeight": 0.7,
+      "keywordWeight": 0.3,
+      "bm25Parameters": {
+        "k1": 1.5,
+        "b": 0.75
+      }
+    },
+    "queryEnhancement": {
+      "enabled": true,
+      "customSynonyms": {},
+      "customIntents": {}
+    },
+    "reranking": {
+      "useLLM": false,
+      "useDiversity": true,
+      "useTemporal": true,
+      "useConversationContext": true,
+      "diversityLambda": 0.7,
+      "temporalDecay": 0.1,
+      "maxTemporalBoost": 1.2
+    },
+    "chunking": {
+      "enabled": false,
+      "chunkSize": 500,
+      "chunkOverlap": 100,
+      "hierarchical": true
     }
   }
 }

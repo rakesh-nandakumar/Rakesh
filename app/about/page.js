@@ -37,9 +37,9 @@ export const metadata = {
   },
 };
 
-export default async function About() {
-  const siteConfig = await getSiteConfig();
-  const galleryData = await getGallery();
+export default function About() {
+  const siteConfig = getSiteConfig();
+  const galleryData = getGallery();
 
   // Structured data for About page
   const aboutStructuredData = {

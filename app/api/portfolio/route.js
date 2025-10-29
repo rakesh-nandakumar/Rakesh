@@ -3,8 +3,14 @@ import { getPortfolio } from "@/lib/dataService";
 
 export async function GET() {
   try {
-    const portfolio = await getPortfolio();
-    return NextResponse.json(portfolio);
+    const portfolio = getPortfolio();
+
+    // Return with cache headers for better performance
+    return NextResponse.json(portfolio, {
+      headers: {
+        "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400",
+      },
+    });
   } catch (error) {
     console.error("Error fetching portfolio:", error);
     return NextResponse.json(

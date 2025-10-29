@@ -92,7 +92,7 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
   // Fetch site config from data service
-  const siteConfig = await getSiteConfig();
+  const siteConfig = getSiteConfig();
   const ChatButtonOn = siteConfig?.ChatAssistantEnabled ?? false;
 
   return (

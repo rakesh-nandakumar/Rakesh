@@ -63,8 +63,8 @@ const EnhancedChatButton = () => {
 
     try {
       // Dynamically import client RAG module
-      const module = await import("@/lib/client-rag.js");
-      ClientRAG = module.default || module;
+      const ragModule = await import("@/lib/client-rag.js");
+      ClientRAG = ragModule.default || ragModule;
 
       const rag = new ClientRAG();
       setRagInstance(rag);
@@ -301,7 +301,6 @@ const EnhancedChatButton = () => {
               >
                 <X size={18} />
               </button>
-
             </div>
           </div>
 
@@ -384,7 +383,14 @@ const EnhancedChatButton = () => {
                 <div className="message-content">
                   <p style={{ whiteSpace: "pre-wrap" }}>{message.content}</p>
                   {/* show time */}
-                  <div className="message-timestamp" style={{ fontSize: "0.6em", color: "#888", marginTop: "4px" }}>
+                  <div
+                    className="message-timestamp"
+                    style={{
+                      fontSize: "0.6em",
+                      color: "#888",
+                      marginTop: "4px",
+                    }}
+                  >
                     {new Date(message.timestamp).toLocaleTimeString()}
                   </div>
                 </div>

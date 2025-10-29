@@ -40,7 +40,7 @@ export default function BlogContent({ blog, relatedBlogs }) {
                   </li>
                   <li className="breadcrumb-item">
                     <SmartLink href="/blogs" className="breadcrumb-link">
-                      Blog
+                       Blog
                     </SmartLink>
                   </li>
                   <li className="breadcrumb-item active" aria-current="page">
@@ -123,7 +123,7 @@ export default function BlogContent({ blog, relatedBlogs }) {
                   alt={blog.title}
                   width={1000}
                   height={400}
-                  className="blog-featured-image"
+                  className="blog-featured-image col-lg-12"
                   style={{ objectFit: "cover" }}
                   priority
                 />

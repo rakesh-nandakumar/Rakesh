@@ -14,7 +14,7 @@ const BlogCard = ({ blog, delay = 100 }) => {
       <div className="rn-blog">
         <div className="inner">
           <div className="thumbnail">
-            <Link href={`/blogs/${blog.id}`}>
+            <Link href={`/blogs/${blog.slug}`}>
               <Image
                 src={blog.image}
                 alt={blog.title}
@@ -27,7 +27,7 @@ const BlogCard = ({ blog, delay = 100 }) => {
           <div className="content">
             <div className="category-info">
               <div className="category-list">
-                <Link href={`/blogs/${blog.id}`}>{blog.category}</Link>
+                <Link href={`/blogs/${blog.slug}`}>{blog.category}</Link>
               </div>
               <div className="meta">
                 <span className="d-flex gap-2">
@@ -36,7 +36,7 @@ const BlogCard = ({ blog, delay = 100 }) => {
               </div>
             </div>
             <h4 className="title">
-              <Link href={`/blogs/${blog.id}`}>{blog.title}</Link>
+              <Link href={`/blogs/${blog.slug}`}>{blog.title}</Link>
             </h4>
             <p className="short-description">{blog.excerpt}</p>
           </div>

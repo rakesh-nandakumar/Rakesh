@@ -31,7 +31,7 @@ import "./portfolio-detail.css";
 export async function generateMetadata({ params }) {
   const { slug } = await params;
 
-  const project = await getPortfolioBySlug(slug);
+  const project = getPortfolioBySlug(slug);
 
   if (!project) {
     return {
@@ -53,6 +53,7 @@ export async function generateMetadata({ params }) {
 
 // Generate static params for all portfolio items
 export async function generateStaticParams() {
+  const portfolioData = getPortfolio();
   return portfolioData.map((item) => ({
     slug: item.title
       .toLowerCase()
@@ -64,8 +65,11 @@ export async function generateStaticParams() {
 export default async function PortfolioDetail({ params }) {
   const { slug } = await params;
 
-  // Get project from data service
-  const project = await getPortfolioBySlug(slug);
+  // Get project from data service (now synchronous)
+  const project = getPortfolioBySlug(slug);
+
+  // Get all portfolio data for related projects
+  const portfolioData = getPortfolio();
 
   if (!project) {
     notFound();

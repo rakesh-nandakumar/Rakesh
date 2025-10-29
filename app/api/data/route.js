@@ -25,35 +25,42 @@ export async function GET(request) {
       const filePath = path.join(process.cwd(), "data", "rag-manifest.json");
       const fileContent = await fs.readFile(filePath, "utf-8");
       data = JSON.parse(fileContent);
-      return NextResponse.json(data);
-    } // Handle regular data types
+      return NextResponse.json(data, {
+        headers: {
+          "Cache-Control":
+            "public, s-maxage=3600, stale-while-revalidate=86400",
+        },
+      });
+    }
+
+    // Handle regular data types - now synchronous
     switch (type) {
       case "about":
-        data = await getAbout();
+        data = getAbout();
         break;
       case "header":
-        data = await getHeader();
+        data = getHeader();
         break;
       case "services":
-        data = await getServices();
+        data = getServices();
         break;
       case "technologies":
-        data = await getTechnologies();
+        data = getTechnologies();
         break;
       case "timeline":
-        data = await getTimeline();
+        data = getTimeline();
         break;
       case "gallery":
-        data = await getGallery();
+        data = getGallery();
         break;
       case "site-config":
-        data = await getSiteConfig();
+        data = getSiteConfig();
         break;
       case "portfolio":
-        data = await getPortfolio();
+        data = getPortfolio();
         break;
       case "blogs":
-        data = await getBlogs();
+        data = getBlogs();
         break;
       default:
         return NextResponse.json(
@@ -62,7 +69,11 @@ export async function GET(request) {
         );
     }
 
-    return NextResponse.json(data);
+    return NextResponse.json(data, {
+      headers: {
+        "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400",
+      },
+    });
   } catch (error) {
     console.error("Error fetching data:", error);
     return NextResponse.json(

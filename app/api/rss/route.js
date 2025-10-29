@@ -7,8 +7,8 @@ export async function GET() {
   const feedDescription =
     "Latest articles and insights from Rakesh Nandakumar on Full Stack Development, Laravel, React, and AWS.";
 
-  // Get blogs from data service
-  const blogData = await getBlogs();
+  // Get blogs from data service (now synchronous)
+  const blogData = getBlogs();
 
   // Sort blogs by date (newest first)
   const sortedBlogs = blogData

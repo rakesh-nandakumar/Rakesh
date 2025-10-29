@@ -42,7 +42,7 @@ const BlogSection = () => {
     <>
       {/* Start News Area */}
       <div className="mt-20 rn-blog-area rn-section-gap" id="blog">
-        <div className="container">
+        <div className="mx-10">
           <div className="row">
             <div className="col-lg-12">
               <div
@@ -94,7 +94,7 @@ const BlogSection = () => {
               </div>
             </div>
           </div>
-          <div className="row row--25 mt--30 mt_md--10 mt_sm--10">
+          <div className="row row--12 mt--30 mt_md--10 mt_sm--10">
             {loading ? (
               <div className="col-12">
                 <LoadingIndicator

@@ -34,8 +34,8 @@ export const metadata = {
   },
 };
 
-export default async function Home() {
-  const siteConfig = await getSiteConfig();
+export default function Home() {
+  const siteConfig = getSiteConfig();
 
   return (
     <>

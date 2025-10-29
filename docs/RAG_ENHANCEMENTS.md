@@ -17,6 +17,7 @@ The RAG (Retrieval-Augmented Generation) system has been enhanced with four adva
 **Status**: ✅ Enabled by Default
 
 #### Features
+
 - **Automatic Retries**: Up to 3 retry attempts for failed API calls
 - **Exponential Backoff**: 1s → 2s → 4s delays between retries
 - **Smart Detection**: Detects overload, rate limit, and 429/503 errors
@@ -24,21 +25,24 @@ The RAG (Retrieval-Augmented Generation) system has been enhanced with four adva
 - **Graceful Fallback**: Clear error message after max retries
 
 #### How It Works
+
 1. API call fails with overload/rate limit error
 2. System waits with exponential delay (1s, 2s, 4s)
 3. Retries the request automatically
 4. Returns response on success or throws error after 3 attempts
 
 #### Configuration
+
 ```javascript
 CONFIG = {
-  MAX_RETRIES: 3,              // Number of retry attempts
-  RETRY_DELAY: 1000,           // Initial delay in ms (1 second)
-  RETRY_MULTIPLIER: 2,         // Exponential backoff multiplier
-}
+  MAX_RETRIES: 3, // Number of retry attempts
+  RETRY_DELAY: 1000, // Initial delay in ms (1 second)
+  RETRY_MULTIPLIER: 2, // Exponential backoff multiplier
+};
 ```
 
 #### Applies To
+
 - ✅ Chat API calls (Gemini chat model)
 - ✅ Embedding API calls (text-embedding-004)
 - ✅ LLM Re-ranking calls (optional feature)

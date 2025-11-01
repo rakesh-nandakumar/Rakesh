@@ -22,6 +22,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
+  metadataBase: new URL('https://rakeshnandakumar.com'),
   title: {
     default: "Rakesh Nandakumar - Full Stack Developer & Software Engineer",
     template: "%s | Rakesh Nandakumar",
@@ -38,10 +39,18 @@ export const metadata = {
     "Web Development",
     "Technical Consultant",
     "API Development",
+    "Next.js Developer",
+    "MongoDB",
+    "Node.js",
   ],
   authors: [{ name: "Rakesh Nandakumar", url: "https://rakeshnandakumar.com" }],
   creator: "Rakesh Nandakumar",
   publisher: "Rakesh Nandakumar",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   robots: {
     index: true,
     follow: true,

@@ -3,27 +3,11 @@
 import React, { useState, useMemo, useEffect } from "react";
 import TemplateCard from "@/components/TemplateCard";
 import BreadcrumbSchema from "@/components/BreadcrumbSchema";
-import LoadingIndicator from "@/components/LoadingIndicator";
+import portfolioData from "@/data/portfolio.json";
 import Head from "next/head";
 
 export default function TemplatesSection() {
   const [activeFilter, setActiveFilter] = useState("available");
-  const [portfolioData, setPortfolioData] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  // Fetch portfolio data
-  useEffect(() => {
-    fetch("/api/portfolio")
-      .then((res) => res.json())
-      .then((data) => {
-        setPortfolioData(data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching portfolio:", error);
-        setLoading(false);
-      });
-  }, []);
 
   // Filter only items that have a price (templates for sale)
   const templateItems = portfolioData.filter((item) => item.price);
@@ -187,15 +171,7 @@ export default function TemplatesSection() {
             </div>
           </div>
           <div className="row row--25 mt--10 mt_md--10 mt_sm--10">
-            {loading ? (
-              <div className="col-12">
-                <LoadingIndicator
-                  size="large"
-                  message="Loading templates"
-                  variant="spinner"
-                />
-              </div>
-            ) : filteredProjects.length > 0 ? (
+            {filteredProjects.length > 0 ? (
               filteredProjects.map((item, index) => (
                 <TemplateCard key={index} item={item} index={index} />
               ))

@@ -3,27 +3,12 @@
 import React, { useState, useMemo, useEffect } from "react";
 import PortfolioCard from "@/components/PortfolioCard";
 import BreadcrumbSchema from "@/components/BreadcrumbSchema";
-import LoadingIndicator from "@/components/LoadingIndicator";
+import portfolioData from "@/data/portfolio.json";
 import Head from "next/head";
 
 export default function PortfolioSection() {
   const [activeFilter, setActiveFilter] = useState("completed");
-  const [portfolioItems, setPortfolioItems] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  // Fetch portfolio data on mount
-  useEffect(() => {
-    fetch("/api/portfolio")
-      .then((res) => res.json())
-      .then((data) => {
-        setPortfolioItems(data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching portfolio:", error);
-        setLoading(false);
-      });
-  }, []);
+  const portfolioItems = portfolioData;
   // Filter projects based on status
   const filteredProjects = useMemo(() => {
     return portfolioItems.filter((item) => {
@@ -164,15 +149,7 @@ export default function PortfolioSection() {
             </div>
           </div>
           <div className="row row--25 mt--10 mt_md--10 mt_sm--10">
-            {loading ? (
-              <div className="col-12">
-                <LoadingIndicator
-                  size="large"
-                  message="Loading portfolio"
-                  variant="spinner"
-                />
-              </div>
-            ) : filteredProjects.length > 0 ? (
+            {filteredProjects.length > 0 ? (
               filteredProjects.map((item, index) => (
                 <PortfolioCard key={index} item={item} index={index} />
               ))

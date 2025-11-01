@@ -133,6 +133,9 @@ export default function ParticlesBackground({ children }) {
           stats.begin();
           stats.end();
           if (
+            window.pJSDom &&
+            window.pJSDom[0] &&
+            window.pJSDom[0].pJS &&
             window.pJSDom[0].pJS.particles &&
             window.pJSDom[0].pJS.particles.array
           ) {
@@ -277,6 +280,9 @@ export default function ParticlesBackground({ children }) {
             stats.begin();
             stats.end();
             if (
+              window.pJSDom &&
+              window.pJSDom[0] &&
+              window.pJSDom[0].pJS &&
               window.pJSDom[0].pJS.particles &&
               window.pJSDom[0].pJS.particles.array
             ) {
@@ -295,7 +301,13 @@ export default function ParticlesBackground({ children }) {
 
     // Cleanup function
     return () => {
-      if (window.pJSDom && window.pJSDom[0]) {
+      if (
+        window.pJSDom &&
+        window.pJSDom[0] &&
+        window.pJSDom[0].pJS &&
+        window.pJSDom[0].pJS.fn &&
+        window.pJSDom[0].pJS.fn.vendors
+      ) {
         window.pJSDom[0].pJS.fn.vendors.destroypJS();
         window.pJSDom = [];
       }

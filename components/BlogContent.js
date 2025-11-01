@@ -17,11 +17,11 @@ export default function BlogContent({ blog, relatedBlogs }) {
     <>
       <BreadcrumbSchema
         items={[
-          { name: "Home", url: "https://rakeshnandakumar.com" },
-          { name: "Blog", url: "https://rakeshnandakumar.com/blogs" },
+          { name: "Home", url: "https://rakeshn.com" },
+          { name: "Blog", url: "https://rakeshn.com/blogs" },
           {
             name: blog.title,
-            url: `https://rakeshnandakumar.com/blogs/${blog.slug}`,
+            url: `https://rakeshn.com/blogs/${blog.slug}`,
           },
         ]}
       />
@@ -40,7 +40,7 @@ export default function BlogContent({ blog, relatedBlogs }) {
                   </li>
                   <li className="breadcrumb-item">
                     <SmartLink href="/blogs" className="breadcrumb-link">
-                       Blog
+                      Blog
                     </SmartLink>
                   </li>
                   <li className="breadcrumb-item active" aria-current="page">

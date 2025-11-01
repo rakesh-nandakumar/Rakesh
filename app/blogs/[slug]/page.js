@@ -33,7 +33,7 @@ export async function generateMetadata({ params }) {
       "Rakesh Nandakumar",
       "Tech Blog",
     ].join(", "),
-    authors: [{ name: blog.author, url: "https://rakeshnandakumar.com" }],
+    authors: [{ name: blog.author, url: "https://rakeshn.com" }],
     creator: blog.author,
     publisher: "Rakesh Nandakumar",
     robots: {
@@ -75,7 +75,7 @@ export async function generateMetadata({ params }) {
       images: blog.image ? [blog.image] : ["/hero.jpg"],
     },
     alternates: {
-      canonical: `https://rakeshnandakumar.com/blogs/${slug}`,
+      canonical: `https://rakeshn.com/blogs/${slug}`,
     },
   };
 }
@@ -122,12 +122,12 @@ export default async function BlogPost({ params }) {
           title: blog.title,
           description: blog.excerpt,
           image: blog.image
-            ? `https://rakeshnandakumar.com${blog.image}`
-            : "https://rakeshnandakumar.com/hero.jpg",
+            ? `https://rakeshn.com${blog.image}`
+            : "https://rakeshn.com/hero.jpg",
           author: blog.author || "Rakesh Nandakumar",
           datePublished: blog.date,
           dateModified: blog.updatedDate || blog.date,
-          url: `https://rakeshnandakumar.com/blogs/${slug}`,
+          url: `https://rakeshn.com/blogs/${slug}`,
           keywords: blog.tags,
           category: blog.category,
           wordCount: readingTime.words,

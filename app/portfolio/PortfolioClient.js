@@ -3,12 +3,11 @@
 import React, { useState, useMemo, useEffect } from "react";
 import PortfolioCard from "@/components/PortfolioCard";
 import BreadcrumbSchema from "@/components/BreadcrumbSchema";
-import portfolioData from "@/data/portfolio.json";
 import Head from "next/head";
 
-export default function PortfolioSection() {
+export default function PortfolioClient({ initialPortfolio }) {
   const [activeFilter, setActiveFilter] = useState("completed");
-  const portfolioItems = portfolioData;
+  const portfolioItems = initialPortfolio;
   // Filter projects based on status
   const filteredProjects = useMemo(() => {
     return portfolioItems.filter((item) => {

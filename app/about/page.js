@@ -15,9 +15,9 @@ import { Calendar, Clock } from "react-feather";
 import { ExternalLink, GitHub } from "react-feather";
 
 export const metadata = {
-  title: "About Me",
+  title: "About Me - Full Stack Developer Journey",
   description:
-    "Learn about Rakesh Nandakumar - a skilled full-stack developer with 3+ years of experience in Laravel, React, Vue.js, and AWS. Discover my education, experience, and technical expertise.",
+    "Learn about Rakesh Nandakumar - a skilled full-stack developer with 3+ years of experience in Laravel, React, Vue.js, AWS, and modern web technologies. Discover my education, experience, and technical expertise.",
   keywords: [
     "About Rakesh Nandakumar",
     "Full Stack Developer Experience",
@@ -25,15 +25,33 @@ export const metadata = {
     "Laravel Expert",
     "React Developer",
     "Technical Skills",
+    "Professional Experience",
+    "Education",
   ],
   openGraph: {
-    title: "About Rakesh Nandakumar - Full Stack Developer",
+    title: "About Me | Rakesh Nandakumar",
     description:
       "Learn about Rakesh Nandakumar - a skilled full-stack developer with 3+ years of experience in Laravel, React, Vue.js, and AWS.",
+    type: "profile",
+    url: "/about",
+    images: [
+      {
+        url: "/profileImg.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Rakesh Nandakumar",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Me | Rakesh Nandakumar",
+    description:
+      "Learn about my journey as a full-stack developer with 3+ years of experience.",
     images: ["/profileImg.jpg"],
   },
   alternates: {
-    canonical: "https://rakeshnandakumar.com/about",
+    canonical: "/about",
   },
 };
 

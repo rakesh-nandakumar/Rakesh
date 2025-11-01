@@ -18,7 +18,7 @@ export const metadata = {
     images: ["/hero.jpg"],
   },
   alternates: {
-    canonical: "https://rakeshnandakumar.com/blogs",
+    canonical: "https://rakeshn.com/blogs",
   },
 };
 
@@ -30,12 +30,12 @@ export default function BlogsLayout({ children }) {
     name: "Rakesh Nandakumar's Tech Blog",
     description:
       "Insights on web development, software engineering, and modern technologies",
-    url: "https://rakeshnandakumar.com/blogs",
+    url: "https://rakeshn.com/blogs",
     author: {
       "@type": "Person",
       name: "Rakesh Nandakumar",
       jobTitle: "Full Stack Developer",
-      url: "https://rakeshnandakumar.com",
+      url: "https://rakeshn.com",
     },
     publisher: {
       "@type": "Person",
@@ -43,7 +43,7 @@ export default function BlogsLayout({ children }) {
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": "https://rakeshnandakumar.com/blogs",
+      "@id": "https://rakeshn.com/blogs",
     },
   };
 

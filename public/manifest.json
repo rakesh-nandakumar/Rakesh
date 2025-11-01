@@ -1,22 +1,76 @@
-
 {
-  "name": "Rakesh Nandakumar Portfolio",
+  "name": "Rakesh Nandakumar - Full Stack Developer Portfolio",
   "short_name": "Rakesh Portfolio",
-  "description": "Full Stack Developer & Software Engineer Portfolio",
+  "description": "Full Stack Developer & Software Engineer Portfolio - Laravel, React, Vue.js, AWS Expert",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
+  "orientation": "any",
   "background_color": "#ffffff",
-  "theme_color": "#000000",
+  "theme_color": "#f9004d",
+  "categories": ["portfolio", "development", "technology"],
+  "lang": "en-US",
+  "dir": "ltr",
   "icons": [
     {
       "src": "/avatar.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "/avatar.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
-  ]
+  ],
+  "screenshots": [
+    {
+      "src": "/hero.jpg",
+      "sizes": "1280x720",
+      "type": "image/jpeg",
+      "form_factor": "wide"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Portfolio",
+      "short_name": "Portfolio",
+      "description": "View my projects and works",
+      "url": "/portfolio",
+      "icons": [
+        {
+          "src": "/avatar.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Blog",
+      "short_name": "Blog",
+      "description": "Read technical articles",
+      "url": "/blogs",
+      "icons": [
+        {
+          "src": "/avatar.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Contact",
+      "short_name": "Contact",
+      "description": "Get in touch",
+      "url": "/contact",
+      "icons": [
+        {
+          "src": "/avatar.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
 }

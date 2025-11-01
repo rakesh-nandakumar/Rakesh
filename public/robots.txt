@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://rakeshnandakumar.com/sitemap.xml
+Sitemap: https://rakeshn.com/sitemap.xml
 
 # Crawl-delay
 Crawl-delay: 1

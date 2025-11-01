@@ -71,7 +71,7 @@ export default function NotFound() {
             "@type": "WebPage",
             name: "404 - Page Not Found",
             description: "The requested page could not be found.",
-            url: "https://rakeshnandakumar.com/404",
+            url: "https://rakeshn.com/404",
             mainEntity: {
               "@type": "Thing",
               name: "404 Error",

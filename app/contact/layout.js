@@ -1,23 +1,41 @@
 export const metadata = {
-  title: "Contact",
+  title: "Contact - Get In Touch",
   description:
-    "Get in touch with Rakesh Nandakumar for full-stack development projects, technical consulting, or collaboration opportunities. Let's build something amazing together.",
+    "Contact Rakesh Nandakumar for freelance work, technical consulting, web development projects, or collaboration opportunities. Available for Laravel, React, Vue.js, and AWS projects.",
   keywords: [
     "Contact",
     "Hire Developer",
+    "Freelance Developer",
     "Full Stack Developer Contact",
     "Technical Consulting",
     "Web Development Services",
     "Collaboration",
+    "Get In Touch",
   ],
   openGraph: {
-    title: "Contact - Rakesh Nandakumar",
+    title: "Contact | Rakesh Nandakumar",
     description:
-      "Get in touch with Rakesh Nandakumar for full-stack development projects, technical consulting, or collaboration opportunities.",
-    images: ["/profileImg.jpg"],
+      "Get in touch for freelance work, technical consulting, or collaboration opportunities.",
+    type: "website",
+    url: "/contact",
+    images: [
+      {
+        url: "/images/contact1.png",
+        width: 1200,
+        height: 630,
+        alt: "Contact Rakesh Nandakumar",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact | Rakesh Nandakumar",
+    description:
+      "Get in touch for freelance work, technical consulting, or collaboration opportunities.",
+    images: ["/images/contact1.png"],
   },
   alternates: {
-    canonical: "https://rakeshnandakumar.com/contact",
+    canonical: "/contact",
   },
 };
 
@@ -31,7 +49,7 @@ export default function ContactLayout({ children }) {
       name: "Rakesh Nandakumar",
       jobTitle: "Full Stack Developer",
       email: "contact@rakeshnandakumar.com",
-      url: "https://rakeshnandakumar.com",
+      url: "https://rakeshn.com",
       contactPoint: {
         "@type": "ContactPoint",
         contactType: "Professional Services",

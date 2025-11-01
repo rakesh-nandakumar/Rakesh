@@ -7,7 +7,7 @@ export default function SEOHead({
   description = "Experienced Full Stack Developer with 3+ years in Laravel, React, Vue.js, and AWS",
   keywords = [],
   image = "/hero.jpg",
-  url = "https://rakeshnandakumar.com",
+  url = "https://rakeshn.com",
   type = "website",
   structuredData = null,
 }) {

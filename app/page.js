@@ -1,13 +1,33 @@
+import dynamic from "next/dynamic";
 import HeroSection from "@/components/HeroSection";
-import FeaturesSection from "@/components/FeaturesSection";
-import PortfolioSection from "@/components/PortfolioSection";
-import ResumeSection from "@/components/ResumeSection";
-import TestimonialSection from "@/components/TestimonialSection";
-import ContactSection from "@/components/ContactSection";
-import BlogSection from "@/components/BlogSection";
-import CTASection from "@/components/CTASection";
-import TechStackMarqueeClean from "@/components/TechStackMarqueeClean";
 import { getSiteConfig } from "@/lib/dataService";
+
+// Dynamic imports for below-the-fold components to improve initial load
+const FeaturesSection = dynamic(() => import("@/components/FeaturesSection"), {
+  loading: () => <div style={{ minHeight: "400px" }} />,
+});
+
+const TechStackMarqueeClean = dynamic(
+  () => import("@/components/TechStackMarqueeClean"),
+  {
+    loading: () => <div style={{ minHeight: "200px" }} />,
+  }
+);
+
+const PortfolioSection = dynamic(
+  () => import("@/components/PortfolioSection"),
+  {
+    loading: () => <div style={{ minHeight: "500px" }} />,
+  }
+);
+
+const CTASection = dynamic(() => import("@/components/CTASection"), {
+  loading: () => <div style={{ minHeight: "300px" }} />,
+});
+
+const BlogSection = dynamic(() => import("@/components/BlogSection"), {
+  loading: () => <div style={{ minHeight: "400px" }} />,
+});
 
 export const metadata = {
   title: "Home",
@@ -30,7 +50,7 @@ export const metadata = {
     images: ["/hero.jpg"],
   },
   alternates: {
-    canonical: "https://rakeshnandakumar.com",
+    canonical: "https://rakeshn.com",
   },
 };
 

@@ -267,7 +267,7 @@ This project is open source and available under the [MIT License](LICENSE).
 
 **Rakesh Nandakumar**
 
-- Website: [rakeshnandakumar.com](https://rakeshnandakumar.com)
+- Website: [rakeshnandakumar.com](https://rakeshn.com)
 - GitHub: [@rakesh-nandakumar](https://github.com/rakesh-nandakumar)
 - LinkedIn: [Rakesh Nandakumar](https://linkedin.com/in/rakesh-nandakumar)
 

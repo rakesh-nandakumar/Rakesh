@@ -3,14 +3,13 @@
 import React, { useState, useMemo, useEffect } from "react";
 import TemplateCard from "@/components/TemplateCard";
 import BreadcrumbSchema from "@/components/BreadcrumbSchema";
-import portfolioData from "@/data/portfolio.json";
 import Head from "next/head";
 
-export default function TemplatesSection() {
+export default function TemplatesClient({ initialTemplates }) {
   const [activeFilter, setActiveFilter] = useState("available");
 
   // Filter only items that have a price (templates for sale)
-  const templateItems = portfolioData.filter((item) => item.price);
+  const templateItems = initialTemplates;
 
   // Filter templates based on availability
   const filteredProjects = useMemo(() => {

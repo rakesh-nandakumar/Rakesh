@@ -2,7 +2,7 @@ import { getAllBlogSlugs } from "@/lib/blogUtils";
 import { getPortfolio } from "@/lib/dataService";
 
 export default function sitemap() {
-  const baseUrl = "https://rakeshnandakumar.com";
+  const baseUrl = "https://rakeshn.com";
 
   // Static pages
   const staticPages = [

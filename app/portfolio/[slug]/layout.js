@@ -28,7 +28,7 @@ export async function generateMetadata({ params }) {
     };
   }
 
-  const projectUrl = `https://rakeshnandakumar.com/portfolio/${slug}`;
+  const projectUrl = `https://rakeshn.com/portfolio/${slug}`;
 
   return {
     title: `${project.title} - Portfolio | Rakesh Nandakumar`,

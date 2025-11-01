@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { getBlogs } from "@/lib/dataService";
 
 export async function GET() {
-  const siteUrl = "https://rakeshnandakumar.com";
+  const siteUrl = "https://rakeshn.com";
   const feedTitle = "Rakesh Nandakumar - Blog";
   const feedDescription =
     "Latest articles and insights from Rakesh Nandakumar on Full Stack Development, Laravel, React, and AWS.";

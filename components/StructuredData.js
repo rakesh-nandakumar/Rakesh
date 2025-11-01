@@ -9,13 +9,13 @@ export default function StructuredData({ data, type = "WebSite" }) {
         "@context": "https://schema.org",
         "@type": "WebSite",
         name: data.name || "Rakesh Nandakumar Portfolio",
-        url: data.url || "https://rakeshnandakumar.com",
+        url: data.url || "https://rakeshn.com",
         description:
           data.description || "Full Stack Developer & Software Engineer",
         author: {
           "@type": "Person",
           name: "Rakesh Nandakumar",
-          url: "https://rakeshnandakumar.com/about",
+          url: "https://rakeshn.com/about",
           jobTitle: "Full Stack Developer",
           worksFor: {
             "@type": "Organization",
@@ -26,8 +26,7 @@ export default function StructuredData({ data, type = "WebSite" }) {
           "@type": "SearchAction",
           target: {
             "@type": "EntryPoint",
-            urlTemplate:
-              "https://rakeshnandakumar.com/search?q={search_term_string}",
+            urlTemplate: "https://rakeshn.com/search?q={search_term_string}",
           },
           "query-input": "required name=search_term_string",
         },
@@ -39,8 +38,8 @@ export default function StructuredData({ data, type = "WebSite" }) {
         "@context": "https://schema.org",
         "@type": "Person",
         name: data.name || "Rakesh Nandakumar",
-        url: data.url || "https://rakeshnandakumar.com",
-        image: data.image || "https://rakeshnandakumar.com/avatar.png",
+        url: data.url || "https://rakeshn.com",
+        image: data.image || "https://rakeshn.com/avatar.png",
         jobTitle: data.jobTitle || "Full Stack Developer",
         description:
           data.description ||
@@ -89,14 +88,14 @@ export default function StructuredData({ data, type = "WebSite" }) {
         author: {
           "@type": "Person",
           name: data.author || "Rakesh Nandakumar",
-          url: "https://rakeshnandakumar.com/about",
+          url: "https://rakeshn.com/about",
         },
         publisher: {
           "@type": "Organization",
           name: "Rakesh Nandakumar",
           logo: {
             "@type": "ImageObject",
-            url: "https://rakeshnandakumar.com/avatar.png",
+            url: "https://rakeshn.com/avatar.png",
           },
         },
         datePublished: data.datePublished,
@@ -129,7 +128,7 @@ export default function StructuredData({ data, type = "WebSite" }) {
           name: "Rakesh Nandakumar",
           logo: {
             "@type": "ImageObject",
-            url: "https://rakeshnandakumar.com/avatar.png",
+            url: "https://rakeshn.com/avatar.png",
           },
         },
         datePublished: data.datePublished,

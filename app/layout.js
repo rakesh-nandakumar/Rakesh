@@ -10,6 +10,7 @@ import GoogleAnalytics from "@/components/GoogleAnalytics";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import StructuredData from "@/components/StructuredData";
 import ClientComponents from "@/components/ClientComponents";
+import ServiceWorkerRegistration from "@/components/ServiceWorkerRegistration";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,7 +23,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  metadataBase: new URL('https://rakeshnandakumar.com'),
+  metadataBase: new URL("https://rakeshn.com"),
   title: {
     default: "Rakesh Nandakumar - Full Stack Developer & Software Engineer",
     template: "%s | Rakesh Nandakumar",
@@ -43,7 +44,7 @@ export const metadata = {
     "MongoDB",
     "Node.js",
   ],
-  authors: [{ name: "Rakesh Nandakumar", url: "https://rakeshnandakumar.com" }],
+  authors: [{ name: "Rakesh Nandakumar", url: "https://rakeshn.com" }],
   creator: "Rakesh Nandakumar",
   publisher: "Rakesh Nandakumar",
   formatDetection: {
@@ -65,7 +66,7 @@ export const metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://rakeshnandakumar.com",
+    url: "https://rakeshn.com",
     title: "Rakesh Nandakumar - Full Stack Developer & Software Engineer",
     description:
       "Experienced Full Stack Developer with 3+ years in Laravel, React, Vue.js, and AWS. Creating dynamic web applications and enterprise solutions.",
@@ -90,7 +91,7 @@ export const metadata = {
     google: "your-google-verification-code",
   },
   alternates: {
-    canonical: "https://rakeshnandakumar.com",
+    canonical: "https://rakeshn.com",
   },
   icons: {
     icon: "/avatar.png",
@@ -113,26 +114,51 @@ export default async function RootLayout({ children }) {
           name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
-        <link rel="canonical" href="https://rakeshnandakumar.com" />
+        <link rel="canonical" href="https://rakeshn.com" />
         <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-color" content="#000000" />
-        <meta name="msapplication-TileColor" content="#000000" />
+        <meta name="theme-color" content="#f9004d" />
+        <meta name="msapplication-TileColor" content="#f9004d" />
         <meta name="format-detection" content="telephone=no" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content="Rakesh Portfolio" />
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        {/* Critical CSS - loaded synchronously */}
         <link rel="stylesheet" href="/assets/css/vendor/bootstrap.min.css" />
-        <link rel="stylesheet" href="/assets/css/vendor/slick.css" />
-        <link rel="stylesheet" href="/assets/css/vendor/slick-theme.css" />
-        <link rel="stylesheet" href="/assets/css/vendor/aos.css" />
-        <link rel="stylesheet" href="/assets/css/plugins/feature.css" />
         <link rel="stylesheet" href="/assets/css/style.css" />
-
-        {/* Preload critical resources */}
+        {/* Non-critical CSS - loaded asynchronously */}
         <link
           rel="preload"
-          href="/assets/css/vendor/bootstrap.min.css"
+          href="/assets/css/vendor/slick.css"
           as="style"
+          onLoad="this.onload=null;this.rel='stylesheet'"
         />
-        <link rel="preload" href="/assets/css/vendor/aos.css" as="style" />
+        <link
+          rel="preload"
+          href="/assets/css/vendor/slick-theme.css"
+          as="style"
+          onLoad="this.onload=null;this.rel='stylesheet'"
+        />
+        <link
+          rel="preload"
+          href="/assets/css/vendor/aos.css"
+          as="style"
+          onLoad="this.onload=null;this.rel='stylesheet'"
+        />
+        <link
+          rel="preload"
+          href="/assets/css/plugins/feature.css"
+          as="style"
+          onLoad="this.onload=null;this.rel='stylesheet'"
+        />
+        <noscript>
+          <link rel="stylesheet" href="/assets/css/vendor/slick.css" />
+          <link rel="stylesheet" href="/assets/css/vendor/slick-theme.css" />
+          <link rel="stylesheet" href="/assets/css/vendor/aos.css" />
+          <link rel="stylesheet" href="/assets/css/plugins/feature.css" />
+        </noscript>
+
+        {/* Preload critical resources */}
         <link
           rel="preload"
           href="/assets/fonts/feather.woff2"
@@ -163,7 +189,7 @@ export default async function RootLayout({ children }) {
           type="WebSite"
           data={{
             name: "Rakesh Nandakumar Portfolio",
-            url: "https://rakeshnandakumar.com",
+            url: "https://rakeshn.com",
             description:
               "Full Stack Developer & Software Engineer portfolio showcasing expertise in Laravel, React, Vue.js, and AWS",
           }}
@@ -176,8 +202,8 @@ export default async function RootLayout({ children }) {
             jobTitle: "Full Stack Developer",
             description:
               "Experienced Full Stack Developer with 3+ years in Laravel, React, Vue.js, and AWS",
-            url: "https://rakeshnandakumar.com",
-            image: "https://rakeshnandakumar.com/profileImg.jpg",
+            url: "https://rakeshn.com",
+            image: "https://rakeshn.com/profileImg.jpg",
             email: "hello@rakeshnandakumar.com",
             socialProfiles: [
               "https://linkedin.com/in/rakesh-nandakumar",
@@ -208,6 +234,7 @@ export default async function RootLayout({ children }) {
         <ErrorBoundary>
           <GoogleAnalytics />
           <ClientComponents />
+          <ServiceWorkerRegistration />
           <FeatherInit />
           <Header />
           {children}

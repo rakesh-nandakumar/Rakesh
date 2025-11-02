@@ -14,11 +14,11 @@ const BlogSection = () => {
 
     const searchLower = searchTerm.toLowerCase();
     return (
-      blog.title.toLowerCase().includes(searchLower) ||
-      blog.excerpt.toLowerCase().includes(searchLower) ||
-      blog.category.toLowerCase().includes(searchLower) ||
-      blog.tags.some((tag) => tag.toLowerCase().includes(searchLower)) ||
-      blog.author.toLowerCase().includes(searchLower)
+      blog.title?.toLowerCase().includes(searchLower) ||
+      blog.excerpt?.toLowerCase().includes(searchLower) ||
+      blog.category?.toLowerCase().includes(searchLower) ||
+      blog.tags?.some((tag) => tag.toLowerCase().includes(searchLower)) ||
+      blog.author?.toLowerCase().includes(searchLower)
     );
   });
 

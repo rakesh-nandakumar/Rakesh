@@ -11,6 +11,7 @@ import ErrorBoundary from "@/components/ErrorBoundary";
 import StructuredData from "@/components/StructuredData";
 import ClientComponents from "@/components/ClientComponents";
 import ServiceWorkerRegistration from "@/components/ServiceWorkerRegistration";
+import AsyncCSS from "@/components/AsyncCSS";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -126,31 +127,7 @@ export default async function RootLayout({ children }) {
         {/* Critical CSS - loaded synchronously */}
         <link rel="stylesheet" href="/assets/css/vendor/bootstrap.min.css" />
         <link rel="stylesheet" href="/assets/css/style.css" />
-        {/* Non-critical CSS - loaded asynchronously */}
-        <link
-          rel="preload"
-          href="/assets/css/vendor/slick.css"
-          as="style"
-          onLoad="this.onload=null;this.rel='stylesheet'"
-        />
-        <link
-          rel="preload"
-          href="/assets/css/vendor/slick-theme.css"
-          as="style"
-          onLoad="this.onload=null;this.rel='stylesheet'"
-        />
-        <link
-          rel="preload"
-          href="/assets/css/vendor/aos.css"
-          as="style"
-          onLoad="this.onload=null;this.rel='stylesheet'"
-        />
-        <link
-          rel="preload"
-          href="/assets/css/plugins/feature.css"
-          as="style"
-          onLoad="this.onload=null;this.rel='stylesheet'"
-        />
+        {/* Non-critical CSS loaded via AsyncCSS component */}
         <noscript>
           <link rel="stylesheet" href="/assets/css/vendor/slick.css" />
           <link rel="stylesheet" href="/assets/css/vendor/slick-theme.css" />
@@ -235,6 +212,7 @@ export default async function RootLayout({ children }) {
           <GoogleAnalytics />
           <ClientComponents />
           <ServiceWorkerRegistration />
+          <AsyncCSS />
           <FeatherInit />
           <Header />
           {children}

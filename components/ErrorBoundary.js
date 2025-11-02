@@ -1,6 +1,8 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
+import LoadingIndicator from "@/components/LoadingIndicator";
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -64,12 +66,55 @@ class ErrorBoundary extends React.Component {
     if (this.state.hasError) {
       // Fallback UI
       return (
-        <div className="error-boundary">
-          <h2>Something went wrong.</h2>
-          <details style={{ whiteSpace: "pre-wrap" }}>
-            <summary>Error details</summary>
-            {this.state.error && this.state.error.toString()}
-          </details>
+        <div className="error-page-inner rn-section-gap">
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-12">
+                <div className="inner text-center">
+                  <div className="section-title text-center">
+                    <h2 className="title">Something went wrong.</h2>
+                    <p className="subtitle mt-5">
+                      Oops! Something went wrong. Don&apos;t worry, it happens
+                      to the best of us. Let&apos;s get you back on track!
+                    </p>
+                    <details
+                      style={{
+                        whiteSpace: "pre-wrap",
+                        color: "gray",
+                      }}
+                    >
+                      <summary
+                        style={{
+                          color: "var(--color-primary)",
+                        }}
+                      >
+                        Error details
+                      </summary>
+                      {this.state.error && this.state.error.toString()}
+                    </details>
+                  </div>
+
+                  <div className="error-actions mt-5">
+                    <Link
+                      href="/"
+                      className="rn-btn mr-3"
+                      aria-label="Return to homepage"
+                    >
+                      Back to Home
+                    </Link>
+
+                    <Link
+                      href="/contact"
+                      className="rn-btn btn-outline"
+                      aria-label="Contact for help"
+                    >
+                      Report Issue
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       );
     }

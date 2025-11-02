@@ -11,7 +11,12 @@ const BlogCard = ({ blog, delay = 100 }) => {
       data-aos-once="true"
       className="col-lg-6 col-xl-4 mt--30 col-md-6 col-sm-12 col-12 mt--30"
     >
-      <div className="rn-blog">
+      <div
+        className="rn-blog"
+        style={{
+          padding: "20px",
+        }}
+      >
         <div className="inner">
           <div className="thumbnail">
             <Link href={`/blogs/${blog.slug}`}>

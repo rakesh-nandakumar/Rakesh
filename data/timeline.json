@@ -60,14 +60,13 @@
   {
     "category": 2,
     "title": "Diploma in Computer Science",
-    "short-description": "Diploma from Asia Pacific Institute of Information Technology",
-    "long-description": "GPA: 3.5 / 4.0 (Computer Science)",
+    "description": "Diploma from Asia Pacific Institute of Information Technology",
     "status": "Completed"
   },
   {
     "category": 2,
     "title": "BSc (Hons) in Computer Science",
-    "short-description": "Degree from Staffordshire University UK",
+    "description": "Degree from Staffordshire University UK",
     "status": "Completed"
   }
   ]

@@ -77,7 +77,7 @@ export default function BlogsClient({ initialBlogs }) {
               </div>
             </div>
           </div>
-          <div className="row row--12 mt--30 mt_md--10 mt_sm--10">
+          <div className="row row--10 mt--30 mt_md--10 mt_sm--10">
             {displayBlogs.length > 0 ? (
               displayBlogs.map((blog, index) => (
                 <BlogCard key={index} blog={blog} delay={100 + index * 50} />
@@ -102,7 +102,6 @@ export default function BlogsClient({ initialBlogs }) {
           </div>
         </div>
       </div>
-      {/* End News Area */}
     </>
   );
 }

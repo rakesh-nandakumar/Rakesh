@@ -24,7 +24,7 @@ export default function ResumeSection() {
               {" "}
               <div className="row m--0">
                 {/* Start Experience List Area  */}
-                <div className="col-lg-6 col-md-12 col-12">
+                <div className="col-lg-7 col-md-12 col-12">
                   <div className="content">
                     <span className="subtitle ps-4">Experience</span>
                     <h4 className="maintitle ps-4">Job Experience</h4>
@@ -49,6 +49,7 @@ export default function ResumeSection() {
                                 <div className="title">
                                   <h4>{exp.title}</h4>
                                   {/* intentionally not showing the raw time here */}
+                                  <span>{exp["time"]}</span>
                                 </div>
                                 {showDate && (
                                   <div className="date-of-time">
@@ -68,7 +69,7 @@ export default function ResumeSection() {
                 </div>
                 {/* End Experience List Area  */}
                 {/* Start Education List Area  */}
-                <div className="col-lg-6 col-md-12 col-12 mt_md--60 mt_sm--60">
+                <div className="col-lg-5 col-md-12 col-12 mt_md--60 mt_sm--60">
                   <div className="content">
                     <span className="subtitle ps-4">Education</span>
                     <h4 className="maintitle ps-4">Education Quality</h4>
@@ -79,14 +80,13 @@ export default function ResumeSection() {
                             <div className="heading">
                               <div className="title">
                                 <h4>{edu.title}</h4>
-                                <span>{edu["short-description"]}</span>
                               </div>
                               <div className="date-of-time">
                                 <span>{edu.status || "Completed"}</span>
                               </div>
                             </div>
                             <p className="description">
-                              {edu["long-description"]}
+                              {edu["description"]}
                             </p>
                           </div>
                         </div>

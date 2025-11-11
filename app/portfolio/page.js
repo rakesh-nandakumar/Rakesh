@@ -3,26 +3,68 @@
 import React, { useState, useMemo, useEffect } from "react";
 import PortfolioCard from "@/components/PortfolioCard";
 import BreadcrumbSchema from "@/components/BreadcrumbSchema";
-import portfolioData from "@/data/portfolio.json";
 import Head from "next/head";
 
 export default function PortfolioSection() {
   const [activeFilter, setActiveFilter] = useState("completed");
-  const portfolioItems = portfolioData;
+  const [portfolioItems, setPortfolioItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Load portfolio data on client side only to avoid hydration mismatch
+  useEffect(() => {
+    const loadPortfolio = async () => {
+      try {
+        const response = await fetch('/api/data?entity=portfolio');
+        if (response.ok) {
+          const data = await response.json();
+          setPortfolioItems(data);
+        } else {
+          // Fallback to import if API fails
+          const portfolioData = await import("@/data/portfolio.json");
+          setPortfolioItems(portfolioData.default);
+        }
+      } catch (error) {
+        console.error("Failed to load portfolio:", error);
+        // Fallback to import
+        try {
+          const portfolioData = await import("@/data/portfolio.json");
+          setPortfolioItems(portfolioData.default);
+        } catch (importError) {
+          console.error("Failed to import portfolio:", importError);
+          setPortfolioItems([]);
+        }
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadPortfolio();
+  }, []);
   // Filter projects based on status
   const filteredProjects = useMemo(() => {
+    if (!portfolioItems || portfolioItems.length === 0) return [];
     return portfolioItems.filter((item) => {
       const status = item.status || "upcoming";
       return status === activeFilter;
     });
   }, [activeFilter, portfolioItems]);
+  
   // Get counts for each status
   const statusCounts = useMemo(() => {
+    if (!portfolioItems || portfolioItems.length === 0) {
+      return {
+        ongoing: 0,
+        completed: 0,
+        upcoming: 0,
+      };
+    }
+    
     const counts = portfolioItems.reduce((acc, item) => {
       const status = item.status || "upcoming";
       acc[status] = (acc[status] || 0) + 1;
       return acc;
     }, {});
+    
     return {
       ongoing: counts.ongoing || 0,
       completed: counts.completed || 0,
@@ -50,26 +92,41 @@ export default function PortfolioSection() {
     { name: "Portfolio", url: "https://rakeshn.com/portfolio" },
   ];
 
-  // Structured data for portfolio
-  const portfolioStructuredData = {
-    "@context": "https://schema.org",
-    "@type": "CreativeWork",
-    name: "Rakesh Nandakumar's Portfolio",
-    description:
-      "A showcase of technical projects and contributions across various domains and technologies",
-    author: {
-      "@type": "Person",
-      name: "Rakesh Nandakumar",
-      jobTitle: "Full Stack Developer",
-    },
-    mainEntity: portfolioItems.map((item) => ({
-      "@type": "SoftwareApplication",
-      name: item.title,
-      description: item.description || item.shortDescription,
-      applicationCategory: "WebApplication",
-      operatingSystem: "Cross-platform",
-    })),
-  };
+  // Structured data for portfolio - only generate on client side
+  const portfolioStructuredData = useMemo(() => {
+    if (!portfolioItems || portfolioItems.length === 0) {
+      return {
+        "@context": "https://schema.org",
+        "@type": "CreativeWork",
+        name: "Rakesh Nandakumar's Portfolio",
+        description: "A showcase of technical projects and contributions across various domains and technologies",
+        author: {
+          "@type": "Person",
+          name: "Rakesh Nandakumar",
+          jobTitle: "Full Stack Developer",
+        },
+      };
+    }
+    
+    return {
+      "@context": "https://schema.org",
+      "@type": "CreativeWork",
+      name: "Rakesh Nandakumar's Portfolio",
+      description: "A showcase of technical projects and contributions across various domains and technologies",
+      author: {
+        "@type": "Person",
+        name: "Rakesh Nandakumar",
+        jobTitle: "Full Stack Developer",
+      },
+      mainEntity: portfolioItems.map((item) => ({
+        "@type": "SoftwareApplication",
+        name: item.title,
+        description: item.description || item.shortDescription,
+        applicationCategory: "WebApplication",
+        operatingSystem: "Cross-platform",
+      })),
+    };
+  }, [portfolioItems]);
 
   return (
     <>
@@ -149,7 +206,16 @@ export default function PortfolioSection() {
             </div>
           </div>
           <div className="row row--25 mt--10 mt_md--10 mt_sm--10">
-            {filteredProjects.length > 0 ? (
+            {isLoading ? (
+              <div className="col-12">
+                <div className="text-center py-5">
+                  <div className="spinner-border text-primary" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                  </div>
+                  <p className="mt-3">Loading portfolio...</p>
+                </div>
+              </div>
+            ) : filteredProjects.length > 0 ? (
               filteredProjects.map((item, index) => (
                 <PortfolioCard key={index} item={item} index={index} />
               ))

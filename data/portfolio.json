@@ -649,5 +649,118 @@
     "featured": false,
     "status": "completed",
     "type": "personal"
+  },
+  {
+    "image": "/projects/medisys.png",
+    "category": "Healthcare",
+    "title": "MediSys — Diagnostic Report Automation",
+    "shortDescription": "Serverless AWS pipeline that automates secure intake, parsing, storage, and notification of diagnostic laboratory CSV reports.",
+    "longDescription": "MediSys is a production-focused, 100% serverless pipeline designed to automate the secure intake, parsing, storage, and notification of diagnostic laboratory reports. Architected on AWS to meet modern healthcare operational needs, the system converts raw CSV uploads into structured, queryable records while preserving auditability and enforcing strict role-based access control. The upload surface is a simple, authenticated web endpoint that validates file shape and metadata before persisting objects to an SSE‑KMS encrypted S3 bucket. Each successful store emits a lightweight message to an SQS queue, decoupling ingestion from processing to absorb bursty traffic and guarantee durability.\n\nA dedicated processing Lambda consumes SQS messages and executes deterministic, idempotent parsing logic: streaming CSV rows from S3, normalizing fields (patient identifiers, test codes, timestamps, numeric/enum coercion), and performing schema validation with clear error diagnostics. Validated rows are written to DynamoDB using a single-table pattern optimized for the platform's access patterns: UploadedFiles (file-level metadata) and ParsedRecords (row-level items keyed by fileId + rowIndex). The worker atomically updates file metadata to reflect parse counts and final status (SUCCESS or FAILED) and routes failure diagnostics to a dead-letter queue for human review.\n\nEventBridge plays a central role in the notification and audit model: parsing outcomes and administrative actions (CREATE/UPDATE/DELETE clinic) are emitted as structured events and routed to curated targets. SNS topics subscribed by clinic staff and administrators provide immediate, role-appropriate notifications via email and SMS; DELETED (soft-delete) events are intentionally routed to admins only to reduce alert fatigue while preserving accountability. All events and Lambda telemetry stream to CloudWatch for centralized logging, with alarms configured for DLQ growth, parse error spikes, and abnormal latency to enable rapid operational response.\n\nSecurity and governance are enforced at multiple layers. Authentication uses Amazon Cognito with JWTs containing custom:role and custom:clinicId claims; each API validates tokens and enforces RBAC so staff can only access their clinic's uploads while super-admins retain global visibility. IAM roles for each Lambda adhere to least privilege, scoped by resource and conditioned by clinic ID where applicable. Data is encrypted at rest (S3 SSE‑KMS, DynamoDB encryption) and in transit (TLS), and soft deletion semantics preserve historical records for compliance and forensic needs while allowing retention policies or administrative purging when required.\n\nOperational resilience is a first-class concern: SQS buffering smooths spikes, Lambda concurrency autoscaling handles throughput, and idempotent writes eliminate duplicate persistence caused by retries. DLQs capture poison messages and malformed files for offline inspection. Cost efficiency is achieved by leveraging serverless primitives—on-demand DynamoDB capacity, pay-per-request Lambda, and lifecycle rules for long-term S3 retention—while metrics-driven autoscaling and targeted alarms keep billing predictable.\n\nFrom a developer and deployment perspective, MediSys is CI/CD friendly: infrastructure is codified (CloudFormation / CDK / Terraform), Lambdas are built and tested with unit and integration tests (file shape and parsing scenarios), and end-to-end validation runs against a staging environment with representative datasets. The system is extensible—future enhancements include HL7/FHIR import adapters, richer PII redaction workflows, analytics ingestion for operational dashboards, and optional enterprise audit/export connectors for regulatory reporting.\n\nIn summary, MediSys demonstrates how an event-driven, serverless architecture on AWS can transform manual diagnostic report workflows into a secure, scalable, and maintainable platform. It balances developer ergonomics, operational visibility, and healthcare-grade security controls to deliver a production-ready pipeline for clinics and diagnostic centers that need reliable, auditable, and timely processing of clinical test data.",
+    "keyFeatures": [
+      {
+        "feature": "Secure, authenticated uploads",
+        "description": "Authenticated API surface with Cognito JWTs and SSE‑KMS encrypted S3 storage for all submitted files."
+      },
+      {
+        "feature": "Decoupled processing with SQS",
+        "description": "Upload-to-S3 triggers an SQS message to decouple ingestion from parsing and absorb burst traffic."
+      },
+      {
+        "feature": "Idempotent, streaming CSV parsing",
+        "description": "Lambda worker performs streaming row parsing, normalization and schema validation with idempotent writes to DynamoDB."
+      },
+      {
+        "feature": "Single-table DynamoDB storage",
+        "description": "UploadedFiles and ParsedRecords modeled for efficient access patterns and fast, low-latency reads."
+      },
+      {
+        "feature": "Event-driven notifications & audit",
+        "description": "EventBridge → SNS routing provides role-scoped email/SMS notifications and centralized audit events."
+      },
+      {
+        "feature": "Soft-delete & retention policies",
+        "description": "Soft deletion preserves history for compliance while lifecycle rules enable controlled long-term retention."
+      },
+      {
+        "feature": "Operational observability",
+        "description": "CloudWatch logs/metrics, DLQ alarms and dashboards to surface parsing failures and operational anomalies."
+      },
+      {
+        "feature": "Extensible, compliance-minded design",
+        "description": "Infrastructure-as-code, CI/CD pipelines and planned adapters for HL7/FHIR and PII redaction."
+      }
+    ],
+    "technologies": [
+      "AWS Lambda (Node.js/Python)",
+      "Amazon S3 (SSE-KMS)",
+      "Amazon DynamoDB",
+      "Amazon SQS",
+      "Amazon EventBridge",
+      "Amazon SNS",
+      "Amazon Cognito",
+      "AWS KMS",
+      "CloudWatch",
+      "CloudFormation / CDK / Terraform",
+      "GitHub Actions / CI",
+      "Serverless Framework"
+    ],
+    "featured": true,
+    "status": "completed",
+    "type": "work"
+  },
+  {
+    "image": "/projects/elite-couture.png",
+    "category": "E-commerce",
+    "title": "ÉLITE COUTURE — Timeless Elegance",
+    "shortDescription": "A lightning-fast, lightweight luxury storefront built with pure HTML, CSS, jQuery and PHP — focused on performance, accessibility and elegant design.",
+    "longDescription": "ÉLITE COUTURE is a performance-first boutique storefront and promotional microsite showcasing curated luxury collections for men, women and kids. Built with minimal dependencies (HTML5, semantic CSS, jQuery for progressive enhancement and PHP for server-side form handling), the project demonstrates how lightweight, well-structured front-end code delivers premium UX without heavy frameworks. The site includes responsive collection pages, hero-driven marketing sections, subscription handling via a secure PHP endpoint, and CSS-based micro-interactions for an elegant feel. Images and assets are optimized for fast paint, critical CSS is inlined for improved first render, and markup follows SEO and accessibility best practices. This project is ideal as a high-performance marketing shell or starter storefront for fashion brands that value speed, maintainability and graceful progressive enhancement.",
+    "keyFeatures": [
+      {
+        "feature": "Pure, minimal stack",
+        "description": "Built with HTML, CSS, jQuery and PHP to maximize compatibility and reduce bundle weight."
+      },
+      {
+        "feature": "Lightning-fast performance",
+        "description": "Optimized images, inlined critical CSS and minimal JS to achieve fast Time-to-Interactive on mobile and desktop."
+      },
+      {
+        "feature": "Progressive enhancement",
+        "description": "Fully usable without JavaScript; jQuery adds tasteful enhancements and interactions where supported."
+      },
+      {
+        "feature": "Server-side subscription & contact",
+        "description": "Simple, secure PHP endpoints for email subscriptions and contact forms with server-side validation."
+      },
+      {
+        "feature": "Responsive, accessible design",
+        "description": "Mobile-first layouts, semantic HTML and ARIA-friendly patterns for broad accessibility and SEO."
+      },
+      {
+        "feature": "Curated collections",
+        "description": "Separate sections for Men, Women, Kids and New Arrivals with lightweight navigation and CTAs."
+      },
+      {
+        "feature": "Lightweight animations",
+        "description": "CSS-driven micro-interactions that deliver a refined, premium feel without heavy runtime cost."
+      },
+      {
+        "feature": "Easy to customize",
+        "description": "Minimal codebase designed as a fast starter template for fashion brands and promotional campaigns."
+      }
+    ],
+    "technologies": [
+      "HTML5",
+      "CSS3",
+      "jQuery",
+      "PHP",
+      "Responsive Design",
+      "Performance Optimization",
+      "SEO",
+      "Accessibility"
+    ],
+    "featured": true,
+    "status": "completed",
+    "liveLink": "https://elite-couture.rakeshn.com/",
+    "type": "personal"
   }
 ]

@@ -1,12 +1,42 @@
 "use client";
 
 import { Clock, ArrowUpRight, Search } from "react-feather";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import BlogCard from "@/components/BlogCard";
-import blogsData from "@/data/blogs.json";
 
 const BlogSection = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [blogsData, setBlogsData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Load blogs on client side
+  useEffect(() => {
+    const loadBlogs = async () => {
+      try {
+        const response = await fetch("/api/data?entity=blogs");
+        if (response.ok) {
+          const data = await response.json();
+          setBlogsData(data);
+        } else {
+          const imported = await import("@/data/blogs.json");
+          setBlogsData(imported.default);
+        }
+      } catch (error) {
+        console.error("Failed to load blogs:", error);
+        try {
+          const imported = await import("@/data/blogs.json");
+          setBlogsData(imported.default);
+        } catch (importError) {
+          console.error("Failed to import blogs:", importError);
+          setBlogsData([]);
+        }
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadBlogs();
+  }, []);
 
   // Filter blogs based on search term
   const displayBlogs = blogsData.filter((blog) => {
@@ -79,7 +109,16 @@ const BlogSection = () => {
             </div>
           </div>
           <div className="row row--12 mt--30 mt_md--10 mt_sm--10">
-            {displayBlogs.length > 0 ? (
+            {isLoading ? (
+              <div className="col-12">
+                <div className="text-center py-5">
+                  <div className="spinner-border text-primary" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                  </div>
+                  <p className="mt-3">Loading blogs...</p>
+                </div>
+              </div>
+            ) : displayBlogs.length > 0 ? (
               displayBlogs.map((blog, index) => (
                 <BlogCard key={index} blog={blog} delay={100 + index * 50} />
               ))

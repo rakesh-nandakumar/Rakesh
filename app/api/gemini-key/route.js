@@ -8,10 +8,14 @@ export async function GET() {
   try {
     const apiKey = process.env.GEMINI_API_KEY;
 
-    if (!apiKey) {
+    if (!apiKey || apiKey === "" || apiKey === "your_gemini_api_key_here") {
+      console.warn("Gemini API key not configured in .env.local");
       return NextResponse.json(
-        { error: "Gemini API key not configured" },
-        { status: 500 }
+        {
+          error: "Gemini API key not configured",
+          message: "Please add GEMINI_API_KEY to your .env.local file",
+        },
+        { status: 200 } // Changed to 200 to prevent console errors
       );
     }
 
@@ -20,7 +24,7 @@ export async function GET() {
   } catch (error) {
     console.error("Error fetching Gemini API key:", error);
     return NextResponse.json(
-      { error: "Failed to fetch API key" },
+      { error: "Failed to fetch API key", message: error.message },
       { status: 500 }
     );
   }

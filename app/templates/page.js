@@ -3,14 +3,46 @@
 import React, { useState, useMemo, useEffect } from "react";
 import TemplateCard from "@/components/TemplateCard";
 import BreadcrumbSchema from "@/components/BreadcrumbSchema";
-import portfolioData from "@/data/portfolio.json";
 import Head from "next/head";
 
 export default function TemplatesSection() {
   const [activeFilter, setActiveFilter] = useState("available");
+  const [portfolioData, setPortfolioData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Load portfolio data on client side
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        const response = await fetch("/api/data?entity=portfolio");
+        if (response.ok) {
+          const data = await response.json();
+          setPortfolioData(data);
+        } else {
+          const imported = await import("@/data/portfolio.json");
+          setPortfolioData(imported.default);
+        }
+      } catch (error) {
+        console.error("Failed to load portfolio:", error);
+        try {
+          const imported = await import("@/data/portfolio.json");
+          setPortfolioData(imported.default);
+        } catch (importError) {
+          console.error("Failed to import portfolio:", importError);
+          setPortfolioData([]);
+        }
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadData();
+  }, []);
 
   // Filter only items that have a price (templates for sale)
-  const templateItems = portfolioData.filter((item) => item.price);
+  const templateItems = useMemo(() => {
+    return portfolioData.filter((item) => item.price);
+  }, [portfolioData]);
 
   // Filter templates based on availability
   const filteredProjects = useMemo(() => {

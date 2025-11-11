@@ -16,7 +16,7 @@ import fs from "fs/promises";
 export async function GET(request) {
   try {
     const { searchParams } = new URL(request.url);
-    const type = searchParams.get("type");
+    const type = searchParams.get("type") || searchParams.get("entity");
 
     let data;
 

@@ -1,6 +1,7 @@
 # Quick Start Guide for Selenium Tests
 
 ## Prerequisites Check
+
 ✅ Python 3.8+ installed
 ✅ Node.js installed
 ✅ Admin panel code available
@@ -9,12 +10,14 @@
 ## Step-by-Step Setup
 
 ### 1. Install Python Dependencies (5 minutes)
+
 ```powershell
 cd test
 pip install -r requirements.txt
 ```
 
 This installs:
+
 - Selenium WebDriver
 - Pytest testing framework
 - WebDriver Manager (auto-downloads ChromeDriver)
@@ -22,7 +25,9 @@ This installs:
 - Color output libraries
 
 ### 2. Configure Environment
+
 The `.env` file is already created with defaults:
+
 - Admin URL: http://localhost:5173
 - Password: admin
 - Server URL: http://localhost:1420
@@ -33,33 +38,40 @@ The `.env` file is already created with defaults:
 ### 3. Start Servers (REQUIRED)
 
 **Terminal 1 - Start Admin Panel:**
+
 ```powershell
 cd c:\Users\Admin\Desktop\Rakesh\admin
 npm run dev
 ```
+
 Wait for: "Local: http://localhost:5173"
 
 **Terminal 2 - Start Backend Server:**
+
 ```powershell
 cd c:\Users\Admin\Desktop\Rakesh\admin\server
 node index.js
 ```
+
 Wait for: "Server running on port 1420"
 
 ### 4. Run Tests (Choose One)
 
 **Option A - Run Quick Smoke Tests (2-3 minutes):**
+
 ```powershell
 cd c:\Users\Admin\Desktop\Rakesh\test
 python run_tests.py smoke
 ```
 
 **Option B - Run All Tests (10-15 minutes):**
+
 ```powershell
 python run_tests.py
 ```
 
 **Option C - Run Specific Module:**
+
 ```powershell
 python run_tests.py login       # Test login only
 python run_tests.py blogs       # Test blogs CRUD
@@ -81,12 +93,14 @@ python run_tests.py backups     # Test backup system
 ## Understanding Test Output
 
 ### Console Colors:
+
 - 🟢 **Green** = Test passed ✓
 - 🔴 **Red** = Test failed ✗
 - 🟡 **Yellow** = Warning/Info
 - 🔵 **Cyan** = Information
 
 ### Test Results:
+
 ```
 test_login.py::TestLogin::test_successful_login PASSED       [10%]
 test_blogs_crud.py::TestBlogsCreate::test_create_valid_blog PASSED [20%]
@@ -95,10 +109,12 @@ test_blogs_crud.py::TestBlogsCreate::test_create_valid_blog PASSED [20%]
 ## Viewing Reports
 
 After tests finish:
+
 1. **HTML Report**: Look in `test/reports/` folder
 2. **Screenshots**: Look in `test/screenshots/` folder (if any failures)
 
 Open HTML report in browser to see:
+
 - Pass/Fail summary
 - Execution times
 - Screenshots
@@ -107,44 +123,53 @@ Open HTML report in browser to see:
 ## Common Issues & Solutions
 
 ### Issue 1: "pytest not found"
+
 **Solution:**
+
 ```powershell
 pip install pytest
 ```
 
 ### Issue 2: "Cannot connect to admin panel"
+
 **Solution:** Make sure both servers are running (Step 3)
 
 ### Issue 3: "ChromeDriver error"
+
 **Solution:** Tests will auto-download ChromeDriver. Ensure internet connection.
 
 ### Issue 4: Tests are too slow
+
 **Solution:** Run smoke tests only:
+
 ```powershell
 python run_tests.py smoke
 ```
 
 ### Issue 5: Element not found errors
+
 **Solution:** Increase wait time in `.env`:
+
 ```
 EXPLICIT_WAIT=30
 ```
 
 ## Test Coverage Summary
 
-| Module | Tests | Coverage |
-|--------|-------|----------|
-| Login | 8 tests | 100% |
-| Navigation | 7 tests | 100% |
-| Blogs | 25+ tests | 100% |
-| Portfolio | 15+ tests | 100% |
-| Gallery | 12+ tests | 100% |
-| Site Config | 10+ tests | 100% |
-| Backups | 10+ tests | 100% |
+| Module      | Tests     | Coverage |
+| ----------- | --------- | -------- |
+| Login       | 8 tests   | 100%     |
+| Navigation  | 7 tests   | 100%     |
+| Blogs       | 25+ tests | 100%     |
+| Portfolio   | 15+ tests | 100%     |
+| Gallery     | 12+ tests | 100%     |
+| Site Config | 10+ tests | 100%     |
+| Backups     | 10+ tests | 100%     |
 
 ## What Each Test Suite Does
 
 ### `test_login.py`
+
 - ✅ Tests login with correct password
 - ✅ Tests login with wrong password
 - ✅ Tests empty password
@@ -152,6 +177,7 @@ EXPLICIT_WAIT=30
 - ✅ Tests XSS attempts
 
 ### `test_blogs_crud.py`
+
 - ✅ Creates blogs with all fields
 - ✅ Edits existing blogs
 - ✅ Deletes blogs
@@ -160,6 +186,7 @@ EXPLICIT_WAIT=30
 - ✅ Tests 10+ edge cases
 
 ### `test_portfolio_crud.py`
+
 - ✅ Creates portfolio projects
 - ✅ Edits projects
 - ✅ Tests featured flag
@@ -167,6 +194,7 @@ EXPLICIT_WAIT=30
 - ✅ Tests edge cases
 
 ### `test_gallery_crud.py`
+
 - ✅ Creates gallery items
 - ✅ Edits items
 - ✅ Tests image display
@@ -174,12 +202,14 @@ EXPLICIT_WAIT=30
 - ✅ Tests edge cases
 
 ### `test_site_config.py`
+
 - ✅ Tests all toggle switches
 - ✅ Tests save functionality
 - ✅ Tests persistence
 - ✅ Tests rapid toggling
 
 ### `test_backups.py`
+
 - ✅ Verifies backup list
 - ✅ Tests view backup details
 - ✅ Tests automatic backup creation
@@ -189,27 +219,33 @@ EXPLICIT_WAIT=30
 ## Advanced Usage
 
 ### Run Specific Test File:
+
 ```powershell
 pytest tests/test_login.py -v
 ```
 
 ### Run Specific Test:
+
 ```powershell
 pytest tests/test_login.py::TestLogin::test_successful_login -v
 ```
 
 ### Run in Headless Mode:
+
 Edit `.env`:
+
 ```
 HEADLESS_MODE=True
 ```
 
 ### Parallel Execution (faster):
+
 ```powershell
 pytest tests/ -n 4
 ```
 
 ### Generate Allure Report:
+
 ```powershell
 pytest tests/ --alluredir=allure-results
 allure serve allure-results
@@ -230,6 +266,7 @@ Press `Ctrl+C` in terminal to stop tests.
 ## Help & Support
 
 If tests fail:
+
 1. Check both servers are running
 2. Look at screenshot in `screenshots/` folder
 3. Read error message carefully
@@ -253,6 +290,7 @@ If tests fail:
 ---
 
 **You're all set! Run your first test:**
+
 ```powershell
 cd c:\Users\Admin\Desktop\Rakesh\test
 python run_tests.py smoke

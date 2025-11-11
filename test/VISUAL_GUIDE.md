@@ -161,7 +161,7 @@ START
   └─[7]─ Cleanup
          ├─ Close browser
          └─ Save artifacts
-         
+
 END
 ```
 
@@ -409,12 +409,14 @@ Example:
 ---
 
 **📚 For complete documentation, see:**
+
 - `README.md` - Full documentation
 - `MASTER_GUIDE.md` - Complete reference
 - `IMPLEMENTATION_SUMMARY.md` - Implementation details
 - `QUICK_REFERENCE.md` - Quick commands
 
 **🚀 Ready to run:**
+
 ```powershell
 cd c:\Users\Admin\Desktop\Rakesh\test
 python run_tests.py smoke

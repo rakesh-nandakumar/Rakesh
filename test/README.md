@@ -35,6 +35,7 @@ copy .env.example .env
 ```
 
 Edit `.env`:
+
 ```env
 ADMIN_URL=http://localhost:5173
 ADMIN_PASSWORD=admin
@@ -45,12 +46,14 @@ HEADLESS_MODE=False
 ### 3. Start Servers
 
 **Terminal 1 - Admin Panel:**
+
 ```powershell
 cd admin
 npm run dev
 ```
 
 **Terminal 2 - Backend Server:**
+
 ```powershell
 cd admin/server
 node index.js
@@ -59,11 +62,13 @@ node index.js
 ### 4. Run Tests
 
 **Run all tests:**
+
 ```powershell
 python run_tests.py
 ```
 
 **Run specific test suites:**
+
 ```powershell
 python run_tests.py smoke      # Smoke tests only
 python run_tests.py critical   # Critical path tests
@@ -109,6 +114,7 @@ test/
 ## 🧪 Test Coverage
 
 ### Login Tests (`test_login.py`)
+
 - ✅ Login page elements verification
 - ✅ Successful login with correct password
 - ✅ Failed login with wrong password
@@ -118,6 +124,7 @@ test/
 - ✅ Case sensitivity check
 
 ### Dashboard Tests (`test_dashboard.py`)
+
 - ✅ Dashboard loads successfully
 - ✅ Navigation menu presence
 - ✅ Navigate to all pages
@@ -126,6 +133,7 @@ test/
 - ✅ Theme toggle functionality
 
 ### Blog CRUD Tests (`test_blogs_crud.py`)
+
 - ✅ Page loads and elements present
 - ✅ Create blog with valid data
 - ✅ Create blog with minimal fields
@@ -144,6 +152,7 @@ test/
   - Invalid dates
 
 ### Portfolio CRUD Tests (`test_portfolio_crud.py`)
+
 - ✅ Create portfolio project
 - ✅ Edit project
 - ✅ Delete project
@@ -156,6 +165,7 @@ test/
   - Invalid URLs
 
 ### Gallery CRUD Tests (`test_gallery_crud.py`)
+
 - ✅ Create gallery item
 - ✅ Edit gallery item
 - ✅ Delete gallery item
@@ -166,6 +176,7 @@ test/
   - Unicode support
 
 ### Site Config Tests (`test_site_config.py`)
+
 - ✅ Page loads
 - ✅ Toggle switches present
 - ✅ Toggle functionality
@@ -177,6 +188,7 @@ test/
   - Multiple saves
 
 ### Backup Tests (`test_backups.py`)
+
 - ✅ Backups page loads
 - ✅ Backup table display
 - ✅ View backup details
@@ -202,6 +214,7 @@ Tests are organized using pytest markers:
 ```
 
 Run specific markers:
+
 ```powershell
 pytest -m login           # Run only login tests
 pytest -m "smoke"         # Run smoke tests
@@ -212,6 +225,7 @@ pytest -m "blogs or portfolio"  # Run blogs OR portfolio tests
 ## 📊 Reporting
 
 ### HTML Reports
+
 - Generated automatically in `reports/` folder
 - Includes:
   - Test results (passed/failed/skipped)
@@ -220,6 +234,7 @@ pytest -m "blogs or portfolio"  # Run blogs OR portfolio tests
   - Detailed logs
 
 ### Console Output
+
 - Color-coded output:
   - 🟢 Green: Success
   - 🔴 Red: Error/Failure
@@ -227,6 +242,7 @@ pytest -m "blogs or portfolio"  # Run blogs OR portfolio tests
   - 🔵 Cyan: Info
 
 ### Screenshots
+
 - Automatically captured on test failure
 - Saved in `screenshots/` folder
 - Named with test name and timestamp
@@ -235,17 +251,18 @@ pytest -m "blogs or portfolio"  # Run blogs OR portfolio tests
 
 ### Environment Variables (.env)
 
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `ADMIN_URL` | Admin panel URL | `http://localhost:5173` |
-| `ADMIN_PASSWORD` | Login password | `admin` |
-| `SERVER_URL` | Backend server URL | `http://localhost:1420` |
-| `HEADLESS_MODE` | Run browser headless | `False` |
-| `IMPLICIT_WAIT` | Implicit wait timeout (seconds) | `10` |
-| `EXPLICIT_WAIT` | Explicit wait timeout (seconds) | `20` |
-| `SCREENSHOT_ON_FAILURE` | Take screenshot on failure | `True` |
+| Variable                | Description                     | Default                 |
+| ----------------------- | ------------------------------- | ----------------------- |
+| `ADMIN_URL`             | Admin panel URL                 | `http://localhost:5173` |
+| `ADMIN_PASSWORD`        | Login password                  | `admin`                 |
+| `SERVER_URL`            | Backend server URL              | `http://localhost:1420` |
+| `HEADLESS_MODE`         | Run browser headless            | `False`                 |
+| `IMPLICIT_WAIT`         | Implicit wait timeout (seconds) | `10`                    |
+| `EXPLICIT_WAIT`         | Explicit wait timeout (seconds) | `20`                    |
+| `SCREENSHOT_ON_FAILURE` | Take screenshot on failure      | `True`                  |
 
 ### Browser Options
+
 - Configurable in `conftest.py`
 - Default: Chrome (latest)
 - Supports headless mode
@@ -263,14 +280,14 @@ from selenium.webdriver.common.by import By
 class NewPage(BasePage):
     # Locators
     ELEMENT_LOCATOR = (By.ID, "element-id")
-    
+
     def __init__(self, driver):
         super().__init__(driver)
         self.url = TestConfig.ADMIN_URL + "/new-page"
-    
+
     def navigate(self):
         super().navigate(self.url)
-    
+
     def interact_with_element(self):
         self.click(self.ELEMENT_LOCATOR)
 ```
@@ -296,19 +313,22 @@ class TestNewFeature:
 ### Common Issues
 
 **1. ChromeDriver not found**
+
 ```
 Solution: The webdriver-manager will auto-download. Ensure internet connection.
 ```
 
 **2. Element not found**
+
 ```
-Solution: 
+Solution:
 - Increase EXPLICIT_WAIT in .env
 - Check if element locator is correct
 - Verify page has loaded
 ```
 
 **3. Tests failing due to timing**
+
 ```
 Solution:
 - Use explicit waits instead of time.sleep()
@@ -317,6 +337,7 @@ Solution:
 ```
 
 **4. Admin panel not accessible**
+
 ```
 Solution:
 - Verify servers are running
@@ -349,7 +370,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
         with:
-          python-version: '3.9'
+          python-version: "3.9"
       - name: Install dependencies
         run: |
           pip install -r test/requirements.txt
@@ -362,6 +383,7 @@ jobs:
 ## 📈 Test Metrics
 
 After running tests, you'll see:
+
 - Total tests run
 - Pass/Fail/Skip counts
 - Execution time
@@ -371,6 +393,7 @@ After running tests, you'll see:
 ## 🤝 Contributing
 
 To add new tests:
+
 1. Follow the Page Object Model pattern
 2. Add appropriate pytest markers
 3. Include edge cases
@@ -384,6 +407,7 @@ This test suite is part of the Admin Panel project.
 ## 🆘 Support
 
 For issues or questions:
+
 1. Check the troubleshooting section
 2. Review test logs and screenshots
 3. Check browser console for errors

@@ -3,6 +3,7 @@
 ## 📋 Executive Summary
 
 A **fully-fledged Selenium-based automation testing framework** for the Admin Panel with:
+
 - ✅ **100% UI Coverage**: Every button, form, table, and interaction tested
 - ✅ **100+ Test Cases**: Covering normal flows, edge cases, and error scenarios
 - ✅ **Page Object Model**: Clean, maintainable, reusable code architecture
@@ -17,31 +18,37 @@ A **fully-fledged Selenium-based automation testing framework** for the Admin Pa
 ## 🎯 Quick Start (3 Steps)
 
 ### 1️⃣ Install Dependencies
+
 ```powershell
 cd c:\Users\Admin\Desktop\Rakesh\test
 pip install -r requirements.txt
 ```
 
 ### 2️⃣ Start Servers
+
 **Terminal 1:**
+
 ```powershell
 cd c:\Users\Admin\Desktop\Rakesh\admin
 npm run dev
 ```
 
 **Terminal 2:**
+
 ```powershell
 cd c:\Users\Admin\Desktop\Rakesh\admin\server
 node index.js
 ```
 
 ### 3️⃣ Run Tests
+
 ```powershell
 cd c:\Users\Admin\Desktop\Rakesh\test
 python run_tests.py smoke
 ```
 
 **OR use the automated script:**
+
 ```powershell
 .\setup_and_run.ps1
 ```
@@ -94,38 +101,42 @@ test/
 ## 🧪 Test Coverage Breakdown
 
 ### 1. Login Tests (`test_login.py`) - 8 Tests
-| Test | Description | Edge Cases |
-|------|-------------|------------|
-| `test_login_page_elements` | Verify all elements present | ✅ |
-| `test_successful_login` | Login with correct password | ✅ |
-| `test_login_with_wrong_password` | Wrong password handling | ✅ |
-| `test_login_with_empty_password` | HTML5 validation | ✅ |
-| `test_demo_password_hint_visible` | UI element visibility | ✅ |
-| `test_login_with_special_characters` | XSS & SQL injection attempts | ✅ |
-| `test_login_with_very_long_password` | Buffer overflow testing | ✅ |
-| `test_login_case_sensitivity` | Case handling | ✅ |
+
+| Test                                 | Description                  | Edge Cases |
+| ------------------------------------ | ---------------------------- | ---------- |
+| `test_login_page_elements`           | Verify all elements present  | ✅         |
+| `test_successful_login`              | Login with correct password  | ✅         |
+| `test_login_with_wrong_password`     | Wrong password handling      | ✅         |
+| `test_login_with_empty_password`     | HTML5 validation             | ✅         |
+| `test_demo_password_hint_visible`    | UI element visibility        | ✅         |
+| `test_login_with_special_characters` | XSS & SQL injection attempts | ✅         |
+| `test_login_with_very_long_password` | Buffer overflow testing      | ✅         |
+| `test_login_case_sensitivity`        | Case handling                | ✅         |
 
 ### 2. Dashboard Tests (`test_dashboard.py`) - 7 Tests
-| Test | Description |
-|------|-------------|
-| `test_dashboard_loads` | Dashboard loads successfully |
-| `test_navigation_menu_present` | All 10 menu items visible |
-| `test_navigate_to_blogs` | Navigation functionality |
-| `test_navigate_to_portfolio` | Navigation functionality |
-| `test_navigate_to_gallery` | Navigation functionality |
-| `test_navigate_to_site_config` | Navigation functionality |
-| `test_navigate_all_pages_sequence` | Sequential navigation |
+
+| Test                               | Description                  |
+| ---------------------------------- | ---------------------------- |
+| `test_dashboard_loads`             | Dashboard loads successfully |
+| `test_navigation_menu_present`     | All 10 menu items visible    |
+| `test_navigate_to_blogs`           | Navigation functionality     |
+| `test_navigate_to_portfolio`       | Navigation functionality     |
+| `test_navigate_to_gallery`         | Navigation functionality     |
+| `test_navigate_to_site_config`     | Navigation functionality     |
+| `test_navigate_all_pages_sequence` | Sequential navigation        |
 
 ### 3. Blog CRUD Tests (`test_blogs_crud.py`) - 25+ Tests
-| Category | Tests | Coverage |
-|----------|-------|----------|
-| **Create** | 3 tests | Valid data, minimal fields, with tags |
-| **Read** | 3 tests | View table, search, pagination |
-| **Update** | 2 tests | Edit, cancel edit |
-| **Delete** | 1 test | Delete blog |
+
+| Category       | Tests     | Coverage                                              |
+| -------------- | --------- | ----------------------------------------------------- |
+| **Create**     | 3 tests   | Valid data, minimal fields, with tags                 |
+| **Read**       | 3 tests   | View table, search, pagination                        |
+| **Update**     | 2 tests   | Edit, cancel edit                                     |
+| **Delete**     | 1 test    | Delete blog                                           |
 | **Edge Cases** | 15+ tests | Special chars, long content, Unicode, XSS, duplicates |
 
 **Edge Cases Tested:**
+
 - ✅ Special characters: `!@#$%^&*()`
 - ✅ Very long title (100+ chars)
 - ✅ Empty fields
@@ -136,48 +147,55 @@ test/
 - ✅ Invalid date formats
 
 ### 4. Portfolio CRUD Tests (`test_portfolio_crud.py`) - 15+ Tests
-| Feature | Tests |
-|---------|-------|
-| Create project | Valid data, minimal fields, featured flag |
-| Update project | Edit existing |
-| Tech stack | Multiple technologies |
-| Edge cases | Special chars, long text, Unicode, invalid URLs |
+
+| Feature        | Tests                                           |
+| -------------- | ----------------------------------------------- |
+| Create project | Valid data, minimal fields, featured flag       |
+| Update project | Edit existing                                   |
+| Tech stack     | Multiple technologies                           |
+| Edge cases     | Special chars, long text, Unicode, invalid URLs |
 
 ### 5. Gallery CRUD Tests (`test_gallery_crud.py`) - 12+ Tests
-| Feature | Tests |
-|---------|-------|
-| Create item | Valid data, minimal fields |
-| View items | Table display, image rendering |
-| Edge cases | Duplicate IDs, special chars, Unicode |
+
+| Feature     | Tests                                 |
+| ----------- | ------------------------------------- |
+| Create item | Valid data, minimal fields            |
+| View items  | Table display, image rendering        |
+| Edge cases  | Duplicate IDs, special chars, Unicode |
 
 ### 6. Site Config Tests (`test_site_config.py`) - 10+ Tests
-| Feature | Tests |
-|---------|-------|
+
+| Feature         | Tests                                   |
+| --------------- | --------------------------------------- |
 | Toggle switches | Individual, all at once, rapid toggling |
-| Save | With changes, without changes |
-| Persistence | After refresh |
+| Save            | With changes, without changes           |
+| Persistence     | After refresh                           |
 
 ### 7. Backup Tests (`test_backups.py`) - 10+ Tests
-| Feature | Tests |
-|---------|-------|
-| View backups | Table display, date validation |
-| Backup details | View dialog, close dialog |
-| Automatic creation | On save operations |
-| Sorting | Latest to oldest |
+
+| Feature            | Tests                          |
+| ------------------ | ------------------------------ |
+| View backups       | Table display, date validation |
+| Backup details     | View dialog, close dialog      |
+| Automatic creation | On save operations             |
+| Sorting            | Latest to oldest               |
 
 ---
 
 ## 🎨 Page Object Model Architecture
 
 ### BasePage (base_page.py)
+
 **50+ Reusable Methods:**
 
 #### Navigation
+
 - `navigate(url)` - Navigate to URL
 - `refresh_page()` - Refresh current page
 - `get_current_url()` - Get URL
 
 #### Element Interactions
+
 - `find_element(locator)` - Find element with wait
 - `find_elements(locator)` - Find multiple elements
 - `click(locator)` - Click with retry
@@ -185,18 +203,21 @@ test/
 - `type_slowly(locator, text)` - Type character by character
 
 #### Waits
+
 - `wait_for_clickable(locator)` - Wait for clickable
 - `wait_for_visible(locator)` - Wait for visible
 - `wait_for_invisible(locator)` - Wait for invisible
 - `wait_for_page_load()` - Wait for page load
 
 #### Validation
+
 - `is_element_present(locator)` - Check presence
 - `is_element_visible(locator)` - Check visibility
 - `get_text(locator)` - Get element text
 - `get_attribute(locator, attr)` - Get attribute
 
 #### Advanced
+
 - `scroll_to_element(locator)` - Scroll to element
 - `hover(locator)` - Hover over element
 - `press_enter(locator)` - Press Enter key
@@ -204,6 +225,7 @@ test/
 - `take_screenshot(name)` - Take screenshot
 
 #### Logging (Color-Coded)
+
 - `log(message)` - Info (Cyan)
 - `log_success(message)` - Success (Green)
 - `log_warning(message)` - Warning (Yellow)
@@ -214,6 +236,7 @@ test/
 ## 🎯 Test Execution Options
 
 ### By Test Type
+
 ```powershell
 python run_tests.py all         # All tests (~15 min)
 python run_tests.py smoke       # Smoke tests (~3 min)
@@ -221,6 +244,7 @@ python run_tests.py critical    # Critical paths (~5 min)
 ```
 
 ### By Module
+
 ```powershell
 python run_tests.py login       # Login tests only
 python run_tests.py blogs       # Blog tests only
@@ -231,6 +255,7 @@ python run_tests.py backups     # Backup tests only
 ```
 
 ### Advanced Pytest Commands
+
 ```powershell
 # Run specific file
 pytest tests/test_login.py -v
@@ -258,6 +283,7 @@ pytest tests/ -l
 ## 📊 Reporting & Logging
 
 ### HTML Reports
+
 - **Location**: `reports/test_report_YYYYMMDD_HHMMSS.html`
 - **Contains**:
   - Pass/Fail/Skip summary
@@ -267,11 +293,13 @@ pytest tests/ -l
   - System info
 
 ### Screenshots
+
 - **When**: Automatically on test failure
 - **Location**: `screenshots/`
 - **Naming**: `test_name_YYYYMMDD_HHMMSS.png`
 
 ### Console Output
+
 ```
 [INFO] Navigating to: http://localhost:5173/blogs
 [SUCCESS] ✓ Blog created successfully
@@ -305,6 +333,7 @@ SCREENSHOT_ON_FAILURE=True       # Capture screenshots
 ## 🎓 Writing New Tests - Complete Example
 
 ### 1. Create Page Object
+
 ```python
 # pages/services_page.py
 from selenium.webdriver.common.by import By
@@ -316,20 +345,20 @@ class ServicesPage(BasePage):
     ADD_SERVICE_BTN = (By.XPATH, "//button[contains(., 'Add Service')]")
     SERVICE_NAME_INPUT = (By.ID, "serviceName")
     SAVE_BTN = (By.XPATH, "//button[text()='Save']")
-    
+
     def __init__(self, driver):
         super().__init__(driver)
         self.url = TestConfig.ADMIN_URL + "/services"
-    
+
     def navigate(self):
         super().navigate(self.url)
         self.log("Navigated to Services Page")
-    
+
     def create_service(self, name):
         self.click(self.ADD_SERVICE_BTN)
         self.type_text(self.SERVICE_NAME_INPUT, name)
         self.click(self.SAVE_BTN)
-        
+
         toast = self.wait_for_toast()
         if toast and "success" in toast.lower():
             self.log_success(f"Service '{name}' created")
@@ -338,6 +367,7 @@ class ServicesPage(BasePage):
 ```
 
 ### 2. Create Test File
+
 ```python
 # tests/test_services.py
 import pytest
@@ -346,19 +376,20 @@ from pages.services_page import ServicesPage
 @pytest.mark.services
 @pytest.mark.critical
 class TestServices:
-    
+
     def test_create_service(self, authenticated_driver):
         """Test creating a new service"""
         services_page = ServicesPage(authenticated_driver)
         services_page.navigate()
-        
+
         success = services_page.create_service("Test Service")
         assert success, "Service creation failed"
-        
+
         services_page.log_success("✓ Service created successfully")
 ```
 
 ### 3. Run New Tests
+
 ```powershell
 pytest tests/test_services.py -v
 # OR
@@ -370,30 +401,35 @@ python run_tests.py services
 ## 🐛 Debugging Failed Tests
 
 ### 1. Check Screenshot
+
 ```powershell
 # Look in screenshots/ folder
 # File named: test_name_TIMESTAMP.png
 ```
 
 ### 2. Read Console Output
+
 ```
 [ERROR] Element not found: (By.ID, 'submit-btn')
 [INFO] Current URL: http://localhost:5173/blogs
 ```
 
 ### 3. Check HTML Report
+
 ```powershell
 # Open reports/test_report_*.html in browser
 # Shows full stack trace and screenshots
 ```
 
 ### 4. Increase Timeouts
+
 ```env
 EXPLICIT_WAIT=30
 IMPLICIT_WAIT=15
 ```
 
 ### 5. Run in Non-Headless Mode
+
 ```env
 HEADLESS_MODE=False
 ```
@@ -403,6 +439,7 @@ HEADLESS_MODE=False
 ## 🚦 CI/CD Integration
 
 ### GitHub Actions
+
 ```yaml
 name: Selenium Tests
 on: [push, pull_request]
@@ -412,27 +449,27 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
-      
+
       - name: Setup Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.9'
-      
+          python-version: "3.9"
+
       - name: Install dependencies
         run: |
           cd test
           pip install -r requirements.txt
-      
+
       - name: Start servers
         run: |
           Start-Process powershell -ArgumentList "-File start_servers.ps1"
           Start-Sleep -Seconds 10
-      
+
       - name: Run smoke tests
         run: |
           cd test
           python run_tests.py smoke
-      
+
       - name: Upload reports
         if: always()
         uses: actions/upload-artifact@v2
@@ -446,6 +483,7 @@ jobs:
 ## 📈 Test Metrics & KPIs
 
 After running full test suite:
+
 - **Total Tests**: 100+
 - **Execution Time**: 10-15 minutes
 - **Pass Rate**: Target 100%
@@ -453,6 +491,7 @@ After running full test suite:
 - **Edge Cases**: 50+ scenarios
 
 ### Smoke Tests Metrics
+
 - **Tests**: ~15 critical tests
 - **Time**: 2-3 minutes
 - **Coverage**: Core functionality
@@ -476,14 +515,14 @@ After running full test suite:
 
 ## 🆘 Common Issues & Solutions
 
-| Issue | Solution |
-|-------|----------|
-| ChromeDriver not found | Auto-downloads via webdriver-manager |
-| Element not found | Increase EXPLICIT_WAIT in .env |
-| Login fails | Verify ADMIN_PASSWORD in .env |
-| Servers not running | Start both admin panel and backend |
-| Tests too slow | Run smoke tests or use parallel execution |
-| Import errors | Ensure __init__.py files exist |
+| Issue                  | Solution                                  |
+| ---------------------- | ----------------------------------------- |
+| ChromeDriver not found | Auto-downloads via webdriver-manager      |
+| Element not found      | Increase EXPLICIT_WAIT in .env            |
+| Login fails            | Verify ADMIN_PASSWORD in .env             |
+| Servers not running    | Start both admin panel and backend        |
+| Tests too slow         | Run smoke tests or use parallel execution |
+| Import errors          | Ensure **init**.py files exist            |
 
 ---
 
@@ -526,6 +565,7 @@ After running full test suite:
 ## 📞 Support & Maintenance
 
 ### When Tests Fail
+
 1. Check screenshot in `screenshots/`
 2. Read console error message
 3. Verify servers are running
@@ -533,6 +573,7 @@ After running full test suite:
 5. Review HTML report for details
 
 ### Updating Tests
+
 1. Modify page objects for UI changes
 2. Update locators if elements change
 3. Add new tests for new features

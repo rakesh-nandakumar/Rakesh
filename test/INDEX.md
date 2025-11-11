@@ -73,13 +73,17 @@ test/
 ## 📖 Documentation Guide
 
 ### For Quick Setup (5 minutes)
+
 👉 **Start here:** [`QUICKSTART.md`](QUICKSTART.md)
+
 - Prerequisites check
 - Installation steps
 - First test run
 
 ### For Complete Documentation
+
 👉 **Read this:** [`README.md`](README.md)
+
 - Full framework overview
 - Detailed setup instructions
 - Test coverage details
@@ -87,7 +91,9 @@ test/
 - Troubleshooting guide
 
 ### For Complete Reference
+
 👉 **Use this:** [`MASTER_GUIDE.md`](MASTER_GUIDE.md)
+
 - Every feature explained
 - Test coverage matrix
 - Edge case details
@@ -96,7 +102,9 @@ test/
 - Advanced usage
 
 ### For Implementation Details
+
 👉 **Review this:** [`IMPLEMENTATION_SUMMARY.md`](IMPLEMENTATION_SUMMARY.md)
+
 - What was built
 - File breakdown
 - Architecture overview
@@ -104,14 +112,18 @@ test/
 - Maintenance guide
 
 ### For Quick Commands
+
 👉 **Keep handy:** [`QUICK_REFERENCE.md`](QUICK_REFERENCE.md)
+
 - Common commands
 - Key files
 - Quick fixes
 - Pro tips
 
 ### For Visual Understanding
+
 👉 **See this:** [`VISUAL_GUIDE.md`](VISUAL_GUIDE.md)
+
 - Architecture diagrams
 - Execution flow
 - Test case flow
@@ -123,11 +135,14 @@ test/
 ## 🚀 Quick Start Options
 
 ### Option 1: Automated Setup (Recommended)
+
 ```powershell
 cd c:\Users\Admin\Desktop\Rakesh\test
 .\setup_and_run.ps1
 ```
+
 **What it does:**
+
 - Checks prerequisites
 - Installs dependencies
 - Verifies configuration
@@ -135,6 +150,7 @@ cd c:\Users\Admin\Desktop\Rakesh\test
 - Runs tests with menu selection
 
 ### Option 2: Manual Setup
+
 ```powershell
 # 1. Install dependencies
 pip install -r requirements.txt
@@ -148,6 +164,7 @@ python run_tests.py smoke
 ```
 
 ### Option 3: Direct Pytest
+
 ```powershell
 pytest tests/ -v
 pytest tests/test_login.py
@@ -158,15 +175,15 @@ pytest -m "smoke"
 
 ## 🧪 Test Suites Overview
 
-| Suite | File | Tests | Time | Coverage |
-|-------|------|-------|------|----------|
-| **Login** | `test_login.py` | 8 | 1 min | Auth, edge cases |
-| **Dashboard** | `test_dashboard.py` | 7 | 1 min | Navigation |
-| **Blogs** | `test_blogs_crud.py` | 25+ | 4 min | Full CRUD + edges |
-| **Portfolio** | `test_portfolio_crud.py` | 15+ | 3 min | Full CRUD + edges |
-| **Gallery** | `test_gallery_crud.py` | 12+ | 2 min | Full CRUD + edges |
-| **Site Config** | `test_site_config.py` | 10+ | 2 min | Toggles, persistence |
-| **Backups** | `test_backups.py` | 10+ | 2 min | View, automatic |
+| Suite           | File                     | Tests | Time  | Coverage             |
+| --------------- | ------------------------ | ----- | ----- | -------------------- |
+| **Login**       | `test_login.py`          | 8     | 1 min | Auth, edge cases     |
+| **Dashboard**   | `test_dashboard.py`      | 7     | 1 min | Navigation           |
+| **Blogs**       | `test_blogs_crud.py`     | 25+   | 4 min | Full CRUD + edges    |
+| **Portfolio**   | `test_portfolio_crud.py` | 15+   | 3 min | Full CRUD + edges    |
+| **Gallery**     | `test_gallery_crud.py`   | 12+   | 2 min | Full CRUD + edges    |
+| **Site Config** | `test_site_config.py`    | 10+   | 2 min | Toggles, persistence |
+| **Backups**     | `test_backups.py`        | 10+   | 2 min | View, automatic      |
 
 **Total: 100+ tests, ~15 minutes**
 
@@ -175,6 +192,7 @@ pytest -m "smoke"
 ## 🎯 Test Execution Commands
 
 ### By Test Type
+
 ```powershell
 python run_tests.py smoke       # Quick validation (3 min)
 python run_tests.py critical    # Critical paths (5 min)
@@ -182,6 +200,7 @@ python run_tests.py all         # All tests (15 min)
 ```
 
 ### By Module
+
 ```powershell
 python run_tests.py login
 python run_tests.py blogs
@@ -192,6 +211,7 @@ python run_tests.py backups
 ```
 
 ### Advanced
+
 ```powershell
 pytest tests/ -v                # Verbose output
 pytest -m "smoke"               # Smoke tests only
@@ -205,6 +225,7 @@ pytest tests/ -x                # Stop on first failure
 ## 📊 Key Features
 
 ### Framework Features
+
 - ✅ Page Object Model architecture
 - ✅ Base page with 50+ reusable methods
 - ✅ Pytest with fixtures and hooks
@@ -217,6 +238,7 @@ pytest tests/ -x                # Stop on first failure
 - ✅ CI/CD ready
 
 ### Testing Features
+
 - ✅ 100+ comprehensive test cases
 - ✅ Full CRUD operations
 - ✅ Edge case testing (50+ scenarios)
@@ -228,6 +250,7 @@ pytest tests/ -x                # Stop on first failure
 - ✅ Data persistence
 
 ### Edge Cases Tested
+
 - ✅ Special characters
 - ✅ Very long inputs
 - ✅ Empty fields
@@ -244,13 +267,17 @@ pytest tests/ -x                # Stop on first failure
 ## 🎓 Key Concepts
 
 ### 1. Page Object Model (POM)
+
 Separates test logic from page interactions. Each page has:
+
 - Locators (element identifiers)
 - Methods (page actions)
 - Navigation logic
 
 ### 2. BasePage Class
+
 Foundation for all page objects with:
+
 - Navigation methods
 - Element interaction
 - Smart waits
@@ -259,14 +286,18 @@ Foundation for all page objects with:
 - Screenshot capture
 
 ### 3. Test Organization
+
 Tests grouped by functionality:
+
 - Clear naming conventions
 - Pytest markers
 - Independent test cases
 - Setup/teardown fixtures
 
 ### 4. Explicit Waits
+
 No hardcoded `time.sleep()`:
+
 - Wait for clickable
 - Wait for visible
 - Wait for page load
@@ -277,6 +308,7 @@ No hardcoded `time.sleep()`:
 ## 🔧 Configuration
 
 ### Environment Variables (.env)
+
 ```env
 ADMIN_URL=http://localhost:5173      # Admin panel
 ADMIN_PASSWORD=admin                  # Login password
@@ -288,6 +320,7 @@ SCREENSHOT_ON_FAILURE=True            # Capture errors
 ```
 
 ### Browser Settings
+
 - Chrome (latest version)
 - Window size: 1920x1080
 - Headless option available
@@ -298,6 +331,7 @@ SCREENSHOT_ON_FAILURE=True            # Capture errors
 ## 📈 Expected Results
 
 ### Successful Run
+
 ```
 ========================================
   ADMIN PANEL SELENIUM TEST SUITE
@@ -324,15 +358,16 @@ HTML Report: reports/test_report_20251111_100000.html
 
 ### Common Issues
 
-| Issue | Solution |
-|-------|----------|
-| pytest not found | `pip install -r requirements.txt` |
-| Servers not running | Start admin panel & backend |
-| Element not found | Increase `EXPLICIT_WAIT` |
-| ChromeDriver error | Auto-downloads, check internet |
-| Login fails | Verify `ADMIN_PASSWORD` in `.env` |
+| Issue               | Solution                          |
+| ------------------- | --------------------------------- |
+| pytest not found    | `pip install -r requirements.txt` |
+| Servers not running | Start admin panel & backend       |
+| Element not found   | Increase `EXPLICIT_WAIT`          |
+| ChromeDriver error  | Auto-downloads, check internet    |
+| Login fails         | Verify `ADMIN_PASSWORD` in `.env` |
 
 ### Quick Fixes
+
 ```powershell
 # Install dependencies
 pip install -r requirements.txt
@@ -353,34 +388,42 @@ curl http://localhost:1420  # Backend
 ## 🎯 Use Cases
 
 ### Daily Development
+
 ```powershell
 python run_tests.py smoke
 ```
+
 **When:** Before committing code
 **Time:** 3 minutes
 **Coverage:** Critical functionality
 
 ### Before Deployment
+
 ```powershell
 python run_tests.py all
 ```
+
 **When:** Before production deploy
 **Time:** 15 minutes
 **Coverage:** Complete validation
 
 ### Specific Feature
+
 ```powershell
 python run_tests.py blogs
 ```
+
 **When:** After blog feature changes
 **Time:** 4 minutes
 **Coverage:** Blog module only
 
 ### Continuous Integration
+
 ```yaml
 # GitHub Actions
 - run: python run_tests.py critical
 ```
+
 **When:** On every push/PR
 **Time:** 5 minutes
 **Coverage:** Critical paths
@@ -390,6 +433,7 @@ python run_tests.py blogs
 ## 📞 Support & Resources
 
 ### Documentation
+
 - Quick Setup → [`QUICKSTART.md`](QUICKSTART.md)
 - Full Docs → [`README.md`](README.md)
 - Complete Reference → [`MASTER_GUIDE.md`](MASTER_GUIDE.md)
@@ -398,6 +442,7 @@ python run_tests.py blogs
 - Visual Diagrams → [`VISUAL_GUIDE.md`](VISUAL_GUIDE.md)
 
 ### Help Commands
+
 ```powershell
 python run_tests.py --help
 pytest --help
@@ -418,6 +463,7 @@ pytest --help
 ## 🎉 What's Been Achieved
 
 ### Code Quality
+
 - ✅ Clean, maintainable code
 - ✅ Follows best practices
 - ✅ Well-documented
@@ -425,6 +471,7 @@ pytest --help
 - ✅ Easy to extend
 
 ### Test Quality
+
 - ✅ Comprehensive coverage
 - ✅ Edge case handling
 - ✅ Clear assertions
@@ -432,6 +479,7 @@ pytest --help
 - ✅ Fast execution
 
 ### Documentation Quality
+
 - ✅ Multiple guides
 - ✅ Clear examples
 - ✅ Visual diagrams
@@ -486,6 +534,7 @@ Check `reports/` folder for HTML report
 ## 🌟 Final Note
 
 This is a **production-ready, enterprise-grade testing framework** built with:
+
 - Industry best practices
 - Clean code principles
 - Comprehensive documentation
@@ -506,6 +555,7 @@ python run_tests.py smoke
 ---
 
 **📚 Documentation Index:**
+
 - [`INDEX.md`](INDEX.md) ← You are here
 - [`QUICKSTART.md`](QUICKSTART.md) - Quick setup
 - [`README.md`](README.md) - Main docs

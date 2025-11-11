@@ -15,6 +15,7 @@ Every time you save changes in the admin panel (for any module like About, Blogs
 Format: `{original-name}_{timestamp}.json`
 
 Example:
+
 - `blogs_2025-11-10_14-30-45.json` - Backup of blogs.json created on Nov 10, 2025 at 2:30:45 PM
 
 ## Managing Backups
@@ -36,6 +37,7 @@ You can manage backups through the admin panel:
 ## Storage Considerations
 
 Backups accumulate over time. Consider:
+
 - Reviewing and deleting old backups periodically
 - Keeping only critical versions
 - Exporting important backups to external storage

@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 import HeroSection from "@/components/HeroSection";
-import { getSiteConfig } from "@/lib/dataService";
+import { getSiteConfig } from "@/lib/supabaseData";
 
 // Dynamic imports for below-the-fold components to improve initial load
 const FeaturesSection = dynamic(() => import("@/components/FeaturesSection"), {
@@ -54,17 +54,17 @@ export const metadata = {
   },
 };
 
-export default function Home() {
-  const siteConfig = getSiteConfig();
+export default async function Home() {
+  const siteConfig = await getSiteConfig();
 
   return (
     <>
       <HeroSection />
-      {siteConfig.ServicesEnabled && <FeaturesSection />}
-      {siteConfig.TechnologiesEnabled && <TechStackMarqueeClean />}
-      {siteConfig.ProjectsEnabled && <PortfolioSection />}
+      {siteConfig?.ServicesEnabled && <FeaturesSection />}
+      {siteConfig?.TechnologiesEnabled && <TechStackMarqueeClean />}
+      {siteConfig?.ProjectsEnabled && <PortfolioSection />}
       <CTASection />
-      {siteConfig.BlogEnabled && <BlogSection />}
+      {siteConfig?.BlogEnabled && <BlogSection />}
     </>
   );
 }

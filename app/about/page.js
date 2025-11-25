@@ -10,7 +10,7 @@ import BlogSection from "@/components/BlogSection";
 import AboutSection from "@/components/AboutSection";
 import SkillsSection from "@/components/SkillsSection";
 import GallerySection from "@/components/GallerySection";
-import { getGallery, getSiteConfig } from "@/lib/dataService";
+import { getGallery, getSiteConfig } from "@/lib/supabaseData";
 import { Calendar, Clock } from "react-feather";
 import { ExternalLink, GitHub } from "react-feather";
 
@@ -55,9 +55,9 @@ export const metadata = {
   },
 };
 
-export default function About() {
-  const siteConfig = getSiteConfig();
-  const galleryData = getGallery();
+export default async function About() {
+  const siteConfig = await getSiteConfig();
+  const galleryData = await getGallery();
 
   // Structured data for About page
   const aboutStructuredData = {

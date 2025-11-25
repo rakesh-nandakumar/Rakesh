@@ -1,3 +1,5 @@
+"use client";
+
 import {
   ArrowRight,
   Globe,
@@ -7,10 +9,17 @@ import {
   Cpu,
   Users,
 } from "react-feather";
-import servicesData from "../data/services.json";
+import { useServices } from "@/hooks/useSupabaseData";
 
 export default function FeaturesSection() {
-  const services = servicesData.services;
+  const { services: servicesData = {}, isLoading } = useServices();
+
+  if (isLoading) {
+    return <div className="text-center py-10">Loading features...</div>;
+  }
+
+  // Extract services array from the data object
+  const services = servicesData?.services || [];
 
   // Map icon names to React Feather components
   const iconMap = {

@@ -2,8 +2,7 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import blogData from "@/data/blogs.json";
-import portfolioData from "@/data/portfolio.json";
+import { useBlogs, usePortfolios } from "@/hooks/useSupabaseData";
 
 export default function RelatedContent({
   currentSlug,
@@ -13,9 +12,11 @@ export default function RelatedContent({
   maxItems = 3,
 }) {
   const [relatedItems, setRelatedItems] = useState([]);
+  const { blogs = [], isLoading: blogsLoading } = useBlogs();
+  const { portfolios = [], isLoading: portfoliosLoading } = usePortfolios();
 
   useEffect(() => {
-    const data = type === "blog" ? blogData : portfolioData;
+    const data = type === "blog" ? blogs : portfolios;
 
     if (!data || !Array.isArray(data)) return;
 
@@ -73,7 +74,15 @@ export default function RelatedContent({
     }
 
     setRelatedItems(related.slice(0, maxItems));
-  }, [currentSlug, currentTags, currentCategory, type, maxItems]);
+  }, [
+    currentSlug,
+    currentTags,
+    currentCategory,
+    type,
+    maxItems,
+    blogs,
+    portfolios,
+  ]);
 
   if (relatedItems.length === 0) return null;
 

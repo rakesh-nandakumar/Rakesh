@@ -1,16 +1,17 @@
 {
   "name": "Rakesh Nandakumar - Full Stack Developer Portfolio",
   "short_name": "Rakesh Portfolio",
-  "description": "Full Stack Developer & Software Engineer Portfolio - Laravel, React, Vue.js, AWS Expert",
-  "start_url": "/",
+  "description": "Full Stack Developer & Software Engineer Portfolio - Laravel, React, Vue.js, AWS Expert. Explore projects, blog posts, and professional services.",
+  "start_url": "/?source=pwa",
   "scope": "/",
   "display": "standalone",
   "orientation": "any",
   "background_color": "#ffffff",
   "theme_color": "#f9004d",
-  "categories": ["portfolio", "development", "technology"],
+  "categories": ["portfolio", "development", "technology", "business"],
   "lang": "en-US",
   "dir": "ltr",
+  "prefer_related_applications": false,
   "icons": [
     {
       "src": "/avatar.png",
@@ -71,6 +72,5 @@
       ]
     }
   ],
-  "related_applications": [],
-  "prefer_related_applications": false
+  "related_applications": []
 }

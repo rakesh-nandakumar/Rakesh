@@ -1,9 +1,28 @@
+"use client";
+
 import PortfolioCard from "./PortfolioCard";
-import portfolioData from "../data/portfolio.json";
 import Link from "next/link";
+import { usePortfolios } from "@/hooks/useSupabaseData";
 
 export default function PortfolioSection() {
-  const portfolioItems = portfolioData
+  const { portfolios, isLoading } = usePortfolios();
+
+  if (isLoading) {
+    return (
+      <div
+        className="rn-portfolio-area rn-section-gap section-separator"
+        id="portfolio"
+      >
+        <div className="container">
+          <div className="row">
+            <div className="col-12 text-center">Loading...</div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  const portfolioItems = (portfolios || [])
     .filter((item) => item.featured)
     .sort((a, b) => {
       // Prioritize completed projects first
@@ -38,7 +57,7 @@ export default function PortfolioSection() {
         </div>
         <div className="row row--25 mt--10 mt_md--10 mt_sm--10">
           {portfolioItems.map((item, index) => (
-            <PortfolioCard key={index} item={item} index={index} />
+            <PortfolioCard key={item.id || index} item={item} index={index} />
           ))}
         </div>
         <div className="row">

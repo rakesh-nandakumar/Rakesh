@@ -3,7 +3,6 @@
 import React, { useState, useMemo, useEffect } from "react";
 import PortfolioCard from "@/components/PortfolioCard";
 import BreadcrumbSchema from "@/components/BreadcrumbSchema";
-import Head from "next/head";
 
 export default function PortfolioSection() {
   const [activeFilter, setActiveFilter] = useState("completed");

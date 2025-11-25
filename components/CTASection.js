@@ -1,8 +1,38 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import ParticlesBackground from "./ParticlesBackground";
+import { useProfile } from "@/hooks/useSupabaseData";
+import { resolveAssetUrl } from "@/lib/fileStorage";
 
 export default function CTASection() {
+  const { profile: aboutData, isLoading } = useProfile();
+
+  // Show loading state
+  if (isLoading || !aboutData) {
+    return (
+      <div
+        className="rn-cta section-separator"
+        style={{ position: "relative", boxShadow: "var(--shadow-white-3)" }}
+      >
+        <ParticlesBackground>
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-12">
+                <div className="inner text-center">
+                  <p>Loading...</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ParticlesBackground>
+      </div>
+    );
+  }
+
+  const avatarUrl = resolveAssetUrl(aboutData.avatarImage);
+
   return (
     <div
       className="rn-cta section-separator"
@@ -18,7 +48,7 @@ export default function CTASection() {
               <div className="inner text-center">
                 <div className="section-title text-center">
                   <Image
-                    src="/avatar.png"
+                    src={avatarUrl}
                     alt="inbio logo"
                     width={110}
                     height={110}

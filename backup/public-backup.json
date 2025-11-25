@@ -1,0 +1,98 @@
+[
+  {
+    "name": "assets",
+    "isDirectory": true
+  },
+  {
+    "name": "avatar.png",
+    "isDirectory": false
+  },
+  {
+    "name": "blogs",
+    "isDirectory": true
+  },
+  {
+    "name": "Copy of Rakesh_CV.pdf",
+    "isDirectory": false
+  },
+  {
+    "name": "cv.pdf",
+    "isDirectory": false
+  },
+  {
+    "name": "favicon.ico",
+    "isDirectory": false
+  },
+  {
+    "name": "file.svg",
+    "isDirectory": false
+  },
+  {
+    "name": "globe.svg",
+    "isDirectory": false
+  },
+  {
+    "name": "hero-mobile.jpg",
+    "isDirectory": false
+  },
+  {
+    "name": "hero.jpg",
+    "isDirectory": false
+  },
+  {
+    "name": "hero.png",
+    "isDirectory": false
+  },
+  {
+    "name": "icon-192x192.png",
+    "isDirectory": false
+  },
+  {
+    "name": "icon-512x512.png",
+    "isDirectory": false
+  },
+  {
+    "name": "images",
+    "isDirectory": true
+  },
+  {
+    "name": "manifest.json",
+    "isDirectory": false
+  },
+  {
+    "name": "next.svg",
+    "isDirectory": false
+  },
+  {
+    "name": "profileImg.jpg",
+    "isDirectory": false
+  },
+  {
+    "name": "profileImg.png",
+    "isDirectory": false
+  },
+  {
+    "name": "projects",
+    "isDirectory": true
+  },
+  {
+    "name": "robots.txt",
+    "isDirectory": false
+  },
+  {
+    "name": "sw.js",
+    "isDirectory": false
+  },
+  {
+    "name": "tech-icons",
+    "isDirectory": true
+  },
+  {
+    "name": "vercel.svg",
+    "isDirectory": false
+  },
+  {
+    "name": "window.svg",
+    "isDirectory": false
+  }
+]

@@ -64,19 +64,30 @@ export default function PortfolioCard({ item, index }) {
                 </Link>
               </h4>
               <div className="technologies">
-                {item.technologies &&
-                  item.technologies.map((tech, techIndex) => (
-                    <span key={techIndex} className="tech-badge">
-                      {tech}
-                    </span>
-                  ))}
-              </div>
-              <div className="description">
-                <p className="short-description">{item.shortDescription}</p>
-              </div>
-            </div>
+                {item.technologies && item.technologies.length > 0 && (
+                  <>
+                    {item.technologies.slice(0, 8).map((tech, techIndex) => (
+                      <span key={techIndex} className="tech-badge">
+                        {tech}
+                      </span>
+                    ))}
+                            {item.technologies.length > 8 && (
+                              <span
+                              className="tech-badge"
+                              title={item.technologies.slice(8).join(", ")}
+                              >
+                              +{item.technologies.length - 8}
+                              </span>
+                            )}
+                            </>
+                          )}
+                          </div>
+                          <div className="description">
+                          <p className="short-description">{item.shortDescription}</p>
+                          </div>
+                        </div>
 
-            {/* Bottom section - buttons always stick to bottom */}
+                        {/* Bottom section - buttons always stick to bottom */}
             <div>
               {/* Progress Bar for Ongoing Projects */}
               {status === "ongoing" && progress > 0 && (

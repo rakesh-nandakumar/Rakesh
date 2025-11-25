@@ -3,38 +3,66 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import headerData from "../data/header.json";
-import siteConfig from "../data/site-config.json";
 import MobileMenu from "./MobileMenu";
 import { useHeaderOverlay } from "@/hooks/useHeaderOverlay";
+import { useHeader, useProfile, useSiteConfig } from "@/hooks/useSupabaseData";
+import { resolveAssetUrl } from "@/lib/fileStorage";
 
 export default function Header() {
   const pathname = usePathname();
-  const overlayState = useHeaderOverlay(); // Always call the hook
+  const overlayState = useHeaderOverlay();
   const isHomePage = pathname === "/";
-  const isOverlaying = isHomePage && !overlayState; // Use the result conditionally
+  const isOverlaying = isHomePage && !overlayState;
+
+  // Fetch data from Supabase
+  const { header: headerData, isLoading: headerLoading } = useHeader();
+  const { profile: aboutData, isLoading: profileLoading } = useProfile();
+  const { siteConfig, isLoading: configLoading } = useSiteConfig();
+
+  // Show loading state or fallback
+  if (headerLoading || profileLoading || configLoading) {
+    return (
+      <header className="rn-header haeder-default black-logo-version header--fixed header--sticky">
+        <div className="header-wrapper rn-popup-mobile-menu m--0 row align-items-center">
+          <div className="col-lg-2 col-6">
+            <div className="header-left">
+              <div className="logo md:ml-3">
+                <Link href="/">
+                  <div className="relative h-12 w-12">Loading...</div>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+    );
+  }
+
+  const avatarUrl = resolveAssetUrl(aboutData?.avatarImage);
+
   // Filter navigation items based on site-config
-  const filteredNavigation = headerData.navigation.filter((item) => {
-    const href = item.href.toLowerCase();
+  const filteredNavigation =
+    headerData?.navigation?.filter((item) => {
+      const href = item.href.toLowerCase();
 
-    // Always show Home, About, and Contact
-    if (href === "/" || href === "/about" || href === "/contact") {
+      // Always show Home, About, and Contact
+      if (href === "/" || href === "/about" || href === "/contact") {
+        return true;
+      }
+
+      // Check site config for other pages
+      if (href === "/portfolio" && !siteConfig?.ProjectsEnabled) {
+        return false;
+      }
+      if (href === "/blogs" && !siteConfig?.BlogEnabled) {
+        return false;
+      }
+      if (href === "/templates" && !siteConfig?.TemplatesEnabled) {
+        return false;
+      }
+
       return true;
-    }
-
-    // Check site config for other pages
-    if (href === "/portfolio" && !siteConfig.ProjectsEnabled) {
-      return false;
-    }
-    if (href === "/blogs" && !siteConfig.BlogEnabled) {
-      return false;
-    }
-    if (href === "/templates" && !siteConfig.TemplatesEnabled) {
-      return false;
-    }
-
-    return true;
-  });
+    }) || [];
 
   return (
     <header className="rn-header haeder-default black-logo-version header--fixed header--sticky">
@@ -45,7 +73,7 @@ export default function Header() {
             <div className="logo md:ml-3">
               <Link href="/">
                 <Image
-                  src="/avatar.png"
+                  src={avatarUrl}
                   alt="inbio logo"
                   width={50}
                   height={50}
@@ -135,6 +163,7 @@ export default function Header() {
                 siteConfig={siteConfig}
                 filteredNavigation={filteredNavigation}
                 isOverlaying={isOverlaying}
+                avatarUrl={avatarUrl}
               />
             </div>
           </div>

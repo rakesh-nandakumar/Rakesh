@@ -3,21 +3,24 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { X } from "react-feather";
+import { useProfile } from "@/hooks/useSupabaseData";
+import { resolveAssetUrl } from "@/lib/fileStorage";
 
 const HireMePopup = ({ showOnMount = true }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
+  const { profile: aboutData, isLoading } = useProfile();
 
   useEffect(() => {
-    if (showOnMount) {
-      // Show popup after a short delay when component mounts
+    if (showOnMount && !isLoading) {
+      // Show popup after a short delay when component mounts and data is loaded
       const timer = setTimeout(() => {
         setIsVisible(true);
       }, 2000); // 2 second delay
 
       return () => clearTimeout(timer);
     }
-  }, [showOnMount]);
+  }, [showOnMount, isLoading]);
 
   const handleClose = () => {
     setIsClosing(true);
@@ -38,7 +41,10 @@ const HireMePopup = ({ showOnMount = true }) => {
     handleClose();
   };
 
-  if (!isVisible) return null;
+  // Don't show if loading or no data
+  if (!isVisible || isLoading || !aboutData) return null;
+
+  const avatarUrl = resolveAssetUrl(aboutData.avatarImage);
 
   return (
     <>
@@ -76,7 +82,7 @@ const HireMePopup = ({ showOnMount = true }) => {
                 <div className="hire-popup-col">
                   <div className="hire-popup-avatar-center">
                     <Image
-                      src="/avatar.png"
+                      src={avatarUrl}
                       alt="Rakesh Nandakumar"
                       width={80}
                       height={80}

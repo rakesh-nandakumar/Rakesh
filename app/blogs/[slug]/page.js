@@ -11,7 +11,7 @@ import StructuredData from "@/components/StructuredData";
 // Generate metadata for SEO
 export async function generateMetadata({ params }) {
   const { slug } = await params;
-  const blog = getBlogBySlug(slug);
+  const blog = await getBlogBySlug(slug);
 
   if (!blog) {
     return {
@@ -82,7 +82,7 @@ export async function generateMetadata({ params }) {
 
 // Generate static params for all blog posts
 export async function generateStaticParams() {
-  const slugs = getAllBlogSlugs();
+  const slugs = await getAllBlogSlugs();
 
   return slugs.map((slug) => ({
     slug: slug,
@@ -93,8 +93,8 @@ export async function generateStaticParams() {
 export default async function BlogPost({ params }) {
   const { slug } = await params;
 
-  // Get blog data at build time (now synchronous)
-  const blog = getBlogBySlug(slug);
+  // Get blog data at build time
+  const blog = await getBlogBySlug(slug);
 
   if (!blog) {
     notFound();
@@ -103,8 +103,8 @@ export default async function BlogPost({ params }) {
   // Calculate reading time
   const readingTime = calculateReadingTime(blog.content || blog.excerpt || "");
 
-  // Get related blogs (now synchronous)
-  const relatedBlogs = getRelatedBlogs(blog);
+  // Get related blogs
+  const relatedBlogs = await getRelatedBlogs(blog);
 
   // Enhanced blog data with reading time
   const enhancedBlog = {

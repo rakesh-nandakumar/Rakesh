@@ -1,6 +1,7 @@
-import portfolioData from "@/data/portfolio.json";
+import { getPortfolios } from "@/lib/supabaseData";
 
 export async function generateStaticParams() {
+  const portfolioData = await getPortfolios();
   return portfolioData.map((project) => ({
     slug: project.title
       .toLowerCase()
@@ -13,6 +14,7 @@ export async function generateMetadata({ params }) {
   const { slug } = await params;
 
   // Find project by slug
+  const portfolioData = await getPortfolios();
   const project = portfolioData.find((item) => {
     const projectSlug = item.title
       .toLowerCase()

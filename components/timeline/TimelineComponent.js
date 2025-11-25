@@ -1,13 +1,21 @@
+"use client";
+
 import React from "react";
 import TimelineCard from "./TimelineCard";
 import TimelineProgress from "./TimelineProgress";
-import timelineData from "../../data/timeline.json";
+import { useTimeline } from "@/hooks/useSupabaseData";
 
 const TimelineComponent = () => {
-  // Process timeline data directly (server-side)
+  const { timeline: timelineData = {}, isLoading } = useTimeline();
+
+  // Show loading / empty states
+  if (isLoading) {
+    return <div className="text-center py-10">Loading timeline...</div>;
+  }
+
   const processedData = (() => {
-    // Use timeline.timeline array from the JSON structure
-    const timelineItems = timelineData.timeline;
+    // Extract timeline array from the data object
+    const timelineItems = timelineData?.timeline || [];
 
     // Sort data from oldest to newest
     return timelineItems.sort((a, b) => {

@@ -1,83 +1,141 @@
+/**
+ * Unified Data API - fetches data from normalized Supabase tables
+ * Usage: /api/data?type=blogs | portfolio | technologies | services | about | timeline | header | site-config | gallery
+ */
 import { NextResponse } from "next/server";
 import {
-  getAbout,
-  getHeader,
-  getServices,
-  getTechnologies,
+  getProfile,
   getTimeline,
-  getGallery,
+  getTechnologies,
+  getServices,
+  getHeader,
   getSiteConfig,
-  getPortfolio,
+  getGallery,
+  getPortfolios,
   getBlogs,
-} from "@/lib/dataService";
-import path from "path";
-import fs from "fs/promises";
+} from "@/lib/supabaseData";
+
+export const dynamic = "force-dynamic";
 
 export async function GET(request) {
-  try {
-    const { searchParams } = new URL(request.url);
-    const type = searchParams.get("type") || searchParams.get("entity");
+  const { searchParams } = new URL(request.url);
+  const type = searchParams.get("type") || searchParams.get("entity");
 
-    let data;
-
-    // Handle special AI data files (raw JSON files)
-    if (type === "rag-manifest") {
-      const filePath = path.join(process.cwd(), "data", "rag-manifest.json");
-      const fileContent = await fs.readFile(filePath, "utf-8");
-      data = JSON.parse(fileContent);
-      return NextResponse.json(data, {
+  // Special raw JSON passthrough (AI manifest and system prompt) - now returning minimal config
+  if (type === "rag-manifest") {
+    // Return minimal RAG manifest config since data folder is deleted
+    return NextResponse.json(
+      {
+        entities: [],
+        enhancements: {
+          enabled: false,
+        },
+      },
+      {
         headers: {
           "Cache-Control":
             "public, s-maxage=3600, stale-while-revalidate=86400",
         },
-      });
-    }
+      }
+    );
+  }
 
-    // Handle regular data types - now synchronous
+  if (type === "ai-system-prompt") {
+    // Return minimal AI prompt config since data folder is deleted
+    return NextResponse.json(
+      {
+        systemPrompt: {
+          role: "You are an AI assistant for Rakesh Nandakumar's portfolio.",
+          guidelines: ["Be professional and helpful"],
+          responseFormat: "Provide clear responses",
+          personality: "professional",
+          contactInfo: {
+            businessInquiries: "Use the contact form for inquiries",
+          },
+        },
+      },
+      {
+        headers: {
+          "Cache-Control":
+            "public, s-maxage=3600, stale-while-revalidate=86400",
+        },
+      }
+    );
+  }
+
+  try {
+    let data;
+
     switch (type) {
       case "about":
-        data = getAbout();
+      case "profile":
+        data = await getProfile();
         break;
-      case "header":
-        data = getHeader();
-        break;
-      case "services":
-        data = getServices();
-        break;
-      case "technologies":
-        data = getTechnologies();
-        break;
+
       case "timeline":
-        data = getTimeline();
+        data = await getTimeline();
         break;
-      case "gallery":
-        data = getGallery();
+
+      case "technologies":
+        data = await getTechnologies();
         break;
+
+      case "services":
+        data = await getServices();
+        break;
+
+      case "header":
+        data = await getHeader();
+        break;
+
       case "site-config":
-        data = getSiteConfig();
+      case "siteConfig":
+        data = await getSiteConfig();
         break;
+
+      case "gallery":
+        data = await getGallery();
+        break;
+
       case "portfolio":
-        data = getPortfolio();
+        data = await getPortfolios();
         break;
+
       case "blogs":
-        data = getBlogs();
+        data = await getBlogs();
         break;
+
       default:
+        console.error(`[API] Invalid type requested: ${type}`);
         return NextResponse.json(
-          { error: "Invalid data type specified" },
+          { error: "Invalid or missing type", type },
           { status: 400 }
         );
     }
 
+    if (!data) {
+      console.error(`[API] No data returned for type: ${type}`);
+      return NextResponse.json(
+        { error: "No data available", type },
+        { status: 404 }
+      );
+    }
+
     return NextResponse.json(data, {
       headers: {
-        "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400",
+        "Cache-Control": "public, s-maxage=60, stale-while-revalidate=300",
+        "CDN-Cache-Control": "public, s-maxage=60",
+        "Vercel-CDN-Cache-Control": "public, s-maxage=60",
       },
     });
-  } catch (error) {
-    console.error("Error fetching data:", error);
+  } catch (e) {
+    console.error(`[API] Error fetching ${type}:`, e.message, e.stack);
     return NextResponse.json(
-      { error: "Failed to fetch data", details: error.message },
+      {
+        error: "Failed to fetch data",
+        message: e.message,
+        type,
+      },
       { status: 500 }
     );
   }

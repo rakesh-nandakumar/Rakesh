@@ -1,11 +1,17 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
-import technologiesData from "../data/technologies.json";
+import { useTechnologies } from "@/hooks/useSupabaseData";
+import { resolveAssetUrl } from "@/lib/fileStorage";
 import "../styles/SkillsSection.css";
 
 const SkillsSection = () => {
-  // Get skills from technologies.json
-  const primarySkills = technologiesData;
+  const { technologies: primarySkills = [], isLoading } = useTechnologies();
+
+  if (isLoading) {
+    return <div className="text-center py-10">Loading skills...</div>;
+  }
 
   return (
     <div className="rn-skill-area rn-section-gap section-separator">
@@ -17,7 +23,7 @@ const SkillsSection = () => {
         <div className="skill-share-inner pt--100">
           <ul className="skill-share liststyle skills-grid">
             {primarySkills.map((skill, index) => (
-              <div className="rn-blog gap-5" key={index}>
+              <div className="rn-blog gap-5" key={skill.id || index}>
                 <div
                   style={{
                     display: "flex",
@@ -27,7 +33,7 @@ const SkillsSection = () => {
                   }}
                 >
                   <Image
-                    src={skill.icon}
+                    src={resolveAssetUrl(skill.icon)}
                     alt={skill.name}
                     width={50}
                     height={50}

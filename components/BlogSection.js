@@ -1,10 +1,18 @@
+"use client";
+
 import BlogCard from "./BlogCard";
-import blogsData from "../data/blogs.json";
 import Link from "next/link";
+import { useBlogs } from "@/hooks/useSupabaseData";
 
 const BlogSection = () => {
+  const { blogs = [], isLoading } = useBlogs();
+
+  if (isLoading) {
+    return <div className="text-center py-10">Loading blogs...</div>;
+  }
+
   // Get only the first 3 blogs for display, or filter featured blogs
-  const displayBlogs = blogsData.slice(0, 3);
+  const displayBlogs = (blogs || []).slice(0, 3);
 
   return (
     <>

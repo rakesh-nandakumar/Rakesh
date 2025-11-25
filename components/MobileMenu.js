@@ -11,12 +11,13 @@ export default function MobileMenu({
   siteConfig,
   filteredNavigation,
   isOverlaying = false,
+  avatarUrl,
 }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const router = useRouter();
 
   // Use filteredNavigation if provided, otherwise fall back to all navigation items
-  const navigationItems = filteredNavigation || headerData.navigation;
+  const navigationItems = filteredNavigation || headerData?.navigation || [];
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -97,7 +98,7 @@ export default function MobileMenu({
             <div className="menu-header">
               <Link href="/" className="logo" onClick={closeMobileMenu}>
                 <Image
-                  src="/avatar.png"
+                  src={avatarUrl}
                   alt="Personal Portfolio"
                   width={50}
                   height={50}

@@ -1,12 +1,12 @@
 /**
- * AI Chat Assistant with RAG
- *
- * Enhanced AI Chat Component using Client-Side RAG
+ * AI Chat Assistant with Server-Side RAG
+ * Updated: 2025-11-14 - New Supabase-based RAG system
  *
  * Features:
+ * - Server-side RAG context retrieval from Supabase
+ * - Admin-configurable manifest via /admin/rag
+ * - Real-time context updates without redeploy
  * - Fetches API key from server automatically
- * - Client-side semantic search and retrieval
- * - Initializes RAG system on load
  * - Token-efficient prompts
  * - Conversational interface with Google Gemini integration
  * - localStorage caching and simple settings panel
@@ -25,8 +25,6 @@ import {
 } from "react-feather";
 import "../styles/ChatButton.css";
 
-let ClientRAG = null;
-
 const EnhancedChatButton = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isInitialized, setIsInitialized] = useState(false);
@@ -35,7 +33,6 @@ const EnhancedChatButton = () => {
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [ragInstance, setRagInstance] = useState(null);
   const [apiKey, setApiKey] = useState("");
   const [error, setError] = useState(null);
   const [stats, setStats] = useState(null);
@@ -62,15 +59,8 @@ const EnhancedChatButton = () => {
     setError(null);
 
     try {
-      // Dynamically import client RAG module
-      const ragModule = await import("@/lib/client-rag.js");
-      ClientRAG = ragModule.default || ragModule;
-
-      const rag = new ClientRAG();
-      setRagInstance(rag);
-
-      // Prefer provided key, then server, then rag.getApiKey()
-      let key = manualKey || rag.getApiKey();
+      // Get API key from server
+      let key = manualKey;
 
       if (!key) {
         const resp = await fetch("/api/gemini-key");
@@ -88,11 +78,6 @@ const EnhancedChatButton = () => {
         return;
       }
 
-      // Set the API key before initializing
-      rag.setApiKey(key);
-
-      // Initialize RAG system
-      await rag.initialize();
       setApiKey(key);
       setIsInitialized(true);
 
@@ -105,12 +90,6 @@ const EnhancedChatButton = () => {
           timestamp: Date.now(),
         },
       ]);
-
-      // Update stats if available
-      if (typeof rag.getCacheStats === "function") {
-        const s = rag.getCacheStats();
-        setStats(s || null);
-      }
     } catch (err) {
       console.error("Failed to initialize RAG:", err);
       setError(err?.message || "Initialization failed");
@@ -139,29 +118,93 @@ const EnhancedChatButton = () => {
       { role: "user", content: userMessage, timestamp: Date.now() },
     ]);
 
-    if (!ragInstance || !isInitialized) {
+    if (!isInitialized || !apiKey) {
       setError("AI system not initialized. Open Settings to configure.");
       return;
     }
 
     setIsLoading(true);
     try {
-      const result = await ragInstance.chat(userMessage);
+      // Get RAG context from server
+      const ragResponse = await fetch("/api/rag", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ query: userMessage, maxTokens: 2000 }),
+      });
+
+      if (!ragResponse.ok) {
+        throw new Error("Failed to retrieve context");
+      }
+
+      const { context } = await ragResponse.json();
+
+      // Send to Gemini with context (with retry and improved error reporting)
+      let chatData = null;
+      const maxAttempts = 2;
+      let lastError = null;
+      const payload = {
+        message: userMessage,
+        context,
+        conversationHistory: messages
+          .filter((m) => m.role !== "system")
+          .slice(-4)
+          .map((m) => ({ text: m.content, isBot: m.role === "assistant" })),
+      };
+
+      for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+        try {
+          const chatResponse = await fetch("/api/chat", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          });
+
+          if (!chatResponse.ok) {
+            // Try to parse error body for better message
+            const text = await chatResponse.text();
+            let parsed;
+            try {
+              parsed = JSON.parse(text);
+            } catch (e) {
+              parsed = null;
+            }
+            const serverMsg =
+              parsed?.error ||
+              parsed?.message ||
+              text ||
+              chatResponse.statusText;
+            lastError = new Error(
+              `Chat API error (status ${chatResponse.status}): ${serverMsg}`
+            );
+            // small delay before retry
+            await new Promise((r) => setTimeout(r, 700 * attempt));
+            continue;
+          }
+
+          // parse JSON response
+          chatData = await chatResponse.json();
+          break;
+        } catch (e) {
+          lastError = e;
+          // transient network error, retry after delay
+          await new Promise((r) => setTimeout(r, 700 * attempt));
+        }
+      }
+
+      if (!chatData) {
+        throw lastError || new Error("Chat request failed");
+      }
+
+      const answer = chatData.answer || chatData.response || "No response";
+
       setMessages((prev) => [
         ...prev,
         {
           role: "assistant",
-          content: result?.answer ?? "No response",
-          retrievedItems: result?.retrievedItems ?? result?.sources ?? null,
-          usage: result?.usage ?? null,
-          fromCache: result?.fromCache ?? false,
+          content: answer,
           timestamp: Date.now(),
         },
       ]);
-
-      if (typeof ragInstance.getCacheStats === "function") {
-        setStats(ragInstance.getCacheStats());
-      }
     } catch (err) {
       console.error("Chat error:", err);
       setError(err?.message || "Chat failed");
@@ -190,56 +233,36 @@ const EnhancedChatButton = () => {
 
   const handleSaveApiKey = async () => {
     if (!apiKey.trim()) return;
-    if (ragInstance && typeof ragInstance.setApiKey === "function") {
-      ragInstance.setApiKey(apiKey.trim());
-    }
     // reinitialize with provided key
     await initializeRAG(apiKey.trim());
     setShowSettings(false);
   };
 
-  const handleClearCache = () => {
-    if (!ragInstance) return;
-    if (typeof ragInstance.clearCache === "function") {
-      ragInstance.clearCache();
+  const handleClearCache = async () => {
+    try {
+      // Clear server-side RAG cache
+      await fetch("/api/rag-cache-clear", { method: "POST" });
+      setIsInitialized(false);
+      setMessages([]);
+      alert("Cache cleared! Please reinitialize the system.");
+    } catch (error) {
+      console.error("Failed to clear cache:", error);
+      alert("Failed to clear cache. Please try again.");
     }
-    if (typeof ragInstance.clearEmbeddingsCache === "function") {
-      ragInstance.clearEmbeddingsCache();
-    }
-    setIsInitialized(false);
-    setMessages([]);
-    alert("Cache cleared! Please reinitialize the system.");
-    // optionally reload to force rebuild
-    // window.location.reload();
   };
 
   const handleFetchDetails = async (itemId, itemType) => {
-    if (!ragInstance) return;
-    setIsLoading(true);
-    try {
-      if (typeof ragInstance.fetchFullDetails === "function") {
-        const details = await ragInstance.fetchFullDetails(itemId, itemType);
-        setMessages((prev) => [
-          ...prev,
-          {
-            role: "assistant",
-            content: `Here are the full details:\n\n${JSON.stringify(
-              details,
-              null,
-              2
-            )}`,
-            timestamp: Date.now(),
-          },
-        ]);
-      } else {
-        setError("Details fetch not supported by RAG instance.");
-      }
-    } catch (err) {
-      console.error("Failed to fetch details:", err);
-      setError(`Failed to fetch details: ${err?.message || "unknown"}`);
-    } finally {
-      setIsLoading(false);
-    }
+    // This function is no longer needed with the new RAG system
+    // Context is automatically fetched for each query
+    setMessages((prev) => [
+      ...prev,
+      {
+        role: "assistant",
+        content:
+          "Details are now automatically included in responses based on your questions.",
+        timestamp: Date.now(),
+      },
+    ]);
   };
 
   return (

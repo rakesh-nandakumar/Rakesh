@@ -2,15 +2,45 @@
 
 import React from "react";
 import Link from "next/link";
-import aboutData from "@/data/about.json";
+import { useProfile } from "@/hooks/useSupabaseData";
 
 export default function HeroSection() {
-  const { name, title, shortBio, heroImage, cvLink } = aboutData;
+  const { profile: aboutData, isLoading } = useProfile();
 
   // Convert **text** to <strong>text</strong>
   const formatBio = (text) => {
-    return text.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+    return text?.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>") || "";
   };
+
+  // Show loading state
+  if (isLoading || !aboutData) {
+    return (
+      <div
+        className="rn-slider-area hero-section-responsive"
+        id="heroSection"
+        style={{
+          backgroundColor: "#000",
+          minHeight: "100vh",
+          position: "relative",
+        }}
+      >
+        <div className="slide slider-style-1">
+          <div className="container px-3 px-md-4">
+            <div
+              className="row align-items-center"
+              style={{ minHeight: "100vh" }}
+            >
+              <div className="col-12 text-center">
+                <p className="text-white">Loading...</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  const { name, title, shortBio, heroImage, cvLink } = aboutData;
   return (
     <div
       className="rn-slider-area hero-section-responsive"

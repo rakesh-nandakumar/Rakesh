@@ -1,3 +1,5 @@
+'use client';
+
 export default function BreadcrumbSchema({ items }) {
   if (!items || items.length === 0) return null;
 

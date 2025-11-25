@@ -1,45 +1,74 @@
 # Rakesh Nandakumar - Portfolio & Blog
 
-A high-performance, SEO-optimized portfolio and blog built with Next.js 15, featuring static generation, JSON-based content management, and comprehensive SEO optimization.
+A high-performance, SEO-optimized portfolio and blog built with Next.js 15, featuring Supabase backend, cloud storage, and comprehensive SEO optimization.
 
 ## 🚀 Features
 
 - **SEO First**: Complete metadata, structured data, and semantic HTML
-- **High Performance**: Static generation, image optimization, and efficient caching
-- **JSON-Based CMS**: Simple, version-controlled content management
+- **High Performance**: Static generation, CDN delivery, and efficient caching
+- **Supabase Backend**: Normalized database with PostgreSQL
+- **Cloud Storage**: All assets served from Supabase Storage CDN
 - **Modern Stack**: Next.js 15, React 19, Tailwind CSS 4
 - **Responsive Design**: Mobile-first, fully responsive layout
 - **Accessibility**: WCAG compliant with proper ARIA labels
 - **Blog System**: Markdown support with syntax highlighting
 - **Portfolio Showcase**: Dynamic project pages with detailed information
 - **Contact Form**: Secure form with ReCAPTCHA integration
-- **AI Chat Assistant**: Optional AI-powered chat interface
+- **AI Chat Assistant**: Gemini-powered chat with RAG system
 
 ## 📁 Project Structure
 
 ```
 ├── app/                    # Next.js App Router pages
-│   ├── api/               # API routes
+│   ├── api/               # API routes (data, chat, RAG)
 │   ├── blogs/             # Blog pages
 │   ├── portfolio/         # Portfolio pages
 │   └── ...                # Other pages
 ├── components/            # React components
-├── data/                  # JSON data files (content source)
+├── data/                  # JSON data files (migration reference only)
 ├── lib/                   # Utility functions & services
-├── public/               # Static assets
+│   ├── supabase.js       # Supabase client
+│   ├── rag.js            # RAG system for AI chat
+│   └── fileStorage.js    # Asset URL resolver
+├── public/               # Static assets (minimal)
+│   ├── assets/           # CSS, fonts only
+│   └── sw.js             # Service Worker
+├── scripts/              # Migration & utility scripts
+├── supabase/             # Database migrations
 └── styles/               # Global styles
 ```
 
+## 🗄️ Data Architecture
+
+- **Database**: Supabase PostgreSQL (23 normalized tables)
+- **Storage**: Supabase Storage CDN (portfolio bucket)
+- **Assets**: All images served from https://evgqbzyytamqezwdymkb.supabase.co
+- **Caching**: Server-side caching (60-300s TTL)
+
 ## 🛠️ Tech Stack
 
-- **Framework**: [Next.js 15](https://nextjs.org/)
+### Frontend
+
+- **Framework**: [Next.js 15](https://nextjs.org/) with App Router
 - **React**: React 19
 - **Styling**: [Tailwind CSS 4](https://tailwindcss.com/)
 - **Animations**: [Framer Motion](https://www.framer.com/motion/)
 - **Icons**: [React Feather](https://feathericons.com/)
-- **Markdown**: [React Markdown](https://github.com/remarkjs/react-markdown)
+- **Markdown**: [React Markdown](https://github.com/remarkjs/react-markdown) + remark-gfm
 - **Forms**: [React Hook Form](https://react-hook-form.com/)
-- **Analytics**: Google Analytics
+
+### Backend & Database
+
+- **Database**: [Supabase](https://supabase.com/) (PostgreSQL)
+- **Storage**: Supabase Storage (CDN-backed)
+- **Authentication**: JWT + bcrypt (planned admin panel)
+- **API**: Next.js API Routes
+
+### AI & Analytics
+
+- **AI Chat**: Google Gemini API
+- **RAG System**: Server-side context retrieval
+- **Analytics**: Google Analytics 4
 
 ## 🚀 Getting Started
 
@@ -63,41 +92,99 @@ A high-performance, SEO-optimized portfolio and blog built with Next.js 15, feat
    npm install
    ```
 
-3. **Set up environment variables** (optional)
+3. **Set up environment variables**
 
    Create a `.env` file in the root directory:
 
    ```env
-   # Google Analytics (optional)
-   NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
+   # Supabase Configuration (Required)
+   NEXT_PUBLIC_SUPABASE_URL=your-supabase-url
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+   SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
 
-   # Email configuration for contact form
-   EMAIL_USER=your-email@gmail.com
-   EMAIL_PASS=your-app-password
+   # Email Configuration (for contact form)
+   GMAIL_USER=your-email@gmail.com
+   GMAIL_APP_PASSWORD=your-app-password
+   GMAIL_RECIPIENT=recipient@email.com
 
-   # ReCAPTCHA (optional, for contact form)
+   # ReCAPTCHA (for contact form)
    NEXT_PUBLIC_RECAPTCHA_SITE_KEY=your-site-key
    RECAPTCHA_SECRET_KEY=your-secret-key
 
-   # Gemini API (optional, for AI chat)
+   # Google Analytics (optional)
+   GA_MEASUREMENT_ID=G-XXXXXXXXXX
+
+   # Gemini AI (for chat assistant)
    GEMINI_API_KEY=your-gemini-api-key
    ```
 
-4. **Run the development server**
+4. **Set up Supabase database** (First time only)
+
+   ```bash
+   # Run database migrations
+   node scripts/migrate-normalized-to-supabase.js
+
+   # Migrate assets to Supabase Storage
+   npm run migrate-assets
+   ```
+
+5. **Run the development server**
 
    ```bash
    npm run dev
    ```
 
-5. **Open your browser**
+6. **Open your browser**
 
    Navigate to [http://localhost:3000](http://localhost:3000)
 
 ## 📝 Content Management
 
-All content is managed through JSON files in the `/data` directory. No database required!
+All content is managed through Supabase database. Use the admin panel (coming soon) or direct database access.
 
-### Adding Blog Posts
+### Database Tables
+
+- `profiles` - Personal information
+- `portfolios` - Project showcase
+- `blogs` - Blog posts
+- `timeline` - Work experience & education
+- `technologies` - Tech stack
+- `services` - Services offered
+- `galleries` - Image gallery
+- `site_configs` - Site configuration
+
+### Asset Management
+
+All images are stored in Supabase Storage (`portfolio` bucket) and served via CDN.
+
+```javascript
+// Images automatically resolve to Supabase URLs
+<img src="/hero.jpg" />
+// → https://evgqbzyytamqezwdymkb.supabase.co/.../hero.jpg
+```
+
+### Adding Blog Posts (via Database)
+
+```sql
+-- Insert new blog post
+INSERT INTO blogs (slug, title, excerpt, content, image, category, publish_date, featured)
+VALUES (
+  'my-new-post',
+  'My New Blog Post',
+  'Short description...',
+  'Full markdown content...',
+  'https://evgqbzyytamqezwdymkb.supabase.co/storage/v1/object/public/portfolio/blogs/my-image.png',
+  'Technology',
+  '2025-11-15',
+  false
+);
+
+-- Add tags
+INSERT INTO blog_tags (blog_id, tag)
+VALUES
+  ((SELECT id FROM blogs WHERE slug = 'my-new-post'), 'Next.js'),
+  ((SELECT id FROM blogs WHERE slug = 'my-new-post'), 'React');
+```
 
 Edit `data/blogs.json`:
 

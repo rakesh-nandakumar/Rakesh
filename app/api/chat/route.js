@@ -3,8 +3,74 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 
-// Import AI system prompt data
-import aiPromptData from "../../../data/ai-system-prompt.json";
+// AI system prompt data (inline configuration)
+const aiPromptData = {
+  systemPrompt: {
+    role: "You are an AI assistant representing Rakesh Nandakumar, a skilled Full Stack Developer.",
+    guidelines: [
+      "Be professional, friendly, and helpful",
+      "Answer questions about Rakesh's skills, experience, and projects",
+      "Encourage business inquiries to use the contact form",
+      "Be concise but informative",
+    ],
+    responseFormat: "Provide clear, well-structured responses",
+    personality: "professional yet friendly",
+    contactInfo: {
+      businessInquiries: "For business inquiries, please use the contact form",
+    },
+  },
+  professionalProfile: {
+    name: "Rakesh Nandakumar",
+    title: "Full Stack Developer",
+    experience: "3+ years",
+    location: "India",
+    summary:
+      "Experienced in Laravel, React, Vue.js, AWS, and modern web technologies",
+  },
+  technicalSkills: {
+    frontendTechnologies: ["React", "Vue.js", "Next.js", "Tailwind CSS"],
+    backendTechnologies: ["Laravel", "Node.js", "PHP"],
+    databases: ["MySQL", "PostgreSQL", "MongoDB", "Supabase"],
+    cloudAndDevOps: ["AWS", "Docker", "CI/CD"],
+    mobileAndOther: ["React Native", "REST APIs", "GraphQL"],
+  },
+  keyProjects: [
+    {
+      name: "Portfolio Website",
+      description: "Modern portfolio with Next.js and Supabase",
+      technologies: ["Next.js", "React", "Supabase", "Tailwind CSS"],
+      highlights: [
+        "Server-side rendering",
+        "Database integration",
+        "Responsive design",
+      ],
+    },
+  ],
+  professionalExperience: {
+    currentRole: "Full Stack Developer",
+    experienceHighlights: [
+      "Web application development",
+      "Database design",
+      "API integration",
+    ],
+    industryExperience: ["E-commerce", "SaaS", "Web Development"],
+  },
+  achievements: [
+    "Successfully delivered multiple client projects",
+    "Built scalable web applications",
+    "Expertise in modern web technologies",
+  ],
+  availabilityAndServices: {
+    services: [
+      "Full Stack Web Development",
+      "Laravel Development",
+      "React/Next.js Development",
+      "API Development",
+      "Database Design",
+      "AWS Deployment",
+    ],
+  },
+};
 
 // Initialize the Google Generative AI client
 let genAI;
@@ -155,7 +221,7 @@ export async function POST(request) {
     }
 
     const body = await request.json();
-    const { message, conversationHistory = [] } = body;
+    const { message, conversationHistory = [], context = null } = body;
 
     if (!message) {
       return NextResponse.json(
@@ -218,7 +284,9 @@ export async function POST(request) {
     // Start a chat session with history
     const chat = model.startChat({
       history: history,
-      systemInstruction: generateSystemPrompt(),
+      systemInstruction: context
+        ? `${generateSystemPrompt()}\n\nADDITIONAL CONTEXT FROM DATABASE:\n${context}\n\nUse this additional context to provide more accurate and detailed responses.`
+        : generateSystemPrompt(),
     });
 
     // Send the message and get response

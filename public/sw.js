@@ -1,287 +1,271 @@
-// Service Worker for Rakesh Nandakumar Portfolio
-// Version 1.0.0 - Offline Support & Performance Optimization
+/**
+ * Enhanced Service Worker with Workbox
+ * PWA-grade caching for blazing fast performance
+ *
+ * Features:
+ * - Precaching of critical assets
+ * - Runtime caching with multiple strategies
+ * - Background asset prefetching
+ * - Cache versioning and invalidation
+ * - Supabase asset caching with long TTL
+ * - Offline support with fallback page
+ */
 
-const CACHE_VERSION = "v1";
-const CACHE_NAME = `rakesh-portfolio-${CACHE_VERSION}`;
+importScripts(
+  "https://storage.googleapis.com/workbox-cdn/releases/7.0.0/workbox-sw.js"
+);
 
-// Assets to cache immediately on install
-const STATIC_ASSETS = [
-  "/",
-  "/about",
-  "/portfolio",
-  "/blogs",
-  "/contact",
-  "/offline",
-  "/manifest.json",
-  "/avatar.png",
-  "/hero.jpg",
-];
+// Cache version - increment to invalidate all caches
+const CACHE_VERSION = "v2.0.0"; // Updated to clear old RAG cache
+const CACHE_PREFIX = "portfolio";
 
-// Cache strategies
-const CACHE_STRATEGIES = {
-  // Cache first, then network (for static assets)
-  CACHE_FIRST: "cache-first",
-  // Network first, then cache (for dynamic content)
-  NETWORK_FIRST: "network-first",
-  // Network only (for API calls, forms)
-  NETWORK_ONLY: "network-only",
-  // Cache only
-  CACHE_ONLY: "cache-only",
-  // Stale while revalidate (best for images)
-  STALE_WHILE_REVALIDATE: "stale-while-revalidate",
-};
+// Initialize Workbox
+if (workbox) {
+  console.log("[SW] Workbox loaded successfully!");
 
-// Install event - cache static assets
-self.addEventListener("install", (event) => {
-  console.log("[Service Worker] Installing...");
+  // Set cache name prefix
+  workbox.core.setCacheNameDetails({
+    prefix: CACHE_PREFIX,
+    suffix: CACHE_VERSION,
+  });
 
-  event.waitUntil(
-    caches
-      .open(CACHE_NAME)
-      .then((cache) => {
-        console.log("[Service Worker] Caching static assets");
-        return cache.addAll(STATIC_ASSETS);
-      })
-      .then(() => {
-        console.log("[Service Worker] Installed successfully");
-        // Force the waiting service worker to become the active service worker
-        return self.skipWaiting();
-      })
-      .catch((error) => {
-        console.error("[Service Worker] Installation failed:", error);
-      })
-  );
-});
+  // Clean up old caches on activation
+  workbox.core.clientsClaim();
+  workbox.core.skipWaiting();
 
-// Activate event - clean up old caches
-self.addEventListener("activate", (event) => {
-  console.log("[Service Worker] Activating...");
+  // Precache critical assets
+  workbox.precaching.precacheAndRoute(self.__WB_MANIFEST || []);
 
-  event.waitUntil(
-    caches
-      .keys()
-      .then((cacheNames) => {
-        return Promise.all(
-          cacheNames
-            .filter((cacheName) => {
-              // Delete old cache versions
-              return (
-                cacheName.startsWith("rakesh-portfolio-") &&
-                cacheName !== CACHE_NAME
-              );
-            })
-            .map((cacheName) => {
-              console.log("[Service Worker] Deleting old cache:", cacheName);
-              return caches.delete(cacheName);
-            })
-        );
-      })
-      .then(() => {
-        console.log("[Service Worker] Activated successfully");
-        // Claim all clients immediately
-        return self.clients.claim();
-      })
-  );
-});
+  // ============================================
+  // CACHING STRATEGIES
+  // ============================================
 
-// Fetch event - handle requests with appropriate strategy
-self.addEventListener("fetch", (event) => {
-  const { request } = event;
-  const url = new URL(request.url);
-
-  // Skip cross-origin requests
-  if (url.origin !== location.origin) {
-    return;
-  }
-
-  // Determine strategy based on request type
-  const strategy = getStrategy(url, request);
-
-  event.respondWith(handleRequest(request, strategy));
-});
-
-// Get appropriate caching strategy based on request
-function getStrategy(url, request) {
-  // API calls - Network first (with cache fallback)
-  if (url.pathname.startsWith("/api/")) {
-    // Don't cache form submissions
-    if (request.method !== "GET") {
-      return CACHE_STRATEGIES.NETWORK_ONLY;
-    }
-    return CACHE_STRATEGIES.NETWORK_FIRST;
-  }
-
-  // Images - Stale while revalidate
-  if (
-    url.pathname.match(/\.(jpg|jpeg|png|gif|webp|avif|svg|ico)$/) ||
-    url.pathname.startsWith("/images/") ||
-    url.pathname.startsWith("/assets/")
-  ) {
-    return CACHE_STRATEGIES.STALE_WHILE_REVALIDATE;
-  }
-
-  // Static files (CSS, JS, fonts) - Cache first
-  if (
-    url.pathname.match(/\.(css|js|woff|woff2|ttf|otf)$/) ||
-    url.pathname.startsWith("/_next/static/")
-  ) {
-    return CACHE_STRATEGIES.CACHE_FIRST;
-  }
-
-  // HTML pages - Network first (with cache fallback)
-  if (request.headers.get("accept")?.includes("text/html")) {
-    return CACHE_STRATEGIES.NETWORK_FIRST;
-  }
-
-  // Default - Network first
-  return CACHE_STRATEGIES.NETWORK_FIRST;
-}
-
-// Handle request with specified strategy
-async function handleRequest(request, strategy) {
-  switch (strategy) {
-    case CACHE_STRATEGIES.CACHE_FIRST:
-      return cacheFirst(request);
-
-    case CACHE_STRATEGIES.NETWORK_FIRST:
-      return networkFirst(request);
-
-    case CACHE_STRATEGIES.NETWORK_ONLY:
-      return networkOnly(request);
-
-    case CACHE_STRATEGIES.CACHE_ONLY:
-      return cacheOnly(request);
-
-    case CACHE_STRATEGIES.STALE_WHILE_REVALIDATE:
-      return staleWhileRevalidate(request);
-
-    default:
-      return networkFirst(request);
-  }
-}
-
-// Cache First Strategy
-async function cacheFirst(request) {
-  const cachedResponse = await caches.match(request);
-
-  if (cachedResponse) {
-    return cachedResponse;
-  }
-
-  try {
-    const networkResponse = await fetch(request);
-
-    if (networkResponse && networkResponse.status === 200) {
-      const cache = await caches.open(CACHE_NAME);
-      cache.put(request, networkResponse.clone());
-    }
-
-    return networkResponse;
-  } catch (error) {
-    console.error("[Service Worker] Cache first failed:", error);
-    return new Response("Offline", { status: 503 });
-  }
-}
-
-// Network First Strategy
-async function networkFirst(request) {
-  try {
-    const networkResponse = await fetch(request);
-
-    if (networkResponse && networkResponse.status === 200) {
-      const cache = await caches.open(CACHE_NAME);
-      cache.put(request, networkResponse.clone());
-    }
-
-    return networkResponse;
-  } catch (error) {
-    console.log("[Service Worker] Network failed, trying cache:", request.url);
-
-    const cachedResponse = await caches.match(request);
-
-    if (cachedResponse) {
-      return cachedResponse;
-    }
-
-    // If HTML request fails and no cache, show offline page
-    if (request.headers.get("accept")?.includes("text/html")) {
-      const offlineResponse = await caches.match("/offline");
-      if (offlineResponse) {
-        return offlineResponse;
-      }
-    }
-
-    return new Response("Offline", {
-      status: 503,
-      statusText: "Service Unavailable",
-      headers: new Headers({
-        "Content-Type": "text/plain",
-      }),
-    });
-  }
-}
-
-// Network Only Strategy
-async function networkOnly(request) {
-  return fetch(request);
-}
-
-// Cache Only Strategy
-async function cacheOnly(request) {
-  const cachedResponse = await caches.match(request);
-
-  if (cachedResponse) {
-    return cachedResponse;
-  }
-
-  return new Response("Not found in cache", { status: 404 });
-}
-
-// Stale While Revalidate Strategy
-async function staleWhileRevalidate(request) {
-  const cachedResponse = await caches.match(request);
-
-  // Fetch in background to update cache
-  const fetchPromise = fetch(request)
-    .then((networkResponse) => {
-      if (networkResponse && networkResponse.status === 200) {
-        const cache = caches.open(CACHE_NAME);
-        cache.then((c) => c.put(request, networkResponse.clone()));
-      }
-      return networkResponse;
+  // 1. HTML Pages - Network First with Cache Fallback
+  workbox.routing.registerRoute(
+    ({ request }) => request.mode === "navigate",
+    new workbox.strategies.NetworkFirst({
+      cacheName: `${CACHE_PREFIX}-pages-${CACHE_VERSION}`,
+      plugins: [
+        new workbox.expiration.ExpirationPlugin({
+          maxEntries: 50,
+          maxAgeSeconds: 24 * 60 * 60, // 1 day
+          purgeOnQuotaError: true,
+        }),
+        new workbox.cacheableResponse.CacheableResponsePlugin({
+          statuses: [0, 200],
+        }),
+      ],
     })
-    .catch((error) => {
-      console.log("[Service Worker] Background fetch failed:", error);
-    });
+  );
 
-  // Return cached version immediately if available
-  return cachedResponse || fetchPromise;
-}
+  // 2. Next.js Data - Stale While Revalidate
+  workbox.routing.registerRoute(
+    ({ url }) => url.pathname.startsWith("/_next/data/"),
+    new workbox.strategies.StaleWhileRevalidate({
+      cacheName: `${CACHE_PREFIX}-data-${CACHE_VERSION}`,
+      plugins: [
+        new workbox.expiration.ExpirationPlugin({
+          maxEntries: 100,
+          maxAgeSeconds: 60 * 60, // 1 hour
+          purgeOnQuotaError: true,
+        }),
+      ],
+    })
+  );
 
-// Handle messages from clients
-self.addEventListener("message", (event) => {
-  if (event.data && event.data.type === "SKIP_WAITING") {
-    self.skipWaiting();
+  // 3. API Routes - Network First with Short Cache
+  workbox.routing.registerRoute(
+    ({ url }) => url.pathname.startsWith("/api/"),
+    new workbox.strategies.NetworkFirst({
+      cacheName: `${CACHE_PREFIX}-api-${CACHE_VERSION}`,
+      networkTimeoutSeconds: 5,
+      plugins: [
+        new workbox.expiration.ExpirationPlugin({
+          maxEntries: 50,
+          maxAgeSeconds: 5 * 60, // 5 minutes
+          purgeOnQuotaError: true,
+        }),
+        new workbox.cacheableResponse.CacheableResponsePlugin({
+          statuses: [0, 200],
+        }),
+      ],
+    })
+  );
+
+  // 4. Supabase Assets - Cache First with Long TTL
+  workbox.routing.registerRoute(
+    ({ url }) =>
+      url.origin === "https://evgqbzyytamqezwdymkb.supabase.co" &&
+      url.pathname.includes("/storage/v1/object/public/"),
+    new workbox.strategies.CacheFirst({
+      cacheName: `${CACHE_PREFIX}-supabase-${CACHE_VERSION}`,
+      plugins: [
+        new workbox.expiration.ExpirationPlugin({
+          maxEntries: 200,
+          maxAgeSeconds: 30 * 24 * 60 * 60, // 30 days
+          purgeOnQuotaError: true,
+        }),
+        new workbox.cacheableResponse.CacheableResponsePlugin({
+          statuses: [0, 200],
+        }),
+      ],
+    })
+  );
+
+  // 5. Local Images - Cache First
+  workbox.routing.registerRoute(
+    ({ request }) => request.destination === "image",
+    new workbox.strategies.CacheFirst({
+      cacheName: `${CACHE_PREFIX}-images-${CACHE_VERSION}`,
+      plugins: [
+        new workbox.expiration.ExpirationPlugin({
+          maxEntries: 100,
+          maxAgeSeconds: 30 * 24 * 60 * 60, // 30 days
+          purgeOnQuotaError: true,
+        }),
+      ],
+    })
+  );
+
+  // 6. Static Assets (JS, CSS, Fonts) - Cache First
+  workbox.routing.registerRoute(
+    ({ request }) =>
+      request.destination === "script" ||
+      request.destination === "style" ||
+      request.destination === "font",
+    new workbox.strategies.CacheFirst({
+      cacheName: `${CACHE_PREFIX}-static-${CACHE_VERSION}`,
+      plugins: [
+        new workbox.expiration.ExpirationPlugin({
+          maxEntries: 100,
+          maxAgeSeconds: 365 * 24 * 60 * 60, // 1 year
+          purgeOnQuotaError: true,
+        }),
+      ],
+    })
+  );
+
+  // 7. Documents (PDFs, etc.) - Cache First with Long TTL
+  workbox.routing.registerRoute(
+    ({ url }) => {
+      const extension = url.pathname.split(".").pop();
+      return ["pdf", "doc", "docx"].includes(extension);
+    },
+    new workbox.strategies.CacheFirst({
+      cacheName: `${CACHE_PREFIX}-documents-${CACHE_VERSION}`,
+      plugins: [
+        new workbox.expiration.ExpirationPlugin({
+          maxEntries: 20,
+          maxAgeSeconds: 90 * 24 * 60 * 60, // 90 days
+          purgeOnQuotaError: true,
+        }),
+      ],
+    })
+  );
+
+  // ============================================
+  // BACKGROUND SYNC & PREFETCHING
+  // ============================================
+
+  // Listen for messages from client
+  self.addEventListener("message", (event) => {
+    if (event.data && event.data.type === "PREFETCH_ASSETS") {
+      prefetchAssets(event.data.urls);
+    } else if (event.data && event.data.type === "SKIP_WAITING") {
+      self.skipWaiting();
+    } else if (event.data && event.data.type === "CACHE_VERSION") {
+      event.ports[0].postMessage({ version: CACHE_VERSION });
+    } else if (event.data && event.data.type === "CLEAR_OLD_CACHES") {
+      clearOldCaches();
+    }
+  });
+
+  /**
+   * Prefetch assets in background
+   */
+  async function prefetchAssets(urls) {
+    if (!urls || !Array.isArray(urls)) return;
+
+    console.log(`[SW] Prefetching ${urls.length} assets...`);
+    const cache = await caches.open(
+      `${CACHE_PREFIX}-prefetch-${CACHE_VERSION}`
+    );
+    const batchSize = 5; // 5 at a time to avoid overwhelming
+
+    for (let i = 0; i < urls.length; i += batchSize) {
+      const batch = urls.slice(i, i + batchSize);
+      await Promise.allSettled(
+        batch.map(async (url) => {
+          try {
+            const cached = await cache.match(url);
+            if (!cached) {
+              const response = await fetch(url);
+              if (response.ok) {
+                await cache.put(url, response);
+                console.log(`[SW] Cached: ${url}`);
+              }
+            }
+          } catch (error) {
+            console.warn(`[SW] Failed to prefetch ${url}:`, error);
+          }
+        })
+      );
+
+      // Small delay between batches
+      await new Promise((resolve) => setTimeout(resolve, 100));
+    }
+
+    console.log("[SW] Prefetch complete");
   }
 
-  if (event.data && event.data.type === "CACHE_URLS") {
-    const urlsToCache = event.data.urls;
-    event.waitUntil(
-      caches.open(CACHE_NAME).then((cache) => cache.addAll(urlsToCache))
+  /**
+   * Clear old cache versions
+   */
+  async function clearOldCaches() {
+    const cacheNames = await caches.keys();
+    const oldCaches = cacheNames.filter(
+      (name) => name.startsWith(CACHE_PREFIX) && !name.includes(CACHE_VERSION)
+    );
+
+    await Promise.all(
+      oldCaches.map((cacheName) => {
+        console.log(`[SW] Deleting old cache: ${cacheName}`);
+        return caches.delete(cacheName);
+      })
     );
   }
-});
 
-// Background sync for offline form submissions (if needed in future)
-self.addEventListener("sync", (event) => {
-  if (event.tag === "sync-forms") {
-    event.waitUntil(syncForms());
-  }
-});
+  // Clear old caches on activation
+  self.addEventListener("activate", (event) => {
+    console.log("[SW] Activating new service worker");
+    event.waitUntil(clearOldCaches());
+  });
 
-async function syncForms() {
-  // Placeholder for future form sync functionality
-  console.log("[Service Worker] Background sync triggered");
+  // ============================================
+  // OFFLINE FALLBACK
+  // ============================================
+
+  const OFFLINE_PAGE = "/offline";
+
+  // Cache offline page during installation
+  self.addEventListener("install", (event) => {
+    console.log("[SW] Installing service worker");
+    event.waitUntil(
+      caches.open(`${CACHE_PREFIX}-offline-${CACHE_VERSION}`).then((cache) => {
+        return cache.addAll([OFFLINE_PAGE]);
+      })
+    );
+  });
+
+  // Return offline page when network fails
+  workbox.routing.setCatchHandler(async ({ request }) => {
+    if (request.destination === "document") {
+      return caches.match(OFFLINE_PAGE);
+    }
+    return Response.error();
+  });
+
+  console.log(`[SW] Service Worker initialized - Version: ${CACHE_VERSION}`);
+} else {
+  console.error("[SW] Workbox failed to load");
 }
-
-console.log("[Service Worker] Loaded");

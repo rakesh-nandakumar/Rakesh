@@ -1,20 +1,72 @@
+# Robots.txt for Rakesh Nandakumar Portfolio
+# Updated: 2024
+
 User-agent: *
 Allow: /
 
-# Sitemap
+# Sitemaps
 Sitemap: https://rakeshn.com/sitemap.xml
+Sitemap: https://rakeshn.com/sitemap-blogs.xml
+Sitemap: https://rakeshn.com/sitemap-portfolio.xml
+Sitemap: https://rakeshn.com/sitemap-pages.xml
+Sitemap: https://rakeshn.com/sitemap-images.xml
 
-# Crawl-delay
+# Crawl-delay for polite crawlers
 Crawl-delay: 1
 
-# Disallow admin areas (if any)
+# Block admin and API areas
 Disallow: /admin/
 Disallow: /api/
-Disallow: /_next/
+Disallow: /_next/static/
+Disallow: /_next/image/
 
-# Allow specific important pages
+# Block query parameters
+Disallow: /*?*sort=
+Disallow: /*?*filter=
+Disallow: /*?*session=
+Disallow: /*?*utm_
+
+# Block duplicate content
+Disallow: /*/print
+Disallow: /*/amp
+
+# Allow crawling of CSS and JS for rendering
+Allow: /assets/*.css
+Allow: /assets/*.js
+Allow: /_next/static/*.css
+Allow: /_next/static/*.js
+
+# Allow important pages
 Allow: /
 Allow: /about
 Allow: /portfolio
 Allow: /blogs
 Allow: /contact
+Allow: /templates
+
+# Block specific file types
+Disallow: /*.json$
+Disallow: /*.xml$
+
+# Google specific directives
+User-agent: Googlebot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+# Bing specific directives
+User-agent: Bingbot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+# Block bad bots
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+User-agent: DotBot
+Crawl-delay: 10
+

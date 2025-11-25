@@ -1,0 +1,455 @@
+ON-PAGE SEO — Every Practical, Real-World Lever You Can Pull
+1. Keyword & Intent Optimization
+
+Primary keyword selection
+
+Secondary keywords
+
+Long-tail variations
+
+Semantic (LSI) keyword coverage
+
+Search intent matching
+
+SERP archetype analysis
+
+Choosing content type (blog, product page, guide, listicle, etc.)
+
+Title tag optimization
+
+Meta description optimization
+
+URL keyword inclusion
+
+Query structure optimization
+
+Cannibalization prevention
+
+Targeting featured snippet formats
+
+Query reformulation based on “People Also Ask”
+
+Query clustering at page level
+
+TF-IDF optimization
+
+Entity optimization (Named Entities, attributes)
+
+Matching commercial vs. transactional vs. informational intent
+
+2. Content Depth, Quality & Relevance
+
+Topic depth coverage
+
+Including expert insights
+
+Incorporating data, statistics
+
+Adding original research
+
+Adding diagrams, visuals
+
+Examples, case studies
+
+Unique value proposition vs competitors
+
+Readability / scannability
+
+Paragraph segmentation
+
+Sentence brevity
+
+Reducing fluff
+
+Updating outdated info
+
+Adding FAQs
+
+Removing duplicate content
+
+Adding buyer’s guides
+
+Addressing user objections
+
+Building content around entities & relationships
+
+Using NLP quality signals
+
+Using structured content templates
+
+Satisfying “Experience” (EEAT) elements
+
+3. UX & Behavioral Signals
+
+Page layout optimization
+
+Reducing bounce rate
+
+Improving dwell time
+
+Internal CTAs for journey flow
+
+No intrusive pop-ups
+
+Fast-loading above-the-fold content
+
+Consistent user interface
+
+High contrast & readable fonts
+
+Avoiding layout shifts (CLS fixes)
+
+Sticky navigation
+
+Click-through rate optimization (title/meta tests)
+
+Scroll-depth optimization
+
+Engagement triggers (Q&A sections, tabs)
+
+Heatmap-based refinements
+
+Avoiding deceptive styling
+
+4. Internal Linking
+
+Anchor text variety
+
+Contextual internal links
+
+Silo structure
+
+Hub → spoke linking
+
+Minimizing orphan pages
+
+Proper navigation links
+
+Breadcrumb navigation
+
+Dynamic internal links based on related content
+
+Fixing broken internal links
+
+Link depth optimization (pages should be ≤ 3 clicks away)
+
+No-follow strategy where needed
+
+Consolidating cannibal pages via internal linking
+
+Using internal links to reinforce topic authority
+
+5. Media & Asset Optimization
+
+Compressing images
+
+WebP format
+
+Optimization of video embeds
+
+Lazy loading
+
+Serving scaled images
+
+Title + alt attributes
+
+SVGs for icons
+
+Optimizing PDFs
+
+Optimizing downloadable assets
+
+Using CDNs
+
+Preloading critical assets
+
+Avoiding huge hero images
+
+Caching static resources
+
+Eliminating unnecessary scripts
+
+6. Crawlability & URL Optimization
+
+Clean URL structure
+
+Removing tracking parameters
+
+Removing duplicate URLs
+
+Setting correct trailing slash rules
+
+Canonicals matching self URLs
+
+Deprecated pages → redirect
+
+Avoiding over-nesting in folders
+
+Pages linked from sitemap present on site
+
+Removing infinite scrolling traps
+
+Avoiding AJAX-only navigation
+
+Optimizing pagination structure
+
+Crawl budget optimization (minimizing junk URLs)
+
+Fixing soft 404s
+
+Removing session ID parameters
+
+🔥 TECHNICAL SEO — Everything That Keeps Your Site Out of Google’s Trash Bin
+1. Indexing & Crawl Control
+
+Ensuring correct indexing of public pages
+
+Noindex on thin content pages
+
+Noindex on login pages
+
+Noindex on staging domains
+
+Blocking internal environments (robots + password)
+
+Ensuring robots.txt is correctly implemented
+
+Google Search Console “Inspect URL” checks
+
+Index coverage issue resolution
+
+Handling canonical conflicts
+
+Avoiding doorway pages
+
+Managing crawl budget for huge sites
+
+Prerendering content for JS-heavy pages
+
+Server-side rendering if needed
+
+2. Sitemaps
+
+XML sitemap
+
+Separate sitemaps for:
+
+blog
+
+products
+
+categories
+
+videos
+
+images
+
+Sitemap auto-regeneration
+
+Sitemap index file
+
+Excluding non-indexable URLs
+
+Priority & last-mod fields
+
+Submitting to Google & Bing
+
+Monitoring sitemap errors
+
+3. Robots.txt
+
+Blocking admin folders
+
+Blocking staging paths
+
+Disallowing duplicate filter URLs
+
+Allowing crawling of critical assets (CSS/JS)
+
+Preventing bot traps
+
+Crawl-delay tuning
+
+Rules for image crawling
+
+Allowing sitemap discovery via robots.txt
+
+4. Canonicals
+
+Self-referencing canonicals
+
+Cross-domain canonical (rare cases)
+
+Resolving parameter variations
+
+Fixing www vs non-www duplicates
+
+Fixing http vs https duplicates
+
+Handling print-view pages
+
+Handling AMP duplicates
+
+Canonicals for pagination (careful)
+
+5. Site Architecture
+
+Flat hierarchy
+
+Logical folder structure
+
+Proper category/subcategory design
+
+Topic clustering
+
+Hub pages
+
+Avoiding deep nesting
+
+Fixing orphan pages
+
+Taxonomy cleanup
+
+Removing zombie pages
+
+Duplicate content cleanup
+
+Tag system cleanup
+
+Pagination structure
+
+“Single source of truth” for each topic
+
+6. Core Web Vitals
+
+LCP reduction:
+
+image optimization
+
+preload critical images
+
+optimize server response time
+
+CLS reduction:
+
+reserve space for media
+
+font-display swap
+
+avoid DOM injections
+
+INP reduction:
+
+reduce JS
+
+optimize main thread
+
+defer scripts
+
+Minimizing JS bundle
+
+Minimizing CSS
+
+Using HTTP/2 or HTTP/3
+
+CDN optimization
+
+Server-level caching
+
+7. JavaScript Rendering
+
+Ensuring content renders without JS
+
+SSR (server-side rendering)
+
+Hydration optimizations
+
+Reducing client-side rendering
+
+Avoiding JS-navigation only
+
+Checking rendering in Googlebot
+
+Using dynamic rendering for huge JS apps
+
+Ensuring metadata renders server-side
+
+8. Mobile-First Optimization
+
+Responsive layout
+
+Proper viewport settings
+
+Tap-size optimization
+
+No horizontal scroll
+
+Mobile LCP optimization
+
+Reducing mobile pop-ups
+
+Minimizing mobile CLS issues
+
+Mobile navigation simplification
+
+Eliminating hidden-but-rendered sections
+
+9. Duplicate Content Control
+
+Parameter handling
+
+Faceted navigation cleanup
+
+Filter URL deduplication
+
+Preventing infinite crawl spaces
+
+Cross-domain duplicate checks
+
+Using canonical to consolidate two similar pages
+
+Using hreflang for international versions
+
+Consolidating tag archives
+
+Handling print versions
+
+10. Security & Protocol
+
+HTTPS everywhere
+
+HSTS enabled
+
+No mixed content
+
+Subresource integrity
+
+Proper redirects:
+
+301 for permanent
+
+302 for temporary
+
+Avoid redirect chains
+
+Avoid redirect loops
+
+SSL expiration monitoring
+
+11. Server-Level Technicalities
+
+GZIP/Brotli compression
+
+Server caching layers
+
+Database query optimization
+
+Minimizing TTFB
+
+Using a performant host
+
+Using edge caching
+
+PHP, Node, or framework-level performance tuning
+
+Avoiding dynamic slow endpoints

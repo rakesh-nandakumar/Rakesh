@@ -1,16 +1,23 @@
 "use client";
 
-import timelineData from "../data/timeline.json";
+import { useTimeline } from "@/hooks/useSupabaseData";
 
 export default function ResumeSection() {
+  const { timeline: timelineData = {}, isLoading } = useTimeline();
+
+  if (isLoading) {
+    return <div className="text-center py-10">Loading...</div>;
+  }
+
+  // Extract timeline array from the data object
+  const timeline = timelineData?.timeline || [];
+
   // Filter timeline data by category
   // Category 1 = Work Experience, Category 2 = Education
-  const experienceItems = timelineData.timeline.filter(
+  const experienceItems = (timeline || []).filter(
     (item) => item.category === 1
   );
-  const educationItems = timelineData.timeline.filter(
-    (item) => item.category === 2
-  );
+  const educationItems = (timeline || []).filter((item) => item.category === 2);
 
   return (
     <div
@@ -85,9 +92,7 @@ export default function ResumeSection() {
                                 <span>{edu.status || "Completed"}</span>
                               </div>
                             </div>
-                            <p className="description">
-                              {edu["description"]}
-                            </p>
+                            <p className="description">{edu["description"]}</p>
                           </div>
                         </div>
                       ))}

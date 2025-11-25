@@ -18,18 +18,12 @@ const BlogSection = () => {
           const data = await response.json();
           setBlogsData(data);
         } else {
-          const imported = await import("@/data/blogs.json");
-          setBlogsData(imported.default);
+          console.error("Failed to fetch blogs from API");
+          setBlogsData([]);
         }
       } catch (error) {
         console.error("Failed to load blogs:", error);
-        try {
-          const imported = await import("@/data/blogs.json");
-          setBlogsData(imported.default);
-        } catch (importError) {
-          console.error("Failed to import blogs:", importError);
-          setBlogsData([]);
-        }
+        setBlogsData([]);
       } finally {
         setIsLoading(false);
       }

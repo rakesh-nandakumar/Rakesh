@@ -1,9 +1,16 @@
 "use client";
 
-import timelineData from "../data/timeline.json";
+import { useTimeline } from "@/hooks/useSupabaseData";
 
 export default function CareerTimeline() {
-  const timelineItems = timelineData || [];
+  const { timeline: timelineData = {}, isLoading } = useTimeline();
+
+  if (isLoading) {
+    return <div className="text-center py-10">Loading timeline...</div>;
+  }
+
+  // Extract timeline array from the data object
+  const timelineItems = timelineData?.timeline || [];
   return (
     <div className="container">
       <div className="row">

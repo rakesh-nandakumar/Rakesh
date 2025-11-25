@@ -1,16 +1,25 @@
+"use client";
+
 import Image from "next/image";
-import aboutData from "@/data/about.json";
+import { useProfile } from "@/hooks/useSupabaseData";
+import { resolveAssetUrl } from "@/lib/fileStorage";
 
 export default function AboutSection() {
-  const { name, shortBio, longBio, profileImage, cvLink } = aboutData;
+  const { profile: aboutData, isLoading } = useProfile();
+
+  if (isLoading || !aboutData) {
+    return <div className="text-center py-10">Loading...</div>;
+  }
+
+  const { name, shortBio, longBio = "", profileImage, cvLink } = aboutData;
 
   // Convert **text** to <strong>text</strong>
   const formatBio = (text) => {
-    return text.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+    return text?.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>") || "";
   };
 
   // Split longBio into paragraphs for better display
-  const bioParagraphs = longBio.split("\n\n");
+  const bioParagraphs = (longBio || "").split("\n\n");
 
   return (
     <div id="about" className="rn-about-area rn-section-gap">
@@ -26,7 +35,7 @@ export default function AboutSection() {
             >
               <div className="thumbnail">
                 <Image
-                  src={profileImage}
+                  src={resolveAssetUrl(profileImage)}
                   alt={`${name} - Profile Image`}
                   width={400}
                   height={400}

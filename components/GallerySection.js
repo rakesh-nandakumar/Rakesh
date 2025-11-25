@@ -2,20 +2,20 @@
 
 import React, { useState, useEffect } from "react";
 import { X, ChevronLeft, ChevronRight, Calendar, MapPin } from "react-feather";
-import galleryData from "../data/gallery.json";
+import { useGallery } from "@/hooks/useSupabaseData";
+import { resolveAssetUrl } from "@/lib/fileStorage";
 
 const GallerySection = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [closeButtonStyle, setCloseButtonStyle] = useState({});
 
-  // Get gallery images from JSON file
-  // Support both formats:
-  // - legacy: { galleryImages: [...] }
-  // - current: [ ... ]
-  const galleryImages = Array.isArray(galleryData)
-    ? galleryData
-    : galleryData.galleryImages || [];
+  const { gallery = [], isLoading } = useGallery();
+
+  // Support both array and { galleryImages: [] } shapes from DB
+  const galleryImages = Array.isArray(gallery)
+    ? gallery
+    : gallery.galleryImages || [];
 
   // Dynamic close button sizing based on modal size
   useEffect(() => {
@@ -92,6 +92,10 @@ const GallerySection = () => {
     };
     return colors[category] || "bg-gray-500";
   };
+
+  if (isLoading) {
+    return <div className="text-center py-10">Loading gallery...</div>;
+  }
 
   return (
     <>
@@ -304,7 +308,7 @@ const GallerySection = () => {
                 >
                   <div className="image-container">
                     <img
-                      src={image.src}
+                      src={resolveAssetUrl(image.src)}
                       alt={image.title}
                       className="gallery-image"
                       style={{

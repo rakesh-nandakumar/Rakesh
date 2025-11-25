@@ -1,19 +1,35 @@
 "use client";
 
 import Link from "next/link";
-import aboutData from "@/data/about.json";
-import headerData from "../data/header.json";
+import { useProfile, useHeader } from "@/hooks/useSupabaseData";
 
 export default function Footer() {
-  const { name, title, contact, shortBio } = aboutData;
+  const { profile: aboutData, isLoading: profileLoading } = useProfile();
+  const { header: headerData, isLoading: headerLoading } = useHeader();
   const currentYear = new Date().getFullYear();
 
   // Convert **text** to <strong>text</strong>
   const formatBio = (text) => {
-    return text.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+    return text?.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>") || "";
   };
 
-  const quickLinks = headerData.navigation;
+  // Show minimal footer while loading
+  if (profileLoading || headerLoading) {
+    return (
+      <footer className="rn-footer-area rn-section-gap section-separator">
+        <div className="container">
+          <div className="row">
+            <div className="col-12 text-center">
+              <p>Loading...</p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    );
+  }
+
+  const { name, title, contact = {}, shortBio } = aboutData || {};
+  const quickLinks = headerData?.navigation || [];
   // Define services offered
 
   const services = [

@@ -86,7 +86,9 @@ export const metadata = {
     title: "Rakesh Nandakumar - Full Stack Developer & Software Engineer",
     description:
       "Experienced Full Stack Developer with 3+ years in Laravel, React, Vue.js, and AWS. Creating dynamic web applications and enterprise solutions.",
-    images: [`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/portfolio/hero.jpg`],
+    images: [
+      `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/portfolio/hero.jpg`,
+    ],
   },
   verification: {
     google: "your-google-verification-code",

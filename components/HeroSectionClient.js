@@ -11,7 +11,7 @@ export default function HeroSectionClient({ aboutData }) {
   const formatBio = (text) => {
     return text?.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>") || "";
   };
-  
+
   return (
     <div
       className="rn-slider-area hero-section-responsive"

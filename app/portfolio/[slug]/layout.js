@@ -1,4 +1,8 @@
-import { getPortfolio, getPortfolioBySlug, getAllPortfolioSlugs } from "@/lib/supabaseDataService";
+import {
+  getPortfolio,
+  getPortfolioBySlug,
+  getAllPortfolioSlugs,
+} from "@/lib/supabaseDataService";
 
 export async function generateStaticParams() {
   const slugs = await getAllPortfolioSlugs();

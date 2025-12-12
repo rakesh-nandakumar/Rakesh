@@ -4,22 +4,23 @@ import PortfolioCard from "./PortfolioCard";
 import Link from "next/link";
 
 export default function PortfolioSectionClient({ portfolioData }) {
-  const portfolioItems = portfolioData
-    ?.filter((item) => item.featured)
-    ?.sort((a, b) => {
-      // Prioritize completed projects first
-      if (a.status === "completed" && b.status !== "completed") return -1;
-      if (b.status === "completed" && a.status !== "completed") return 1;
+  const portfolioItems =
+    portfolioData
+      ?.filter((item) => item.featured)
+      ?.sort((a, b) => {
+        // Prioritize completed projects first
+        if (a.status === "completed" && b.status !== "completed") return -1;
+        if (b.status === "completed" && a.status !== "completed") return 1;
 
-      // For ongoing projects, sort by progress percentage (highest first)
-      if (a.status === "ongoing" && b.status === "ongoing") {
-        return (b.progress || 0) - (a.progress || 0);
-      }
+        // For ongoing projects, sort by progress percentage (highest first)
+        if (a.status === "ongoing" && b.status === "ongoing") {
+          return (b.progress || 0) - (a.progress || 0);
+        }
 
-      // For other statuses, maintain original order
-      return 0;
-    })
-    ?.slice(0, 3) || []; // Get only the top 3
+        // For other statuses, maintain original order
+        return 0;
+      })
+      ?.slice(0, 3) || []; // Get only the top 3
 
   return (
     <div

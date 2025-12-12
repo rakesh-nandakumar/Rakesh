@@ -30,7 +30,11 @@ const BlogSectionClient = ({ blogsData }) => {
           </div>
           <div className="row row--25 mt--30 mt_md--10 mt_sm--10">
             {displayBlogs.map((blog, index) => (
-              <BlogCard key={blog.slug || index} blog={blog} delay={100 + index * 50} />
+              <BlogCard
+                key={blog.slug || index}
+                blog={blog}
+                delay={100 + index * 50}
+              />
             ))}
           </div>
           <div className="row">

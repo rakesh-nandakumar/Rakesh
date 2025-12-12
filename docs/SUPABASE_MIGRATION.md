@@ -15,11 +15,13 @@ The application has been migrated from reading data from local JSON files (`/dat
 ## Architecture Changes
 
 ### Before
+
 ```
 Components → import JSON files → Static data at build time
 ```
 
 ### After
+
 ```
 Server Components → Supabase Queries → Dynamic data with caching
 Client Components → API Routes → Supabase Queries → Dynamic data
@@ -39,10 +41,12 @@ lib/
 ### Updated Components (Server/Client Split)
 
 For each component that needs data:
+
 - `Component.js` - Server component that fetches data
 - `ComponentClient.js` - Client component that receives data as props
 
 Example:
+
 ```
 components/
 ├── HeroSection.js        # Server component - fetches data
@@ -55,6 +59,7 @@ components/
 ### Updated Pages
 
 All pages now use async data fetching:
+
 - `app/page.js` - Home page
 - `app/about/page.js` - About page
 - `app/blogs/page.js` - Blog listing
@@ -84,12 +89,14 @@ SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
 The Supabase database includes these tables:
 
 ### Core Tables
+
 - `profiles` - User profile information
 - `profile_titles` - Multiple titles per profile
 - `contact_types` - Types of contacts (email, phone, etc.)
 - `contacts` - Contact information
 
 ### Content Tables
+
 - `blogs` - Blog posts
 - `blog_tags` - Tags for blog posts
 - `blog_tag_relationships` - Many-to-many blog-tag relationships
@@ -100,6 +107,7 @@ The Supabase database includes these tables:
 - `service_features` - Features of services
 
 ### Navigation & UI
+
 - `headers` - Header configuration
 - `header_navigation` - Navigation items
 - `header_features` - Feature items for mega menu
@@ -108,12 +116,14 @@ The Supabase database includes these tables:
 - `site_configs` - Site configuration
 
 ### Supporting Tables
+
 - `technologies` - Technology/skill definitions
 - `technology_categories` - Categories for technologies
 
 ## Storage Buckets
 
 Supabase Storage buckets:
+
 - `images` - Profile images, general images
 - `projects` - Project screenshots and assets
 - `blogs` - Blog post images
@@ -125,6 +135,7 @@ Supabase Storage buckets:
 The `supabaseDataService.js` transforms Supabase data to match the existing JSON structure, ensuring backward compatibility.
 
 Example transformation:
+
 ```javascript
 // Supabase returns
 { name: 'John', profile_image: 'profile.jpg' }
@@ -142,6 +153,7 @@ Example transformation:
 ## Migration Steps
 
 1. Install Supabase package:
+
    ```bash
    npm install @supabase/supabase-js
    ```
@@ -149,11 +161,13 @@ Example transformation:
 2. Set up environment variables in `.env.local`
 
 3. Run the migration script:
+
    ```powershell
    .\migrate-to-supabase.ps1
    ```
 
 4. Start the development server:
+
    ```bash
    npm run dev
    ```
@@ -178,6 +192,7 @@ If you need to rollback:
 ### Client-side Data Fetching
 
 Some components now fetch data client-side via API:
+
 - `Footer` - Fetches about/header data
 - `RelatedContent` - Fetches blogs/portfolio for related items
 - `PortfolioPageClient` - Fetches portfolio with filter state
@@ -186,6 +201,7 @@ Some components now fetch data client-side via API:
 ### Async Server Components
 
 Page components are now async:
+
 ```javascript
 // Before
 export default function Page() { ... }
@@ -197,6 +213,7 @@ export default async function Page() { ... }
 ### generateStaticParams
 
 Static path generation now uses async queries:
+
 ```javascript
 export async function generateStaticParams() {
   const slugs = await getAllBlogSlugs();
@@ -207,22 +224,28 @@ export async function generateStaticParams() {
 ## Troubleshooting
 
 ### "Missing Supabase environment variables"
+
 Ensure `.env.local` has all required variables.
 
 ### "Error fetching data"
+
 Check Supabase dashboard for:
+
 - Table exists
 - RLS policies allow read access
 - Service role key has correct permissions
 
 ### Images not loading
+
 Verify:
+
 - Storage buckets are public or have correct policies
 - Image paths match storage structure
 
 ## Performance Monitoring
 
 Monitor these metrics after migration:
+
 - Time to First Byte (TTFB)
 - Largest Contentful Paint (LCP)
 - API response times

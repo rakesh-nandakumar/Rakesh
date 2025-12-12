@@ -13,7 +13,7 @@ export default function PortfolioPageClient() {
   useEffect(() => {
     const loadPortfolio = async () => {
       try {
-        const response = await fetch('/api/data?entity=portfolio');
+        const response = await fetch("/api/data?entity=portfolio");
         if (response.ok) {
           const data = await response.json();
           setPortfolioItems(data);
@@ -40,7 +40,7 @@ export default function PortfolioPageClient() {
       return status === activeFilter;
     });
   }, [activeFilter, portfolioItems]);
-  
+
   // Get counts for each status
   const statusCounts = useMemo(() => {
     if (!portfolioItems || portfolioItems.length === 0) {
@@ -50,13 +50,13 @@ export default function PortfolioPageClient() {
         upcoming: 0,
       };
     }
-    
+
     const counts = portfolioItems.reduce((acc, item) => {
       const status = item.status || "upcoming";
       acc[status] = (acc[status] || 0) + 1;
       return acc;
     }, {});
-    
+
     return {
       ongoing: counts.ongoing || 0,
       completed: counts.completed || 0,
@@ -77,7 +77,8 @@ export default function PortfolioPageClient() {
         "@context": "https://schema.org",
         "@type": "CreativeWork",
         name: "Rakesh Nandakumar's Portfolio",
-        description: "A showcase of technical projects and contributions across various domains and technologies",
+        description:
+          "A showcase of technical projects and contributions across various domains and technologies",
         author: {
           "@type": "Person",
           name: "Rakesh Nandakumar",
@@ -85,12 +86,13 @@ export default function PortfolioPageClient() {
         },
       };
     }
-    
+
     return {
       "@context": "https://schema.org",
       "@type": "CreativeWork",
       name: "Rakesh Nandakumar's Portfolio",
-      description: "A showcase of technical projects and contributions across various domains and technologies",
+      description:
+        "A showcase of technical projects and contributions across various domains and technologies",
       author: {
         "@type": "Person",
         name: "Rakesh Nandakumar",
@@ -195,7 +197,11 @@ export default function PortfolioPageClient() {
               </div>
             ) : filteredProjects.length > 0 ? (
               filteredProjects.map((item, index) => (
-                <PortfolioCard key={item.id || index} item={item} index={index} />
+                <PortfolioCard
+                  key={item.id || index}
+                  item={item}
+                  index={index}
+                />
               ))
             ) : (
               <div className="col-12">

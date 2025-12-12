@@ -11,29 +11,30 @@ export default function HeaderClient({ headerData, siteConfig }) {
   const overlayState = useHeaderOverlay(); // Always call the hook
   const isHomePage = pathname === "/";
   const isOverlaying = isHomePage && !overlayState; // Use the result conditionally
-  
+
   // Filter navigation items based on site-config
-  const filteredNavigation = headerData?.navigation?.filter((item) => {
-    const href = item.href.toLowerCase();
+  const filteredNavigation =
+    headerData?.navigation?.filter((item) => {
+      const href = item.href.toLowerCase();
 
-    // Always show Home, About, and Contact
-    if (href === "/" || href === "/about" || href === "/contact") {
+      // Always show Home, About, and Contact
+      if (href === "/" || href === "/about" || href === "/contact") {
+        return true;
+      }
+
+      // Check site config for other pages
+      if (href === "/portfolio" && !siteConfig?.ProjectsEnabled) {
+        return false;
+      }
+      if (href === "/blogs" && !siteConfig?.BlogEnabled) {
+        return false;
+      }
+      if (href === "/templates" && !siteConfig?.TemplatesEnabled) {
+        return false;
+      }
+
       return true;
-    }
-
-    // Check site config for other pages
-    if (href === "/portfolio" && !siteConfig?.ProjectsEnabled) {
-      return false;
-    }
-    if (href === "/blogs" && !siteConfig?.BlogEnabled) {
-      return false;
-    }
-    if (href === "/templates" && !siteConfig?.TemplatesEnabled) {
-      return false;
-    }
-
-    return true;
-  }) || [];
+    }) || [];
 
   return (
     <header className="rn-header haeder-default black-logo-version header--fixed header--sticky">
@@ -44,7 +45,7 @@ export default function HeaderClient({ headerData, siteConfig }) {
             <div className="logo md:ml-3">
               <Link href="/">
                 <Image
-                  src={headerData?.avatar || '/avatar.png'}
+                  src={headerData?.avatar || "/avatar.png"}
                   alt="inbio logo"
                   width={50}
                   height={50}

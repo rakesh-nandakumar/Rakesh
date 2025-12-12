@@ -35,7 +35,10 @@ export default function ResumeSection() {
 
   if (isLoading) {
     return (
-      <div className="rn-resume-area rn-section-gap section-separator" id="resume">
+      <div
+        className="rn-resume-area rn-section-gap section-separator"
+        id="resume"
+      >
         <div className="container">
           <div className="text-center py-5">
             <div className="spinner-border text-primary" role="status">
@@ -120,9 +123,7 @@ export default function ResumeSection() {
                                 <span>{edu.status || "Completed"}</span>
                               </div>
                             </div>
-                            <p className="description">
-                              {edu["description"]}
-                            </p>
+                            <p className="description">{edu["description"]}</p>
                           </div>
                         </div>
                       ))}

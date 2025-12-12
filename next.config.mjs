@@ -56,7 +56,12 @@ const nextConfig = {
   experimental: {
     optimizeCss: true,
   },
-  serverExternalPackages: ["reading-time", "@supabase/supabase-js", "@supabase/postgrest-js", "@supabase/realtime-js"],
+  serverExternalPackages: [
+    "reading-time",
+    "@supabase/supabase-js",
+    "@supabase/postgrest-js",
+    "@supabase/realtime-js",
+  ],
   headers: async () => {
     return [
       {

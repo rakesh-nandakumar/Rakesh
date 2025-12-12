@@ -114,7 +114,11 @@ const BlogsPageClient = () => {
               </div>
             ) : displayBlogs.length > 0 ? (
               displayBlogs.map((blog, index) => (
-                <BlogCard key={blog.slug || index} blog={blog} delay={100 + index * 50} />
+                <BlogCard
+                  key={blog.slug || index}
+                  blog={blog}
+                  delay={100 + index * 50}
+                />
               ))
             ) : searchTerm ? (
               <div className="col-12">

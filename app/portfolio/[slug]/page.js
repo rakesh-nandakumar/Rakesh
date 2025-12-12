@@ -54,7 +54,7 @@ export async function generateMetadata({ params }) {
 // Generate static params for all portfolio items
 export async function generateStaticParams() {
   const portfolioData = await getPortfolio();
-  
+
   if (!portfolioData || !Array.isArray(portfolioData)) {
     return [];
   }

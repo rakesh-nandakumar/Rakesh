@@ -136,7 +136,7 @@ const GallerySectionClient = ({ galleryData }) => {
           flex-direction: column;
           gap: 1rem;
         }
-        
+
         .detail-item {
           display: flex;
           align-items: center;
@@ -153,7 +153,7 @@ const GallerySectionClient = ({ galleryData }) => {
           flex-direction: column;
           gap: 0.25rem;
         }
-        
+
         .detail-label {
           font-size: 0.75rem;
           font-weight: 500;

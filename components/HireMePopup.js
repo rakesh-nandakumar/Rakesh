@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { X } from "react-feather";
+import { STORAGE_URLS } from "@/lib/storageConfig";
 
 const HireMePopup = ({ showOnMount = true }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -76,7 +77,7 @@ const HireMePopup = ({ showOnMount = true }) => {
                 <div className="hire-popup-col">
                   <div className="hire-popup-avatar-center">
                     <Image
-                      src="/avatar.png"
+                      src={STORAGE_URLS.avatar}
                       alt="Rakesh Nandakumar"
                       width={80}
                       height={80}

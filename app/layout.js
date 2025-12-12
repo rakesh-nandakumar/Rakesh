@@ -74,7 +74,7 @@ export const metadata = {
     siteName: "Rakesh Nandakumar Portfolio",
     images: [
       {
-        url: "/hero.jpg",
+        url: `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/portfolio/hero.jpg`,
         width: 1200,
         height: 630,
         alt: "Rakesh Nandakumar - Full Stack Developer",
@@ -86,7 +86,7 @@ export const metadata = {
     title: "Rakesh Nandakumar - Full Stack Developer & Software Engineer",
     description:
       "Experienced Full Stack Developer with 3+ years in Laravel, React, Vue.js, and AWS. Creating dynamic web applications and enterprise solutions.",
-    images: ["/hero.jpg"],
+    images: [`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/portfolio/hero.jpg`],
   },
   verification: {
     google: "your-google-verification-code",
@@ -95,15 +95,15 @@ export const metadata = {
     canonical: "https://rakeshn.com",
   },
   icons: {
-    icon: "/avatar.png",
-    shortcut: "/avatar.png",
-    apple: "/avatar.png",
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/icon-192x192.png",
   },
 };
 
 export default async function RootLayout({ children }) {
-  // Fetch site config from data service
-  const siteConfig = getSiteConfig();
+  // Fetch site config from data service (async from Supabase)
+  const siteConfig = await getSiteConfig();
   const ChatButtonOn = siteConfig?.ChatAssistantEnabled ?? false;
 
   return (

@@ -17,20 +17,14 @@ export default function TemplatesSection() {
         const response = await fetch("/api/data?entity=portfolio");
         if (response.ok) {
           const data = await response.json();
-          setPortfolioData(data);
+          setPortfolioData(data || []);
         } else {
-          const imported = await import("@/data/portfolio.json");
-          setPortfolioData(imported.default);
+          // Fallback to empty array if API fails
+          setPortfolioData([]);
         }
       } catch (error) {
         console.error("Failed to load portfolio:", error);
-        try {
-          const imported = await import("@/data/portfolio.json");
-          setPortfolioData(imported.default);
-        } catch (importError) {
-          console.error("Failed to import portfolio:", importError);
-          setPortfolioData([]);
-        }
+        setPortfolioData([]);
       } finally {
         setIsLoading(false);
       }

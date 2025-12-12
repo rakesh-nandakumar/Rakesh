@@ -2,8 +2,6 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import blogData from "@/data/blogs.json";
-import portfolioData from "@/data/portfolio.json";
 
 export default function RelatedContent({
   currentSlug,
@@ -13,69 +11,92 @@ export default function RelatedContent({
   maxItems = 3,
 }) {
   const [relatedItems, setRelatedItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const data = type === "blog" ? blogData : portfolioData;
+    const fetchAndProcessData = async () => {
+      try {
+        const entity = type === "blog" ? "blogs" : "portfolio";
+        const response = await fetch(`/api/data?entity=${entity}`);
+        
+        if (!response.ok) {
+          console.error("Failed to fetch related content data");
+          setIsLoading(false);
+          return;
+        }
+        
+        const data = await response.json();
 
-    if (!data || !Array.isArray(data)) return;
+        if (!data || !Array.isArray(data)) {
+          setIsLoading(false);
+          return;
+        }
 
-    // Filter out current item and find related ones
-    const otherItems = data.filter((item) => item.slug !== currentSlug);
+        // Filter out current item and find related ones
+        const otherItems = data.filter((item) => item.slug !== currentSlug);
 
-    // Calculate relevance scores
-    const scoredItems = otherItems.map((item) => {
-      let score = 0;
+        // Calculate relevance scores
+        const scoredItems = otherItems.map((item) => {
+          let score = 0;
 
-      // Category match (highest weight)
-      if (currentCategory && item.category === currentCategory) {
-        score += 10;
+          // Category match (highest weight)
+          if (currentCategory && item.category === currentCategory) {
+            score += 10;
+          }
+
+          // Tag matches
+          if (currentTags && currentTags.length > 0) {
+            const itemTags = item.tags || item.technologies || [];
+            const commonTags = currentTags.filter((tag) =>
+              itemTags.some(
+                (itemTag) =>
+                  itemTag.toLowerCase().includes(tag.toLowerCase()) ||
+                  tag.toLowerCase().includes(itemTag.toLowerCase())
+              )
+            );
+            score += commonTags.length * 3;
+          }
+
+          // Date recency (newer items get slight boost)
+          if (item.date) {
+            const itemDate = new Date(item.date);
+            const daysSincePublished =
+              (Date.now() - itemDate.getTime()) / (1000 * 60 * 60 * 24);
+            if (daysSincePublished < 30) score += 2;
+            else if (daysSincePublished < 90) score += 1;
+          }
+
+          return { ...item, score };
+        });
+
+        // Sort by score and take top items
+        const related = scoredItems
+          .filter((item) => item.score > 0)
+          .sort((a, b) => b.score - a.score)
+          .slice(0, maxItems);
+
+        // If we don't have enough related items, add some recent ones
+        if (related.length < maxItems) {
+          const recentItems = otherItems
+            .filter((item) => !related.find((r) => r.slug === item.slug))
+            .sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0))
+            .slice(0, maxItems - related.length);
+
+          related.push(...recentItems);
+        }
+
+        setRelatedItems(related.slice(0, maxItems));
+      } catch (error) {
+        console.error("Error fetching related content:", error);
+      } finally {
+        setIsLoading(false);
       }
+    };
 
-      // Tag matches
-      if (currentTags && currentTags.length > 0) {
-        const itemTags = item.tags || item.technologies || [];
-        const commonTags = currentTags.filter((tag) =>
-          itemTags.some(
-            (itemTag) =>
-              itemTag.toLowerCase().includes(tag.toLowerCase()) ||
-              tag.toLowerCase().includes(itemTag.toLowerCase())
-          )
-        );
-        score += commonTags.length * 3;
-      }
-
-      // Date recency (newer items get slight boost)
-      if (item.date) {
-        const itemDate = new Date(item.date);
-        const daysSincePublished =
-          (Date.now() - itemDate.getTime()) / (1000 * 60 * 60 * 24);
-        if (daysSincePublished < 30) score += 2;
-        else if (daysSincePublished < 90) score += 1;
-      }
-
-      return { ...item, score };
-    });
-
-    // Sort by score and take top items
-    const related = scoredItems
-      .filter((item) => item.score > 0)
-      .sort((a, b) => b.score - a.score)
-      .slice(0, maxItems);
-
-    // If we don't have enough related items, add some recent ones
-    if (related.length < maxItems) {
-      const recentItems = otherItems
-        .filter((item) => !related.find((r) => r.slug === item.slug))
-        .sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0))
-        .slice(0, maxItems - related.length);
-
-      related.push(...recentItems);
-    }
-
-    setRelatedItems(related.slice(0, maxItems));
+    fetchAndProcessData();
   }, [currentSlug, currentTags, currentCategory, type, maxItems]);
 
-  if (relatedItems.length === 0) return null;
+  if (isLoading || relatedItems.length === 0) return null;
 
   const baseUrl = type === "blog" ? "/blogs" : "/portfolio";
   const itemType = type === "blog" ? "posts" : "projects";

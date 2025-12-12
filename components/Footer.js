@@ -1,11 +1,39 @@
 "use client";
 
 import Link from "next/link";
-import aboutData from "@/data/about.json";
-import headerData from "../data/header.json";
+import { useState, useEffect } from "react";
 
 export default function Footer() {
-  const { name, title, contact, shortBio } = aboutData;
+  const [aboutData, setAboutData] = useState(null);
+  const [headerData, setHeaderData] = useState(null);
+  
+  // Fetch data on client side
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [aboutRes, headerRes] = await Promise.all([
+          fetch("/api/data?entity=about"),
+          fetch("/api/data?entity=header")
+        ]);
+        
+        if (aboutRes.ok) {
+          const about = await aboutRes.json();
+          setAboutData(about);
+        }
+        
+        if (headerRes.ok) {
+          const header = await headerRes.json();
+          setHeaderData(header);
+        }
+      } catch (error) {
+        console.error("Error fetching footer data:", error);
+      }
+    };
+    
+    fetchData();
+  }, []);
+
+  const { name = "", title = [], contact = {}, shortBio = "" } = aboutData || {};
   const currentYear = new Date().getFullYear();
 
   // Convert **text** to <strong>text</strong>
@@ -13,9 +41,9 @@ export default function Footer() {
     return text.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
   };
 
-  const quickLinks = headerData.navigation;
+  const quickLinks = headerData?.navigation || [];
+  
   // Define services offered
-
   const services = [
     "Web Development",
     "Mobile App Development",
@@ -23,6 +51,23 @@ export default function Footer() {
     "Technical Consulting",
     "API Development",
   ];
+
+  // Show loading state or minimal footer while data loads
+  if (!aboutData) {
+    return (
+      <footer className="rn-footer-area rn-section-gap section-separator">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-12">
+              <div className="footer-area text-center pt--40">
+                <p className="description">Loading...</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    );
+  }
 
   return (
     <footer className="rn-footer-area rn-section-gap section-separator">

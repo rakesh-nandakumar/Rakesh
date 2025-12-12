@@ -9,9 +9,7 @@ import {
   getSiteConfig,
   getPortfolio,
   getBlogs,
-} from "@/lib/dataService";
-import path from "path";
-import fs from "fs/promises";
+} from "@/lib/supabaseDataService";
 
 export async function GET(request) {
   try {
@@ -20,47 +18,56 @@ export async function GET(request) {
 
     let data;
 
-    // Handle special AI data files (raw JSON files)
-    if (type === "rag-manifest") {
-      const filePath = path.join(process.cwd(), "data", "rag-manifest.json");
-      const fileContent = await fs.readFile(filePath, "utf-8");
-      data = JSON.parse(fileContent);
-      return NextResponse.json(data, {
-        headers: {
-          "Cache-Control":
-            "public, s-maxage=3600, stale-while-revalidate=86400",
-        },
-      });
-    }
-
-    // Handle regular data types - now synchronous
+    // Handle regular data types - all async from Supabase
     switch (type) {
       case "about":
-        data = getAbout();
+        data = await getAbout();
         break;
       case "header":
-        data = getHeader();
+        data = await getHeader();
         break;
       case "services":
-        data = getServices();
+        data = await getServices();
         break;
       case "technologies":
-        data = getTechnologies();
+        data = await getTechnologies();
         break;
       case "timeline":
-        data = getTimeline();
+        data = await getTimeline();
         break;
       case "gallery":
-        data = getGallery();
+        data = await getGallery();
         break;
       case "site-config":
-        data = getSiteConfig();
+        data = await getSiteConfig();
         break;
       case "portfolio":
-        data = getPortfolio();
+        data = await getPortfolio();
         break;
       case "blogs":
-        data = getBlogs();
+        data = await getBlogs();
+        break;
+      case "rag-manifest":
+        // For RAG manifest, we can generate it from Supabase data
+        const [aboutData, blogData, portfolioData, servicesData, techData] = await Promise.all([
+          getAbout(),
+          getBlogs(),
+          getPortfolio(),
+          getServices(),
+          getTechnologies()
+        ]);
+        
+        data = {
+          version: "1.0",
+          generated: new Date().toISOString(),
+          sections: {
+            about: aboutData,
+            blogs: blogData,
+            portfolio: portfolioData,
+            services: servicesData,
+            technologies: techData
+          }
+        };
         break;
       default:
         return NextResponse.json(
@@ -71,7 +78,7 @@ export async function GET(request) {
 
     return NextResponse.json(data, {
       headers: {
-        "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400",
+        "Cache-Control": "public, s-maxage=60, stale-while-revalidate=300",
       },
     });
   } catch (error) {

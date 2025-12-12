@@ -1,18 +1,9 @@
-import HeroSection from "@/components/HeroSection";
-import FeaturesSection from "@/components/FeaturesSection";
-import PortfolioSection from "@/components/PortfolioSection";
-import ResumeSection from "@/components/ResumeSection";
-import TestimonialSection from "@/components/TestimonialSection";
-import CareerTimeline from "@/components/CareerTimeline";
-import TimelineComponent from "@/components/timeline/TimelineComponent";
-import ContactSection from "@/components/ContactSection";
-import BlogSection from "@/components/BlogSection";
 import AboutSection from "@/components/AboutSection";
+import ResumeSection from "@/components/ResumeSection";
+import TimelineComponent from "@/components/timeline/TimelineComponent";
 import SkillsSection from "@/components/SkillsSection";
 import GallerySection from "@/components/GallerySection";
-import { getGallery, getSiteConfig } from "@/lib/dataService";
-import { Calendar, Clock } from "react-feather";
-import { ExternalLink, GitHub } from "react-feather";
+import { getSiteConfig } from "@/lib/supabaseDataService";
 
 export const metadata = {
   title: "About Me - Full Stack Developer Journey",
@@ -55,9 +46,9 @@ export const metadata = {
   },
 };
 
-export default function About() {
-  const siteConfig = getSiteConfig();
-  const galleryData = getGallery();
+export default async function About() {
+  // Fetch site config from Supabase
+  const siteConfig = await getSiteConfig();
 
   // Structured data for About page
   const aboutStructuredData = {

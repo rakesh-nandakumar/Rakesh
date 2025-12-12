@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
-import { getPortfolio } from "@/lib/dataService";
+import { getPortfolio } from "@/lib/supabaseDataService";
 
 export async function GET() {
   try {
-    const portfolio = getPortfolio();
+    const portfolio = await getPortfolio();
 
     // Return with cache headers for better performance
     return NextResponse.json(portfolio, {

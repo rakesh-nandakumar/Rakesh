@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getBlogs } from "@/lib/dataService";
+import { getBlogs } from "@/lib/supabaseDataService";
 
 export async function GET() {
   const siteUrl = "https://rakeshn.com";
@@ -7,8 +7,8 @@ export async function GET() {
   const feedDescription =
     "Latest articles and insights from Rakesh Nandakumar on Full Stack Development, Laravel, React, and AWS.";
 
-  // Get blogs from data service (now synchronous)
-  const blogData = getBlogs();
+  // Get blogs from Supabase data service (async)
+  const blogData = await getBlogs();
 
   // Sort blogs by date (newest first)
   const sortedBlogs = blogData

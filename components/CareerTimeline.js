@@ -1,9 +1,26 @@
 "use client";
 
-import timelineData from "../data/timeline.json";
+import { useState, useEffect } from "react";
 
 export default function CareerTimeline() {
-  const timelineItems = timelineData || [];
+  const [timelineItems, setTimelineItems] = useState([]);
+
+  useEffect(() => {
+    const fetchTimeline = async () => {
+      try {
+        const response = await fetch("/api/data?entity=timeline");
+        if (response.ok) {
+          const data = await response.json();
+          setTimelineItems(data.timeline || []);
+        }
+      } catch (error) {
+        console.error("Error fetching timeline:", error);
+      }
+    };
+
+    fetchTimeline();
+  }, []);
+
   return (
     <div className="container">
       <div className="row">

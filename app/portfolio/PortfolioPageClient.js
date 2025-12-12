@@ -1,0 +1,215 @@
+"use client";
+
+import React, { useState, useMemo, useEffect } from "react";
+import PortfolioCard from "@/components/PortfolioCard";
+import BreadcrumbSchema from "@/components/BreadcrumbSchema";
+
+export default function PortfolioPageClient() {
+  const [activeFilter, setActiveFilter] = useState("completed");
+  const [portfolioItems, setPortfolioItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Load portfolio data on client side from Supabase API
+  useEffect(() => {
+    const loadPortfolio = async () => {
+      try {
+        const response = await fetch('/api/data?entity=portfolio');
+        if (response.ok) {
+          const data = await response.json();
+          setPortfolioItems(data);
+        } else {
+          console.error("Failed to load portfolio from API");
+          setPortfolioItems([]);
+        }
+      } catch (error) {
+        console.error("Failed to load portfolio:", error);
+        setPortfolioItems([]);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadPortfolio();
+  }, []);
+
+  // Filter projects based on status
+  const filteredProjects = useMemo(() => {
+    if (!portfolioItems || portfolioItems.length === 0) return [];
+    return portfolioItems.filter((item) => {
+      const status = item.status || "upcoming";
+      return status === activeFilter;
+    });
+  }, [activeFilter, portfolioItems]);
+  
+  // Get counts for each status
+  const statusCounts = useMemo(() => {
+    if (!portfolioItems || portfolioItems.length === 0) {
+      return {
+        ongoing: 0,
+        completed: 0,
+        upcoming: 0,
+      };
+    }
+    
+    const counts = portfolioItems.reduce((acc, item) => {
+      const status = item.status || "upcoming";
+      acc[status] = (acc[status] || 0) + 1;
+      return acc;
+    }, {});
+    
+    return {
+      ongoing: counts.ongoing || 0,
+      completed: counts.completed || 0,
+      upcoming: counts.upcoming || 0,
+    };
+  }, [portfolioItems]);
+
+  // Breadcrumb data
+  const breadcrumbItems = [
+    { name: "Home", url: "https://rakeshn.com" },
+    { name: "Portfolio", url: "https://rakeshn.com/portfolio" },
+  ];
+
+  // Structured data for portfolio
+  const portfolioStructuredData = useMemo(() => {
+    if (!portfolioItems || portfolioItems.length === 0) {
+      return {
+        "@context": "https://schema.org",
+        "@type": "CreativeWork",
+        name: "Rakesh Nandakumar's Portfolio",
+        description: "A showcase of technical projects and contributions across various domains and technologies",
+        author: {
+          "@type": "Person",
+          name: "Rakesh Nandakumar",
+          jobTitle: "Full Stack Developer",
+        },
+      };
+    }
+    
+    return {
+      "@context": "https://schema.org",
+      "@type": "CreativeWork",
+      name: "Rakesh Nandakumar's Portfolio",
+      description: "A showcase of technical projects and contributions across various domains and technologies",
+      author: {
+        "@type": "Person",
+        name: "Rakesh Nandakumar",
+        jobTitle: "Full Stack Developer",
+      },
+      mainEntity: portfolioItems.map((item) => ({
+        "@type": "SoftwareApplication",
+        name: item.title,
+        description: item.description || item.shortDescription,
+        applicationCategory: "WebApplication",
+        operatingSystem: "Cross-platform",
+      })),
+    };
+  }, [portfolioItems]);
+
+  return (
+    <>
+      <BreadcrumbSchema items={breadcrumbItems} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(portfolioStructuredData),
+        }}
+      />
+      <div
+        className="rn-portfolio-area rn-section-gap section-separator"
+        id="portfolio"
+      >
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-12">
+              <div className="section-title text-center">
+                <h2 className="title">My Portfolio</h2>
+                <p
+                  className="description mt-5"
+                  style={{
+                    fontSize: "16px",
+                    marginBottom: "0px",
+                  }}
+                >
+                  A showcase of my technical projects and contributions across
+                  various domains and technologies.
+                </p>
+                <p
+                  className="description"
+                  style={{
+                    fontSize: "14px",
+                    color: "#6c757d",
+                    fontStyle: "italic",
+                  }}
+                >
+                  Note: This portfolio includes only a small percentage of my
+                  work - just projects that I have permission to publish or that
+                  are my personal creations. My professional portfolio is much
+                  more extensive.
+                </p>
+              </div>
+            </div>
+          </div>
+          {/* Filter Buttons */}
+          <div className="row">
+            <div className="col-lg-12">
+              <div className="portfolio-filters text-center mb-5">
+                <div className="filter-buttons">
+                  <button
+                    className={`filter-btn ${
+                      activeFilter === "completed" ? "active" : ""
+                    }`}
+                    onClick={() => setActiveFilter("completed")}
+                  >
+                    Completed ({statusCounts.completed})
+                  </button>
+                  <button
+                    className={`filter-btn ${
+                      activeFilter === "ongoing" ? "active" : ""
+                    }`}
+                    onClick={() => setActiveFilter("ongoing")}
+                  >
+                    Ongoing ({statusCounts.ongoing})
+                  </button>
+                  <button
+                    className={`filter-btn ${
+                      activeFilter === "upcoming" ? "active" : ""
+                    }`}
+                    onClick={() => setActiveFilter("upcoming")}
+                  >
+                    Upcoming ({statusCounts.upcoming})
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="row row--25 mt--10 mt_md--10 mt_sm--10">
+            {isLoading ? (
+              <div className="col-12">
+                <div className="text-center py-5">
+                  <div className="spinner-border text-primary" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                  </div>
+                  <p className="mt-3">Loading portfolio...</p>
+                </div>
+              </div>
+            ) : filteredProjects.length > 0 ? (
+              filteredProjects.map((item, index) => (
+                <PortfolioCard key={item.id || index} item={item} index={index} />
+              ))
+            ) : (
+              <div className="col-12">
+                <div className="text-center py-5">
+                  <h4 className="title">No projects found</h4>
+                  <p className="text-muted">
+                    No projects match the selected filter.
+                  </p>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}

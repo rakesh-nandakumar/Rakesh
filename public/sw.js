@@ -13,8 +13,9 @@ const STATIC_ASSETS = [
   "/contact",
   "/offline",
   "/manifest.json",
-  "/avatar.png",
-  "/hero.jpg",
+  "/favicon.ico",
+  "/icon-192x192.png",
+  "/icon-512x512.png",
 ];
 
 // Cache strategies

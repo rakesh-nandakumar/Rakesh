@@ -1,16 +1,51 @@
 "use client";
 
-import timelineData from "../data/timeline.json";
+import { useState, useEffect } from "react";
 
 export default function ResumeSection() {
+  const [timelineData, setTimelineData] = useState({ timeline: [] });
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchTimeline = async () => {
+      try {
+        const response = await fetch("/api/data?entity=timeline");
+        if (response.ok) {
+          const data = await response.json();
+          setTimelineData(data);
+        }
+      } catch (error) {
+        console.error("Error fetching timeline:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchTimeline();
+  }, []);
+
   // Filter timeline data by category
   // Category 1 = Work Experience, Category 2 = Education
-  const experienceItems = timelineData.timeline.filter(
+  const experienceItems = (timelineData.timeline || []).filter(
     (item) => item.category === 1
   );
-  const educationItems = timelineData.timeline.filter(
+  const educationItems = (timelineData.timeline || []).filter(
     (item) => item.category === 2
   );
+
+  if (isLoading) {
+    return (
+      <div className="rn-resume-area rn-section-gap section-separator" id="resume">
+        <div className="container">
+          <div className="text-center py-5">
+            <div className="spinner-border text-primary" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div

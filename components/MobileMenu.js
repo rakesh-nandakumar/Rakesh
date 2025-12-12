@@ -97,7 +97,7 @@ export default function MobileMenu({
             <div className="menu-header">
               <Link href="/" className="logo" onClick={closeMobileMenu}>
                 <Image
-                  src="/avatar.png"
+                  src={headerData?.avatar || '/avatar.png'}
                   alt="Personal Portfolio"
                   width={50}
                   height={50}

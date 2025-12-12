@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import ParticlesBackground from "./ParticlesBackground";
+import { STORAGE_URLS } from "@/lib/storageConfig";
 
 export default function CTASection() {
   return (
@@ -18,7 +19,7 @@ export default function CTASection() {
               <div className="inner text-center">
                 <div className="section-title text-center">
                   <Image
-                    src="/avatar.png"
+                    src={STORAGE_URLS.avatar}
                     alt="inbio logo"
                     width={110}
                     height={110}

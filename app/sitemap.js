@@ -1,7 +1,6 @@
-import { getAllBlogSlugs } from "@/lib/blogUtils";
-import { getPortfolio } from "@/lib/dataService";
+import { getAllBlogSlugs, getAllPortfolioSlugs } from "@/lib/supabaseDataService";
 
-export default function sitemap() {
+export default async function sitemap() {
   const baseUrl = "https://rakeshn.com";
 
   // Static pages
@@ -41,7 +40,7 @@ export default function sitemap() {
   // Dynamic blog pages - with error handling
   let blogPages = [];
   try {
-    const blogSlugs = getAllBlogSlugs();
+    const blogSlugs = await getAllBlogSlugs();
     blogPages = blogSlugs.map((slug) => ({
       url: `${baseUrl}/blogs/${slug}`,
       lastModified: new Date(),
@@ -52,21 +51,19 @@ export default function sitemap() {
     console.error("Error generating blog sitemap entries:", error);
   }
 
-  // Dynamic portfolio pages
-  const portfolioData = getPortfolio();
-  const portfolioPages = portfolioData.map((project) => {
-    const slug = project.title
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/^-+|-+$/g, "");
-
-    return {
+  // Dynamic portfolio pages - with error handling
+  let portfolioPages = [];
+  try {
+    const portfolioSlugs = await getAllPortfolioSlugs();
+    portfolioPages = portfolioSlugs.map((slug) => ({
       url: `${baseUrl}/portfolio/${slug}`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.7,
-    };
-  });
+    }));
+  } catch (error) {
+    console.error("Error generating portfolio sitemap entries:", error);
+  }
 
   return [...staticPages, ...blogPages, ...portfolioPages];
 }

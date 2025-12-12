@@ -1,25 +1,15 @@
-import portfolioData from "@/data/portfolio.json";
+import { getPortfolio, getPortfolioBySlug, getAllPortfolioSlugs } from "@/lib/supabaseDataService";
 
 export async function generateStaticParams() {
-  return portfolioData.map((project) => ({
-    slug: project.title
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/^-+|-+$/g, ""),
-  }));
+  const slugs = await getAllPortfolioSlugs();
+  return slugs.map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
 
-  // Find project by slug
-  const project = portfolioData.find((item) => {
-    const projectSlug = item.title
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/^-+|-+$/g, "");
-    return projectSlug === slug;
-  });
+  // Find project by slug using async Supabase query
+  const project = await getPortfolioBySlug(slug);
 
   if (!project) {
     return {
@@ -36,7 +26,7 @@ export async function generateMetadata({ params }) {
     keywords: [
       project.title,
       project.category,
-      ...project.technologies,
+      ...(project.technologies || []),
       "Rakesh Nandakumar",
       "Portfolio Project",
       "Full Stack Developer",

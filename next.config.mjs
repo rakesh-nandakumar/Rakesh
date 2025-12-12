@@ -26,6 +26,18 @@ const nextConfig = {
         port: "",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "evgqbzyytamqezwdymkb.supabase.co",
+        port: "",
+        pathname: "/storage/**",
+      },
+      {
+        protocol: "https",
+        hostname: "picsum.photos",
+        port: "",
+        pathname: "/**",
+      },
     ],
     formats: ["image/avif", "image/webp"],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
@@ -44,7 +56,7 @@ const nextConfig = {
   experimental: {
     optimizeCss: true,
   },
-  serverExternalPackages: ["reading-time"],
+  serverExternalPackages: ["reading-time", "@supabase/supabase-js", "@supabase/postgrest-js", "@supabase/realtime-js"],
   headers: async () => {
     return [
       {

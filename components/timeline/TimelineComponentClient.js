@@ -90,7 +90,32 @@ const TimelineComponentClient = ({ timelineData }) => {
 
               <TimelineProgress />
 
-              <div className="mx-auto relative pt-20 pb-20">
+              <style jsx global>{`
+                @media (max-width: 768px) {
+                  .timeline-item-wrapper {
+                    padding-left: 50px !important;
+                    padding-right: 10px !important;
+                    flex-direction: row !important;
+                  }
+                  .timeline-dot-marker {
+                    left: 20px !important;
+                    transform: translateX(0) !important;
+                  }
+                  .timeline-connector-line {
+                    left: 28px !important;
+                    right: auto !important;
+                    width: 15px !important;
+                  }
+                  .timeline-card {
+                    max-width: 100% !important;
+                  }
+                }
+              `}</style>
+
+              <div
+                className="mx-auto relative pt-20 pb-20"
+                style={{ maxWidth: "1200px" }}
+              >
                 {processedData.map((item, index) => {
                   const isActive = item.active === true;
                   const position = index % 2 === 0 ? "left" : "right";
@@ -98,8 +123,33 @@ const TimelineComponentClient = ({ timelineData }) => {
                   return (
                     <div
                       key={index}
-                      className="relative mb-16 flex items-center"
+                      className={`timeline-item-wrapper relative mb-12 flex items-center ${
+                        position === "left"
+                          ? "flex-row justify-start"
+                          : "flex-row-reverse justify-start"
+                      }`}
+                      style={{
+                        paddingLeft: position === "left" ? "0" : "52%",
+                        paddingRight: position === "right" ? "0" : "52%",
+                      }}
                     >
+                      {/* Timeline dot */}
+                      <div
+                        className="timeline-dot-marker absolute left-1/2 transform -translate-x-1/2 z-10"
+                        style={{
+                          width: "16px",
+                          height: "16px",
+                          borderRadius: "50%",
+                          background:
+                            "linear-gradient(135deg, #ff014f 0%, #ff6b9d 100%)",
+
+                          border: "3px solid white",
+                          boxShadow: isActive
+                            ? "0 0 10px rgba(255, 1, 79, 0.5)"
+                            : "0 2px 4px rgba(0,0,0,0.1)",
+                        }}
+                      />
+
                       <TimelineCard
                         item={item}
                         position={position}

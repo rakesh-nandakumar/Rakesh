@@ -213,7 +213,13 @@ const TimelineCard = ({ item, position, isPast }) => {
   };
 
   return (
-    <div className="timeline-card">
+    <div
+      className="timeline-card"
+      style={{
+        width: "100%",
+        maxWidth: "450px",
+      }}
+    >
       <div ref={cardRef} className="rn-portfolio">
         <div className="inner">
           <div className="content">

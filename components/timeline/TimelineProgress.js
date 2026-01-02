@@ -64,47 +64,57 @@ const TimelineProgress = () => {
   }, []);
 
   return (
-    <div className="absolute inset-0 flex justify-center pointer-events-none z-0">
-      {/* Stylized timeline line with gradient */}
-      <div
-        className="w-2 bg-gradient-to-b from-gray-200 via-gray-300 to-gray-200 dark:from-gray-700 dark:via-gray-600 dark:to-gray-700 rounded-full h-full shadow-[0_0_15px_rgba(255,1,79,0.2)] sm:w-2"
-        ref={progressRef}
-      >
-        {/* Progress overlay with gradient */}
+    <>
+      <style jsx global>{`
+        @media (max-width: 768px) {
+          .timeline-progress-container {
+            justify-content: flex-start !important;
+            padding-left: 20px !important;
+          }
+        }
+      `}</style>
+      <div className="timeline-progress-container absolute inset-0 flex justify-center pointer-events-none z-0">
+        {/* Stylized timeline line with gradient */}
         <div
-          className="w-full rounded-full transition-all duration-100 ease-out"
-          style={{
-            background: "linear-gradient(135deg, #ff014f 0%, #ff6b9d 100%)",
-            boxShadow: "0 0 15px rgba(255, 1, 79, 0.6)",
-            height: `${progress}%`,
-          }}
+          className="w-2 bg-gradient-to-b from-gray-200 via-gray-300 to-gray-200 dark:from-gray-700 dark:via-gray-600 dark:to-gray-700 rounded-full h-full shadow-[0_0_15px_rgba(255,1,79,0.2)] sm:w-2"
+          ref={progressRef}
         >
-          {/* Animated dots/sparks effect - enhanced for mobile */}
+          {/* Progress overlay with gradient */}
           <div
-            className="absolute top-0 left-1/2 transform -translate-x-1/2 w-3 h-3 rounded-full animate-ping opacity-75 sm:w-3 sm:h-3"
+            className="w-full rounded-full transition-all duration-100 ease-out"
             style={{
-              backgroundColor: "#ff014f",
-              transform: `translateX(-50%) translateY(${Math.max(
-                0,
-                progress - 5
-              )}%)`,
+              background: "linear-gradient(135deg, #ff014f 0%, #ff6b9d 100%)",
+              boxShadow: "0 0 15px rgba(255, 1, 79, 0.6)",
+              height: `${progress}%`,
             }}
-          ></div>
+          >
+            {/* Animated dots/sparks effect - enhanced for mobile */}
+            <div
+              className="absolute top-0 left-1/2 transform -translate-x-1/2 w-3 h-3 rounded-full animate-ping opacity-75 sm:w-3 sm:h-3"
+              style={{
+                backgroundColor: "#ff014f",
+                transform: `translateX(-50%) translateY(${Math.max(
+                  0,
+                  progress - 5
+                )}%)`,
+              }}
+            ></div>
 
-          {/* Additional pulse effect for mobile */}
-          <div
-            className="absolute top-0 left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full animate-pulse opacity-50 block sm:hidden"
-            style={{
-              backgroundColor: "#ff6b9d",
-              transform: `translateX(-50%) translateY(${Math.max(
-                0,
-                progress - 3
-              )}%)`,
-            }}
-          ></div>
+            {/* Additional pulse effect for mobile */}
+            <div
+              className="absolute top-0 left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full animate-pulse opacity-50 block sm:hidden"
+              style={{
+                backgroundColor: "#ff6b9d",
+                transform: `translateX(-50%) translateY(${Math.max(
+                  0,
+                  progress - 3
+                )}%)`,
+              }}
+            ></div>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

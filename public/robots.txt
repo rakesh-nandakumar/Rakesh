@@ -1,20 +1,60 @@
+# Robots.txt for rakeshn.com
+# Full Stack Developer Portfolio - Rakesh Nandakumar
+
+# Default rules for all crawlers
 User-agent: *
 Allow: /
 
-# Sitemap
+# Sitemap location
 Sitemap: https://rakeshn.com/sitemap.xml
 
-# Crawl-delay
+# Allow Googlebot full access
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Allow Bingbot full access
+User-agent: Bingbot
+Allow: /
 Crawl-delay: 1
 
-# Disallow admin areas (if any)
-Disallow: /admin/
-Disallow: /api/
-Disallow: /_next/
-
-# Allow specific important pages
+# Allow other major search engines
+User-agent: Slurp
 Allow: /
-Allow: /about
-Allow: /portfolio
-Allow: /blogs
-Allow: /contact
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+# Disallow admin and private areas
+Disallow: /admin/
+Disallow: /api/admin/
+Disallow: /_next/static/chunks/
+Disallow: /*.json$
+
+# Allow API routes that serve public content
+Allow: /api/rss
+Allow: /api/feed.json
+Allow: /api/data
+
+# Allow static assets to be indexed
+Allow: /assets/
+Allow: /images/
+
+# Block bad bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+# Host directive
+Host: https://rakeshn.com

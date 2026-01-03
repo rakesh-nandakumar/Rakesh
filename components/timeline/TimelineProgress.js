@@ -1,28 +1,27 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 
 const TimelineProgress = () => {
   const progressRef = useRef(null);
   const timelineContainerRef = useRef(null);
+  const rafRef = useRef(null);
   const [progress, setProgress] = useState(0);
 
-  useEffect(() => {
-    // Find the timeline container element - updated selector for new structure
-    timelineContainerRef.current =
-      progressRef.current?.closest(".rn-contact-area");
+  const handleScroll = useCallback(() => {
+    // Cancel any pending RAF to avoid stacking
+    if (rafRef.current) {
+      cancelAnimationFrame(rafRef.current);
+    }
 
-    const handleScroll = () => {
+    rafRef.current = requestAnimationFrame(() => {
       if (!progressRef.current || !timelineContainerRef.current) return;
 
       const timelineRect = timelineContainerRef.current.getBoundingClientRect();
-
-      // Add null check for timelineRect
       if (!timelineRect || typeof timelineRect.top === "undefined") return;
 
       const windowHeight = window.innerHeight;
-      const scrollTop =
-        window.pageYOffset || document.documentElement.scrollTop;
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
       // Calculate how much of the timeline section has been scrolled past
       const timelineTop = timelineRect.top + scrollTop;
@@ -32,7 +31,6 @@ const TimelineProgress = () => {
       const scrollPastTimeline = Math.max(0, scrollTop - timelineTop);
 
       // Calculate progress as a percentage of timeline scrolled
-      // Use a more responsive calculation for mobile
       const isMobile = window.innerWidth < 640;
       const progressMultiplier = isMobile ? 1.2 : 1;
 
@@ -43,74 +41,140 @@ const TimelineProgress = () => {
 
       // For mobile, make the progress more responsive to card positions
       if (isMobile) {
-        // Add extra responsiveness for mobile - progress fills faster
         timelineProgress = Math.min(100, timelineProgress * 1.1);
       }
 
       // Clamp the progress between 0 and 100
       const clampedProgress = Math.min(100, Math.max(0, timelineProgress));
       setProgress(clampedProgress);
-    };
+    });
+  }, []);
 
-    window.addEventListener("scroll", handleScroll);
-    window.addEventListener("resize", handleScroll);
-    // Call once to initialize
+  useEffect(() => {
+    // Find the timeline container element
+    timelineContainerRef.current = progressRef.current?.closest(".rn-contact-area");
+
+    // Use passive listeners for better scroll performance
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll, { passive: true });
+    
+    // Initialize on mount
     handleScroll();
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleScroll);
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+      }
     };
-  }, []);
+  }, [handleScroll]);
 
   return (
     <>
       <style jsx global>{`
+        /* Timeline progress line positioned in center column of grid */
+        .timeline-progress-container {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 32px;
+          display: flex;
+          justify-content: center;
+          pointer-events: none;
+          z-index: 1;
+        }
+        
+        .timeline-progress-track {
+          width: 8px;
+          height: 100%;
+          background: linear-gradient(to bottom, 
+            rgba(200, 200, 200, 0.3) 0%, 
+            rgba(180, 180, 180, 0.4) 50%, 
+            rgba(200, 200, 200, 0.3) 100%
+          );
+          border-radius: 4px;
+          position: relative;
+          box-shadow: 0 0 15px rgba(255, 1, 79, 0.1);
+        }
+        
+        .white-version .timeline-progress-track {
+          background: linear-gradient(to bottom,
+            rgba(220, 220, 220, 0.5) 0%,
+            rgba(200, 200, 200, 0.6) 50%,
+            rgba(220, 220, 220, 0.5) 100%
+          );
+        }
+        
+        .timeline-progress-fill {
+          width: 100%;
+          border-radius: 4px;
+          background: linear-gradient(135deg, #ff014f 0%, #ff6b9d 100%);
+          box-shadow: 0 0 15px rgba(255, 1, 79, 0.6);
+          transition: height 100ms ease-out;
+          will-change: height;
+        }
+        
+        .timeline-progress-glow {
+          position: absolute;
+          top: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 12px;
+          height: 12px;
+          border-radius: 50%;
+          background-color: #ff014f;
+          opacity: 0.75;
+          animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+        
+        @keyframes ping {
+          75%, 100% {
+            transform: translateX(-50%) scale(2);
+            opacity: 0;
+          }
+        }
+        
+        /* Mobile: shift progress line to left */
         @media (max-width: 768px) {
           .timeline-progress-container {
-            justify-content: flex-start !important;
-            padding-left: 20px !important;
+            left: 20px;
+            transform: translateX(0);
+          }
+        }
+        
+        @media (max-width: 480px) {
+          .timeline-progress-container {
+            left: 16px;
           }
         }
       `}</style>
-      <div className="timeline-progress-container absolute inset-0 flex justify-center pointer-events-none z-0">
-        {/* Stylized timeline line with gradient */}
-        <div
-          className="w-2 bg-gradient-to-b from-gray-200 via-gray-300 to-gray-200 dark:from-gray-700 dark:via-gray-600 dark:to-gray-700 rounded-full h-full shadow-[0_0_15px_rgba(255,1,79,0.2)] sm:w-2"
-          ref={progressRef}
-        >
-          {/* Progress overlay with gradient */}
+      
+      <div 
+        className="timeline-progress-container" 
+        ref={progressRef}
+        role="progressbar"
+        aria-valuenow={Math.round(progress)}
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-label="Timeline scroll progress"
+      >
+        <div className="timeline-progress-track">
           <div
-            className="w-full rounded-full transition-all duration-100 ease-out"
-            style={{
-              background: "linear-gradient(135deg, #ff014f 0%, #ff6b9d 100%)",
-              boxShadow: "0 0 15px rgba(255, 1, 79, 0.6)",
-              height: `${progress}%`,
-            }}
+            className="timeline-progress-fill"
+            style={{ height: `${progress}%` }}
           >
-            {/* Animated dots/sparks effect - enhanced for mobile */}
-            <div
-              className="absolute top-0 left-1/2 transform -translate-x-1/2 w-3 h-3 rounded-full animate-ping opacity-75 sm:w-3 sm:h-3"
-              style={{
-                backgroundColor: "#ff014f",
-                transform: `translateX(-50%) translateY(${Math.max(
-                  0,
-                  progress - 5
-                )}%)`,
-              }}
-            ></div>
-
-            {/* Additional pulse effect for mobile */}
-            <div
-              className="absolute top-0 left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full animate-pulse opacity-50 block sm:hidden"
-              style={{
-                backgroundColor: "#ff6b9d",
-                transform: `translateX(-50%) translateY(${Math.max(
-                  0,
-                  progress - 3
-                )}%)`,
-              }}
-            ></div>
+            {/* Animated glow effect at the progress tip */}
+            {progress > 0 && progress < 100 && (
+              <div
+                className="timeline-progress-glow"
+                style={{
+                  top: `calc(${progress}% - 6px)`,
+                }}
+              />
+            )}
           </div>
         </div>
       </div>

@@ -148,11 +148,100 @@ export default function StructuredData({ data, type = "WebSite" }) {
         creator: {
           "@type": "Person",
           name: "Rakesh Nandakumar",
+          url: "https://rakeshn.com",
         },
         dateCreated: data.dateCreated,
         genre: data.category,
         keywords: data.technologies,
         license: data.license,
+      };
+      break;
+
+    case "SoftwareApplication":
+      structuredData = {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        name: data.name,
+        description: data.description,
+        image: data.image,
+        url: data.url,
+        applicationCategory: data.category || "WebApplication",
+        operatingSystem: "Web Browser",
+        author: {
+          "@type": "Person",
+          name: "Rakesh Nandakumar",
+          url: "https://rakeshn.com",
+        },
+        offers: {
+          "@type": "Offer",
+          price: "0",
+          priceCurrency: "USD",
+        },
+        datePublished: data.dateCreated,
+      };
+      break;
+
+    case "FAQPage":
+      structuredData = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: (data.faqs || []).map((faq) => ({
+          "@type": "Question",
+          name: faq.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: faq.answer,
+          },
+        })),
+      };
+      break;
+
+    case "Service":
+      structuredData = {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        name: data.name,
+        description: data.description,
+        provider: {
+          "@type": "Person",
+          name: "Rakesh Nandakumar",
+          url: "https://rakeshn.com",
+        },
+        areaServed: {
+          "@type": "Place",
+          name: "Worldwide",
+        },
+        hasOfferCatalog: {
+          "@type": "OfferCatalog",
+          name: "Web Development Services",
+          itemListElement: (data.services || []).map((service, index) => ({
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: service.name,
+              description: service.description,
+            },
+            position: index + 1,
+          })),
+        },
+      };
+      break;
+
+    case "ProfilePage":
+      structuredData = {
+        "@context": "https://schema.org",
+        "@type": "ProfilePage",
+        mainEntity: {
+          "@type": "Person",
+          name: data.name || "Rakesh Nandakumar",
+          jobTitle: data.jobTitle || "Full Stack Developer",
+          url: data.url || "https://rakeshn.com",
+          image: data.image || "https://rakeshn.com/profileImg.jpg",
+          description: data.description,
+          sameAs: data.socialProfiles || [],
+        },
+        dateCreated: data.dateCreated,
+        dateModified: data.dateModified || new Date().toISOString(),
       };
       break;
 

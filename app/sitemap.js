@@ -2,38 +2,45 @@ import { getAllBlogSlugs, getAllPortfolioSlugs } from "@/lib/supabaseDataService
 
 export default async function sitemap() {
   const baseUrl = "https://rakeshn.com";
+  const currentDate = new Date().toISOString();
 
-  // Static pages
+  // Static pages with proper priorities and change frequencies
   const staticPages = [
     {
       url: baseUrl,
-      lastModified: new Date(),
+      lastModified: currentDate,
       changeFrequency: "weekly",
-      priority: 1,
+      priority: 1.0,
     },
     {
       url: `${baseUrl}/about`,
-      lastModified: new Date(),
+      lastModified: currentDate,
       changeFrequency: "monthly",
       priority: 0.9,
     },
     {
       url: `${baseUrl}/portfolio`,
-      lastModified: new Date(),
+      lastModified: currentDate,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
       url: `${baseUrl}/blogs`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
+      lastModified: currentDate,
+      changeFrequency: "daily",
       priority: 0.8,
     },
     {
       url: `${baseUrl}/contact`,
-      lastModified: new Date(),
+      lastModified: currentDate,
       changeFrequency: "monthly",
       priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/templates`,
+      lastModified: currentDate,
+      changeFrequency: "weekly",
+      priority: 0.6,
     },
   ];
 
@@ -43,9 +50,9 @@ export default async function sitemap() {
     const blogSlugs = await getAllBlogSlugs();
     blogPages = blogSlugs.map((slug) => ({
       url: `${baseUrl}/blogs/${slug}`,
-      lastModified: new Date(),
+      lastModified: currentDate,
       changeFrequency: "monthly",
-      priority: 0.6,
+      priority: 0.7,
     }));
   } catch (error) {
     console.error("Error generating blog sitemap entries:", error);
@@ -57,9 +64,9 @@ export default async function sitemap() {
     const portfolioSlugs = await getAllPortfolioSlugs();
     portfolioPages = portfolioSlugs.map((slug) => ({
       url: `${baseUrl}/portfolio/${slug}`,
-      lastModified: new Date(),
+      lastModified: currentDate,
       changeFrequency: "monthly",
-      priority: 0.7,
+      priority: 0.8,
     }));
   } catch (error) {
     console.error("Error generating portfolio sitemap entries:", error);

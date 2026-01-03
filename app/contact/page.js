@@ -201,7 +201,7 @@ Thank you!`;
               <div className="contact-about-area">
                 <div className="thumbnail">
                   <Image
-                    src="/images/contact1.png"
+                    src="/contact.png"
                     alt={`${name} - Contact Image`}
                     width={400}
                     height={400}

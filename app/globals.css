@@ -160,12 +160,12 @@ html.aos-init [data-aos][data-aos][data-aos-duration="500"] {
   --gradient-red-hover: linear-gradient(135deg, #ff014f 0%, #ff6b9d 100%);
   --color-light: #ffffff;
   --color-lightn: #f8f9fa;
-  
+
   /* Performance-optimized shadows */
   --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.08);
   --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.12);
   --shadow-strong: 0 8px 32px rgba(0, 0, 0, 0.16);
-  
+
   /* Transition timings */
   --transition-fast: 150ms ease;
   --transition-normal: 250ms ease;
@@ -214,7 +214,7 @@ a:focus-visible {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-  
+
   .animate-fade-in-left,
   .animate-fade-in-right,
   .animate-scale-up,
@@ -2745,8 +2745,8 @@ body:not(.white-version) #footer-area {
 .code-block {
   border-radius: 8px;
   font-family: "Courier New", monospace;
-  font-size: 1.20rem;
-  padding: .5rem;
+  font-size: 1.2rem;
+  padding: 0.5rem;
   line-height: 1.5;
   overflow-x: auto;
   margin: 1.5rem 0;

@@ -74,7 +74,8 @@ export default function ContactLayout({ children }) {
           itemOffered: {
             "@type": "Service",
             name: "Full Stack Web Development",
-            description: "End-to-end web application development using Laravel, React, Vue.js, and Node.js",
+            description:
+              "End-to-end web application development using Laravel, React, Vue.js, and Node.js",
           },
         },
         {
@@ -82,7 +83,8 @@ export default function ContactLayout({ children }) {
           itemOffered: {
             "@type": "Service",
             name: "Technical Consulting",
-            description: "Expert advice on architecture, technology stack, and best practices",
+            description:
+              "Expert advice on architecture, technology stack, and best practices",
           },
         },
         {
@@ -90,7 +92,8 @@ export default function ContactLayout({ children }) {
           itemOffered: {
             "@type": "Service",
             name: "AWS Cloud Solutions",
-            description: "Cloud infrastructure setup, optimization, and management",
+            description:
+              "Cloud infrastructure setup, optimization, and management",
           },
         },
       ],

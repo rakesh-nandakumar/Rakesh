@@ -37,7 +37,8 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Tech Blog | Rakesh Nandakumar",
-    description: "Web development articles, tutorials, and software engineering insights.",
+    description:
+      "Web development articles, tutorials, and software engineering insights.",
     creator: "@rakesh_dev",
   },
   alternates: {
@@ -53,7 +54,8 @@ const blogListingSchema = {
   "@context": "https://schema.org",
   "@type": "Blog",
   name: "Rakesh Nandakumar Tech Blog",
-  description: "Technical articles and tutorials on web development and software engineering",
+  description:
+    "Technical articles and tutorials on web development and software engineering",
   url: "https://rakeshn.com/blogs",
   author: {
     "@type": "Person",

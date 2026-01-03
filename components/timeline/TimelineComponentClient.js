@@ -121,7 +121,7 @@ const TimelineComponentClient = ({ timelineData }) => {
                   padding-top: 80px;
                   padding-bottom: 80px;
                 }
-                
+
                 /* Timeline item uses CSS Grid for precise alignment */
                 .timeline-item-wrapper {
                   display: grid;
@@ -131,7 +131,7 @@ const TimelineComponentClient = ({ timelineData }) => {
                   margin-bottom: 48px;
                   position: relative;
                 }
-                
+
                 /* Left card area - fixed padding from center */
                 .timeline-card-left {
                   grid-column: 1;
@@ -139,7 +139,7 @@ const TimelineComponentClient = ({ timelineData }) => {
                   display: flex;
                   justify-content: flex-end;
                 }
-                
+
                 /* Right card area - fixed padding from center */
                 .timeline-card-right {
                   grid-column: 3;
@@ -147,7 +147,7 @@ const TimelineComponentClient = ({ timelineData }) => {
                   display: flex;
                   justify-content: flex-start;
                 }
-                
+
                 /* Center dot container */
                 .timeline-dot-container {
                   grid-column: 2;
@@ -156,7 +156,7 @@ const TimelineComponentClient = ({ timelineData }) => {
                   align-items: flex-start;
                   padding-top: 20px;
                 }
-                
+
                 /* Timeline dot marker */
                 .timeline-dot-marker {
                   width: 16px;
@@ -168,21 +168,21 @@ const TimelineComponentClient = ({ timelineData }) => {
                   z-index: 10;
                   position: relative;
                 }
-                
+
                 .timeline-dot-marker.active {
                   box-shadow: 0 0 10px rgba(255, 1, 79, 0.5);
                 }
-                
+
                 .timeline-dot-marker:not(.active) {
-                  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
                 }
-                
+
                 /* Card fixed max-width to prevent drift */
                 .timeline-card {
                   width: 100%;
                   max-width: 380px;
                 }
-                
+
                 /* Tablet breakpoint - slightly narrower cards */
                 @media (max-width: 992px) {
                   .timeline-container {
@@ -198,7 +198,7 @@ const TimelineComponentClient = ({ timelineData }) => {
                     padding-left: 16px;
                   }
                 }
-                
+
                 /* Mobile breakpoint - single column layout */
                 @media (max-width: 768px) {
                   .timeline-container {
@@ -206,7 +206,7 @@ const TimelineComponentClient = ({ timelineData }) => {
                     padding-left: 16px;
                     padding-right: 16px;
                   }
-                  
+
                   .timeline-item-wrapper {
                     display: flex;
                     flex-direction: row;
@@ -214,30 +214,30 @@ const TimelineComponentClient = ({ timelineData }) => {
                     padding-left: 48px;
                     padding-right: 8px;
                   }
-                  
+
                   .timeline-card-left,
                   .timeline-card-right {
                     padding: 0;
                     justify-content: flex-start;
                   }
-                  
+
                   .timeline-dot-container {
                     position: absolute;
                     left: 16px;
                     top: 20px;
                   }
-                  
+
                   .timeline-card {
                     max-width: 100%;
                     width: 100%;
                   }
-                  
+
                   .timeline-start-indicator {
                     left: 24px !important;
                     transform: translateX(0) !important;
                   }
                 }
-                
+
                 /* Small mobile */
                 @media (max-width: 480px) {
                   .timeline-item-wrapper {
@@ -279,7 +279,9 @@ const TimelineComponentClient = ({ timelineData }) => {
                       {/* Center dot */}
                       <div className="timeline-dot-container">
                         <div
-                          className={`timeline-dot-marker ${isActive ? "active" : ""}`}
+                          className={`timeline-dot-marker ${
+                            isActive ? "active" : ""
+                          }`}
                           aria-hidden="true"
                         />
                       </div>

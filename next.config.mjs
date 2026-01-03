@@ -10,20 +10,23 @@ const nextConfig = {
   devIndicators: {
     position: "bottom-right",
   },
-  
+
   // Production optimizations
   reactStrictMode: true,
-  
+
   // Compiler optimizations
   compiler: {
     // Remove console.log in production
-    removeConsole: process.env.NODE_ENV === "production" ? { exclude: ["error", "warn"] } : false,
+    removeConsole:
+      process.env.NODE_ENV === "production"
+        ? { exclude: ["error", "warn"] }
+        : false,
   },
-  
+
   eslint: {
     ignoreDuringBuilds: false,
   },
-  
+
   images: {
     remotePatterns: [
       {
@@ -54,16 +57,16 @@ const nextConfig = {
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
-  
+
   // Compression and performance
   compress: true,
   poweredByHeader: false,
   generateEtags: true,
-  
+
   httpAgentOptions: {
     keepAlive: true,
   },
-  
+
   // Experimental features for maximum performance
   experimental: {
     optimizeCss: true,
@@ -74,21 +77,21 @@ const nextConfig = {
       "clsx",
     ],
   },
-  
+
   serverExternalPackages: [
     "reading-time",
     "@supabase/supabase-js",
     "@supabase/postgrest-js",
     "@supabase/realtime-js",
   ],
-  
+
   // Modular imports for tree-shaking
   modularizeImports: {
     "react-feather": {
       transform: "react-feather/dist/icons/{{member}}",
     },
   },
-  
+
   headers: async () => {
     return [
       // Security headers

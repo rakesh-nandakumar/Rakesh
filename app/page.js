@@ -2,16 +2,19 @@ import dynamic from "next/dynamic";
 import { Suspense } from "react";
 import HeroSection from "@/components/HeroSection";
 import { getSiteConfig } from "@/lib/supabaseDataService";
-import { 
-  SectionSkeleton, 
+import {
+  SectionSkeleton,
   PortfolioGridSkeleton,
-  BlogGridSkeleton 
+  BlogGridSkeleton,
 } from "@/components/SkeletonLoaders";
 
 // Dynamic imports for below-the-fold components with proper skeleton loaders
 const FeaturesSection = dynamic(() => import("@/components/FeaturesSection"), {
   loading: () => (
-    <section className="rn-service-area rn-section-gap section-separator" aria-busy="true">
+    <section
+      className="rn-service-area rn-section-gap section-separator"
+      aria-busy="true"
+    >
       <div className="container">
         <SectionSkeleton height="400px" />
       </div>
@@ -24,7 +27,11 @@ const TechStackMarqueeClean = dynamic(
   () => import("@/components/TechStackMarqueeClean"),
   {
     loading: () => (
-      <section className="tech-stack-section" style={{ minHeight: "200px" }} aria-busy="true">
+      <section
+        className="tech-stack-section"
+        style={{ minHeight: "200px" }}
+        aria-busy="true"
+      >
         <div className="container">
           <div className="text-center py-5">
             <div className="animate-pulse bg-gray-200 h-6 w-48 mx-auto rounded mb-4" />
@@ -41,7 +48,10 @@ const PortfolioSection = dynamic(
   () => import("@/components/PortfolioSection"),
   {
     loading: () => (
-      <section className="rn-portfolio-area rn-section-gap section-separator" aria-busy="true">
+      <section
+        className="rn-portfolio-area rn-section-gap section-separator"
+        aria-busy="true"
+      >
         <div className="container">
           <div className="text-center mb-5">
             <div className="animate-pulse bg-gray-200 h-4 w-32 mx-auto rounded mb-3" />
@@ -57,7 +67,11 @@ const PortfolioSection = dynamic(
 
 const CTASection = dynamic(() => import("@/components/CTASection"), {
   loading: () => (
-    <section className="cta-section" style={{ minHeight: "300px" }} aria-busy="true">
+    <section
+      className="cta-section"
+      style={{ minHeight: "300px" }}
+      aria-busy="true"
+    >
       <div className="container">
         <div className="text-center py-5">
           <div className="animate-pulse bg-gray-200 h-8 w-64 mx-auto rounded mb-4" />
@@ -72,7 +86,10 @@ const CTASection = dynamic(() => import("@/components/CTASection"), {
 
 const BlogSection = dynamic(() => import("@/components/BlogSection"), {
   loading: () => (
-    <section className="rn-blog-area rn-section-gap section-separator" aria-busy="true">
+    <section
+      className="rn-blog-area rn-section-gap section-separator"
+      aria-busy="true"
+    >
       <div className="container">
         <div className="text-center mb-5">
           <div className="animate-pulse bg-gray-200 h-4 w-32 mx-auto rounded mb-3" />
@@ -87,7 +104,8 @@ const BlogSection = dynamic(() => import("@/components/BlogSection"), {
 
 // Enhanced metadata for homepage SEO
 export const metadata = {
-  title: "Rakesh Nandakumar - Full Stack Developer & Software Engineer | Portfolio",
+  title:
+    "Rakesh Nandakumar - Full Stack Developer & Software Engineer | Portfolio",
   description:
     "Welcome to Rakesh Nandakumar's portfolio. Discover expertise in full-stack development with Laravel, React, Vue.js, Next.js, Node.js, and AWS. View projects, read tech blogs, and connect for freelance or full-time opportunities.",
   keywords: [
@@ -122,24 +140,24 @@ export default async function Home() {
     <>
       {/* Hero Section - Critical, loaded immediately */}
       <HeroSection />
-      
+
       {/* Below-the-fold sections with Suspense boundaries for streaming */}
       <Suspense fallback={<SectionSkeleton height="400px" />}>
         {siteConfig.ServicesEnabled && <FeaturesSection />}
       </Suspense>
-      
+
       <Suspense fallback={<div style={{ minHeight: "200px" }} />}>
         {siteConfig.TechnologiesEnabled && <TechStackMarqueeClean />}
       </Suspense>
-      
+
       <Suspense fallback={<SectionSkeleton height="500px" />}>
         {siteConfig.ProjectsEnabled && <PortfolioSection />}
       </Suspense>
-      
+
       <Suspense fallback={<div style={{ minHeight: "300px" }} />}>
         <CTASection />
       </Suspense>
-      
+
       <Suspense fallback={<SectionSkeleton height="400px" />}>
         {siteConfig.BlogEnabled && <BlogSection />}
       </Suspense>

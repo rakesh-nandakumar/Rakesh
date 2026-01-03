@@ -32,7 +32,8 @@ const geistMono = Geist_Mono({
 export const metadata = {
   metadataBase: new URL("https://rakeshn.com"),
   title: {
-    default: "Rakesh Nandakumar - Full Stack Developer & Software Engineer | Laravel, React, AWS Expert",
+    default:
+      "Rakesh Nandakumar - Full Stack Developer & Software Engineer | Laravel, React, AWS Expert",
     template: "%s | Rakesh Nandakumar - Full Stack Developer",
   },
   description:
@@ -137,9 +138,7 @@ export const metadata = {
       { url: "/icon-512x512.png", sizes: "512x512", type: "image/png" },
     ],
     shortcut: "/favicon.ico",
-    apple: [
-      { url: "/icon-192x192.png", sizes: "192x192", type: "image/png" },
-    ],
+    apple: [{ url: "/icon-192x192.png", sizes: "192x192", type: "image/png" }],
   },
   manifest: "/manifest.json",
   other: {
@@ -166,13 +165,21 @@ export default async function RootLayout({ children }) {
           name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover"
         />
-        
+
         {/* SEO Critical Meta Tags */}
         <link rel="canonical" href="https://rakeshn.com" />
-        <meta name="theme-color" content="#ff014f" media="(prefers-color-scheme: light)" />
-        <meta name="theme-color" content="#1a1a2e" media="(prefers-color-scheme: dark)" />
+        <meta
+          name="theme-color"
+          content="#ff014f"
+          media="(prefers-color-scheme: light)"
+        />
+        <meta
+          name="theme-color"
+          content="#1a1a2e"
+          media="(prefers-color-scheme: dark)"
+        />
         <meta name="color-scheme" content="light dark" />
-        
+
         {/* PWA Meta Tags */}
         <link rel="manifest" href="/manifest.json" />
         <meta name="msapplication-TileColor" content="#ff014f" />
@@ -181,11 +188,11 @@ export default async function RootLayout({ children }) {
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="Rakesh Portfolio" />
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-        
+
         {/* Critical CSS - loaded synchronously for above-the-fold content */}
         <link rel="stylesheet" href="/assets/css/vendor/bootstrap.min.css" />
         <link rel="stylesheet" href="/assets/css/style.css" />
-        
+
         {/* Fallback for non-JS environments */}
         <noscript>
           <link rel="stylesheet" href="/assets/css/vendor/slick.css" />
@@ -202,12 +209,19 @@ export default async function RootLayout({ children }) {
           type="font/woff2"
           crossOrigin="anonymous"
         />
-        
+
         {/* Preconnect to external domains for faster resource loading */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href={process.env.NEXT_PUBLIC_SUPABASE_URL || "https://supabase.co"} />
-        
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preconnect"
+          href={process.env.NEXT_PUBLIC_SUPABASE_URL || "https://supabase.co"}
+        />
+
         {/* DNS prefetch for external resources */}
         <link rel="dns-prefetch" href="//www.google-analytics.com" />
         <link rel="dns-prefetch" href="//fonts.googleapis.com" />
@@ -220,7 +234,7 @@ export default async function RootLayout({ children }) {
           title="Rakesh Nandakumar Blog RSS Feed"
           href="/api/rss"
         />
-        
+
         {/* JSON Feed alternative */}
         <link
           rel="alternate"
@@ -278,7 +292,7 @@ export default async function RootLayout({ children }) {
             company: "Procons Infotech",
           }}
         />
-        
+
         {/* BreadcrumbList for SEO navigation */}
         <script
           type="application/ld+json"
@@ -286,15 +300,15 @@ export default async function RootLayout({ children }) {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "BreadcrumbList",
-              "itemListElement": [
+              itemListElement: [
                 {
                   "@type": "ListItem",
-                  "position": 1,
-                  "name": "Home",
-                  "item": "https://rakeshn.com"
-                }
-              ]
-            })
+                  position: 1,
+                  name: "Home",
+                  item: "https://rakeshn.com",
+                },
+              ],
+            }),
           }}
         />
       </head>
@@ -306,8 +320,8 @@ export default async function RootLayout({ children }) {
         itemScope
         itemType="https://schema.org/WebPage"
       >
-        <a 
-          href="#main-content" 
+        <a
+          href="#main-content"
           className="skip-to-content"
           style={{
             position: "absolute",
@@ -320,7 +334,7 @@ export default async function RootLayout({ children }) {
         >
           Skip to main content
         </a>
-        
+
         <ErrorBoundary>
           <GoogleAnalytics />
           <ClientComponents />
@@ -348,22 +362,22 @@ export default async function RootLayout({ children }) {
           src="/assets/js/vendor/feather.min.js"
           strategy="beforeInteractive"
         />
-        
+
         {/* Interactive JS - loaded after page becomes interactive */}
         <Script
           src="/assets/js/vendor/bootstrap.js"
           strategy="afterInteractive"
         />
-        <Script 
-          src="/assets/js/vendor/aos.js" 
+        <Script
+          src="/assets/js/vendor/aos.js"
           strategy="afterInteractive"
           onLoad={() => {
-            if (typeof AOS !== 'undefined') {
-              AOS.init({ 
-                once: true, 
+            if (typeof AOS !== "undefined") {
+              AOS.init({
+                once: true,
                 duration: 600,
-                easing: 'ease-out-cubic',
-                disable: 'mobile'
+                easing: "ease-out-cubic",
+                disable: "mobile",
               });
             }
           }}
@@ -372,11 +386,8 @@ export default async function RootLayout({ children }) {
           src="/assets/js/vendor/slick.min.js"
           strategy="afterInteractive"
         />
-        <Script 
-          src="/assets/js/vendor/wow.js" 
-          strategy="afterInteractive" 
-        />
-        
+        <Script src="/assets/js/vendor/wow.js" strategy="afterInteractive" />
+
         {/* Non-critical JS - lazy loaded */}
         <Script src="/assets/js/vendor/text-type.js" strategy="lazyOnload" />
         <Script src="/assets/js/vendor/particles.js" strategy="lazyOnload" />

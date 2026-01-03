@@ -21,7 +21,8 @@ const TimelineProgress = () => {
       if (!timelineRect || typeof timelineRect.top === "undefined") return;
 
       const windowHeight = window.innerHeight;
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollTop =
+        window.pageYOffset || document.documentElement.scrollTop;
 
       // Calculate how much of the timeline section has been scrolled past
       const timelineTop = timelineRect.top + scrollTop;
@@ -52,12 +53,13 @@ const TimelineProgress = () => {
 
   useEffect(() => {
     // Find the timeline container element
-    timelineContainerRef.current = progressRef.current?.closest(".rn-contact-area");
+    timelineContainerRef.current =
+      progressRef.current?.closest(".rn-contact-area");
 
     // Use passive listeners for better scroll performance
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", handleScroll, { passive: true });
-    
+
     // Initialize on mount
     handleScroll();
 
@@ -86,28 +88,30 @@ const TimelineProgress = () => {
           pointer-events: none;
           z-index: 1;
         }
-        
+
         .timeline-progress-track {
           width: 8px;
           height: 100%;
-          background: linear-gradient(to bottom, 
-            rgba(200, 200, 200, 0.3) 0%, 
-            rgba(180, 180, 180, 0.4) 50%, 
+          background: linear-gradient(
+            to bottom,
+            rgba(200, 200, 200, 0.3) 0%,
+            rgba(180, 180, 180, 0.4) 50%,
             rgba(200, 200, 200, 0.3) 100%
           );
           border-radius: 4px;
           position: relative;
           box-shadow: 0 0 15px rgba(255, 1, 79, 0.1);
         }
-        
+
         .white-version .timeline-progress-track {
-          background: linear-gradient(to bottom,
+          background: linear-gradient(
+            to bottom,
             rgba(220, 220, 220, 0.5) 0%,
             rgba(200, 200, 200, 0.6) 50%,
             rgba(220, 220, 220, 0.5) 100%
           );
         }
-        
+
         .timeline-progress-fill {
           width: 100%;
           border-radius: 4px;
@@ -116,7 +120,7 @@ const TimelineProgress = () => {
           transition: height 100ms ease-out;
           will-change: height;
         }
-        
+
         .timeline-progress-glow {
           position: absolute;
           top: 0;
@@ -129,14 +133,15 @@ const TimelineProgress = () => {
           opacity: 0.75;
           animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
         }
-        
+
         @keyframes ping {
-          75%, 100% {
+          75%,
+          100% {
             transform: translateX(-50%) scale(2);
             opacity: 0;
           }
         }
-        
+
         /* Mobile: shift progress line to left */
         @media (max-width: 768px) {
           .timeline-progress-container {
@@ -144,16 +149,16 @@ const TimelineProgress = () => {
             transform: translateX(0);
           }
         }
-        
+
         @media (max-width: 480px) {
           .timeline-progress-container {
             left: 16px;
           }
         }
       `}</style>
-      
-      <div 
-        className="timeline-progress-container" 
+
+      <div
+        className="timeline-progress-container"
         ref={progressRef}
         role="progressbar"
         aria-valuenow={Math.round(progress)}

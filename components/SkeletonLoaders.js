@@ -59,11 +59,16 @@ export const BlogCardSkeleton = memo(function BlogCardSkeleton() {
   );
 });
 
-export const PortfolioGridSkeleton = memo(function PortfolioGridSkeleton({ count = 6 }) {
+export const PortfolioGridSkeleton = memo(function PortfolioGridSkeleton({
+  count = 6,
+}) {
   return (
     <div className="row row--25">
       {Array.from({ length: count }).map((_, i) => (
-        <div key={i} className="col-lg-4 col-md-6 col-12 mt--50 mt_md--30 mt_sm--30">
+        <div
+          key={i}
+          className="col-lg-4 col-md-6 col-12 mt--50 mt_md--30 mt_sm--30"
+        >
           <CardSkeleton />
         </div>
       ))}
@@ -75,7 +80,10 @@ export const BlogGridSkeleton = memo(function BlogGridSkeleton({ count = 3 }) {
   return (
     <div className="row row--25">
       {Array.from({ length: count }).map((_, i) => (
-        <div key={i} className="col-lg-4 col-md-6 col-12 mt--30 mt_md--30 mt_sm--30">
+        <div
+          key={i}
+          className="col-lg-4 col-md-6 col-12 mt--30 mt_md--30 mt_sm--30"
+        >
           <BlogCardSkeleton />
         </div>
       ))}
@@ -134,11 +142,13 @@ export const TimelineCardSkeleton = memo(function TimelineCardSkeleton() {
   );
 });
 
-export const SectionSkeleton = memo(function SectionSkeleton({ height = "400px" }) {
+export const SectionSkeleton = memo(function SectionSkeleton({
+  height = "400px",
+}) {
   return (
-    <div 
+    <div
       className="skeleton-section"
-      style={{ 
+      style={{
         minHeight: height,
         display: "flex",
         alignItems: "center",

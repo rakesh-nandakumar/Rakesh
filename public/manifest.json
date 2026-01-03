@@ -10,7 +10,13 @@
   "orientation": "any",
   "background_color": "#ffffff",
   "theme_color": "#ff014f",
-  "categories": ["portfolio", "development", "technology", "business", "productivity"],
+  "categories": [
+    "portfolio",
+    "development",
+    "technology",
+    "business",
+    "productivity"
+  ],
   "lang": "en-US",
   "dir": "ltr",
   "iarc_rating_id": "",

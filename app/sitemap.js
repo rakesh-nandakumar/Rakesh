@@ -1,4 +1,7 @@
-import { getAllBlogSlugs, getAllPortfolioSlugs } from "@/lib/supabaseDataService";
+import {
+  getAllBlogSlugs,
+  getAllPortfolioSlugs,
+} from "@/lib/supabaseDataService";
 
 export default async function sitemap() {
   const baseUrl = "https://rakeshn.com";

@@ -75,7 +75,8 @@ export default async function About() {
     "@context": "https://schema.org",
     "@type": "AboutPage",
     name: "About Rakesh Nandakumar",
-    description: "Professional biography and career journey of Rakesh Nandakumar, Full Stack Developer",
+    description:
+      "Professional biography and career journey of Rakesh Nandakumar, Full Stack Developer",
     url: "https://rakeshn.com/about",
     mainEntity: {
       "@type": "Person",
@@ -167,24 +168,31 @@ export default async function About() {
           __html: JSON.stringify(aboutStructuredData),
         }}
       />
-      <article className="about-page pt-20" itemScope itemType="https://schema.org/AboutPage">
+      <article
+        className="about-page pt-20"
+        itemScope
+        itemType="https://schema.org/AboutPage"
+      >
         <meta itemProp="name" content="About Rakesh Nandakumar" />
-        <meta itemProp="description" content="Professional biography and career journey" />
-        
+        <meta
+          itemProp="description"
+          content="Professional biography and career journey"
+        />
+
         <AboutSection />
-        
+
         <Suspense fallback={<SectionSkeleton height="600px" />}>
           {siteConfig.TimelineEnabled && <TimelineComponent />}
         </Suspense>
-        
+
         <Suspense fallback={<SectionSkeleton height="400px" />}>
           {siteConfig.TimelineEnabled && <ResumeSection />}
         </Suspense>
-        
+
         <Suspense fallback={<SectionSkeleton height="400px" />}>
           {siteConfig.TechnologiesEnabled && <SkillsSection />}
         </Suspense>
-        
+
         <Suspense fallback={<SectionSkeleton height="400px" />}>
           {siteConfig.GalleryEnabled && <GallerySection />}
         </Suspense>

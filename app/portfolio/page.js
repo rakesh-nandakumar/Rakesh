@@ -5,7 +5,7 @@ import PortfolioPageClient from "./PortfolioPageClient";
 export async function generateMetadata() {
   const siteConfig = await getSiteConfig();
   const baseUrl = siteConfig?.siteUrl || "https://rakeshn.com";
-  
+
   return {
     title: "Portfolio - Web Development Projects | Rakesh Nandakumar",
     description:

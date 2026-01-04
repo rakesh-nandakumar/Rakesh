@@ -368,10 +368,7 @@ export default async function RootLayout({ children }) {
           src="/assets/js/vendor/bootstrap.js"
           strategy="afterInteractive"
         />
-        <Script
-          src="/assets/js/vendor/aos.js"
-          strategy="afterInteractive"
-        />
+        <Script src="/assets/js/vendor/aos.js" strategy="afterInteractive" />
         <Script
           src="/assets/js/vendor/slick.min.js"
           strategy="afterInteractive"

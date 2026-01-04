@@ -371,16 +371,6 @@ export default async function RootLayout({ children }) {
         <Script
           src="/assets/js/vendor/aos.js"
           strategy="afterInteractive"
-          onLoad={() => {
-            if (typeof AOS !== "undefined") {
-              AOS.init({
-                once: true,
-                duration: 600,
-                easing: "ease-out-cubic",
-                disable: "mobile",
-              });
-            }
-          }}
         />
         <Script
           src="/assets/js/vendor/slick.min.js"

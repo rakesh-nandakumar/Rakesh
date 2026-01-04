@@ -186,7 +186,7 @@ if (typeof document !== "undefined") {
   }
 }
 
-export default {
+const SkeletonLoaders = {
   SkeletonPulse,
   CardSkeleton,
   BlogCardSkeleton,
@@ -196,3 +196,5 @@ export default {
   TimelineCardSkeleton,
   SectionSkeleton,
 };
+
+export default SkeletonLoaders;

@@ -143,7 +143,6 @@ export const metadata = {
   manifest: "/manifest.json",
   other: {
     "mobile-web-app-capable": "yes",
-    "apple-mobile-web-app-capable": "yes",
     "apple-mobile-web-app-status-bar-style": "default",
     "apple-mobile-web-app-title": "Rakesh Portfolio",
     "msapplication-TileColor": "#ff014f",
@@ -184,9 +183,7 @@ export default async function RootLayout({ children }) {
         <link rel="manifest" href="/manifest.json" />
         <meta name="msapplication-TileColor" content="#ff014f" />
         <meta name="format-detection" content="telephone=no" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-mobile-web-app-title" content="Rakesh Portfolio" />
+        <meta name="mobile-web-app-capable" content="yes" />
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
 
         {/* Critical CSS - loaded synchronously for above-the-fold content */}
@@ -200,15 +197,6 @@ export default async function RootLayout({ children }) {
           <link rel="stylesheet" href="/assets/css/vendor/aos.css" />
           <link rel="stylesheet" href="/assets/css/plugins/feature.css" />
         </noscript>
-
-        {/* Preload critical resources - fonts first for LCP */}
-        <link
-          rel="preload"
-          href="/assets/fonts/feather.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
 
         {/* Preconnect to external domains for faster resource loading */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />

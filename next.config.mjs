@@ -186,7 +186,6 @@ const nextConfig = {
             value: [
               "</assets/css/vendor/bootstrap.min.css>; rel=preload; as=style",
               "</assets/css/style.css>; rel=preload; as=style",
-              "</assets/fonts/feather.woff2>; rel=preload; as=font; type=font/woff2; crossorigin",
             ].join(", "),
           },
         ],

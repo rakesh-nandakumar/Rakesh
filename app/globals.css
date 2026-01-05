@@ -12,14 +12,8 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
-/* Prevent FOUC (Flash of Unstyled Content) */
-html:not(.fonts-loaded) body {
-  visibility: hidden;
-}
-
-html.fonts-loaded body {
-  visibility: visible;
-}
+/* Font loading optimization - removed visibility:hidden to prevent white screen */
+/* Fonts are loaded with display:swap in layout.js for optimal rendering */
 
 /* Optimize font rendering for LCP */
 body {
